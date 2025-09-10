@@ -18,9 +18,13 @@ function App() {
 		try {
 			setLoading(true)
 			setError(null)
-			const res = await axios.post('http://127.0.0.1:8000/api/upload-pdf/', formData, {
-				withCredentials: true,
-			})
+			const res = await axios.post(
+				'https://bank-statement-converter-backend-ofyc.onrender.com/api/upload-pdf/',
+				formData,
+				{
+					withCredentials: true,
+				},
+			)
 			console.log('Upload response:', res.data)
 
 			// ✅ এখানেই tableData set করতে হবে
@@ -80,7 +84,7 @@ function App() {
 		setDownloading(true)
 		try {
 			const response = await axios.get(
-				`http://127.0.0.1:8000/api/download-excel/${statementId}/`,
+				`https://bank-statement-converter-backend-ofyc.onrender.com/api/download-excel/${statementId}/`,
 				{ withCredentials: true, responseType: 'blob' },
 			)
 			const url = window.URL.createObjectURL(new Blob([response.data]))
