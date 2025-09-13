@@ -148,7 +148,7 @@ function App() {
 				</div>
 			)}
 
-			{error && <div className="mt-4 text-red-500 font-medium">{error}</div>}
+			{error && <div className="mt-4 texttext-red-500 font-medium">{error}</div>}
 
 			{fileToUpload && (
 				<form

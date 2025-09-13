@@ -141,6 +141,7 @@ function useAuth() {
 
 	return {
 		user,
+		setUser,
 		loginUser,
 		errMsg,
 		registerUser,

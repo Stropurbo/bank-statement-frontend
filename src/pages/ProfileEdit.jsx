@@ -22,7 +22,7 @@ const ProfileEdit = ({ isEditing, setIsEditing, isSubmitting }) => {
 				<button
 					type="button"
 					className="btn bg-purple-500 text-white px-8"
-					onClick={() => setIsEditing(true)}
+					onClick={() => setIsEditing((prev) => !prev)}
 				>
 					Edit Profile
 				</button>
