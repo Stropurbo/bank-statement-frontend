@@ -9,11 +9,11 @@ function ActivateAccount() {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		ApiClient.post('/auth/users/activation', { uid, token })
+		ApiClient.post('/auth/users/activation/', { uid, token })
 			.then((res) => {
 				setMessage('Account Activate Successfull')
 				console.log(res)
-				navigate('login')
+				setTimeout(() => navigate('/login'), 2000)
 			})
 			.catch((error) => {
 				console.log(error)
