@@ -31,8 +31,6 @@ function App() {
 			if (res.data.transactions_json) {
 				const rows = res.data.transactions_json
 				const columns = rows.length > 0 ? Object.keys(rows[0]) : []
-				console.log('Columns:', columns)
-				console.log('Rows:', rows)
 				setTableData({ columns, rows })
 				setStatementId(res.data.statement_id)
 			} else {
