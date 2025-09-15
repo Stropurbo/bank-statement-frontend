@@ -10,10 +10,14 @@ function Navbar() {
 
 	return (
 		<div className="navbar bg-base-100 shadow-sm px-4">
-			{/* Left section */}
-			<div className="flex-1">
+			<div className="flex-1 flex items-center">
+				<img
+					src="/logos.png"
+					alt="SheetlyPro Logo"
+					className="w-10 h-10"
+				/>
 				<Link
-					to={'/'}
+					to="/"
 					className="p-3 font-bold text-xl"
 				>
 					SheetlyPro

@@ -123,7 +123,7 @@ function HeroSection() {
 					<div className="bg-card border-2 border-dashed border-border border-purple-300 rounded-2xl p-12 hover:border-purple-600 transition-colors duration-300 shadow-card">
 						<div className="flex flex-col items-center gap-6">
 							<img
-								src="https://i.ibb.co.com/JhqQbrM/image.png"
+								src="/../src/assets/scanpdf.png"
 								alt="Document converter"
 								className="w-28 h-24 "
 							/>
