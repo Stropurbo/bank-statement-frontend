@@ -98,9 +98,9 @@ function HeroSection() {
 		}
 	}
 
-	 const handleClick = () => {
-			if (inputRef.current) inputRef.current.click()
-		}
+	const handleClick = () => {
+		if (inputRef.current) inputRef.current.click()
+	}
 
 	return (
 		<section className="py-20 bg-gradient-subtle">
