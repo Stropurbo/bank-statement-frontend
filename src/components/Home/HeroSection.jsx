@@ -1,6 +1,7 @@
 import { Upload } from 'lucide-react'
 import React, { useRef, useState } from 'react'
 import ApiClient from '../../services/api-client'
+import scandocu from '../../assets/scanpdf.png'
 
 function HeroSection() {
 	const [tableData, setTableData] = useState(null)
@@ -21,7 +22,7 @@ function HeroSection() {
 			setLoading(true)
 			setError(null)
 			const res = await ApiClient.post('upload-pdf/', formData, {
-				withCredentials: true,
+				// withCredentials: true,
 			})
 
 			if (res.data.transactions_json) {
@@ -78,7 +79,7 @@ function HeroSection() {
 		setDownloading(true)
 		try {
 			const response = await ApiClient.get(`download-excel/${statementId}/`, {
-				withCredentials: true,
+				// withCredentials: true,
 				responseType: 'blob',
 			})
 
@@ -123,7 +124,7 @@ function HeroSection() {
 					<div className="bg-card border-2 border-dashed border-border border-purple-300 rounded-2xl p-12 hover:border-purple-600 transition-colors duration-300 shadow-card">
 						<div className="flex flex-col items-center gap-6">
 							<img
-								src="/../src/assets/scanpdf.png"
+								src={scandocu}
 								alt="Document converter"
 								className="w-28 h-24 "
 							/>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import useAuthContext from '../hooks/useAuthContext'
+import Logo from '../assets/logos.png'
 
 function Navbar() {
 
@@ -12,7 +13,7 @@ function Navbar() {
 		<div className="navbar bg-base-100 shadow-sm px-4">
 			<div className="flex-1 flex items-center">
 				<img
-					src="/logos.png"
+					src={Logo}
 					alt="SheetlyPro Logo"
 					className="w-10 h-10"
 				/>
