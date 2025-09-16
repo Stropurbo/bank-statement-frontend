@@ -4,10 +4,8 @@ import useAuthContext from '../hooks/useAuthContext'
 import Logo from '../assets/logos.png'
 
 function Navbar() {
-
-		const { user, logoutUser } = useAuthContext()
-		console.log(user)
-
+	const { user, logoutUser } = useAuthContext()
+	console.log(user)
 
 	return (
 		<div className="navbar bg-base-100 shadow-sm px-4">
