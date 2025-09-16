@@ -22,7 +22,7 @@ function HeroSection() {
 			setLoading(true)
 			setError(null)
 			const res = await ApiClient.post('upload-pdf/', formData, {
-				// withCredentials: true,
+				withCredentials: true,
 			})
 
 			if (res.data.transactions_json) {
@@ -79,7 +79,7 @@ function HeroSection() {
 		setDownloading(true)
 		try {
 			const response = await ApiClient.get(`download-excel/${statementId}/`, {
-				// withCredentials: true,
+				withCredentials: true,
 				responseType: 'blob',
 			})
 
