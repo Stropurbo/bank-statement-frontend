@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 
 const AuthApiClient = axios.create({
-	baseURL: 'https://bank-statement-converter-backend-ofyc.onrender.com/api',
+	baseURL: 'https://bank-statement-converter-backend-ofyc.onrender.com/api/',
 })
 
 AuthApiClient.interceptors.request.use(

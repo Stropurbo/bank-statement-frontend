@@ -6,11 +6,25 @@ import PasswordChangeForm from './PasswordChangeForm'
 import ProfileEdit from './ProfileEdit'
 import { GiDiamondRing } from 'react-icons/gi' // premium/golden circular icon
 import { Verified } from 'lucide-react'
+import { useLocation } from 'react-router'
 
 const Profile = () => {
 	const [isEditing, setIsEditing] = useState(false)
 	const { user, setUser, updateUserProfile, passwordChange } = useAuthContext()
 	const [profilePreview, setProfilePreview] = useState(null)
+
+	const location = useLocation()
+
+	useEffect(() => {
+		const urlParams = new URLSearchParams(location.search)
+		const status = urlParams.get('status')
+		if (status === 'success') {
+			alert('🎉 Congratulations! Your subscription is activated.')
+		}
+		if (status === 'failed') {
+			alert('❌ Payment failed. Please try again.')
+		}
+	}, [location.search])
 
 	const {
 		register,

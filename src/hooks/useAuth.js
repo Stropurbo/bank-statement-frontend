@@ -6,13 +6,6 @@ function useAuth() {
 	const [user, setUser] = useState(null)
 	const [errMsg, setErrMsg] = useState('')
 
-	const getToken = () => {
-		const token = localStorage.getItem('authTokens')
-		return token ? JSON.parse(token) : null
-	}
-
-	const [authToken, setAuthToken] = useState(getToken())
-
 	const fetchUserProfile = async () => {
 		try {
 			const res = await ApiClient.get('auth/users/me', {
@@ -23,6 +16,13 @@ function useAuth() {
 			console.log('Fetch user data', error)
 		}
 	}
+
+	const getToken = () => {
+		const token = localStorage.getItem('authTokens')
+		return token ? JSON.parse(token) : null
+	}
+
+	const [authToken, setAuthToken] = useState(getToken())
 
 	useEffect(() => {
 		if (authToken) fetchUserProfile()
@@ -109,7 +109,7 @@ function useAuth() {
 	// login user
 	const loginUser = async (userData) => {
 		try {
-			const response = await ApiClient.post('/auth/jwt/create', userData)
+			const response = await ApiClient.post('/auth/jwt/create/', userData)
 			setAuthToken(response.data)
 			localStorage.setItem('authTokens', JSON.stringify(response.data))
 

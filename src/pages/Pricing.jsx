@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { Check } from 'lucide-react'
 import AboveFooter from '../components/Home/AboveFooter'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
+import ApiClient from '../services/api-client'
 
 function Pricing() {
+	const [billing, setBilling] = useState('monthly')
+	const [loading, setLoading] = useState(null)
+	const [error, setError] = useState(null)
 
-    const [billing, setBilling] = useState('monthly')
-
-    const pricingTiers = [
+	const pricingTiers = [
 		{
 			title: 'Basic',
 			price: { monthly: '$9.99', annual: '$79' },
@@ -22,6 +24,7 @@ function Pricing() {
 			buttonText: 'Subscribe',
 			buttonVariant: 'outline',
 			popular: false,
+			plan_id: 1,
 		},
 		{
 			title: 'Pro',
@@ -39,6 +42,7 @@ function Pricing() {
 			buttonText: 'Subscribe',
 			buttonVariant: 'cta',
 			popular: true,
+			plan_id: 2, 
 		},
 		{
 			title: 'Ultra',
@@ -57,21 +61,61 @@ function Pricing() {
 			buttonText: 'Subscribe',
 			buttonVariant: 'premium',
 			popular: false,
+			plan_id: 3,
 		},
 	]
 
-        const buttonVariants = {
-			default: 'bg-blue-600 text-white hover:bg-blue-700',
-			outline: 'border border-gray-400 text-gray-700 hover:bg-gray-100',
-			cta: 'bg-purple-500 text-white hover:bg-purple-900',
-			premium: 'bg-purple-600 text-white hover:bg-purple-900',
+	const buttonVariants = {
+		default: 'bg-blue-600 text-white hover:bg-blue-700',
+		outline: 'border border-gray-400 text-gray-700 hover:bg-gray-100',
+		cta: 'bg-purple-500 text-white hover:bg-purple-900',
+		premium: 'bg-purple-600 text-white hover:bg-purple-900',
+	}
+
+	// Handle Subscribe Button Click
+	const handleSubscribe = async (planId, paymentType) => {
+		setLoading(planId)
+		setError(null)
+
+		try {
+			const token = localStorage.getItem('authTokens')
+			if (!token) {
+				return (window.location.href = '/login')
+			}
+
+			const parsedTokens = JSON.parse(token)
+			const accessToken = parsedTokens.access
+
+			const response = await ApiClient.post(
+				'/payment/subscription/initiate/',
+				{
+					plan_id: planId,
+					payment_type: paymentType,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				},
+			)
+
+			if (response.data.payment_url) {
+				window.location.href = response.data.payment_url
+			} else {
+				setError(response.data.error || 'Payment initiation failed.')
+			}
+		} catch (err) {
+			setError('Network error. Please try again.')
+			console.error(err)
+		} finally {
+			setLoading(null)
 		}
+	}
 
-
-  return (
+	return (
 		<section
 			id="pricing"
-			className="bg-gradient-to-b bg-purple-400 to-purple-200"
+			className="bg-gradient-to-b from-purple-400 to-purple-200"
 		>
 			<div className="container mx-auto px-4 pt-20">
 				<div className="text-center mb-8">
@@ -103,12 +147,18 @@ function Pricing() {
 							Annual
 						</button>
 					</div>
+
+					{error && (
+						<div className="text-red-500 text-center mb-6 p-3 bg-red-50 rounded-lg">
+							{error}
+						</div>
+					)}
 				</div>
 
 				<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-					{pricingTiers.map((tier, index) => (
+					{pricingTiers.map((tier) => (
 						<div
-							key={index}
+							key={tier.title}
 							className={`relative rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${
 								tier.popular
 									? 'border-purple-600 shadow-xl scale-105'
@@ -143,9 +193,9 @@ function Pricing() {
 										<Check className="h-5 w-5 text-green-600 shrink-0" />
 										<span>{tier.pages[billing]}</span>
 									</li>
-									{tier.features.map((feature, featureIndex) => (
+									{tier.features.map((feature, idx) => (
 										<li
-											key={featureIndex}
+											key={idx}
 											className="flex items-center gap-3 text-gray-800"
 										>
 											<Check className="h-5 w-5 text-green-600 shrink-0" />
@@ -156,24 +206,39 @@ function Pricing() {
 
 								{/* Button */}
 								<button
+									onClick={() => handleSubscribe(tier.plan_id, billing)}
+									disabled={loading === tier.plan_id}
 									className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
 										buttonVariants[tier.buttonVariant]
+									} ${
+										loading === tier.plan_id
+											? 'opacity-70 cursor-not-allowed'
+											: ''
 									}`}
 								>
-									{tier.buttonText}
+									{loading === tier.plan_id
+										? 'Processing...'
+										: tier.buttonText}
 								</button>
 							</div>
 						</div>
 					))}
 				</div>
-				<div className="flex justify-center text-center mt-15 font-bold ">
-					Need help? <a href='contact' className='ml-2 font-bold text-purple-500 underline'>Contact us</a>
+
+				<div className="flex justify-center text-center mt-10 font-bold">
+					Need help?{' '}
+					<Link
+						to="/contact"
+						className="ml-2 font-bold text-purple-500 underline"
+					>
+						Contact us
+					</Link>
 				</div>
 			</div>
 
-            <AboveFooter />
+			<AboveFooter />
 		</section>
-  )
+	)
 }
 
 export default Pricing

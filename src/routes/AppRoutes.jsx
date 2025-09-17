@@ -47,6 +47,12 @@ function AppRoutes() {
 						path="activate/:uid/:token"
 						element={<ActivateAccount />}
 					/>
+
+					{/* <Route
+						path="payment/subscription/success/"
+						element={<PaymentSuccess />}
+					/> */}
+
 				</Route>
 			</Routes>
 		</div>
