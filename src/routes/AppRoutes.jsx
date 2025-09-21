@@ -8,6 +8,9 @@ import Contact from '../pages/Contact'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import Profile from '../pages/Profile'
+import PaymentSuccess from '../pages/PaymentSuccess'
+import Terms from '../pages/Terms'
+import Privacy from '../pages/Privacy'
 
 function AppRoutes() {
 	return (
@@ -48,11 +51,20 @@ function AppRoutes() {
 						element={<ActivateAccount />}
 					/>
 
-					{/* <Route
-						path="payment/subscription/success/"
+					<Route
+						path="payment/subscription/success"
 						element={<PaymentSuccess />}
-					/> */}
+					/>
 
+					<Route
+						path="terms-of-service"
+						element={<Terms />}
+					/>
+
+					<Route
+						path="privacy-policy"
+						element={<Privacy />}
+					/>
 				</Route>
 			</Routes>
 		</div>
