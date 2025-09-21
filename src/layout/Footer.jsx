@@ -13,15 +13,20 @@ function Footer() {
 			</nav>
 			<nav>
 				<h6 className="footer-title">Company</h6>
-				<a className="link link-hover">About us</a>
-				<Link
-					to={'contact'}
+				<a
+					href="about"
+					className="link link-hover"
+				>
+					About us
+				</a>
+				<a
+					href='contact'
 					className="link link-hover"
 				>
 					Contact
-				</Link>
-				<a className="link link-hover">Jobs</a>
-				<a className="link link-hover">Press kit</a>
+				</a>
+				<a className="link link-hover">Earn</a>
+				<a className="link link-hover">Blog</a>
 			</nav>
 			<nav>
 				<h6 className="footer-title">Legal</h6>
@@ -37,7 +42,7 @@ function Footer() {
 				>
 					Privacy policy
 				</a>
-				<a className="link link-hover">Cookie policy</a>
+				{/* <a className="link link-hover">Cookie policy</a> */}
 			</nav>
 		</footer>
   )

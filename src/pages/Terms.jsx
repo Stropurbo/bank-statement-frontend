@@ -16,9 +16,10 @@ function Terms() {
 						SheetlyPro
 					</a>
 				</strong>{' '}
-				(“we,” “our,” “us”). By accessing or using our website{' '}
-				<span className="text-blue-500">
-					<a href="www.sheetlypro.com">www.sheetlypro.com</a>
+				(“we,” “our,” “us”). SheetlyPro is a tool that converts your bank statements
+				into clean, ready-to-use CSV files. By accessing or using our website{' '}
+				<span className="text-blue-500 underline">
+					<a href="https://www.sheetlypro.com">www.sheetlypro.com</a>
 				</span>{' '}
 				and services (“Services”), you agree to be bound by these Terms of Service
 				(“Terms”). Please read them carefully.

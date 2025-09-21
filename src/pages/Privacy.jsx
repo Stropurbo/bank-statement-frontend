@@ -8,26 +8,27 @@ function Privacy() {
 
 			<p className="mb-6">
 				At <strong>SheetlyPro</strong> (“we,” “our,” “us”), we respect your privacy and
-				are committed to protecting your personal data. This Privacy Policy explains how
-				we collect, use, and safeguard your information when you use our website
-				(www.sheetlypro.com) and Services.
+				are committed to protecting your personal data. SheetlyPro converts your bank
+				statements into CSV files, and this Privacy Policy explains how we collect, use,
+				and safeguard your information when you use our website (www.sheetlypro.com) and
+				Services.
 			</p>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">1. Information We Collect</h2>
 			<ul className="list-disc list-inside mb-4 space-y-1">
 				<li>
-					<strong>Personal Information:</strong> Name, email address, payment details
-					(processed securely by our payment providers).
+					<strong>Personal Information:</strong> Name, email address, and payment
+					details (processed securely by our payment providers).
 				</li>
 				<li>
-					<strong>Usage Data:</strong> Information about how you use our Services,
-					such as pages visited and features accessed.
+					<strong>Usage Data:</strong> Information about how you interact with our
+					Services, such as uploads and features used.
 				</li>
 			</ul>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">2. How We Use Your Information</h2>
 			<ul className="list-disc list-inside mb-4 space-y-1">
-				<li>To provide, operate, and improve our Services.</li>
+				<li>To provide, operate, and improve our CSV conversion Services.</li>
 				<li>To process payments and manage subscriptions.</li>
 				<li>To communicate with you regarding updates, support, and promotions.</li>
 				<li>To protect against fraud, abuse, and unauthorized access.</li>
@@ -65,15 +66,14 @@ function Privacy() {
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">7. Third-Party Services</h2>
 			<p className="mb-4">
-				Our Services may contain links to third-party websites or integrations with
-				third-party tools. We are not responsible for the privacy practices of those
-				third parties.
+				Our Services may integrate with third-party tools. We are not responsible for
+				the privacy practices of those third parties.
 			</p>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">8. Children’s Privacy</h2>
 			<p className="mb-4">
-				Our Services are not directed to individuals under the age of 18. We do not
-				knowingly collect personal data from children.
+				Our Services are not directed to individuals under 18. We do not knowingly
+				collect personal data from children.
 			</p>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">9. Changes to this Policy</h2>
@@ -88,7 +88,7 @@ function Privacy() {
 				us at:{' '}
 				<a
 					href="mailto:myboguraapp@gmail.com"
-					className=" underline"
+					className="underline"
 				>
 					myboguraapp@gmail.com
 				</a>

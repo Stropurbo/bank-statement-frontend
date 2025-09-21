@@ -11,6 +11,7 @@ import Profile from '../pages/Profile'
 import PaymentSuccess from '../pages/PaymentSuccess'
 import Terms from '../pages/Terms'
 import Privacy from '../pages/Privacy'
+import About from '../pages/About'
 
 function AppRoutes() {
 	return (
@@ -64,6 +65,11 @@ function AppRoutes() {
 					<Route
 						path="privacy-policy"
 						element={<Privacy />}
+					/>
+
+					<Route
+						path="about"
+						element={<About />}
 					/>
 				</Route>
 			</Routes>
