@@ -1,9 +1,11 @@
 import { Upload } from 'lucide-react'
-import React, { useRef, useState } from 'react'
-import ApiClient from '../../services/api-client'
+import React, { useRef, useState, useContext } from 'react'
+import AuthApiClient from '../../services/auth-api-client'
 import scandocu from '../../assets/scanpdf.png'
+import AuthContext from '../../context/AuthContext'
 
 function HeroSection() {
+	const { user } = useContext(AuthContext)
 	const [tableData, setTableData] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const [downloading, setDownloading] = useState(false)
@@ -21,8 +23,10 @@ function HeroSection() {
 		try {
 			setLoading(true)
 			setError(null)
-			const res = await ApiClient.post('upload-pdf/', formData, {
-				withCredentials: true,
+			const res = await AuthApiClient.post('upload-pdf/', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
 			})
 
 			if (res.data.transactions_json) {
@@ -37,8 +41,10 @@ function HeroSection() {
 			setPassword('')
 			setFileToUpload(null)
 		} catch (error) {
+			console.error('Upload error:', error)
 			if (error.response) {
-				const errorMessage = error.response.data.error
+				console.error('Error response:', error.response.data)
+				const errorMessage = error.response.data.error || error.response.data.detail || 'Server error occurred'
 				if (
 					errorMessage &&
 					(errorMessage.includes('password-protected') ||
@@ -46,14 +52,12 @@ function HeroSection() {
 				) {
 					setError(errorMessage)
 					setFileToUpload(file)
-				} else if (errorMessage) {
-					setError(errorMessage)
 				} else {
-					setError('Upload failed. Please check your file and try again.')
+					setError(`Failed to process file: ${errorMessage}`)
 				}
 			} else {
-				console.error('Network or CORS error:', error)
-				setError('A network error occurred. Please check your connection.')
+				console.error('Network error:', error)
+				setError('Network error occurred. Please check your connection.')
 			}
 		} finally {
 			setLoading(false)
@@ -75,11 +79,15 @@ function HeroSection() {
 
 	const handleDownload = async () => {
 		if (!statementId) return alert('No statement available to download')
+		
+		if (!user) {
+			alert('Please log in to download your file.')
+			return
+		}
 
 		setDownloading(true)
 		try {
-			const response = await ApiClient.get(`download-excel/${statementId}/`, {
-				withCredentials: true,
+			const response = await AuthApiClient.get(`download-excel/${statementId}/`, {
 				responseType: 'blob',
 			})
 
@@ -93,7 +101,11 @@ function HeroSection() {
 			window.URL.revokeObjectURL(url)
 		} catch (error) {
 			console.error('Download failed:', error)
-			alert('Download failed! Please re-upload.')
+			if (error.response?.status === 403) {
+				alert('Session expired. Please log in again.')
+			} else {
+				alert('Download failed! Please try again.')
+			}
 		} finally {
 			setDownloading(false)
 		}
@@ -118,7 +130,7 @@ function HeroSection() {
 					secure, and stress-free.
 				</p>
 
-				{error && <div className="mt-4 texttext-red-500 font-medium">{error}</div>}
+				{error && <div className="mt-4 text-red-500 font-medium">{error}</div>}
 
 				<div className="max-w-2xl mx-auto mb-16">
 					<div className="bg-card border-2 border-dashed border-border border-purple-300 rounded-2xl p-12 hover:border-purple-600 transition-colors duration-300 shadow-card">
@@ -248,10 +260,12 @@ function HeroSection() {
 								</table>
 								<button
 									onClick={handleDownload}
-									disabled={downloading}
-									className="mt-6 px-5 py-2 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition disabled:opacity-50"
+									disabled={downloading || !user}
+									className={`mt-6 px-5 py-2 font-semibold rounded-lg transition ${
+										user ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-400 text-gray-600 cursor-not-allowed'
+									} disabled:opacity-50`}
 								>
-									{downloading ? 'Preparing CSV...' : 'Download CSV'}
+									{downloading ? 'Preparing CSV...' : user ? 'Download CSV' : 'Login to Download'}
 								</button>
 							</div>
 						</div>

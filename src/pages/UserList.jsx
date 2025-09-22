@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import AuthApiClient from '../services/auth-api-client'
 import useAuthContext from '../hooks/useAuthContext'
-import { FiSearch, FiEdit, FiTrash2, FiUserPlus, FiFilter } from 'react-icons/fi'
+import { FiSearch, FiEdit, FiTrash2, FiUserPlus, FiFilter, FiX } from 'react-icons/fi'
 
 const UserList = () => {
 	const { user: currentUser } = useAuthContext()
@@ -11,6 +11,8 @@ const UserList = () => {
 	const [statusFilter, setStatusFilter] = useState('all')
 	const [currentPage, setCurrentPage] = useState(1)
 	const [usersPerPage] = useState(10)
+	const [editingUser, setEditingUser] = useState(null)
+	const [editForm, setEditForm] = useState({})
 
 	useEffect(() => {
 		fetchUsers()
@@ -19,7 +21,8 @@ const UserList = () => {
 	const fetchUsers = async () => {
 		try {
 			setLoading(true)
-			const res = await AuthApiClient.get('/admin/user/')
+			// Try to get users with subscription data
+			const res = await AuthApiClient.get('/admin/user/?include_subscriptions=true')
 			console.log('API Response:', res.data)
 			const userData = res.data.results || res.data || []
 			console.log('First user data:', userData[0])
@@ -51,6 +54,43 @@ const UserList = () => {
 			alert('Failed to delete user')
 		}
 	}
+
+	const openEditModal = (user) => {
+		setEditingUser(user)
+		setEditForm({
+			email: user.email || '',
+			first_name: user.first_name || '',
+			last_name: user.last_name || '',
+			is_active: user.is_active !== false && user.is_active !== 'false',
+			is_staff: user.is_staff || false,
+			has_subscription: user.has_subscription || false
+		})
+	}
+
+	const closeEditModal = () => {
+		setEditingUser(null)
+		setEditForm({})
+	}
+
+	const updateUser = async () => {
+		try {
+			await AuthApiClient.patch(`/admin/user/${editingUser.id}/`, editForm)
+			closeEditModal()
+			await fetchUsers()
+			alert('User updated successfully')
+		} catch (error) {
+			console.error('Error updating user:', error)
+			alert('Failed to update user')
+		}
+	}
+
+	 const hasActiveSubscription = (user) => {
+			if (user.usersubscription?.is_active === true) return true
+			if (user.subscription?.is_active === true) return true
+			if (user.has_subscription === true && !user.usersubscription && !user.subscription)
+				return true
+			return false
+		}
 
 	// Filter users based on search and status
 	const filteredUsers = users.filter((user) => {
@@ -153,6 +193,9 @@ const UserList = () => {
 									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Subscription
 									</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										Plan
+									</th>
 									<th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Actions
 									</th>
@@ -162,7 +205,7 @@ const UserList = () => {
 								{currentUsers.length === 0 ? (
 									<tr>
 										<td
-											colSpan="6"
+											colSpan="7"
 											className="px-6 py-12 text-center text-gray-500"
 										>
 											<div className="flex flex-col items-center">
@@ -216,13 +259,16 @@ const UserList = () => {
 											<td className="px-6 py-4 whitespace-nowrap">
 												<span
 													className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-														user.is_active
+														user.is_active !== false &&
+														user.is_active !== 'false'
 															? 'bg-green-100 text-green-800'
 															: 'bg-red-100 text-red-800'
 													}`}
-													onClick={() => console.log('User:', user.email, 'is_active:', user.is_active, 'type:', typeof user.is_active)}
 												>
-													{user.is_active ? 'Active' : 'Inactive'}
+													{user.is_active !== false &&
+													user.is_active !== 'false'
+														? 'Active'
+														: 'Inactive'}
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -237,15 +283,30 @@ const UserList = () => {
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												<span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-													user.has_subscription ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'
-												}`}>
-													{user.has_subscription ? 'Yes' : 'No'}
+												<span
+													className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+														hasActiveSubscription(user)
+															? 'bg-blue-100 text-blue-800'
+															: 'bg-gray-100 text-gray-800'
+													}`}
+												>
+													{hasActiveSubscription(user) ? 'Yes' : 'No'}
+												</span>
+											</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+												<span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-indigo-100 text-indigo-800">
+													{user.usersubscription?.plan?.name ||
+														user.subscription?.plan?.name ||
+														user.plan_name ||
+														'No Plan'}
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 												<div className="flex items-center justify-end gap-2">
-													<button className="text-blue-600 hover:text-blue-900 p-1 rounded transition-colors">
+													<button
+														onClick={() => openEditModal(user)}
+														className="text-blue-600 hover:text-blue-900 p-1 rounded transition-colors"
+													>
 														<FiEdit className="w-4 h-4" />
 													</button>
 													{currentUser?.id !== user.id ? (
@@ -341,6 +402,139 @@ const UserList = () => {
 											</button>
 										</nav>
 									</div>
+								</div>
+							</div>
+						</div>
+					)}
+
+					{/* Edit User Modal */}
+					{editingUser && (
+						<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+							<div className="bg-white rounded-lg p-6 w-full max-w-md">
+								<div className="flex justify-between items-center mb-4">
+									<h3 className="text-lg font-semibold">Edit User</h3>
+									<button
+										onClick={closeEditModal}
+										className="text-gray-400 hover:text-gray-600"
+									>
+										<FiX className="w-5 h-5" />
+									</button>
+								</div>
+								<div className="space-y-4">
+									<div>
+										<label className="block text-sm font-medium text-gray-700 mb-1">
+											Email
+										</label>
+										<input
+											type="email"
+											value={editForm.email}
+											onChange={(e) =>
+												setEditForm({
+													...editForm,
+													email: e.target.value,
+												})
+											}
+											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+										/>
+									</div>
+									<div className="grid grid-cols-2 gap-4">
+										<div>
+											<label className="block text-sm font-medium text-gray-700 mb-1">
+												First Name
+											</label>
+											<input
+												type="text"
+												value={editForm.first_name}
+												onChange={(e) =>
+													setEditForm({
+														...editForm,
+														first_name: e.target.value,
+													})
+												}
+												className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+											/>
+										</div>
+										<div>
+											<label className="block text-sm font-medium text-gray-700 mb-1">
+												Last Name
+											</label>
+											<input
+												type="text"
+												value={editForm.last_name}
+												onChange={(e) =>
+													setEditForm({
+														...editForm,
+														last_name: e.target.value,
+													})
+												}
+												className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+											/>
+										</div>
+									</div>
+									<div className="space-y-3">
+										<label className="flex items-center">
+											<input
+												type="checkbox"
+												checked={editForm.is_active}
+												onChange={(e) =>
+													setEditForm({
+														...editForm,
+														is_active: e.target.checked,
+													})
+												}
+												className="mr-2"
+											/>
+											<span className="text-sm font-medium text-gray-700">
+												Active User
+											</span>
+										</label>
+										<label className="flex items-center">
+											<input
+												type="checkbox"
+												checked={editForm.is_staff}
+												onChange={(e) =>
+													setEditForm({
+														...editForm,
+														is_staff: e.target.checked,
+													})
+												}
+												className="mr-2"
+											/>
+											<span className="text-sm font-medium text-gray-700">
+												Admin User
+											</span>
+										</label>
+										<label className="flex items-center">
+											<input
+												type="checkbox"
+												checked={editForm.has_subscription}
+												onChange={(e) =>
+													setEditForm({
+														...editForm,
+														has_subscription: e.target.checked,
+													})
+												}
+												className="mr-2"
+											/>
+											<span className="text-sm font-medium text-gray-700">
+												Has Subscription
+											</span>
+										</label>
+									</div>
+								</div>
+								<div className="flex justify-end gap-3 mt-6">
+									<button
+										onClick={closeEditModal}
+										className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50"
+									>
+										Cancel
+									</button>
+									<button
+										onClick={updateUser}
+										className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+									>
+										Update User
+									</button>
 								</div>
 							</div>
 						</div>
