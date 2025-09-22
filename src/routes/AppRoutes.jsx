@@ -12,6 +12,9 @@ import PaymentSuccess from '../pages/PaymentSuccess'
 import Terms from '../pages/Terms'
 import Privacy from '../pages/Privacy'
 import About from '../pages/About'
+import PaymentStatus from '../pages/PaymentStatus'
+import PaymentFail from '../pages/PaymentFail'
+import PaymentCancel from '../pages/PaymentCancel'
 
 function AppRoutes() {
 	return (
@@ -48,13 +51,27 @@ function AppRoutes() {
 						element={<Profile />}
 					/>
 					<Route
+						path="subscription/status"
+						element={<PaymentStatus />}
+					/>
+					<Route
 						path="activate/:uid/:token"
 						element={<ActivateAccount />}
 					/>
 
 					<Route
-						path="payment/subscription/success"
+						path="payment/success"
 						element={<PaymentSuccess />}
+					/>
+
+					<Route
+						path="payment/cancel"
+						element={<PaymentCancel />}
+					/>
+
+					<Route
+						path="payment/fail"
+						element={<PaymentFail />}
 					/>
 
 					<Route

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import AboveFooter from '../components/Home/AboveFooter'
 import { Link } from 'react-router-dom'
@@ -8,9 +8,29 @@ function Pricing() {
 	const [billing, setBilling] = useState('monthly')
 	const [loading, setLoading] = useState(null)
 	const [error, setError] = useState(null)
+	const [pricingTiers, setPricingTiers] = useState([])
+	const [tiersLoading, setTiersLoading] = useState(true)
 
-	const pricingTiers = [
+	useEffect(() => {
+		const fetchPricingTiers = async () => {
+			try {
+				const response = await ApiClient.get('/subscription/plans/')
+				console.log('API Response:', response.data)
+				setPricingTiers(response.data)
+			} catch (err) {
+				console.error('Failed to fetch pricing tiers:', err)
+				setError('Failed to load pricing plans')
+			} finally {
+				setTiersLoading(false)
+			}
+		}
+
+		fetchPricingTiers()
+	}, [])
+
+	const defaultPricingTiers = [
 		{
+			id: 1,
 			title: 'Basic',
 			price: { monthly: '$9.99', annual: '$79' },
 			pages: { monthly: '250 pages per month', annual: '3700 pages per year' },
@@ -24,9 +44,10 @@ function Pricing() {
 			buttonText: 'Subscribe',
 			buttonVariant: 'outline',
 			popular: false,
-			plan_id: 1,
+
 		},
 		{
+			id: 2,
 			title: 'Pro',
 			price: { monthly: '$24.99', annual: '$179' },
 			pages: { monthly: '750 pages per month', annual: '11000 pages per year' },
@@ -42,9 +63,9 @@ function Pricing() {
 			buttonText: 'Subscribe',
 			buttonVariant: 'cta',
 			popular: true,
-			plan_id: 2, 
 		},
 		{
+			id: 3,
 			title: 'Ultra',
 			price: { monthly: '$49.99', annual: '$279' },
 			pages: { monthly: '2500 pages per month', annual: '38000 pages per year' },
@@ -61,7 +82,6 @@ function Pricing() {
 			buttonText: 'Subscribe',
 			buttonVariant: 'premium',
 			popular: false,
-			plan_id: 3,
 		},
 	]
 
@@ -72,7 +92,6 @@ function Pricing() {
 		premium: 'bg-purple-600 text-white hover:bg-purple-900',
 	}
 
-	// Handle Subscribe Button Click
 	const handleSubscribe = async (planId, paymentType) => {
 		setLoading(planId)
 		setError(null)
@@ -86,15 +105,18 @@ function Pricing() {
 			const parsedTokens = JSON.parse(token)
 			const accessToken = parsedTokens.access
 
+			console.log('Sending request:', { plan_id: planId, payment_type: paymentType })
+			console.log('Available tiers:', pricingTiers)
+
 			const response = await ApiClient.post(
-				'/payment/subscription/initiate/',
+				'subscription/initiate/',
 				{
 					plan_id: planId,
 					payment_type: paymentType,
 				},
 				{
 					headers: {
-						Authorization: `Bearer ${accessToken}`,
+						Authorization: `JWT ${accessToken}`,
 					},
 				},
 			)
@@ -105,8 +127,16 @@ function Pricing() {
 				setError(response.data.error || 'Payment initiation failed.')
 			}
 		} catch (err) {
-			setError('Network error. Please try again.')
-			console.error(err)
+			let errorMsg = 'Network error. Please try again.'
+			if (err.response?.status === 500) {
+				errorMsg = 'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
+			} else if (err.response?.data?.error) {
+				errorMsg = err.response.data.error
+			}
+			setError(errorMsg)
+			console.error('Full error:', err)
+			console.error('Error response:', err.response)
+			console.error('Error response data:', err.response?.data)
 		} finally {
 			setLoading(null)
 		}
@@ -155,8 +185,14 @@ function Pricing() {
 					)}
 				</div>
 
-				<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-					{pricingTiers.map((tier) => (
+				{tiersLoading ? (
+					<div className="text-center py-12">
+						<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+						<p className="mt-4 text-gray-600">Loading pricing plans...</p>
+					</div>
+				) : (
+					<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+						{(pricingTiers.length > 0 ? pricingTiers : defaultPricingTiers).map((tier) => (
 						<div
 							key={tier.title}
 							className={`relative rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${
@@ -206,24 +242,25 @@ function Pricing() {
 
 								{/* Button */}
 								<button
-									onClick={() => handleSubscribe(tier.plan_id, billing)}
-									disabled={loading === tier.plan_id}
+									onClick={() => handleSubscribe(tier.id || tier.plan_id, billing)}
+									disabled={loading === tier.id}
 									className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
 										buttonVariants[tier.buttonVariant]
 									} ${
-										loading === tier.plan_id
+										loading === tier.id
 											? 'opacity-70 cursor-not-allowed'
 											: ''
 									}`}
 								>
-									{loading === tier.plan_id
+									{loading === tier.id
 										? 'Processing...'
 										: tier.buttonText}
 								</button>
 							</div>
 						</div>
-					))}
-				</div>
+						))}
+					</div>
+				)}
 
 				<div className="flex justify-center text-center mt-10 font-bold">
 					Need help?{' '}

@@ -116,6 +116,7 @@ function useAuth() {
 			await fetchUserProfile()
 		} catch (error) {
 			setErrMsg(error.response.data?.detail)
+			throw error
 		}
 	}
 
