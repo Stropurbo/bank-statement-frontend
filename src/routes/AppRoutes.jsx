@@ -15,6 +15,10 @@ import About from '../pages/About'
 import PaymentStatus from '../pages/PaymentStatus'
 import PaymentFail from '../pages/PaymentFail'
 import PaymentCancel from '../pages/PaymentCancel'
+import AdminDashboard from '../pages/AdminDashboard'
+import DashboardLayout from '../layout/DashboardLayout'
+import PrivateRoute from './PrivateRoute'
+import UserList from '../pages/UserList'
 
 function AppRoutes() {
 	return (
@@ -87,6 +91,29 @@ function AppRoutes() {
 					<Route
 						path="about"
 						element={<About />}
+					/>
+				</Route>
+
+				<Route
+					path="dashboard"
+					element={
+						<PrivateRoute>
+							<DashboardLayout />
+						</PrivateRoute>
+					}
+				>
+					<Route
+						index
+						element={<AdminDashboard />}
+					/>
+
+					<Route
+						path="profile"
+						element={<Profile />}
+					/>
+					<Route
+						path="admin/users"
+						element={<UserList />}
 					/>
 				</Route>
 			</Routes>

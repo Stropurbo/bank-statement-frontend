@@ -15,12 +15,12 @@ function Navbar() {
 					alt="SheetlyPro Logo"
 					className="w-10 h-10"
 				/>
-				<Link
-					to="/"
+				<a
+					href="/"
 					className="p-3 font-bold text-xl"
 				>
 					SheetlyPro
-				</Link>
+				</a>
 			</div>
 
 			<div className="flex-none">
@@ -69,7 +69,7 @@ function Navbar() {
 							</li>
 						)}
 
-						{!user? (
+						{!user ? (
 							<>
 								<li>
 									<Link
