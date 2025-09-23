@@ -13,25 +13,11 @@ function CreatePlan() {
 	const [loading, setLoading] = useState(false)
 	const [success, setSuccess] = useState('')
 	const [error, setError] = useState('')
-	const [plans, setPlans] = useState([])
-	const [editingPlan, setEditingPlan] = useState(null)
 
-	useEffect(() => {
-		fetchPlans()
-	}, [])
 
-	const fetchPlans = async () => {
-		try {
-			const response = await ApiClient.get('/plans/')
-			console.log('Fetched plans:', response.data)
-			const plansData = response.data.results || response.data || []
-			setPlans(Array.isArray(plansData) ? plansData : [])
-		} catch (err) {
-			console.log(err)
-			setError('Failed to fetch plans')
-			setPlans([])
-		}
-	}
+
+
+
 
 	const onSubmit = async (data) => {
 		setLoading(true)
@@ -67,24 +53,10 @@ function CreatePlan() {
 			console.log('Sending plan data:', planData)
 			console.log('JSON stringified:', JSON.stringify(planData))
 
-			if (editingPlan) {
-				await ApiClient.put(`/plans/${editingPlan.id}/`, planData)
-				setSuccess('Plan updated successfully!')
-			} else {
-				// Check if plan already exists
-				const existingPlan = plans.find(p => p.name && p.name.toLowerCase() === data.name.toLowerCase())
-				if (existingPlan) {
-					setError(`Plan "${data.name}" already exists. Please edit the existing plan or choose a different name.`)
-					setLoading(false)
-					return
-				}
-				await ApiClient.post('/plans/', planData)
-				setSuccess('Plan created successfully!')
-			}
+			await ApiClient.post('/plans/', planData)
+			setSuccess('Plan created successfully!')
 
 			reset()
-			setEditingPlan(null)
-			fetchPlans()
 		} catch (err) {
 			console.error('Error details:', err.response?.data)
 			setError(err.response?.data?.detail || err.response?.data?.error || err.message || 'Failed to save plan')
@@ -93,33 +65,11 @@ function CreatePlan() {
 		}
 	}
 
-	const editPlan = (plan) => {
-		setEditingPlan(plan)
-		setValue('name', plan.name)
-		setValue('monthly_price', plan.monthly_price)
-		setValue('annual_price', plan.annual_price)
-		setValue('monthly_pages', plan.pages_monthly)
-		setValue('annual_pages', plan.pages_annual)
-		setValue('description', plan.description)
-		setValue('features', plan.features.join('\n'))
-	}
 
-	const deletePlan = async (id) => {
-		if (!confirm('Are you sure you want to delete this plan?')) return
 
-		try {
-			await ApiClient.delete(`/plans/${id}/`)
-			setSuccess('Plan deleted successfully!')
-			fetchPlans()
-		} catch (err) {
-			setError('Failed to delete plan')
-		}
-	}
 
-	const cancelEdit = () => {
-		setEditingPlan(null)
-		reset()
-	}
+
+
 
 	return (
 		<div className="max-w-6xl mx-auto p-6">
@@ -143,9 +93,7 @@ function CreatePlan() {
 				{/* Form */}
 				<div className="card bg-base-100 shadow-xl">
 					<div className="card-body">
-						<h2 className="card-title">
-							{editingPlan ? 'Edit Plan' : 'Create New Plan'}
-						</h2>
+						<h2 className="card-title">Create New Plan</h2>
 
 						<form
 							onSubmit={handleSubmit(onSubmit)}
@@ -287,21 +235,9 @@ function CreatePlan() {
 									className="btn btn-primary flex-1"
 									disabled={loading}
 								>
-									{loading
-										? 'Saving...'
-										: editingPlan
-										? 'Update Plan'
-										: 'Create Plan'}
+									{loading ? 'Saving...' : 'Create Plan'}
 								</button>
-								{editingPlan && (
-									<button
-										type="button"
-										className="btn btn-ghost"
-										onClick={cancelEdit}
-									>
-										Cancel
-									</button>
-								)}
+
 							</div>
 						</form>
 					</div>
