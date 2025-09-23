@@ -48,8 +48,7 @@ function Pricing() {
 			const parsedTokens = JSON.parse(token)
 			const accessToken = parsedTokens.access
 
-			console.log('Sending request:', { plan_id: planId, payment_type: paymentType })
-			console.log('Available tiers:', pricingTiers)
+			console.log('Initiating subscription:', { plan_id: planId, payment_type: paymentType, tiers_count: pricingTiers.length })
 
 			const response = await ApiClient.post(
 				'subscription/initiate/',
@@ -156,7 +155,8 @@ function Pricing() {
 								{/* Header */}
 								<div className="text-center pb-6 mb-4">
 									<h3 className="text-2xl font-bold text-gray-900">
-										{tier.title}
+										{tier.title.charAt(0).toUpperCase() +
+											tier.title.slice(1)}
 									</h3>
 									<div className="mt-4">
 										<span className="text-4xl font-bold text-gray-900">
@@ -186,7 +186,9 @@ function Pricing() {
 
 									{/* Button */}
 									<button
-										onClick={() => handleSubscribe(tier.id || tier.plan_id, billing)}
+										onClick={() =>
+											handleSubscribe(tier.id || tier.plan_id, billing)
+										}
 										disabled={loading === tier.id}
 										className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
 											buttonVariants[tier.buttonVariant]
