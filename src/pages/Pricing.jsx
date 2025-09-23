@@ -14,9 +14,9 @@ function Pricing() {
 	useEffect(() => {
 		const fetchPricingTiers = async () => {
 			try {
-				const response = await ApiClient.get('/subscription/plans/')
+				const response = await ApiClient.get('/plans/')
 				console.log('API Response:', response.data)
-				setPricingTiers(response.data)
+				setPricingTiers(response.data.results || [])
 			} catch (err) {
 				console.error('Failed to fetch pricing tiers:', err)
 				setError('Failed to load pricing plans')
@@ -27,63 +27,6 @@ function Pricing() {
 
 		fetchPricingTiers()
 	}, [])
-
-	const defaultPricingTiers = [
-		{
-			id: 1,
-			title: 'Basic',
-			price: { monthly: '$9.99', annual: '$79' },
-			pages: { monthly: '250 pages per month', annual: '3700 pages per year' },
-			description: 'Perfect for individuals or light users',
-			features: [
-				'Bypass AI detection for Excel conversions',
-				'Basic statement processing engine',
-				'Error-free extraction',
-				'Supports 20+ file types',
-			],
-			buttonText: 'Subscribe',
-			buttonVariant: 'outline',
-			popular: false,
-
-		},
-		{
-			id: 2,
-			title: 'Pro',
-			price: { monthly: '$24.99', annual: '$179' },
-			pages: { monthly: '750 pages per month', annual: '11000 pages per year' },
-			description: 'Most popular for regular users with multiple statements',
-			features: [
-				'Advanced processing engine',
-				'Priority email support',
-				'Faster extraction speed',
-				'Supports 50+ file types',
-				'Unlimited conversions per request',
-				'Accurate Excel formatting',
-			],
-			buttonText: 'Subscribe',
-			buttonVariant: 'cta',
-			popular: true,
-		},
-		{
-			id: 3,
-			title: 'Ultra',
-			price: { monthly: '$49.99', annual: '$279' },
-			pages: { monthly: '2500 pages per month', annual: '38000 pages per year' },
-			description: 'For businesses or bulk bank statement processing',
-			features: [
-				'Ultra-fast extraction engine',
-				'Priority 24/7 support',
-				'Advanced Excel formatting & templates',
-				'Supports all popular file types',
-				'Unlimited conversions per request',
-				'Early access to new features',
-				'Highest accuracy for bulk statements',
-			],
-			buttonText: 'Subscribe',
-			buttonVariant: 'premium',
-			popular: false,
-		},
-	]
 
 	const buttonVariants = {
 		default: 'bg-blue-600 text-white hover:bg-blue-700',
@@ -129,7 +72,8 @@ function Pricing() {
 		} catch (err) {
 			let errorMsg = 'Network error. Please try again.'
 			if (err.response?.status === 500) {
-				errorMsg = 'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
+				errorMsg =
+					'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
 			} else if (err.response?.data?.error) {
 				errorMsg = err.response.data.error
 			}
@@ -191,73 +135,73 @@ function Pricing() {
 						<p className="mt-4 text-gray-600">Loading pricing plans...</p>
 					</div>
 				) : (
-					<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-						{(pricingTiers.length > 0 ? pricingTiers : defaultPricingTiers).map((tier) => (
-						<div
-							key={tier.title}
-							className={`relative rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${
-								tier.popular
-									? 'border-purple-600 shadow-xl scale-105'
-									: 'hover:scale-105'
-							}`}
-						>
-							{tier.popular && (
-								<div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-									<span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-										Most Popular
-									</span>
-								</div>
-							)}
+					<div className="grid md:grid-cols-3 gap-8 mx-auto">
+						{pricingTiers.map((tier) => (
+							<div
+								key={tier.title}
+								className={`relative rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${
+									tier.popular
+										? 'border-purple-600 shadow-xl scale-105'
+										: 'hover:scale-105'
+								}`}
+							>
+								{tier.popular && (
+									<div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+										<span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+											Most Popular
+										</span>
+									</div>
+								)}
 
-							{/* Header */}
-							<div className="text-center pb-6 mb-4">
-								<h3 className="text-2xl font-bold text-gray-900">
-									{tier.title}
-								</h3>
-								<div className="mt-4">
-									<span className="text-4xl font-bold text-gray-900">
-										{tier.price[billing]}
-									</span>
+								{/* Header */}
+								<div className="text-center pb-6 mb-4">
+									<h3 className="text-2xl font-bold text-gray-900">
+										{tier.title}
+									</h3>
+									<div className="mt-4">
+										<span className="text-4xl font-bold text-gray-900">
+											{tier.price[billing]}
+										</span>
+									</div>
+									<p className="text-gray-600 mt-2">{tier.description}</p>
 								</div>
-								<p className="text-gray-600 mt-2">{tier.description}</p>
-							</div>
 
-							{/* Content */}
-							<div className="space-y-6">
-								<ul className="space-y-3">
-									<li className="flex items-center gap-3 text-gray-800">
-										<Check className="h-5 w-5 text-green-600 shrink-0" />
-										<span>{tier.pages[billing]}</span>
-									</li>
-									{tier.features.map((feature, idx) => (
-										<li
-											key={idx}
-											className="flex items-center gap-3 text-gray-800"
-										>
+								{/* Content */}
+								<div className="space-y-6">
+									<ul className="space-y-3">
+										<li className="flex items-center gap-3 text-gray-800">
 											<Check className="h-5 w-5 text-green-600 shrink-0" />
-											<span>{feature}</span>
+											<span>{tier.pages[billing]}</span>
 										</li>
-									))}
-								</ul>
+										{tier.features.map((feature, idx) => (
+											<li
+												key={idx}
+												className="flex items-center gap-3 text-gray-800"
+											>
+												<Check className="h-5 w-5 text-green-600 shrink-0" />
+												<span>{feature}</span>
+											</li>
+										))}
+									</ul>
 
-								{/* Button */}
-								<button
-									onClick={() => handleSubscribe(tier.id || tier.plan_id, billing)}
-									disabled={loading === tier.id}
-									className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
-										buttonVariants[tier.buttonVariant]
-									} ${
-										loading === tier.id
-											? 'opacity-70 cursor-not-allowed'
-											: ''
-									}`}
-								>
-									{loading === tier.id
-										? 'Processing...'
-										: tier.buttonText}
-								</button>
+									{/* Button */}
+									<button
+										onClick={() => handleSubscribe(tier.id || tier.plan_id, billing)}
+										disabled={loading === tier.id}
+										className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
+											buttonVariants[tier.buttonVariant]
+										} ${
+											loading === tier.id
+												? 'opacity-70 cursor-not-allowed'
+												: ''
+										}`}
+									>
+										{loading === tier.id
+											? 'Processing...'
+											: tier.buttonText}
+									</button>
+								</div>
 							</div>
-						</div>
 						))}
 					</div>
 				)}
