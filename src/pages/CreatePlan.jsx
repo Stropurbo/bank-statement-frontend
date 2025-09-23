@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import ApiClient from '../services/api-client'
 
@@ -8,16 +8,17 @@ function CreatePlan() {
 		handleSubmit,
 		formState: { errors },
 		reset,
-		setValue,
 	} = useForm()
 	const [loading, setLoading] = useState(false)
 	const [success, setSuccess] = useState('')
 	const [error, setError] = useState('')
-
-
-
-
-
+	
+	const [planChoices] = useState([
+		{ value: 'basic', label: 'Basic' },
+		{ value: 'pro', label: 'Pro' },
+		{ value: 'ultra', label: 'Ultra' },
+	])
+	const [editingPlan, setEditingPlan] = useState(null)
 
 	const onSubmit = async (data) => {
 		setLoading(true)
@@ -25,51 +26,37 @@ function CreatePlan() {
 		setSuccess('')
 
 		try {
-			console.log('Raw form data:', data)
-			
-			const monthlyPrice = parseFloat(data.monthly_price)
-			const annualPrice = parseFloat(data.annual_price)
-			const monthlyPages = parseInt(data.monthly_pages)
-			const annualPages = parseInt(data.annual_pages)
-
-			console.log('Parsed values:', { monthlyPrice, annualPrice, monthlyPages, annualPages })
-
-			if (isNaN(monthlyPrice) || isNaN(annualPrice) || isNaN(monthlyPages) || isNaN(annualPages)) {
-				setError('Please enter valid numbers for prices and pages')
-				setLoading(false)
-				return
-			}
-
 			const planData = {
 				name: data.name,
-				monthly_price: monthlyPrice,
-				annual_price: annualPrice,
-				pages_monthly: monthlyPages,
-				pages_annual: annualPages,
+				monthly_price: parseFloat(data.monthly_price),
+				annual_price: parseFloat(data.annual_price),
+				pages_monthly: parseInt(data.monthly_pages),
+				pages_annual: parseInt(data.annual_pages),
 				description: data.description,
 				features: data.features.split('\n').filter((f) => f.trim()),
 			}
 
-			console.log('Sending plan data:', planData)
-			console.log('JSON stringified:', JSON.stringify(planData))
-
-			await ApiClient.post('/plans/', planData)
-			setSuccess('Plan created successfully!')
+			if (editingPlan) {
+				await ApiClient.put(`/plans/${editingPlan.id}/`, planData)
+				setSuccess('Plan updated successfully!')
+			} else {
+				await ApiClient.post('/plans/', planData)
+				setSuccess('Plan created successfully!')
+			}
 
 			reset()
+			setEditingPlan(null)
 		} catch (err) {
-			console.error('Error details:', err.response?.data)
-			setError(err.response?.data?.detail || err.response?.data?.error || err.message || 'Failed to save plan')
+			setError(err.response?.data?.error || 'Failed to save plan')
 		} finally {
 			setLoading(false)
 		}
 	}
 
-
-
-
-
-
+	const cancelEdit = () => {
+		setEditingPlan(null)
+		reset()
+	}
 
 	return (
 		<div className="max-w-6xl mx-auto p-6">
@@ -89,11 +76,13 @@ function CreatePlan() {
 				</div>
 			)}
 
-			<div className="max-w-2xl mx-auto">
+			<div className="grid lg:grid-cols-2 gap-8">
 				{/* Form */}
 				<div className="card bg-base-100 shadow-xl">
 					<div className="card-body">
-						<h2 className="card-title">Create New Plan</h2>
+						<h2 className="card-title">
+							{editingPlan ? 'Edit Plan' : 'Create New Plan'}
+						</h2>
 
 						<form
 							onSubmit={handleSubmit(onSubmit)}
@@ -101,14 +90,22 @@ function CreatePlan() {
 						>
 							<div className="form-control">
 								<label className="label">Plan Name</label>
-								<input
-									type="text"
-									placeholder="Enter plan name"
-									className={`input input-bordered ${
-										errors.name ? 'input-error' : ''
+								<select
+									className={`select select-bordered ${
+										errors.name ? 'select-error' : ''
 									}`}
 									{...register('name', { required: 'Plan name is required' })}
-								/>
+								>
+									<option value="">Select Plan</option>
+									{planChoices.map((choice) => (
+										<option
+											key={choice.value}
+											value={choice.value}
+										>
+											{choice.label}
+										</option>
+									))}
+								</select>
 								{errors.name && (
 									<span className="text-error text-sm">
 										{errors.name.message}
@@ -235,9 +232,21 @@ function CreatePlan() {
 									className="btn btn-primary flex-1"
 									disabled={loading}
 								>
-									{loading ? 'Saving...' : 'Create Plan'}
+									{loading
+										? 'Saving...'
+										: editingPlan
+										? 'Update Plan'
+										: 'Create Plan'}
 								</button>
-
+								{editingPlan && (
+									<button
+										type="button"
+										className="btn btn-ghost"
+										onClick={cancelEdit}
+									>
+										Cancel
+									</button>
+								)}
 							</div>
 						</form>
 					</div>

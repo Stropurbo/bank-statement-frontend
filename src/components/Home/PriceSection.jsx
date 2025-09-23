@@ -4,59 +4,57 @@ import { Check } from 'lucide-react'
 function PriceSection() {
 	const [billing, setBilling] = useState('monthly')
 
-	    const pricingTiers = [
-			{
-				title: 'Basic',
-				price: { monthly: '$9.99', annual: '$79' },
-				pages: { monthly: '250 pages per month', annual: '3700 pages per year' },
-				description: 'Perfect for individuals or light users',
-				features: [
-					'Bypass AI detection for Excel conversions',
-					'Basic statement processing engine',
-					'Error-free extraction',
-					'Supports 20+ file types',
-				],
-				buttonText: 'Subscribe',
-				buttonVariant: 'outline',
-				popular: false,
-			},
-			{
-				title: 'Pro',
-				price: { monthly: '$24.99', annual: '$179' },
-				pages: { monthly: '750 pages per month', annual: '11000 pages per year' },
-				description: 'Most popular for regular users with multiple statements',
-				features: [
-					'Advanced processing engine',
-					'Priority email support',
-					'Faster extraction speed',
-					'Supports 50+ file types',
-					'Unlimited conversions per request',
-					'Accurate Excel formatting',
-				],
-				buttonText: 'Subscribe',
-				buttonVariant: 'cta',
-				popular: true,
-			},
-			{
-				title: 'Ultra',
-				price: { monthly: '$49.99', annual: '$279' },
-				pages: { monthly: '2500 pages per month', annual: '38000 pages per year' },
-				description: 'For businesses or bulk bank statement processing',
-				features: [
-					'Ultra-fast extraction engine',
-					'Priority 24/7 support',
-					'Advanced Excel formatting & templates',
-					'Supports all popular file types',
-					'Unlimited conversions per request',
-					'Early access to new features',
-					'Highest accuracy for bulk statements',
-				],
-				buttonText: 'Subscribe',
-				buttonVariant: 'premium',
-				popular: false,
-			},
-		]
-
+	const pricingTiers = [
+		{
+			title: 'Basic',
+			price: { monthly: '$9', annual: '$90' },
+			pages: { monthly: '200 pages per month', annual: '2400 pages per year' },
+			description: 'Perfect for individuals or light users',
+			features: [
+				'Convert 200 pages/month',
+				'Normal processing speed',
+				'Basic email support',
+			],
+			buttonText: 'Subscribe',
+			buttonVariant: 'outline',
+			popular: false,
+		},
+		{
+			title: 'Pro',
+			price: { monthly: '$19', annual: '$190' },
+			pages: { monthly: '800 pages per month', annual: '9000 pages per year' },
+			description: 'Most popular for regular users with multiple statements',
+			features: [
+				'PDF → CSV or Excel (XLSX)',
+				'Priority email support',
+				'Faster extraction speed',
+				'Multi-device access',
+				'Unlimited conversions per request',
+				'Accurate Excel formatting',
+			],
+			buttonText: 'Subscribe',
+			buttonVariant: 'cta',
+			popular: true,
+		},
+		{
+			title: 'Ultra',
+			price: { monthly: '$49', annual: '$490' },
+			pages: { monthly: '2000 pages per month', annual: '24000 pages per year' },
+			description: 'For businesses or bulk bank statement processing',
+			features: [
+				'Ultra-fast extraction engine',
+				'Priority 24/7 support',
+				'Advanced Excel formatting & templates',
+				'Supports all popular file types',
+				'Unlimited conversions per request',
+				'Early access to new features',
+				'Highest accuracy for bulk statements',
+			],
+			buttonText: 'Subscribe',
+			buttonVariant: 'premium',
+			popular: false,
+		},
+	]
 
 	const buttonVariants = {
 		default: 'bg-blue-600 text-white hover:bg-blue-700',
@@ -148,13 +146,15 @@ function PriceSection() {
 								</ul>
 
 								{/* Button */}
-								<button
-									className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
-										buttonVariants[tier.buttonVariant]
-									}`}
-								>
-									{tier.buttonText}
-								</button>
+								<a href="pricing">
+									<button
+										className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
+											buttonVariants[tier.buttonVariant]
+										}`}
+									>
+										{tier.buttonText}
+									</button>
+								</a>
 							</div>
 						</div>
 					))}
