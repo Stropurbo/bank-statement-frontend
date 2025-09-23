@@ -25,8 +25,8 @@ function HeroSection() {
 			setError(null)
 			const res = await AuthApiClient.post('upload-pdf/', formData, {
 				headers: {
-					'Content-Type': 'multipart/form-data'
-				}
+					'Content-Type': 'multipart/form-data',
+				},
 			})
 
 			if (res.data.transactions_json) {
@@ -44,7 +44,10 @@ function HeroSection() {
 			console.error('Upload error:', error)
 			if (error.response) {
 				console.error('Error response:', error.response.data)
-				const errorMessage = error.response.data.error || error.response.data.detail || 'Server error occurred'
+				const errorMessage =
+					error.response.data.error ||
+					error.response.data.detail ||
+					'Server error occurred'
 				if (
 					errorMessage &&
 					(errorMessage.includes('password-protected') ||
@@ -79,7 +82,7 @@ function HeroSection() {
 
 	const handleDownload = async () => {
 		if (!statementId) return alert('No statement available to download')
-		
+
 		if (!user) {
 			alert('Please log in to download your file.')
 			return
@@ -262,10 +265,16 @@ function HeroSection() {
 									onClick={handleDownload}
 									disabled={downloading || !user}
 									className={`mt-6 px-5 py-2 font-semibold rounded-lg transition ${
-										user ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-400 text-gray-600 cursor-not-allowed'
+										user
+											? 'bg-green-500 text-white hover:bg-green-600'
+											: 'bg-gray-400 text-gray-600 cursor-not-allowed'
 									} disabled:opacity-50`}
 								>
-									{downloading ? 'Preparing CSV...' : user ? 'Download CSV' : 'Login to Download'}
+									{downloading
+										? 'Preparing CSV...'
+										: user
+										? 'Download CSV'
+										: 'Login to Download'}
 								</button>
 							</div>
 						</div>

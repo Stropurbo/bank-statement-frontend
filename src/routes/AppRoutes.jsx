@@ -19,6 +19,9 @@ import AdminDashboard from '../pages/AdminDashboard'
 import DashboardLayout from '../layout/DashboardLayout'
 import PrivateRoute from './PrivateRoute'
 import UserList from '../pages/UserList'
+import AddPlan from '../pages/AddPlan'
+import CreatePlan from '../pages/CreatePlan'
+import AllPlan from '../pages/AllPlan'
 
 function AppRoutes() {
 	return (
@@ -114,6 +117,18 @@ function AppRoutes() {
 					<Route
 						path="admin/users"
 						element={<UserList />}
+					/>
+					<Route
+						path="add-plan"
+						element={<AddPlan />}
+					/>
+					<Route
+						path="create-plan"
+						element={<CreatePlan />}
+					/>
+					<Route
+						path="plans"
+						element={<AllPlan />}
 					/>
 				</Route>
 			</Routes>

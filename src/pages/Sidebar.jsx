@@ -41,8 +41,8 @@ const Sidebar = () => {
 		},
 		{ to: '/dashboard/add-plan', icon: FiPlusCircle, label: 'Add Plan' },
 		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },
-		{ to: '/dashboard/blog/view', icon: Podcast, label: 'View Blog' },
-		{ to: '/dashboard/blog/add', icon: Newspaper, label: 'Add Blog' },
+		{ to: '/dashboard/create-plan', icon: Podcast, label: 'Create Plan' },
+		{ to: '/dashboard/plans', icon: Newspaper, label: 'Plan' },
 		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Premium User' },
 	]
 
