@@ -1,7 +1,6 @@
-import { Upload } from 'lucide-react'
+import { Upload, FileText, Download, CheckCircle, ArrowRight, Sparkles } from 'lucide-react'
 import React, { useRef, useState, useContext } from 'react'
 import AuthApiClient from '../../services/auth-api-client'
-import scandocu from '../../assets/scanpdf.png'
 import AuthContext from '../../context/AuthContext'
 
 function HeroSection() {
@@ -120,37 +119,66 @@ function HeroSection() {
 	}
 
 	return (
-		<section className="py-20 bg-gradient-subtle">
-			<div className="container mx-auto px-4 text-center">
-				<h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-					From Bank Statement
-					<br />
-					<span className="bg-purple-500 bg-clip-text text-transparent">
-						To Excel in Seconds
-					</span>
-				</h1>
-				<p className="text-xl text-black text-muted-foreground mb-12 max-w-3xl mx-auto">
-					Upload your bank statement and get a clean, editable Excel file — fast,
-					secure, and stress-free.
-				</p>
+		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 flex items-center">
+			<div className="container mx-auto px-6 py-24">
+				{/* Hero Header */}
+				<div className="text-center mb-16">
+					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
+						<Sparkles className="h-4 w-4" />
+						AI-Powered PDF Conversion
+					</div>
+					<h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+						Transform Bank Statements
+						<br />
+						<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+							To Excel Instantly
+						</span>
+					</h1>
+					<p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+						Upload your PDF bank statement and watch our AI convert it into a clean,
+						organized Excel file in seconds. No manual data entry required.
+					</p>
 
-				{error && <div className="mt-4 text-red-500 font-medium">{error}</div>}
+					{/* Trust Indicators */}
+					<div className="flex flex-wrap justify-center gap-8 mb-16 text-sm text-gray-600">
+						<div className="flex items-center gap-2">
+							<CheckCircle className="h-5 w-5 text-green-600" />
+							99.9% Accuracy
+						</div>
+						<div className="flex items-center gap-2">
+							<CheckCircle className="h-5 w-5 text-green-600" />
+							Bank-Level Security
+						</div>
+						<div className="flex items-center gap-2">
+							<CheckCircle className="h-5 w-5 text-green-600" />
+							Instant Processing
+						</div>
+					</div>
+				</div>
 
-				<div className="max-w-2xl mx-auto mb-16">
-					<div className="bg-card border-2 border-dashed border-border border-purple-300 rounded-2xl p-12 hover:border-purple-600 transition-colors duration-300 shadow-card">
-						<div className="flex flex-col items-center gap-6">
-							<img
-								src={scandocu}
-								alt="Document converter"
-								className="w-28 h-24 "
-							/>
+				{error && (
+					<div className="max-w-md mx-auto mb-8 p-4 bg-red-50 border border-red-200 rounded-xl">
+						<p className="text-red-700 text-center font-medium">{error}</p>
+					</div>
+				)}
 
-							<div>
-								<h3 className="text-2xl font-semibold text-foreground mb-2">
-									Upload PDF bank statement
+				{/* Upload Section */}
+				<div className="max-w-3xl mx-auto mb-20">
+					<div className="bg-white border-2 border-dashed border-purple-200 rounded-3xl p-16 hover:border-purple-400 transition-all duration-300 shadow-2xl hover:shadow-3xl">
+						<div className="flex flex-col items-center gap-8">
+							<div className="w-24 h-24 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl flex items-center justify-center">
+								<FileText className="h-12 w-12 text-purple-600" />
+							</div>
+
+							<div className="text-center">
+								<h3 className="text-3xl font-bold text-gray-900 mb-4">
+									Upload Your Bank Statement
 								</h3>
-								<p className="text-muted-foreground">
-									Drag & drop or click to select a file
+								<p className="text-gray-600 text-lg">
+									Drag & drop your PDF file here or click to browse
+								</p>
+								<p className="text-sm text-gray-500 mt-2">
+									Supports all major banks • Max file size: 10MB
 								</p>
 							</div>
 
@@ -166,117 +194,121 @@ function HeroSection() {
 							<button
 								type="button"
 								onClick={handleClick}
-								className="group btn bg-purple-600 rounded-md hover:bg-purple-700 text-white"
+								disabled={loading}
+								className="group bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
 							>
-								<Upload className="group-hover:scale-110 transition-transform" />
-								Select PDF File
+								<Upload className="inline-block mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
+								{loading ? 'Processing...' : 'Choose PDF File'}
 							</button>
 						</div>
 					</div>
 
 					{fileToUpload && (
-						<form
-							onSubmit={handlePasswordSubmit}
-							className="mt-4 flex flex-col items-center"
-						>
-							<input
-								type="password"
-								placeholder="Enter PDF password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								className="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-								required
-							/>
-							<button
-								type="submit"
-								className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 disabled:opacity-50"
-								disabled={loading}
-							>
-								Submit Password
-							</button>
-						</form>
+						<div className="mt-8 max-w-md mx-auto">
+							<div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+								<h4 className="font-semibold text-yellow-800 mb-4 text-center">Password Protected PDF</h4>
+								<form onSubmit={handlePasswordSubmit} className="space-y-4">
+									<input
+										type="password"
+										placeholder="Enter PDF password"
+										value={password}
+										onChange={(e) => setPassword(e.target.value)}
+										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+										required
+									/>
+									<button
+										type="submit"
+										disabled={loading}
+										className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50"
+									>
+										{loading ? 'Processing...' : 'Unlock & Convert'}
+									</button>
+								</form>
+							</div>
+						</div>
 					)}
 
 					{loading && (
-						<div className="flex items-center justify-center mt-4">
-							<svg
-								className="animate-spin h-5 w-5 text-blue-500 mr-2"
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-							>
-								<circle
-									className="opacity-25"
-									cx="12"
-									cy="12"
-									r="10"
-									stroke="currentColor"
-									strokeWidth="4"
-								></circle>
-								<path
-									className="opacity-75"
-									fill="currentColor"
-									d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-								></path>
-							</svg>
-							Processing your bank statement...
+						<div className="mt-8 max-w-md mx-auto">
+							<div className="bg-blue-50 border border-blue-200 rounded-xl p-8 text-center">
+								<div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600 mx-auto mb-4"></div>
+								<h4 className="font-semibold text-blue-800 mb-2">Processing Your Statement</h4>
+								<p className="text-blue-600 text-sm">Our AI is extracting and organizing your data...</p>
+							</div>
 						</div>
 					)}
 
 					{tableData && (
-						<div className="mt-8 w-full ">
-							<div className="overflow-x-auto bg-white rounded-lg  p-4">
-								<table className="table-auto w-full border-collapse border border-gray-300">
-									<thead>
-										<tr className="bg-gray-200">
-											{tableData.columns.map((col, i) => (
-												<th
-													key={i}
-													className="border border-gray-300 px-3 py-2 text-left font-medium text-sm text-gray-600 uppercase"
-												>
-													{col}
-												</th>
-											))}
-										</tr>
-									</thead>
-									<tbody>
-										{tableData.rows.map((row, i) => (
-											<tr
-												key={i}
-												className={`transition-colors ${
-													i % 2 === 0 ? 'bg-gray-50' : 'bg-white'
-												} hover:bg-blue-50`}
-											>
-												{tableData.columns.map((col, j) => (
-													<td
-														key={j}
-														className="border px-4 py-2 text-sm text-gray-700"
-													>
-														{typeof row[col] === 'object' &&
-														row[col] !== null
-															? JSON.stringify(row[col])
-															: row[col] ?? ''}
-													</td>
+						<div className="mt-12 max-w-6xl mx-auto">
+							<div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
+								{/* Success Header */}
+								<div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 border-b border-gray-200">
+									<div className="flex items-center justify-center gap-3 mb-4">
+										<div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+											<CheckCircle className="h-6 w-6 text-green-600" />
+										</div>
+										<h3 className="text-2xl font-bold text-gray-900">Conversion Complete!</h3>
+									</div>
+									<p className="text-center text-gray-600">Your bank statement has been successfully converted. Preview your data below.</p>
+								</div>
+
+								{/* Data Table */}
+								<div className="p-8">
+									<div className="overflow-x-auto">
+										<table className="w-full">
+											<thead>
+												<tr className="bg-gray-50">
+													{tableData.columns.map((col, i) => (
+														<th
+															key={i}
+															className="px-6 py-4 text-left font-semibold text-gray-900 uppercase tracking-wider text-sm"
+														>
+															{col}
+														</th>
+													))}
+												</tr>
+											</thead>
+											<tbody className="divide-y divide-gray-200">
+												{tableData.rows.slice(0, 10).map((row, i) => (
+													<tr key={i} className="hover:bg-gray-50 transition-colors">
+														{tableData.columns.map((col, j) => (
+															<td key={j} className="px-6 py-4 text-sm text-gray-700">
+																{typeof row[col] === 'object' && row[col] !== null
+																	? JSON.stringify(row[col])
+																	: row[col] ?? ''}
+															</td>
+														))}
+													</tr>
 												))}
-											</tr>
-										))}
-									</tbody>
-								</table>
-								<button
-									onClick={handleDownload}
-									disabled={downloading || !user}
-									className={`mt-6 px-5 py-2 font-semibold rounded-lg transition ${
-										user
-											? 'bg-green-500 text-white hover:bg-green-600'
-											: 'bg-gray-400 text-gray-600 cursor-not-allowed'
-									} disabled:opacity-50`}
-								>
-									{downloading
-										? 'Preparing CSV...'
-										: user
-										? 'Download CSV'
-										: 'Login to Download'}
-								</button>
+											</tbody>
+										</table>
+										{tableData.rows.length > 10 && (
+											<p className="text-center text-gray-500 mt-4 text-sm">
+												Showing first 10 rows of {tableData.rows.length} total transactions
+											</p>
+										)}
+									</div>
+
+									{/* Download Button */}
+									<div className="flex justify-center mt-8">
+										<button
+											onClick={handleDownload}
+											disabled={downloading || !user}
+											className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl ${
+												user
+													? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700'
+													: 'bg-gray-400 text-gray-600 cursor-not-allowed'
+											} disabled:opacity-50 disabled:transform-none`}
+										>
+											<Download className="inline-block mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
+											{downloading
+												? 'Preparing Download...'
+												: user
+												? 'Download Excel File'
+												: 'Login to Download'}
+										</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					)}

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import useAuthContext from '../hooks/useAuthContext'
-// import { useNavigate } from 'react-router'
 import { useForm } from 'react-hook-form'
-import { Eye, EyeOff } from 'lucide-react'
-import { useNavigate } from 'react-router'
+import { Eye, EyeOff, User, Mail, MapPin, Phone, Lock, CheckCircle, AlertCircle } from 'lucide-react'
+import { useNavigate, Link } from 'react-router'
 
 function Register() {
 	const { registerUser } = useAuthContext()
@@ -11,8 +10,8 @@ function Register() {
 
 	const [successMsg, setSuccessMsg] = useState('')
 	const [errorMsg, setErrorMsg] = useState('')
-
 	const [showPassword, setShowPassword] = useState(false)
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
 	const {
 		register,
@@ -46,236 +45,253 @@ function Register() {
 	}
 
 	return (
-		<div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">
-			<div className="card w-full max-w-md bg-base-100 shadow-xl">
-				<div className="card-body">
+		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
+			<div className="w-full max-w-lg">
+				{/* Header */}
+				<div className="text-center mb-8">
+					<h1 className="text-4xl font-bold text-gray-900 mb-2">Create Account</h1>
+					<p className="text-gray-600">Join SheetlyPro and start converting your bank statements</p>
+				</div>
+
+				{/* Register Card */}
+				<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+					{/* Success/Error Messages */}
 					{successMsg && (
-						<div
-							className="w-full rounded-md p-4 mb-4 bg-green-500 text-white flex justify-between items-center"
-							role="alert"
-						>
-							<div className="flex items-center gap-2">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="h-5 w-5"
-									viewBox="0 0 20 20"
-									fill="currentColor"
-								>
-									<path
-										fillRule="evenodd"
-										d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm.293-3.707a1 1 0 011.414 0L10 8.586 9.293 7.293a1 1 0 010-1.414z"
-										clipRule="evenodd"
-									/>
-								</svg>
-								<span>{successMsg}</span>
-							</div>
+						<div className="flex items-center space-x-3 p-4 bg-green-50 border border-green-200 rounded-lg mb-6">
+							<CheckCircle className="h-5 w-5 text-green-600" />
+							<p className="text-green-700 font-medium">{successMsg}</p>
 							<button
-								className="ml-4 text-white hover:text-gray-200"
-								onClick={() => setSuccessMsg(null)}
+								onClick={() => setSuccessMsg('')}
+								className="ml-auto text-green-600 hover:text-green-800"
 							>
 								✕
 							</button>
 						</div>
 					)}
-
 					{errorMsg && (
-						<div
-							className="w-full rounded-md p-4 mb-4 bg-red-500 text-white flex justify-between items-center"
-							role="alert"
-						>
-							<div className="flex items-center gap-2">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									className="h-5 w-5"
-									viewBox="0 0 20 20"
-									fill="currentColor"
-								>
-									<path
-										fillRule="evenodd"
-										d="M10 18a8 8 0 100-16 8 8 0 000 16zm-1-7a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm.293-3.707a1 1 0 011.414 0L10 8.586 9.293 7.293a1 1 0 010-1.414z"
-										clipRule="evenodd"
-									/>
-								</svg>
-								<span>{errorMsg}</span>
-							</div>
+						<div className="flex items-center space-x-3 p-4 bg-red-50 border border-red-200 rounded-lg mb-6">
+							<AlertCircle className="h-5 w-5 text-red-600" />
+							<p className="text-red-700 font-medium">{errorMsg}</p>
 							<button
-								className="ml-4 text-white font-bold hover:text-gray-200"
-								onClick={() => setErrorMsg(null)}
+								onClick={() => setErrorMsg('')}
+								className="ml-auto text-red-600 hover:text-red-800"
 							>
 								✕
 							</button>
 						</div>
 					)}
 
-					<h2 className="card-title text-2xl font-bold">Register</h2>
-					<p className="text-base-content/70">Create an account to get started</p>
+					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+						{/* Name Fields */}
+						<div className="grid md:grid-cols-2 gap-4">
+							<div>
+								<label className="block text-sm font-semibold text-gray-700 mb-2">
+									First Name
+								</label>
+								<div className="relative">
+									<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+										<User className="h-5 w-5 text-gray-400" />
+									</div>
+									<input
+										id="first_name"
+										type="text"
+										placeholder="Enter first name"
+										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+											errors.first_name ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										}`}
+										{...register('first_name', { required: 'First name is required' })}
+									/>
+								</div>
+								{errors.first_name && (
+									<p className="text-red-600 text-sm mt-1">{errors.first_name.message}</p>
+								)}
+							</div>
 
-					<form
-						onSubmit={handleSubmit(onSubmit)}
-						className="space-y-4 mt-4"
-					>
-						<div className="form-control">
-							<label
-								className="label"
-								htmlFor="first_name"
-							>
-								<span className="label-text">First Name</span>
-							</label>
-							<input
-								id="first_name"
-								type="text"
-								placeholder="John"
-								className="input input-bordered w-full"
-								{...register('first_name', { required: true })}
-							/>
-							{errors.first_name && (
-								<span className="text-error">{errors.first_name.message} </span>
-							)}
+							<div>
+								<label className="block text-sm font-semibold text-gray-700 mb-2">
+									Last Name
+								</label>
+								<div className="relative">
+									<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+										<User className="h-5 w-5 text-gray-400" />
+									</div>
+									<input
+										id="last_name"
+										type="text"
+										placeholder="Enter last name"
+										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+											errors.last_name ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										}`}
+										{...register('last_name', { required: 'Last name is required' })}
+									/>
+								</div>
+								{errors.last_name && (
+									<p className="text-red-600 text-sm mt-1">{errors.last_name.message}</p>
+								)}
+							</div>
 						</div>
 
-						<div className="form-control">
-							<label
-								className="label"
-								htmlFor="last_name"
-							>
-								<span className="label-text">Last Name</span>
+						{/* Email Field */}
+						<div>
+							<label className="block text-sm font-semibold text-gray-700 mb-2">
+								Email Address
 							</label>
-							<input
-								id="last_name"
-								type="text"
-								placeholder="Doe"
-								className="input input-bordered w-full"
-								{...register('last_name', { required: true })}
-							/>
-							{errors.last_name && (
-								<span className="text-error">{errors.last_name.message} </span>
-							)}
-						</div>
-
-						<div className="form-control">
-							<label
-								className="label"
-								htmlFor="email"
-							>
-								<span className="label-text">Email</span>
-							</label>
-							<input
-								id="email"
-								type="email"
-								placeholder="name@example.com"
-								className="input input-bordered w-full"
-								{...register('email', { required: true })}
-							/>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<Mail className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="email"
+									type="email"
+									placeholder="Enter your email address"
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+										errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+									}`}
+									{...register('email', { required: 'Email is required' })}
+								/>
+							</div>
 							{errors.email && (
-								<span className="text-error">{errors.email.message} </span>
+								<p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
 							)}
-							{/* <p>{watch("email")}</p> */}
 						</div>
 
-						<div className="form-control">
-							<label
-								className="label"
-								htmlFor="address"
-							>
-								<span className="label-text">Address</span>
+						{/* Address Field */}
+						<div>
+							<label className="block text-sm font-semibold text-gray-700 mb-2">
+								Address (Optional)
 							</label>
-							<input
-								id="address"
-								type="text"
-								placeholder="7/A Austin, USA"
-								className="input input-bordered w-full"
-								{...register('address')}
-							/>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<MapPin className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="address"
+									type="text"
+									placeholder="Enter your address"
+									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
+									{...register('address')}
+								/>
+							</div>
 						</div>
 
-						<div className="form-control">
-							<label
-								className="label"
-								htmlFor="phone_number"
-							>
-								<span className="label-text">Phone Number</span>
+						{/* Phone Field */}
+						<div>
+							<label className="block text-sm font-semibold text-gray-700 mb-2">
+								Phone Number (Optional)
 							</label>
-							<input
-								id="phone_number"
-								type="text"
-								placeholder="0123456789"
-								className="input input-bordered w-full"
-								{...register('phone_number')}
-							/>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<Phone className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="phone_number"
+									type="text"
+									placeholder="Enter your phone number"
+									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
+									{...register('phone_number')}
+								/>
+							</div>
 						</div>
 
-						<div className="form-control relative">
-							<label
-								className="label"
-								htmlFor="password"
-							>
-								<span className="label-text">Password</span>
+						{/* Password Field */}
+						<div>
+							<label className="block text-sm font-semibold text-gray-700 mb-2">
+								Password
 							</label>
-							<input
-								id="password"
-								type={showPassword ? 'text' : 'password'}
-								placeholder="••••••••"
-								className="input input-bordered w-full pr-10"
-								{...register('password', {
-									required: true,
-									minLength: {
-										value: 8,
-										message: 'Password must be at least 8 characters',
-									},
-								})}
-							/>
-							{/* 👁️ Eye icon */}
-							<button
-								type="button"
-								onClick={() => setShowPassword(!showPassword)}
-								className="absolute right-3 bottom-0.5 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-							>
-								{showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-							</button>
-
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<Lock className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="password"
+									type={showPassword ? 'text' : 'password'}
+									placeholder="Create a strong password"
+									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+										errors.password ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+									}`}
+									{...register('password', {
+										required: 'Password is required',
+										minLength: {
+											value: 8,
+											message: 'Password must be at least 8 characters',
+										},
+									})}
+								/>
+								<button
+									type="button"
+									onClick={() => setShowPassword(!showPassword)}
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+								>
+									{showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+								</button>
+							</div>
 							{errors.password && (
-								<span className="text-error">{errors.password.message}</span>
+								<p className="text-red-600 text-sm mt-1">{errors.password.message}</p>
 							)}
 						</div>
 
-						<div className="form-control relative">
-							<label
-								className="label"
-								htmlFor="confirmPassword"
-							>
-								<span className="label-text">Confirm Password</span>
+						{/* Confirm Password Field */}
+						<div>
+							<label className="block text-sm font-semibold text-gray-700 mb-2">
+								Confirm Password
 							</label>
-							<input
-								id="confirmPassword"
-								type="password"
-								placeholder="••••••••"
-								className="input input-bordered w-full"
-								{...register('confirm_password', {
-									required: true,
-									validate: (value) =>
-										value === watch('password') || 'Password do not match.',
-								})}
-							/>
+							<div className="relative">
+								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+									<Lock className="h-5 w-5 text-gray-400" />
+								</div>
+								<input
+									id="confirmPassword"
+									type={showConfirmPassword ? 'text' : 'password'}
+									placeholder="Confirm your password"
+									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+										errors.confirm_password ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+									}`}
+									{...register('confirm_password', {
+										required: 'Please confirm your password',
+										validate: (value) =>
+											value === watch('password') || 'Passwords do not match',
+									})}
+								/>
+								<button
+									type="button"
+									onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+								>
+									{showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+								</button>
+							</div>
+							{errors.confirm_password && (
+								<p className="text-red-600 text-sm mt-1">{errors.confirm_password.message}</p>
+							)}
 						</div>
 
+						{/* Submit Button */}
 						<button
 							type="submit"
-							className="btn bg-purple-500 w-full text-white rounded-md"
 							disabled={loading}
+							className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
 						>
-							{loading ? 'Registering' : 'Register'}
+							{loading ? (
+								<>
+									<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+									<span>Creating Account...</span>
+								</>
+							) : (
+								<span>Create Account</span>
+							)}
 						</button>
 					</form>
 
-					<div className="text-center mt-4">
-						<p className="text-base-content/70">
+					{/* Sign In Link */}
+					<div className="text-center mt-6 pt-6 border-t border-gray-200">
+						<p className="text-gray-600">
 							Already have an account?{' '}
-							<a
-								href="/login"
-								className="link link-primary"
+							<Link
+								to="/login"
+								className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
 							>
-								Sign in
-							</a>
+								Sign In
+							</Link>
 						</p>
 					</div>
 				</div>

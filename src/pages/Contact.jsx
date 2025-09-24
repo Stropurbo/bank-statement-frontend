@@ -1,116 +1,72 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Mail, Copy } from 'lucide-react'
 import AboveFooter from '../components/Home/AboveFooter'
-import ApiClient from '../services/api-client'
 
 function Contact() {
-	const [formData, setFormData] = useState({
-		name: '',
-		email: '',
-		message: '',
-	})
-	const [loading, setLoading] = useState(false)
-	const [success, setSuccess] = useState('')
-	const [error, setError] = useState('')
+	const email = 'myboguraapp@gmail.com'
 
-	const handleChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value })
-	}
-
-	const handleSubmit = async (e) => {
-		e.preventDefault()
-		setLoading(true)
-		setSuccess('')
-		setError('')
-
-		try {
-			const response = await ApiClient.post('/contact', formData)
-            console.log(response);
-			setSuccess('Thank you! Your message has been sent.')
-			setFormData({ name: '', email: '', message: '' })
-		} catch (err) {
-			setError('Oops! Something went wrong. Please try again later.')
-			console.error(err)
-		} finally {
-			setLoading(false)
-		}
+	const copyEmail = () => {
+		navigator.clipboard.writeText(email)
 	}
 
 	return (
-		<section
-			id="contact"
-			className="bg-gradient-to-b from-purple-300 to-purple-100"
-		>
-			<div className="container mx-auto px-4 pt-20">
-				<div className="text-center mb-12">
-					<h2 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
-					<p className="text-xl text-gray-600 mb-4">
-						Have questions or feedback? We'd love to hear from you.
+		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
+			{/* Hero Section */}
+			<div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white py-20">
+				<div className="container mx-auto px-6 text-center">
+					<h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">
+						Get in Touch
+					</h1>
+					<p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
+						Have questions about SheetlyPro? We're here to help you transform your bank statements into professional reports.
 					</p>
 				</div>
+			</div>
 
-				<div className="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-					{success && <p className="text-green-600 font-semibold mb-4">{success}</p>}
-					{error && <p className="text-red-600 font-semibold mb-4">{error}</p>}
+			{/* Contact Section */}
+			<div className="py-20">
+				<div className="container mx-auto px-6">
+					<div className="max-w-2xl mx-auto text-center">
+						<h2 className="text-3xl font-bold text-gray-900 mb-8">Contact Us</h2>
+						<p className="text-lg text-gray-600 mb-12 leading-relaxed">
+							Ready to get started or have questions? Drop us an email and we'll get back to you as soon as possible.
+						</p>
 
-					<form
-						onSubmit={handleSubmit}
-						className="space-y-6"
-					>
-						<div>
-							<label className="block text-gray-700 font-semibold mb-2">
-								Name
-							</label>
-							<input
-								type="text"
-								name="name"
-								value={formData.name}
-								onChange={handleChange}
-								required
-								className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-							/>
+						{/* Email Card */}
+						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-12">
+							<div className="flex flex-col items-center space-y-6">
+								<div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+									<Mail className="h-10 w-10 text-white" />
+								</div>
+								<div className="text-center">
+									<h3 className="text-2xl font-bold text-gray-900 mb-2">Email Us</h3>
+									<p className="text-gray-600 mb-6">Send us your questions and we'll respond within 24 hours</p>
+									<div className="flex items-center justify-center space-x-4 bg-gray-50 rounded-lg p-4">
+										<span className="text-xl font-semibold text-gray-900">{email}</span>
+										<button
+											onClick={copyEmail}
+											className="p-2 text-gray-500 hover:text-purple-600 hover:bg-white rounded-lg transition-all duration-200"
+											title="Copy email address"
+										>
+											<Copy className="h-5 w-5" />
+										</button>
+									</div>
+								</div>
+								<a
+									href={`mailto:${email}`}
+									className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-4 px-8 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2"
+								>
+									<Mail className="h-5 w-5" />
+									<span>Send Email</span>
+								</a>
+							</div>
 						</div>
-
-						<div>
-							<label className="block text-gray-700 font-semibold mb-2">
-								Email
-							</label>
-							<input
-								type="email"
-								name="email"
-								value={formData.email}
-								onChange={handleChange}
-								required
-								className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-							/>
-						</div>
-
-						<div>
-							<label className="block text-gray-700 font-semibold mb-2">
-								Message
-							</label>
-							<textarea
-								name="message"
-								value={formData.message}
-								onChange={handleChange}
-								required
-								rows="5"
-								className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
-							></textarea>
-						</div>
-
-						<button
-							type="submit"
-							disabled={loading}
-							className="w-full bg-purple-500 text-white font-semibold py-3 rounded-lg hover:bg-purple-600 transition disabled:opacity-50"
-						>
-							{loading ? 'Sending...' : 'Send Message'}
-						</button>
-					</form>
+					</div>
 				</div>
 			</div>
 
 			<AboveFooter />
-		</section>
+		</div>
 	)
 }
 

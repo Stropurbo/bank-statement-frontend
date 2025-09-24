@@ -7,4 +7,5 @@ export const sitemapPaths = [
 	'/register',
 	'/terms-of-service',
 	'/privacy-policy',
+	'/affiliate',
 ]

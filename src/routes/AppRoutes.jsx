@@ -22,6 +22,7 @@ import UserList from '../pages/UserList'
 import AddPlan from '../pages/AddPlan'
 import CreatePlan from '../pages/CreatePlan'
 import AllPlan from '../pages/AllPlan'
+import Affiliate from '../pages/Affiliate'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -35,6 +36,7 @@ const publicRoutes = [
 	{ path: '/payment/success', element: <PaymentSuccess /> },
 	{ path: '/payment/cancel', element: <PaymentCancel /> },
 	{ path: '/payment/fail', element: <PaymentFail /> },
+	{ path: '/affiliate', element: <Affiliate /> },
 ]
 
 const allRoutes = [

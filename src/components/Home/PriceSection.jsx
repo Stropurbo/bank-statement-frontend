@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Check } from 'lucide-react'
+import { Check, Star, ArrowRight, Sparkles } from 'lucide-react'
 
 function PriceSection() {
 	const [billing, setBilling] = useState('monthly')
@@ -56,109 +56,143 @@ function PriceSection() {
 		},
 	]
 
-	const buttonVariants = {
-		default: 'bg-blue-600 text-white hover:bg-blue-700',
-		outline: 'border border-gray-400 text-gray-700 hover:bg-gray-100',
-		cta: 'bg-purple-500 text-white hover:bg-purple-900',
-		premium: 'bg-purple-600 text-white hover:bg-purple-900',
-	}
-
 	return (
-		<section
-			id="pricing"
-			className="py-20 bg-gray-50"
-		>
-			<div className="container mx-auto px-4">
-				<div className="text-center mb-8">
-					<h2 className="text-4xl font-bold text-gray-900 mb-4">Choose Your Plan</h2>
-					<p className="text-xl text-gray-600 mb-4">
-						Start free and upgrade as your needs grow
+		<section className="py-24 bg-gradient-to-b from-gray-50 to-white">
+			<div className="container mx-auto px-6">
+				{/* Section Header */}
+				<div className="text-center mb-20">
+					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+						<Sparkles className="h-4 w-4" />
+						Simple Pricing
+					</div>
+					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+						Choose Your
+						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+							Perfect Plan
+						</span>
+					</h2>
+					<p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+						Transparent pricing with no hidden fees. Start converting your bank statements today.
 					</p>
 
 					{/* Billing toggle */}
-					<div className="inline-flex rounded-lg bg-gray-200 p-1 mb-5">
+					<div className="inline-flex items-center bg-white rounded-xl p-1 shadow-lg border border-gray-200 mb-8">
 						<button
-							className={`px-4 py-2 rounded-lg font-semibold transition ${
-								billing === 'monthly' ? 'bg-white shadow' : 'text-gray-700'
+							className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+								billing === 'monthly'
+									? 'bg-purple-600 text-white shadow-md'
+									: 'text-gray-600 hover:text-gray-900'
 							}`}
 							onClick={() => setBilling('monthly')}
 						>
 							Monthly
 						</button>
 						<button
-							className={`px-4 py-2 rounded-lg font-semibold transition ${
-								billing === 'annual' ? 'bg-white shadow' : 'text-gray-700'
+							className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+								billing === 'annual'
+									? 'bg-purple-600 text-white shadow-md'
+									: 'text-gray-600 hover:text-gray-900'
 							}`}
 							onClick={() => setBilling('annual')}
 						>
 							Annual
+							<span className="ml-2 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+								Save 20%
+							</span>
 						</button>
 					</div>
 				</div>
 
-				<div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+				{/* Pricing Cards */}
+				<div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
 					{pricingTiers.map((tier, index) => (
 						<div
 							key={index}
-							className={`relative rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${
+							className={`relative rounded-3xl bg-white p-8 transition-all duration-300 hover:-translate-y-2 ${
 								tier.popular
-									? 'border-purple-600 shadow-xl scale-105'
-									: 'hover:scale-105'
+									? 'border-2 border-purple-500 shadow-2xl shadow-purple-100 scale-105'
+									: 'border border-gray-200 shadow-xl hover:shadow-2xl'
 							}`}
 						>
 							{tier.popular && (
-								<div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-									<span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-										Most Popular
+								<div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+									<span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
+										✨ Most Popular
 									</span>
 								</div>
 							)}
 
 							{/* Header */}
-							<div className="text-center pb-6 mb-4">
-								<h3 className="text-2xl font-bold text-gray-900">
+							<div className="text-center pb-8 mb-6 border-b border-gray-100">
+								<h3 className="text-2xl font-bold text-gray-900 mb-4">
 									{tier.title}
 								</h3>
-								<div className="mt-4">
-									<span className="text-4xl font-bold text-gray-900">
+								<div className="mb-4">
+									<span className="text-5xl font-bold text-gray-900">
 										{tier.price[billing]}
 									</span>
+									<span className="text-gray-500 text-lg ml-2">/{billing}</span>
 								</div>
-								<p className="text-gray-600 mt-2">{tier.description}</p>
+								<p className="text-gray-600 leading-relaxed">{tier.description}</p>
 							</div>
 
-							{/* Content */}
-							<div className="space-y-6">
-								<ul className="space-y-3">
-									<li className="flex items-center gap-3 text-gray-800">
-										<Check className="h-5 w-5 text-green-600 shrink-0" />
-										<span>{tier.pages[billing]}</span>
+							{/* Features */}
+							<div className="space-y-8">
+								<ul className="space-y-4">
+									<li className="flex items-center gap-4 text-gray-800">
+										<div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+											<Check className="h-4 w-4 text-green-600" />
+										</div>
+										<span className="font-medium">{tier.pages[billing]}</span>
 									</li>
 									{tier.features.map((feature, featureIndex) => (
 										<li
 											key={featureIndex}
-											className="flex items-center gap-3 text-gray-800"
+											className="flex items-center gap-4 text-gray-800"
 										>
-											<Check className="h-5 w-5 text-green-600 shrink-0" />
-											<span>{feature}</span>
+											<div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
+												<Check className="h-4 w-4 text-green-600" />
+											</div>
+											<span className="font-medium">{feature}</span>
 										</li>
 									))}
 								</ul>
 
 								{/* Button */}
-								<a href="pricing">
+								<a href="/pricing">
 									<button
-										className={`w-full rounded-lg px-4 py-2 font-semibold transition duration-200 ${
-											buttonVariants[tier.buttonVariant]
+										className={`group w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 ${
+											tier.popular
+												? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg hover:shadow-xl'
+												: tier.buttonVariant === 'outline'
+												? 'border-2 border-gray-300 text-gray-700 hover:border-purple-600 hover:text-purple-600'
+												: 'bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl'
 										}`}
 									>
 										{tier.buttonText}
+										<ArrowRight className="inline-block ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
 									</button>
 								</a>
 							</div>
 						</div>
 					))}
 				</div>
+
+				{/* Bottom CTA */}
+				{/* <div className="text-center mt-20">
+					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-md mx-auto">
+						<div className="flex justify-center mb-4">
+							{[...Array(5)].map((_, i) => (
+								<Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+							))}
+						</div>
+						<h3 className="text-xl font-bold text-gray-900 mb-2">Still Have Questions?</h3>
+						<p className="text-gray-600 mb-4">Our team is here to help you choose the right plan</p>
+						<a href="/contact" className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors">
+							Contact Sales
+						</a>
+					</div>
+				</div> */}
 			</div>
 		</section>
 	)

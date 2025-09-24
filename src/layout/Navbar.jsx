@@ -1,214 +1,192 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router'
+import { Menu, X, User, LogOut, Settings } from 'lucide-react'
 import useAuthContext from '../hooks/useAuthContext'
 import Logo from '../assets/logos.png'
 
 function Navbar() {
 	const { user, logoutUser } = useAuthContext()
-	console.log(user)
+	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
 	return (
-		<div className="navbar bg-base-100 shadow-sm px-4">
-			<div className="flex-1 flex items-center">
-				<img
-					src={Logo}
-					alt="SheetlyPro Logo"
-					className="w-10 h-10"
-				/>
-				<a
-					href="/"
-					className="p-3 font-bold text-xl"
-				>
-					SheetlyPro
-				</a>
-			</div>
-
-			<div className="flex-none">
-				{/* Mobile dropdown */}
-				<div className="dropdown dropdown-end lg:hidden">
-					<div
-						tabIndex={0}
-						role="button"
-						className="btn btn-ghost"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-5 w-5"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="2"
-								d="M4 6h16M4 12h16M4 18h16"
+		<nav className="bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+			<div className="container mx-auto px-6">
+				<div className="flex items-center justify-between h-16">
+					{/* Logo */}
+					<Link to="/" className="flex items-center space-x-3 group">
+						<div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
+							<img
+								src={Logo}
+								alt="SheetlyPro Logo"
+								className="w-6 h-6"
 							/>
-						</svg>
-					</div>
-					<ul
-						tabIndex={0}
-						className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-					>
-						<li>
-							<a
-								href="pricing"
-								className="text-gray-900"
-							>
-								Pricing
-							</a>
-						</li>
-						{(user?.role === 'Admin' || user?.is_staff) && (
-							<li>
-								<Link
-									to="dashboard"
-									className="bg-purple-500 text-white font-bold px-4 py-2 rounded-md shadow hover:bg-purple-600 transition duration-200"
-								>
-									Dashboard
-								</Link>
-							</li>
-						)}
+						</div>
+						<span className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+							SheetlyPro
+						</span>
+					</Link>
 
-						{!user ? (
-							<>
-								<li>
-									<Link
-										to="login"
-										className="text-black btn font-bold rounded-md hover:bg-purple-700"
-									>
-										Login
-									</Link>
-								</li>
-								<li>
-									<Link
-										to="register"
-										className="text-white font-bold bg-purple-500 rounded-md btn hover:bg-purple-700 hover:text-black"
-									>
-										Register
-									</Link>
-								</li>
-							</>
-						) : (
-							<div className="dropdown dropdown-end">
-								<div
-									tabIndex={0}
-									role="button"
-									className="btn btn-ghost btn-circle avatar"
-								>
-									<div className="w-10 rounded-full">
-										<img
-											alt="Tailwind CSS Navbar component"
-											src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-										/>
-									</div>
-								</div>
-								<ul
-									tabIndex={0}
-									className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-								>
-									<li>
-										<a
-											href="profile"
-											className="justify-between"
-										>
-											Profile
-										</a>
-									</li>
-									<li>
-										<button
-											onClick={logoutUser}
-											className="justify-between w-full text-left"
-										>
-											Logout
-										</button>
-									</li>
-								</ul>
-							</div>
-						)}
-					</ul>
-				</div>
-
-				{/* Desktop menu */}
-				<ul className="menu menu-horizontal px-1 hidden space-x-3 lg:flex">
-					<li>
-						<Link
-							to="pricing"
-							className="text-black rounded-md p-2 hover:bg-purple-200"
-						>
+					{/* Desktop Navigation */}
+					<div className="hidden md:flex items-center space-x-8">
+						<Link to="/pricing" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
 							Pricing
 						</Link>
-					</li>
+						<Link to="/about" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+							About
+						</Link>
+						<Link to="/contact" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+							Contact
+						</Link>
 
-					{(user?.role === 'Admin' || user?.is_staff) && (
-						<li>
+						{(user?.role === 'Admin' || user?.is_staff) && (
 							<Link
-								to="dashboard"
-								className="bg-purple-500 text-white font-bold px-4 py-2 rounded-md shadow hover:bg-purple-600 transition duration-200"
+								to="/dashboard"
+								className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg"
 							>
 								Dashboard
 							</Link>
-						</li>
-					)}
+						)}
 
-					{!user ? (
-						<>
-							<li>
+						{!user ? (
+							<div className="flex items-center space-x-4">
 								<Link
-									to="login"
-									className="text-black btn font-bold rounded-md hover:bg-purple-700"
+									to="/login"
+									className="text-gray-700 hover:text-purple-600 font-semibold transition-colors"
 								>
 									Login
 								</Link>
-							</li>
-							<li>
 								<Link
-									to="register"
-									className="text-white font-bold bg-purple-500 rounded-md btn hover:bg-purple-700 hover:text-black"
+									to="/register"
+									className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
 								>
-									Register
+									Get Started
 								</Link>
-							</li>
-						</>
-					) : (
-						<div className="dropdown dropdown-end">
-							<div
-								tabIndex={0}
-								role="button"
-								className="btn btn-ghost btn-circle avatar"
-							>
-								<div className="w-10 rounded-full">
-									<img
-										alt="Tailwind CSS Navbar component"
-										src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-									/>
-								</div>
 							</div>
-							<ul
-								tabIndex={0}
-								className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-							>
-								<li>
-									<a
-										href="profile"
-										className="justify-between"
+						) : (
+							<div className="relative">
+								<button
+									onClick={() => setIsMenuOpen(!isMenuOpen)}
+									className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors"
+								>
+									<div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+										<User className="h-4 w-4 text-white" />
+									</div>
+									<span className="text-sm font-medium text-gray-700">{user?.email?.split('@')[0]}</span>
+								</button>
+
+								{isMenuOpen && (
+									<div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+										<Link
+											to="/profile"
+											className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+											onClick={() => setIsMenuOpen(false)}
+										>
+											<Settings className="h-4 w-4 mr-3" />
+											Profile
+										</Link>
+										<button
+											onClick={() => {
+												logoutUser()
+												setIsMenuOpen(false)
+											}}
+											className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+										>
+											<LogOut className="h-4 w-4 mr-3" />
+											Logout
+										</button>
+									</div>
+								)}
+							</div>
+						)}
+					</div>
+
+					{/* Mobile Menu Button */}
+					<button
+						onClick={() => setIsMenuOpen(!isMenuOpen)}
+						className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+					>
+						{isMenuOpen ? (
+							<X className="h-6 w-6 text-gray-700" />
+						) : (
+							<Menu className="h-6 w-6 text-gray-700" />
+						)}
+					</button>
+				</div>
+
+				{/* Mobile Menu */}
+				{isMenuOpen && (
+					<div className="md:hidden border-t border-gray-200 bg-white">
+						<div className="px-6 py-4 space-y-4">
+							<Link to="/pricing" className="block text-gray-700 hover:text-purple-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+								Pricing
+							</Link>
+							<Link to="/about" className="block text-gray-700 hover:text-purple-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+								About
+							</Link>
+							<Link to="/contact" className="block text-gray-700 hover:text-purple-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+								Contact
+							</Link>
+
+							{(user?.role === 'Admin' || user?.is_staff) && (
+								<Link
+									to="/dashboard"
+									className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold text-center"
+									onClick={() => setIsMenuOpen(false)}
+								>
+									Dashboard
+								</Link>
+							)}
+
+							{!user ? (
+								<div className="space-y-3 pt-4 border-t border-gray-200">
+									<Link
+										to="/login"
+										className="block text-center text-gray-700 hover:text-purple-600 font-semibold transition-colors"
+										onClick={() => setIsMenuOpen(false)}
 									>
-										Profile
-									</a>
-								</li>
-								<li>
+										Login
+									</Link>
+									<Link
+										to="/register"
+										className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-center"
+										onClick={() => setIsMenuOpen(false)}
+									>
+										Get Started
+									</Link>
+								</div>
+							) : (
+								<div className="space-y-3 pt-4 border-t border-gray-200">
+									<div className="flex items-center space-x-3 px-3 py-2 bg-gray-50 rounded-lg">
+										<div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+											<User className="h-4 w-4 text-white" />
+										</div>
+										<span className="text-sm font-medium text-gray-700">{user?.email}</span>
+									</div>
+									<Link
+										to="/profile"
+										className="flex items-center space-x-3 text-gray-700 hover:text-purple-600 transition-colors"
+										onClick={() => setIsMenuOpen(false)}
+									>
+										<Settings className="h-4 w-4" />
+										<span>Profile</span>
+									</Link>
 									<button
-										onClick={logoutUser}
-										className="justify-between w-full text-left"
+										onClick={() => {
+											logoutUser()
+											setIsMenuOpen(false)
+										}}
+										className="flex items-center space-x-3 text-gray-700 hover:text-red-600 transition-colors w-full"
 									>
-										Logout
+										<LogOut className="h-4 w-4" />
+										<span>Logout</span>
 									</button>
-								</li>
-							</ul>
+								</div>
+							)}
 						</div>
-					)}
-				</ul>
+					</div>
+				)}
 			</div>
-		</div>
+		</nav>
 	)
 }
 
