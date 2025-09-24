@@ -10,7 +10,8 @@ export default defineConfig({
 		react(),
 		ViteSitemap({
 			hostname: 'https://www.sheetlypro.com',
-			routes: sitemapPaths,
+			routes: sitemapPaths.map(path => path.trim()),
+			generateRobotsTxt: true,
 		}),
 	],
 })
