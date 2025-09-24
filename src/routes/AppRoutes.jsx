@@ -23,82 +23,44 @@ import AddPlan from '../pages/AddPlan'
 import CreatePlan from '../pages/CreatePlan'
 import AllPlan from '../pages/AllPlan'
 
+const publicRoutes = [
+	{ path: '/', element: <Home /> },
+	{ path: '/pricing', element: <Pricing /> },
+	{ path: '/contact', element: <Contact /> },
+	{ path: '/login', element: <Login /> },
+	{ path: '/register', element: <Register /> },
+	{ path: '/terms-of-service', element: <Terms /> },
+	{ path: '/privacy-policy', element: <Privacy /> },
+	{ path: '/about', element: <About /> },
+	{ path: '/payment/success', element: <PaymentSuccess /> },
+	{ path: '/payment/cancel', element: <PaymentCancel /> },
+	{ path: '/payment/fail', element: <PaymentFail /> },
+]
+
+const allRoutes = [
+	...publicRoutes,
+	{ path: '/profile', element: <Profile /> },
+	{ path: '/subscription/status', element: <PaymentStatus /> },
+	{ path: '/activate/:uid/:token', element: <ActivateAccount /> },
+]
+
 function AppRoutes() {
 	return (
 		<div className="overflow-hidden">
 			<Routes>
 				<Route element={<MainLayout />}>
-					<Route
-						path="/"
-						element={<Home />}
-					/>
-
-					<Route
-						path="pricing"
-						element={<Pricing />}
-					/>
-
-					<Route
-						path="contact"
-						element={<Contact />}
-					/>
-
-					<Route
-						path="login"
-						element={<Login />}
-					/>
-
-					<Route
-						path="register"
-						element={<Register />}
-					/>
-
-					<Route
-						path="profile"
-						element={<Profile />}
-					/>
-					<Route
-						path="subscription/status"
-						element={<PaymentStatus />}
-					/>
-					<Route
-						path="activate/:uid/:token"
-						element={<ActivateAccount />}
-					/>
-
-					<Route
-						path="payment/success"
-						element={<PaymentSuccess />}
-					/>
-
-					<Route
-						path="payment/cancel"
-						element={<PaymentCancel />}
-					/>
-
-					<Route
-						path="payment/fail"
-						element={<PaymentFail />}
-					/>
-
-					<Route
-						path="terms-of-service"
-						element={<Terms />}
-					/>
-
-					<Route
-						path="privacy-policy"
-						element={<Privacy />}
-					/>
-
-					<Route
-						path="about"
-						element={<About />}
-					/>
+					{allRoutes.map((route, index) => (
+						<Route
+							key={index}
+							path={route.path}
+							element={route.element}
+						/>
+					))}
 				</Route>
 
+				{/* private routes */}
 				<Route
-					path="dashboard"
+					path="dashboard/*"
 					element={
 						<PrivateRoute>
 							<DashboardLayout />
@@ -109,7 +71,6 @@ function AppRoutes() {
 						index
 						element={<AdminDashboard />}
 					/>
-
 					<Route
 						path="profile"
 						element={<Profile />}

@@ -48,15 +48,16 @@ function HeroSection() {
 					error.response.data.error ||
 					error.response.data.detail ||
 					'Server error occurred'
+				const errorString = typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
 				if (
-					errorMessage &&
-					(errorMessage.includes('password-protected') ||
-						errorMessage.includes('Incorrect password'))
+					errorString &&
+					(errorString.includes('password-protected') ||
+						errorString.includes('Incorrect password'))
 				) {
-					setError(errorMessage)
+					setError(errorString)
 					setFileToUpload(file)
 				} else {
-					setError(`Failed to process file: ${errorMessage}`)
+					setError(`Failed to process file: ${errorString}`)
 				}
 			} else {
 				console.error('Network error:', error)
