@@ -9,6 +9,7 @@ import AboveFooter from '../components/Home/AboveFooter'
 function Home() {
 	return (
 		<div>
+			<title>SheetlyPro - PDF to Excel/CSV Converter</title>
 			<Toaster
 				position="top-right"
 				reverseOrder={false}

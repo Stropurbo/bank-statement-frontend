@@ -29,17 +29,29 @@ function PaymentStatus() {
 
 	return (
 		<div className="p-8 max-w-2xl mx-auto">
+			<title>Payment Status</title>
 			<h1 className="text-2xl font-bold mb-4">Subscription Status</h1>
 			{status ? (
 				<div className="bg-white p-6 rounded-lg shadow">
-					<p><strong>Plan:</strong> {status.plan_name || 'N/A'}</p>
-					<p><strong>Status:</strong> {status.status || 'N/A'}</p>
-					<p><strong>Expires:</strong> {status.expires_at || 'N/A'}</p>
+					<p>
+						<strong>Plan:</strong> {status.plan_name || 'N/A'}
+					</p>
+					<p>
+						<strong>Status:</strong> {status.status || 'N/A'}
+					</p>
+					<p>
+						<strong>Expires:</strong> {status.expires_at || 'N/A'}
+					</p>
 				</div>
 			) : (
 				<p>No active subscription found.</p>
 			)}
-			<a href="/" className="mt-4 inline-block text-blue-500 hover:underline">← Back to Home</a>
+			<a
+				href="/"
+				className="mt-4 inline-block text-blue-500 hover:underline"
+			>
+				← Back to Home
+			</a>
 		</div>
 	)
 }

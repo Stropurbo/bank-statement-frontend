@@ -3,6 +3,7 @@ import React from 'react'
 function Terms() {
 	return (
 		<div className="max-w-4xl mx-auto p-6 text-gray-800">
+			<title>Terms of Service</title>
 			<h1 className="text-3xl font-bold mb-6">Terms of Service</h1>
 			<p className="mb-4 text-sm text-gray-500">Last Updated: 21 September, 2025</p>
 

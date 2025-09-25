@@ -82,6 +82,7 @@ function Pricing() {
 	return (
 		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
 			<div className="container mx-auto px-6 py-24">
+				<title>Pricing</title>
 				<div className="text-center mb-16">
 					<div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
 						Pricing Plans
@@ -90,8 +91,8 @@ function Pricing() {
 						Choose Your Perfect Plan
 					</h1>
 					<p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-						Transform your bank statements into Excel files with our powerful conversion tool.
-						Select the plan that matches your business needs.
+						Transform your bank statements into Excel files with our powerful
+						conversion tool. Select the plan that matches your business needs.
 					</p>
 
 					{/* Billing toggle */}
@@ -155,15 +156,20 @@ function Pricing() {
 								{/* Header */}
 								<div className="text-center pb-8 mb-6 border-b border-gray-100">
 									<h3 className="text-2xl font-bold text-gray-900 mb-4">
-										{tier.title.charAt(0).toUpperCase() + tier.title.slice(1)}
+										{tier.title.charAt(0).toUpperCase() +
+											tier.title.slice(1)}
 									</h3>
 									<div className="mb-4">
 										<span className="text-5xl font-bold text-gray-900">
 											{tier.price[billing]}
 										</span>
-										<span className="text-gray-500 text-lg ml-2">/{billing}</span>
+										<span className="text-gray-500 text-lg ml-2">
+											/{billing}
+										</span>
 									</div>
-									<p className="text-gray-600 leading-relaxed">{tier.description}</p>
+									<p className="text-gray-600 leading-relaxed">
+										{tier.description}
+									</p>
 								</div>
 
 								{/* Features */}
@@ -173,7 +179,9 @@ function Pricing() {
 											<div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
 												<Check className="h-4 w-4 text-green-600" />
 											</div>
-											<span className="font-medium">{tier.pages[billing]}</span>
+											<span className="font-medium">
+												{tier.pages[billing]}
+											</span>
 										</li>
 										{tier.features.map((feature, idx) => (
 											<li
@@ -190,7 +198,9 @@ function Pricing() {
 
 									{/* Button */}
 									<button
-										onClick={() => handleSubscribe(tier.id || tier.plan_id, billing)}
+										onClick={() =>
+											handleSubscribe(tier.id || tier.plan_id, billing)
+										}
 										disabled={loading === tier.id}
 										className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 ${
 											tier.popular
@@ -219,8 +229,12 @@ function Pricing() {
 
 				<div className="text-center mt-20">
 					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-md mx-auto">
-						<h3 className="text-xl font-bold text-gray-900 mb-2">Need Help Choosing?</h3>
-						<p className="text-gray-600 mb-4">Our team is here to help you find the perfect plan</p>
+						<h3 className="text-xl font-bold text-gray-900 mb-2">
+							Need Help Choosing?
+						</h3>
+						<p className="text-gray-600 mb-4">
+							Our team is here to help you find the perfect plan
+						</p>
 						<Link
 							to="/contact"
 							className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"

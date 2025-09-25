@@ -46,11 +46,14 @@ function Register() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
+			<title>Register</title>
 			<div className="w-full max-w-lg">
 				{/* Header */}
 				<div className="text-center mb-8">
 					<h1 className="text-4xl font-bold text-gray-900 mb-2">Create Account</h1>
-					<p className="text-gray-600">Join SheetlyPro and start converting your bank statements</p>
+					<p className="text-gray-600">
+						Join SheetlyPro and start converting your bank statements
+					</p>
 				</div>
 
 				{/* Register Card */}
@@ -81,7 +84,10 @@ function Register() {
 						</div>
 					)}
 
-					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+					<form
+						onSubmit={handleSubmit(onSubmit)}
+						className="space-y-6"
+					>
 						{/* Name Fields */}
 						<div className="grid md:grid-cols-2 gap-4">
 							<div>
@@ -97,13 +103,19 @@ function Register() {
 										type="text"
 										placeholder="Enter first name"
 										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-											errors.first_name ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+											errors.first_name
+												? 'border-red-300 bg-red-50'
+												: 'border-gray-300 hover:border-gray-400'
 										}`}
-										{...register('first_name', { required: 'First name is required' })}
+										{...register('first_name', {
+											required: 'First name is required',
+										})}
 									/>
 								</div>
 								{errors.first_name && (
-									<p className="text-red-600 text-sm mt-1">{errors.first_name.message}</p>
+									<p className="text-red-600 text-sm mt-1">
+										{errors.first_name.message}
+									</p>
 								)}
 							</div>
 
@@ -120,13 +132,19 @@ function Register() {
 										type="text"
 										placeholder="Enter last name"
 										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-											errors.last_name ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+											errors.last_name
+												? 'border-red-300 bg-red-50'
+												: 'border-gray-300 hover:border-gray-400'
 										}`}
-										{...register('last_name', { required: 'Last name is required' })}
+										{...register('last_name', {
+											required: 'Last name is required',
+										})}
 									/>
 								</div>
 								{errors.last_name && (
-									<p className="text-red-600 text-sm mt-1">{errors.last_name.message}</p>
+									<p className="text-red-600 text-sm mt-1">
+										{errors.last_name.message}
+									</p>
 								)}
 							</div>
 						</div>
@@ -145,13 +163,17 @@ function Register() {
 									type="email"
 									placeholder="Enter your email address"
 									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										errors.email
+											? 'border-red-300 bg-red-50'
+											: 'border-gray-300 hover:border-gray-400'
 									}`}
 									{...register('email', { required: 'Email is required' })}
 								/>
 							</div>
 							{errors.email && (
-								<p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+								<p className="text-red-600 text-sm mt-1">
+									{errors.email.message}
+								</p>
 							)}
 						</div>
 
@@ -207,7 +229,9 @@ function Register() {
 									type={showPassword ? 'text' : 'password'}
 									placeholder="Create a strong password"
 									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.password ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										errors.password
+											? 'border-red-300 bg-red-50'
+											: 'border-gray-300 hover:border-gray-400'
 									}`}
 									{...register('password', {
 										required: 'Password is required',
@@ -222,11 +246,17 @@ function Register() {
 									onClick={() => setShowPassword(!showPassword)}
 									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
 								>
-									{showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+									{showPassword ? (
+										<EyeOff className="h-5 w-5" />
+									) : (
+										<Eye className="h-5 w-5" />
+									)}
 								</button>
 							</div>
 							{errors.password && (
-								<p className="text-red-600 text-sm mt-1">{errors.password.message}</p>
+								<p className="text-red-600 text-sm mt-1">
+									{errors.password.message}
+								</p>
 							)}
 						</div>
 
@@ -244,12 +274,15 @@ function Register() {
 									type={showConfirmPassword ? 'text' : 'password'}
 									placeholder="Confirm your password"
 									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.confirm_password ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										errors.confirm_password
+											? 'border-red-300 bg-red-50'
+											: 'border-gray-300 hover:border-gray-400'
 									}`}
 									{...register('confirm_password', {
 										required: 'Please confirm your password',
 										validate: (value) =>
-											value === watch('password') || 'Passwords do not match',
+											value === watch('password') ||
+											'Passwords do not match',
 									})}
 								/>
 								<button
@@ -257,11 +290,17 @@ function Register() {
 									onClick={() => setShowConfirmPassword(!showConfirmPassword)}
 									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
 								>
-									{showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+									{showConfirmPassword ? (
+										<EyeOff className="h-5 w-5" />
+									) : (
+										<Eye className="h-5 w-5" />
+									)}
 								</button>
 							</div>
 							{errors.confirm_password && (
-								<p className="text-red-600 text-sm mt-1">{errors.confirm_password.message}</p>
+								<p className="text-red-600 text-sm mt-1">
+									{errors.confirm_password.message}
+								</p>
 							)}
 						</div>
 

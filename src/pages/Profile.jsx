@@ -88,6 +88,7 @@ const Profile = () => {
 
 	return (
 		<div className="flex justify-between flex-wrap w-full gap-3 px-5 mt-8 mb-8">
+			<title>Profile</title>
 			<div className="card-body shadow-lg max-w-2xl">
 				{errSuccess && (
 					<p className="text-green-600 text-sm mb-2 p-5 bg-green-100 px-2 py-1 rounded">
@@ -95,10 +96,7 @@ const Profile = () => {
 					</p>
 				)}
 
-
-					<h2 className="text-2xl font-bold">Profile Information</h2>
-
-
+				<h2 className="text-2xl font-bold">Profile Information</h2>
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<ProfileForm

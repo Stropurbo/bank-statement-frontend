@@ -89,6 +89,7 @@ function AllPlan() {
 
   return (
 		<div className="max-w-6xl mx-auto p-6">
+			<title>All Plans</title>
 			<div className="flex justify-between items-center mb-6">
 				<h1 className="text-3xl font-bold">All Available Plans</h1>
 				<a

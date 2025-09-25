@@ -4,6 +4,7 @@ import { Users, DollarSign, TrendingUp, Gift, ArrowRight, Star, CheckCircle } fr
 function Affiliate() {
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+			<title>Affiliate Program</title>
 			<div className="container mx-auto px-6 py-24">
 				{/* Hero Section */}
 				<div className="text-center mb-20">

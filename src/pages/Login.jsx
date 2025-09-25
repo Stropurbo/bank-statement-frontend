@@ -40,6 +40,7 @@ const Login = () => {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
+			<title>Login</title>
 			<div className="w-full max-w-md">
 				{/* Header */}
 				<div className="text-center mb-8">
@@ -63,7 +64,10 @@ const Login = () => {
 						</div>
 					)}
 
-					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+					<form
+						onSubmit={handleSubmit(onSubmit)}
+						className="space-y-6"
+					>
 						{/* Email Field */}
 						<div>
 							<label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -78,13 +82,17 @@ const Login = () => {
 									type="email"
 									placeholder="Enter your email address"
 									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.email ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										errors.email
+											? 'border-red-300 bg-red-50'
+											: 'border-gray-300 hover:border-gray-400'
 									}`}
 									{...register('email', { required: 'Email is required' })}
 								/>
 							</div>
 							{errors.email && (
-								<p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+								<p className="text-red-600 text-sm mt-1">
+									{errors.email.message}
+								</p>
 							)}
 						</div>
 
@@ -102,20 +110,30 @@ const Login = () => {
 									type={showPassword ? 'text' : 'password'}
 									placeholder="Enter your password"
 									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.password ? 'border-red-300 bg-red-50' : 'border-gray-300 hover:border-gray-400'
+										errors.password
+											? 'border-red-300 bg-red-50'
+											: 'border-gray-300 hover:border-gray-400'
 									}`}
-									{...register('password', { required: 'Password is required' })}
+									{...register('password', {
+										required: 'Password is required',
+									})}
 								/>
 								<button
 									type="button"
 									onClick={() => setShowPassword(!showPassword)}
 									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
 								>
-									{showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+									{showPassword ? (
+										<EyeOff className="h-5 w-5" />
+									) : (
+										<Eye className="h-5 w-5" />
+									)}
 								</button>
 							</div>
 							{errors.password && (
-								<p className="text-red-600 text-sm mt-1">{errors.password.message}</p>
+								<p className="text-red-600 text-sm mt-1">
+									{errors.password.message}
+								</p>
 							)}
 						</div>
 
