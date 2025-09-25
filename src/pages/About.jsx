@@ -3,6 +3,7 @@ import { Target, Zap, Shield, Clock, FileText, Users, TrendingUp } from 'lucide-
 import AboveFooter from '../components/Home/AboveFooter'
 
 function About() {
+	
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
 			{/* Hero Section */}
@@ -67,7 +68,7 @@ function About() {
 				<div className="container mx-auto px-6">
 					<div className="max-w-4xl mx-auto">
 						<h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Why Choose SheetlyPro?</h2>
-						
+
 						<div className="grid md:grid-cols-2 gap-8">
 							<div className="flex items-start space-x-4">
 								<div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -129,7 +130,7 @@ function About() {
 						<p className="text-xl text-gray-600 leading-relaxed mb-12">
 							We envision a future where managing financial data is seamless and stress-free. SheetlyPro continues to innovate and evolve, becoming the go-to solution for effortless bank statement conversion worldwide.
 						</p>
-						
+
 						{/* CTA Section */}
 						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
 							<h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>

@@ -23,6 +23,7 @@ import AddPlan from '../pages/AddPlan'
 import CreatePlan from '../pages/CreatePlan'
 import AllPlan from '../pages/AllPlan'
 import Affiliate from '../pages/Affiliate'
+import usePageView from '../pages/usePageView'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -47,6 +48,8 @@ const allRoutes = [
 ]
 
 function AppRoutes() {
+	usePageView();
+
 	return (
 		<div className="overflow-hidden">
 			<Routes>
