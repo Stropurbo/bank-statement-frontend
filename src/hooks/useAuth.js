@@ -39,17 +39,17 @@ function useAuth() {
 	}
 
 	// update user profile
-	const updateUserProfile = async (data) => {
+	const updateUserProfile = async (formData) => {
 		try {
-			const response = await AuthApiClient.patch('/auth/users/me/', data, {
+			const response = await AuthApiClient.patch('/auth/users/me/', formData, {
 				headers: {
 					Authorization: `JWT ${authToken?.access}`,
+					'Content-Type': 'multipart/form-data',
 				},
 			})
 			setUser(response.data)
 			return { success: true, data: response.data }
 		} catch (error) {
-			console.log('Update error response:', error.response?.data)
 			return handleAPIError(error)
 		}
 	}

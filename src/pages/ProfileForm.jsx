@@ -27,9 +27,9 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 									accept="image/*"
 									className="hidden"
 									{...register('profile_image', {
-										onChange: handleProfileChange,
-									})}
-								/>
+										onChange: handleProfileChange}
+									)}
+								/>	
 							</label>
 						</div>
 					)}
@@ -57,10 +57,10 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 							type="text"
 							placeholder="Enter first name"
 							className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-								!isEditing 
-									? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
-									: errors.first_name 
-										? 'border-red-300 bg-red-50' 
+								!isEditing
+									? 'bg-gray-50 text-gray-500 cursor-not-allowed'
+									: errors.first_name
+										? 'border-red-300 bg-red-50'
 										: 'border-gray-300 hover:border-gray-400'
 							}`}
 							disabled={!isEditing}
@@ -85,10 +85,10 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 							type="text"
 							placeholder="Enter last name"
 							className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-								!isEditing 
-									? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
-									: errors.last_name 
-										? 'border-red-300 bg-red-50' 
+								!isEditing
+									? 'bg-gray-50 text-gray-500 cursor-not-allowed'
+									: errors.last_name
+										? 'border-red-300 bg-red-50'
 										: 'border-gray-300 hover:border-gray-400'
 							}`}
 							disabled={!isEditing}
@@ -134,10 +134,10 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 						type="text"
 						placeholder="Enter your address"
 						className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-							!isEditing 
-								? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
-								: errors.address 
-									? 'border-red-300 bg-red-50' 
+							!isEditing
+								? 'bg-gray-50 text-gray-500 cursor-not-allowed'
+								: errors.address
+									? 'border-red-300 bg-red-50'
 									: 'border-gray-300 hover:border-gray-400'
 						}`}
 						disabled={!isEditing}
@@ -162,10 +162,10 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 						type="tel"
 						placeholder="Enter your phone number"
 						className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-							!isEditing 
-								? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
-								: errors.phone_number 
-									? 'border-red-300 bg-red-50' 
+							!isEditing
+								? 'bg-gray-50 text-gray-500 cursor-not-allowed'
+								: errors.phone_number
+									? 'border-red-300 bg-red-50'
 									: 'border-gray-300 hover:border-gray-400'
 						}`}
 						disabled={!isEditing}
