@@ -20,12 +20,12 @@ const Profile = () => {
 	const { user, setUser, updateUserProfile, passwordChange } = useAuthContext()
 	const [profilePreview, setProfilePreview] = useState(null)
 	const [objectUrl, setObjectUrl] = useState(null)
+	const [selectedFile, setSelectedFile] = useState(null)
 
-	const getCloudinaryUrl = (imagePath) => {
-		if (!imagePath) return null
-		if (imagePath.startsWith('http')) return imagePath // Already complete URL
-		if (imagePath.length < 10 || !imagePath.includes('/')) return null
-		return `https://res.cloudinary.com/dwhkvm4zp/${imagePath}`
+	const getImageUrl = (path) => {
+		if (!path) return null
+		if (path.startsWith('http')) return path
+		return `https://bank-statement-converter-backend-ofyc.onrender.com${path}`
 	}
 
 	const location = useLocation()
@@ -53,13 +53,11 @@ const Profile = () => {
 		}
 	}, [location.search])
 
-
-
 	useEffect(() => {
 		if (user && typeof user === 'object') {
 			Object.keys(user).forEach((key) => setValue(key, user[key]))
 
-			setProfilePreview(getCloudinaryUrl(user.profile_image))
+			setProfilePreview(getImageUrl(user.profile_image))
 		}
 	}, [user, setValue])
 
@@ -76,13 +74,11 @@ const Profile = () => {
 		(e) => {
 			const file = e.target.files[0]
 			if (file) {
-				// Revoke previous object URL to prevent memory leaks
-				if (objectUrl) {
-					URL.revokeObjectURL(objectUrl)
-				}
-				const newObjectUrl = URL.createObjectURL(file)
-				setObjectUrl(newObjectUrl)
-				setProfilePreview(newObjectUrl)
+				if (objectUrl) URL.revokeObjectURL(objectUrl)
+				const url = URL.createObjectURL(file)
+				setObjectUrl(url)
+				setProfilePreview(url)
+				setSelectedFile(file)
 			}
 		},
 		[objectUrl],
@@ -95,19 +91,21 @@ const Profile = () => {
 			formData.append('last_name', data.last_name)
 			formData.append('address', data.address || '')
 			formData.append('phone_number', data.phone_number || '')
-			formData.append('email', data.email)
-			formData.append('email', data.email)
 
-			// Only append profile_image if a new file is selected
-			if (data.profile_image?.[0]) {
-				formData.append('profile_image', data.profile_image[0])
+			if (selectedFile) {
+				formData.append('profile_image', selectedFile)
+			} else if (user?.profile_image) {
+				formData.append('profile_image', user.profile_image)
 			}
 
 			const updatedUser = await updateUserProfile(formData)
+			if (updatedUser.success && updatedUser.data) {
+				setUser(updatedUser.data)
+			}
 
 			if (updatedUser.success && updatedUser.data) {
 				setUser(updatedUser.data)
-				setProfilePreview(getCloudinaryUrl(updatedUser.data.profile_image))
+				setProfilePreview(getImageUrl(updatedUser.data.profile_image))
 			}
 
 			setSuccessMessage('Profile updated successfully!')
@@ -230,14 +228,15 @@ const Profile = () => {
 											Current Plan
 										</span>
 										<span className="px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-semibold rounded-full">
-											{user?.usersubscription?.plan?.name_display || user?.usersubscription?.plan?.name || 'Free Plan'}
+											{user?.usersubscription?.plan?.name || 'Free Plan'}
 										</span>
 									</div>
 									{user?.usersubscription && (
 										<div className="text-xs text-gray-600">
 											<p>
 												Remaining uploads:{' '}
-												{user.usersubscription.remaining_uploads || 'N/A'}
+												{user.usersubscription.remaining_uploads ||
+													'N/A'}
 											</p>
 											<p>
 												Valid until:{' '}
@@ -302,8 +301,6 @@ const Profile = () => {
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>

@@ -44,7 +44,7 @@ const Sidebar = () => {
 		{ to: '/dashboard/create-plan', icon: Podcast, label: 'Create Plan' },
 		{ to: '/dashboard/plans', icon: Newspaper, label: 'Plan' },
 		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Premium User' },
-		{ to: '/dashboard/statements', icon: Banknote, label: 'statements' },
+		
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu

@@ -43,21 +43,20 @@ function HeroSection() {
 			console.error('Upload error:', error)
 			if (error.response) {
 				console.error('Error response:', error.response.data)
-				const errorMessage =
-					error.response.data.error ||
-					error.response.data.detail ||
-					'Server error occurred'
+				const errorData = error.response.data
+				const errorMessage = errorData.error || errorData.detail || errorData.message || 'Server error occurred'
 				const errorString = typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
-
-				if (errorString.includes('Authentication credentials were not provided')) {
-					setError('Please login and purchase a subscription to continue uploading.')
-				} else if (
-					errorString &&
-					(errorString.includes('password-protected') ||
-						errorString.includes('Incorrect password'))
-				) {
-					setError(errorString)
+				
+				// Check if it's a password-protected PDF error
+				if (error.response.status === 400 && (
+					errorString.includes('password-protected') ||
+					errorString.includes('Please provide the password') ||
+					errorString.includes('Incorrect password')
+				)) {
+					setError('This PDF is password protected. Please enter the password below.')
 					setFileToUpload(file)
+				} else if (errorString.includes('Authentication credentials were not provided')) {
+					setError('Please login and purchase a subscription to continue uploading.')
 				} else {
 					setError(`Failed to process file: ${errorString}`)
 				}
