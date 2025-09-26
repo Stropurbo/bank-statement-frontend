@@ -48,7 +48,10 @@ function HeroSection() {
 					error.response.data.detail ||
 					'Server error occurred'
 				const errorString = typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
-				if (
+
+				if (errorString.includes('Authentication credentials were not provided')) {
+					setError('Please login and purchase a subscription to continue uploading.')
+				} else if (
 					errorString &&
 					(errorString.includes('password-protected') ||
 						errorString.includes('Incorrect password'))
