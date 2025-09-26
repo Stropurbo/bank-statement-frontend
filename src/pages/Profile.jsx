@@ -12,8 +12,6 @@ import {
 	ArrowRight,
 	Settings,
 	CreditCard,
-	FileText,
-	Download,
 } from 'lucide-react'
 import { useLocation, Link } from 'react-router'
 
@@ -41,8 +39,6 @@ const Profile = () => {
 	} = useForm()
 	const [successMessage, setSuccessMessage] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
-	const [statements, setStatements] = useState([])
-	const [statementsLoading, setStatementsLoading] = useState(true)
 
 	useEffect(() => {
 		const urlParams = new URLSearchParams(location.search)
@@ -57,21 +53,7 @@ const Profile = () => {
 		}
 	}, [location.search])
 
-	useEffect(() => {
-		fetchRecentStatements()
-	}, [])
 
-	const fetchRecentStatements = async () => {
-		try {
-			// Mock data for now since backend endpoint doesn't exist
-			setStatements([])
-		} catch (error) {
-			console.error('Error fetching statements:', error)
-			setStatements([])
-		} finally {
-			setStatementsLoading(false)
-		}
-	}
 
 	useEffect(() => {
 		if (user && typeof user === 'object') {
@@ -321,75 +303,7 @@ const Profile = () => {
 							</div>
 						</div>
 
-						{/* Recent Statements Card */}
-						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 mt-6">
-							<div className="flex items-center justify-between mb-6">
-								<div className="flex items-center space-x-3">
-									<div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-										<FileText className="h-6 w-6 text-white" />
-									</div>
-									<div>
-										<h3 className="text-xl font-bold text-gray-900">Recent Statements</h3>
-										<p className="text-gray-600 text-sm">Your latest processed statements</p>
-									</div>
-								</div>
-								<Link
-									to="/dashboard/statements"
-									className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center space-x-1"
-								>
-									<span>View All</span>
-									<ArrowRight className="h-4 w-4" />
-								</Link>
-							</div>
 
-							{statementsLoading ? (
-								<div className="space-y-3">
-									{[1, 2, 3].map((i) => (
-										<div key={i} className="animate-pulse flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-											<div className="h-8 w-8 bg-gray-200 rounded"></div>
-											<div className="flex-1">
-												<div className="h-4 bg-gray-200 rounded w-3/4 mb-1"></div>
-												<div className="h-3 bg-gray-200 rounded w-1/2"></div>
-											</div>
-										</div>
-									))}
-								</div>
-							) : statements.length === 0 ? (
-								<div className="text-center py-8">
-									<FileText className="mx-auto h-12 w-12 text-gray-300 mb-3" />
-									<p className="text-gray-500 text-sm">No statements uploaded yet</p>
-									<p className="text-gray-400 text-xs mt-1">Upload your first bank statement to get started</p>
-								</div>
-							) : (
-								<div className="space-y-3">
-									{statements.map((statement) => (
-										<div key={statement.id} className="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-											<div className="flex items-center space-x-3">
-												<FileText className="h-8 w-8 text-blue-600" />
-												<div>
-													<p className="text-sm font-medium text-gray-900">{statement.filename}</p>
-													<p className="text-xs text-gray-500">
-														{statement.uploadDate} • {statement.transactionCount} transactions
-													</p>
-												</div>
-											</div>
-											<div className="flex items-center space-x-2">
-												<span className={`px-2 py-1 text-xs font-medium rounded-full ${
-													statement.status === 'completed' 
-														? 'bg-green-100 text-green-800' 
-														: 'bg-yellow-100 text-yellow-800'
-												}`}>
-													{statement.status}
-												</span>
-												<button className="p-1 text-gray-400 hover:text-blue-600 rounded">
-													<Download className="h-4 w-4" />
-												</button>
-											</div>
-										</div>
-									))}
-								</div>
-							)}
-						</div>
 					</div>
 				</div>
 			</div>

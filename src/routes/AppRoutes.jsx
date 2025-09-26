@@ -24,8 +24,7 @@ import CreatePlan from '../pages/CreatePlan'
 import AllPlan from '../pages/AllPlan'
 import Affiliate from '../pages/Affiliate'
 import usePageView from '../pages/usePageView'
-import Statements from '../pages/Statements'
-import UserDashboard from '../pages/UserDashboard'
+
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -99,14 +98,7 @@ function AppRoutes() {
 						path="plans"
 						element={<AllPlan />}
 					/>
-					<Route
-						path="statements"
-						element={<Statements />}
-					/>
-					<Route
-						path="user-dashboard"
-						element={<UserDashboard />}
-					/>
+
 				</Route>
 			</Routes>
 		</div>

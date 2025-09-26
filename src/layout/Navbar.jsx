@@ -8,12 +8,21 @@ function Navbar() {
 	const { user, logoutUser } = useAuthContext()
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+	const getImageUrl = (path) => {
+		if (!path) return null
+		if (path.startsWith('http')) return path
+		return `https://res.cloudinary.com/dwhkvm4zp/${path}`
+	}
+
 	return (
 		<nav className="bg-white/95 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50 shadow-sm">
 			<div className="container mx-auto px-6">
 				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
-					<Link to="/" className="flex items-center space-x-3 group">
+					<Link
+						to="/"
+						className="flex items-center space-x-3 group"
+					>
 						<div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
 							<img
 								src={Logo}
@@ -28,13 +37,22 @@ function Navbar() {
 
 					{/* Desktop Navigation */}
 					<div className="hidden md:flex items-center space-x-8">
-						<Link to="/pricing" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+						<Link
+							to="/pricing"
+							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+						>
 							Pricing
 						</Link>
-						<Link to="/about" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+						<Link
+							to="/about"
+							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+						>
 							About
 						</Link>
-						<Link to="/contact" className="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+						<Link
+							to="/contact"
+							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+						>
 							Contact
 						</Link>
 
@@ -66,12 +84,22 @@ function Navbar() {
 							<div className="relative">
 								<button
 									onClick={() => setIsMenuOpen(!isMenuOpen)}
-									className="flex items-center space-x-2 bg-gray-100 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors"
+									className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors"
 								>
 									<div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
-										<User className="h-4 w-4 text-white" />
+										{user?.profile_image ? (
+											<img
+												src={getImageUrl(user.profile_image)}
+												alt="Profile"
+												className="w-7 h-7 rounded-full object-cover"
+											/>
+										) : (
+											<User className="h-4 w-4 text-white" />
+										)}
 									</div>
-									<span className="text-sm font-medium text-gray-700">{user?.email?.split('@')[0]}</span>
+									<span className="text-sm font-medium text-gray-700">
+										{user?.first_name?.split('@')[0]}
+									</span>
 								</button>
 
 								{isMenuOpen && (
@@ -117,13 +145,25 @@ function Navbar() {
 				{isMenuOpen && (
 					<div className="md:hidden border-t border-gray-200 bg-white">
 						<div className="px-6 py-4 space-y-4">
-							<Link to="/pricing" className="block text-gray-700 hover:text-purple-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+							<Link
+								to="/pricing"
+								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								onClick={() => setIsMenuOpen(false)}
+							>
 								Pricing
 							</Link>
-							<Link to="/about" className="block text-gray-700 hover:text-purple-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+							<Link
+								to="/about"
+								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								onClick={() => setIsMenuOpen(false)}
+							>
 								About
 							</Link>
-							<Link to="/contact" className="block text-gray-700 hover:text-purple-600 font-medium transition-colors" onClick={() => setIsMenuOpen(false)}>
+							<Link
+								to="/contact"
+								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								onClick={() => setIsMenuOpen(false)}
+							>
 								Contact
 							</Link>
 
@@ -158,9 +198,19 @@ function Navbar() {
 								<div className="space-y-3 pt-4 border-t border-gray-200">
 									<div className="flex items-center space-x-3 px-3 py-2 bg-gray-50 rounded-lg">
 										<div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
-											<User className="h-4 w-4 text-white" />
+											{user?.profile_image ? (
+												<img
+													src={getImageUrl(user.profile_image)}
+													alt="Profile"
+													className="w-7 h-7 rounded-full object-cover"
+												/>
+											) : (
+												<User className="h-4 w-4 text-white" />
+											)}
 										</div>
-										<span className="text-sm font-medium text-gray-700">{user?.email}</span>
+										<span className="text-sm font-medium text-gray-700">
+											{user?.email}
+										</span>
 									</div>
 									<Link
 										to="/profile"
