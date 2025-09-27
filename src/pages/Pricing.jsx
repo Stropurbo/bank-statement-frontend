@@ -29,6 +29,26 @@ function Pricing() {
 	}, [])
 
 
+	const refreshToken = async () => {
+		try {
+			const tokens = JSON.parse(localStorage.getItem('authTokens'))
+			const response = await ApiClient.post('auth/token/refresh/', {
+				refresh: tokens.refresh
+			})
+			
+			const newTokens = {
+				...tokens,
+				access: response.data.access
+			}
+			localStorage.setItem('authTokens', JSON.stringify(newTokens))
+			return newTokens.access
+		} catch (error) {
+			localStorage.removeItem('authTokens')
+			window.location.href = '/login'
+			return null
+		}
+	}
+
 	const handleSubscribe = async (planId, paymentType) => {
 		setLoading(planId)
 		setError(null)
@@ -39,23 +59,47 @@ function Pricing() {
 				return (window.location.href = '/login')
 			}
 
-			const parsedTokens = JSON.parse(token)
-			const accessToken = parsedTokens.access
+			let parsedTokens = JSON.parse(token)
+			let accessToken = parsedTokens.access
 
 			console.log('Initiating subscription:', { plan_id: planId, payment_type: paymentType, tiers_count: pricingTiers.length })
 
-			const response = await ApiClient.post(
-				'subscription/initiate/',
-				{
-					plan_id: planId,
-					payment_type: paymentType,
-				},
-				{
-					headers: {
-						Authorization: `JWT ${accessToken}`,
+			let response
+			try {
+				response = await ApiClient.post(
+					'subscription/initiate/',
+					{
+						plan_id: planId,
+						payment_type: paymentType,
 					},
-				},
-			)
+					{
+						headers: {
+							Authorization: `JWT ${accessToken}`,
+						},
+					},
+				)
+			} catch (tokenError) {
+				if (tokenError.response?.status === 401) {
+					// Token expired, refresh and retry
+					accessToken = await refreshToken()
+					if (!accessToken) return
+					
+					response = await ApiClient.post(
+						'subscription/initiate/',
+						{
+							plan_id: planId,
+							payment_type: paymentType,
+						},
+						{
+							headers: {
+								Authorization: `JWT ${accessToken}`,
+							},
+						},
+					)
+				} else {
+					throw tokenError
+				}
+			}
 
 			if (response.data.payment_url) {
 				window.location.href = response.data.payment_url
