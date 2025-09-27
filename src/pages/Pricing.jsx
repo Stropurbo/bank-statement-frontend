@@ -35,7 +35,7 @@ function Pricing() {
 			const response = await ApiClient.post('auth/token/refresh/', {
 				refresh: tokens.refresh
 			})
-			
+
 			const newTokens = {
 				...tokens,
 				access: response.data.access
@@ -43,6 +43,7 @@ function Pricing() {
 			localStorage.setItem('authTokens', JSON.stringify(newTokens))
 			return newTokens.access
 		} catch (error) {
+			console.log(error)
 			localStorage.removeItem('authTokens')
 			window.location.href = '/login'
 			return null
@@ -83,7 +84,7 @@ function Pricing() {
 					// Token expired, refresh and retry
 					accessToken = await refreshToken()
 					if (!accessToken) return
-					
+
 					response = await ApiClient.post(
 						'subscription/initiate/',
 						{
