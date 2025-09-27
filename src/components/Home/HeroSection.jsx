@@ -44,18 +44,28 @@ function HeroSection() {
 			if (error.response) {
 				console.error('Error response:', error.response.data)
 				const errorData = error.response.data
-				const errorMessage = errorData.error || errorData.detail || errorData.message || 'Server error occurred'
-				const errorString = typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
-				
+				const errorMessage =
+					errorData.error ||
+					errorData.detail ||
+					errorData.message ||
+					'Server error occurred'
+				const errorString =
+					typeof errorMessage === 'string'
+						? errorMessage
+						: JSON.stringify(errorMessage)
+
 				// Check if it's a password-protected PDF error
-				if (error.response.status === 400 && (
-					errorString.includes('password-protected') ||
-					errorString.includes('Please provide the password') ||
-					errorString.includes('Incorrect password')
-				)) {
+				if (
+					error.response.status === 400 &&
+					(errorString.includes('password-protected') ||
+						errorString.includes('Please provide the password') ||
+						errorString.includes('Incorrect password'))
+				) {
 					setError('This PDF is password protected. Please enter the password below.')
 					setFileToUpload(file)
-				} else if (errorString.includes('Authentication credentials were not provided')) {
+				} else if (
+					errorString.includes('Authentication credentials were not provided')
+				) {
 					setError('Please login and purchase a subscription to continue uploading.')
 				} else {
 					setError(`Failed to process file: ${errorString}`)
@@ -208,8 +218,13 @@ function HeroSection() {
 					{fileToUpload && (
 						<div className="mt-8 max-w-md mx-auto">
 							<div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-								<h4 className="font-semibold text-yellow-800 mb-4 text-center">Password Protected PDF</h4>
-								<form onSubmit={handlePasswordSubmit} className="space-y-4">
+								<h4 className="font-semibold text-yellow-800 mb-4 text-center">
+									Password Protected PDF
+								</h4>
+								<form
+									onSubmit={handlePasswordSubmit}
+									className="space-y-4"
+								>
 									<input
 										type="password"
 										placeholder="Enter PDF password"
@@ -234,8 +249,12 @@ function HeroSection() {
 						<div className="mt-8 max-w-md mx-auto">
 							<div className="bg-blue-50 border border-blue-200 rounded-xl p-8 text-center">
 								<div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-200 border-t-blue-600 mx-auto mb-4"></div>
-								<h4 className="font-semibold text-blue-800 mb-2">Processing Your Statement</h4>
-								<p className="text-blue-600 text-sm">Our AI is extracting and organizing your data...</p>
+								<h4 className="font-semibold text-blue-800 mb-2">
+									Processing Your Statement
+								</h4>
+								<p className="text-blue-600 text-sm">
+									Our AI is extracting and organizing your data...
+								</p>
 							</div>
 						</div>
 					)}
@@ -249,9 +268,14 @@ function HeroSection() {
 										<div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
 											<CheckCircle className="h-6 w-6 text-green-600" />
 										</div>
-										<h3 className="text-2xl font-bold text-gray-900">Conversion Complete!</h3>
+										<h3 className="text-2xl font-bold text-gray-900">
+											Conversion Complete!
+										</h3>
 									</div>
-									<p className="text-center text-gray-600">Your bank statement has been successfully converted. Preview your data below.</p>
+									<p className="text-center text-gray-600">
+										Your bank statement has been successfully converted.
+										Preview your data below.
+									</p>
 								</div>
 
 								{/* Data Table */}
@@ -272,10 +296,17 @@ function HeroSection() {
 											</thead>
 											<tbody className="divide-y divide-gray-200">
 												{tableData.rows.slice(0, 10).map((row, i) => (
-													<tr key={i} className="hover:bg-gray-50 transition-colors">
+													<tr
+														key={i}
+														className="hover:bg-gray-50 transition-colors"
+													>
 														{tableData.columns.map((col, j) => (
-															<td key={j} className="px-6 py-4 text-sm text-gray-700">
-																{typeof row[col] === 'object' && row[col] !== null
+															<td
+																key={j}
+																className="px-6 py-4 text-sm text-gray-700"
+															>
+																{typeof row[col] === 'object' &&
+																row[col] !== null
 																	? JSON.stringify(row[col])
 																	: row[col] ?? ''}
 															</td>
@@ -286,7 +317,8 @@ function HeroSection() {
 										</table>
 										{tableData.rows.length > 10 && (
 											<p className="text-center text-gray-500 mt-4 text-sm">
-												Showing first 10 rows of {tableData.rows.length} total transactions
+												Showing first 10 rows of {tableData.rows.length}{' '}
+												total transactions
 											</p>
 										)}
 									</div>
