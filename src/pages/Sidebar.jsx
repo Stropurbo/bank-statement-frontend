@@ -51,7 +51,7 @@ const Sidebar = () => {
 			></label>
 			<aside 
 				className={`bg-slate-50 ${isCollapsed ? 'w-16' : 'w-64'} h-screen transition-all duration-300 flex flex-col fixed z-50`}
-				style={{'--sidebar-width': isCollapsed ? '64px' : '256px'} as React.CSSProperties}
+				style={{'--sidebar-width': isCollapsed ? '64px' : '256px'}}
 				onTransitionEnd={() => {
 					document.documentElement.style.setProperty('--sidebar-width', isCollapsed ? '64px' : '256px')
 				}}
