@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router'
 import { useState } from 'react'
 import { Mail, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react'
-import axios from 'axios'
+import ApiClient from '../services/api-client'
 
 const ForgotPassword = () => {
 	const {
@@ -20,7 +20,7 @@ const ForgotPassword = () => {
 		setError('')
 		setSuccess('')
 		try {
-			await axios.post('https://bank-statement-converter-backend-ofyc.onrender.com/api/auth/users/reset_password/', {
+			await ApiClient.post('auth/users/reset_password/', {
 				email: data.email
 			})
 			setSuccess('Password reset email sent! Check your inbox for instructions.')
