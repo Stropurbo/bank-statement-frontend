@@ -28,25 +28,22 @@ function AdminDashboard() {
 			const userData = usersRes.data.results || []
 
 			// Fetch plans data
-			let plansData = []
 			try {
 				const plansRes = await ApiClient.get('plans/')
 				console.log('Plans response:', plansRes.data)
-				plansData = plansRes.data.results || plansRes.data || []
+				var plansData = plansRes.data.results || plansRes.data || []
 			} catch (planError) {
 				console.error('Plans API error:', planError)
-				plansData = []
 			}
 
 			// Fetch user statements
-			let statementsData = []
 			try {
 				const statementsRes = await AuthApiClient.get('bankstatement/')
 				console.log('Statements response:', statementsRes.data)
-				statementsData = statementsRes.data.results || statementsRes.data || []
+				var statementsData =
+					statementsRes.data.results.count || statementsRes.data || []
 			} catch (statementError) {
 				console.error('Statements API error:', statementError)
-				statementsData = []
 			}
 
 			// Calculate active subscriptions from user data
