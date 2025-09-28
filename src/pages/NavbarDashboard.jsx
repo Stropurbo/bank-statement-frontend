@@ -14,7 +14,7 @@ const NavbarDashboard = ({ sidebarOpen }) => {
 	}
 
 	return (
-		<div className="navbar bg-white shadow-sm">
+		<div className="navbar bg-white shadow-sm" style={{marginLeft: '256px'}}>
 			<div className="flex-none lg:hidden">
 				<label
 					htmlFor="drawer-toggle"

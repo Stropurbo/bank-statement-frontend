@@ -1,26 +1,25 @@
 import {
 	FiBarChart2,
 	FiMenu,
-	FiPackage,
 	FiPlusCircle,
-	FiShoppingBag,
-	FiShoppingCart,
-	FiStar,
-	FiTag,
 	FiUsers,
 	FiX,
 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router'
 import { BiLogOut } from 'react-icons/bi'
-import { Banknote, Newspaper, Podcast } from 'lucide-react'
+import { Newspaper, Podcast } from 'lucide-react'
 import { BsPeople } from 'react-icons/bs'
 import useAuthContext from '../hooks/useAuthContext'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Sidebar = () => {
 	const { user, logoutUser: userLogout } = useAuthContext()
 	const navigate = useNavigate()
 	const [isCollapsed, setIsCollapsed] = useState(false)
+
+	useEffect(() => {
+		document.documentElement.style.setProperty('--sidebar-width', isCollapsed ? '64px' : '256px')
+	}, [isCollapsed])
 
 	const logoutUser = () => {
 		userLogout()
@@ -33,78 +32,76 @@ const Sidebar = () => {
 	]
 
 	const adminMenu = [
-		{
-			to: '/dashboard',
-			icon: FiBarChart2,
-			label: 'Dashboard',
-			hover: 'group-hover:text-red-500',
-		},
+		{ to: '/dashboard', icon: FiBarChart2, label: 'Dashboard' },
 		{ to: '/dashboard/add-plan', icon: FiPlusCircle, label: 'Add Plan' },
 		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },
 		{ to: '/dashboard/create-plan', icon: Podcast, label: 'Create Plan' },
-		{ to: '/dashboard/plans', icon: Newspaper, label: 'Plan' },
-		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Premium User' },
-		
+		{ to: '/dashboard/plans', icon: Newspaper, label: 'Plans' },
+		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Premium Users' },
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu
 
 	return (
-		<div className="drawer-side min-h-screen z-10 bg-white shadow-sm">
+		<div className="drawer-side min-h-screen z-50 bg-slate-50 border-r border-slate-200">
 			<label
 				htmlFor="drawer-toggle"
 				aria-label="close sidebar"
 				className="drawer-overlay"
 			></label>
-			<aside className={`menu bg-white ${isCollapsed ? 'w-16' : 'w-50'} p-4 text-base-content h-screen transition-all duration-300`}>
-				<div className="flex items-center justify-between mb-6 px-2">
+			<aside 
+				className={`bg-slate-50 ${isCollapsed ? 'w-16' : 'w-64'} h-screen transition-all duration-300 flex flex-col fixed z-50`}
+				style={{'--sidebar-width': isCollapsed ? '64px' : '256px'} as React.CSSProperties}
+				onTransitionEnd={() => {
+					document.documentElement.style.setProperty('--sidebar-width', isCollapsed ? '64px' : '256px')
+				}}
+			>
+				<div className="flex items-center justify-between p-4 border-b border-slate-200">
 					{!isCollapsed && (
 						<Link
 							to="/"
-							className="text-xl font-bold p-2"
+							className="text-xl font-bold text-slate-800 hover:text-blue-600 transition-colors"
 						>
 							SheetlyPro
 						</Link>
 					)}
 					<button
 						onClick={() => setIsCollapsed(!isCollapsed)}
-						className="p-2 hover:bg-gray-100 rounded-md transition-colors"
+						className="p-2 hover:bg-slate-200 rounded-lg transition-colors text-slate-600"
 					>
 						{isCollapsed ? <FiMenu className="h-5 w-5" /> : <FiX className="h-5 w-5" />}
 					</button>
 				</div>
 
-				<ul className="menu menu-md gap-2">
-					{menuItems.map((item, index) => (
-						<li key={index}>
-							<Link
-								to={item.to}
-								className="group flex items-center gap-2 p-2 rounded-md transition-all duration-300 hover:bg-white hover:shadow-md hover:font-bold  hover:transition-y-6 "
-								title={isCollapsed ? item.label : ''}
-							>
-								<item.icon
-									className={`h-4 w-4 text-black transition-colors duration-300 group-hover:text-indigo-600 ${
-										item.hover || ''
-									}`}
-								/>
-								{!isCollapsed && <span>{item.label}</span>}
-							</Link>
-						</li>
-					))}
-				</ul>
+				<nav className="flex-1 p-4">
+					<ul className="space-y-2">
+						{menuItems.map((item, index) => (
+							<li key={index}>
+								<Link
+									to={item.to}
+									className="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 hover:bg-white hover:text-blue-600 hover:shadow-sm transition-all duration-200 font-medium"
+									title={isCollapsed ? item.label : ''}
+								>
+									<item.icon className="h-5 w-5 transition-colors duration-200" />
+									{!isCollapsed && <span className="text-sm">{item.label}</span>}
+								</Link>
+							</li>
+						))}
+					</ul>
+				</nav>
 
-				<div className="mt-auto text-xs text-base-content">
-					<div className="flex gap-3 text-xl text-black items-center h-4 ">
-						<BiLogOut className="h-4 w-4 flex items-center" />
-						<a
-							onClick={logoutUser}
-							className="cursor-pointer"
-							title={isCollapsed ? 'Logout' : ''}
-						>
-							{!isCollapsed && <span>Logout</span>}
-						</a>
-					</div>
-					{!isCollapsed && <p className="ml-2 pt-3"> © 2025 SheetlyPro</p>}
+				<div className="border-t border-slate-200 p-4 mt-auto">
+					<button
+						onClick={logoutUser}
+						className="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-700 hover:bg-red-50 hover:text-red-600 transition-all duration-200 font-medium w-full"
+						title={isCollapsed ? 'Logout' : ''}
+					>
+						<BiLogOut className="h-5 w-5 transition-colors duration-200" />
+						{!isCollapsed && <span className="text-sm">Logout</span>}
+					</button>
+					{!isCollapsed && (
+						<p className="text-xs text-slate-500 mt-4 px-3">© 2025 SheetlyPro</p>
+					)}
 				</div>
 			</aside>
 		</div>

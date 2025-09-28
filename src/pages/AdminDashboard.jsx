@@ -1,228 +1,339 @@
 import React, { useState, useEffect } from 'react'
+import { FiUsers, FiFileText, FiTrendingUp, FiActivity, FiCreditCard } from 'react-icons/fi'
 import AuthApiClient from '../services/auth-api-client'
 import ApiClient from '../services/api-client'
 
 function AdminDashboard() {
-	const [activeTab, setActiveTab] = useState('users')
-	const [users, setUsers] = useState([])
-	//   const [payments, setPayments] = useState([])
-	const [statements, setStatements] = useState([])
-	const [settings, setSettings] = useState({
-		maintenanceMode: false,
-		emailNotifications: true,
+	const [stats, setStats] = useState({
+		totalUsers: 0,
+		activeUsers: 0,
+		totalStatements: 0,
+		totalPlans: 0,
+		activeSubscriptions: 0,
+		totalRevenue: 0,
+		monthlyRevenue: 0
 	})
+	const [popularPlans, setPopularPlans] = useState([])
+	const [recentActivity, setRecentActivity] = useState([])
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		fetchData()
+		fetchStats()
 	}, [])
 
-	const fetchData = async () => {
+	const fetchStats = async () => {
 		try {
+			console.log('Fetching dashboard stats...')
+
+			// Fetch users data
 			const usersRes = await AuthApiClient.get('admin/user/')
 			console.log('Users response:', usersRes.data)
+			const userData = usersRes.data.results || []
 
-			const userData = usersRes.data.results || usersRes.data || []
-			setUsers(userData)
+			// Fetch plans data
+			try {
+				const plansRes = await ApiClient.get('plans/')
+				console.log('Plans response:', plansRes.data)
+				var plansData = plansRes.data.results || plansRes.data || []
+			} catch (planError) {
+				console.error('Plans API error:', planError)
+				plansData = []
+			}
+
+			// Fetch user statements
+			try {
+				const statementsRes = await AuthApiClient.get('bankstatement/')
+				console.log('Statements response:', statementsRes.data)
+				var statementsData = statementsRes.data.results || statementsRes.data || []
+			} catch (statementError) {
+				console.error('Statements API error:', statementError)
+				statementsData = []
+			}
+
+			// Calculate active subscriptions and revenue from user data
+			const activeSubscriptions = userData.filter(
+				(user) => user.usersubscription && user.usersubscription.is_active,
+			).length
+
+			// Calculate total revenue from active subscriptions
+			const totalRevenue = userData
+				.filter((user) => user.usersubscription && user.usersubscription.is_active)
+				.reduce((sum, user) => sum + (user.usersubscription.plan.price || 0), 0)
+
+			// Calculate monthly revenue (current month subscriptions)
+			const currentMonth = new Date().getMonth()
+			const currentYear = new Date().getFullYear()
+			const monthlyRevenue = userData
+				.filter(user => {
+					if (!user.usersubscription || !user.usersubscription.is_active) return false
+					const subDate = new Date(user.usersubscription.created_at)
+					return subDate.getMonth() === currentMonth && subDate.getFullYear() === currentYear
+				})
+				.reduce((sum, user) => sum + (user.usersubscription.plan.price || 0), 0)
+
+			// Calculate popular plans
+			const planCounts = {}
+			userData.forEach(user => {
+				if (user.usersubscription && user.usersubscription.is_active) {
+					const planName = user.usersubscription.plan.name_display
+					planCounts[planName] = (planCounts[planName] || 0) + 1
+				}
+			})
+			const popularPlansData = Object.entries(planCounts)
+				.map(([name, count]) => ({ name, count }))
+				.sort((a, b) => b.count - a.count)
+				.slice(0, 3)
+			setPopularPlans(popularPlansData)
+
+			console.log('Calculated stats:', {
+				totalUsers: userData.length,
+				activeUsers: userData.filter((user) => !user.is_staff).length,
+				totalStatements: statementsData.length,
+				totalPlans: plansData.length,
+				activeSubscriptions: activeSubscriptions,
+				totalRevenue: totalRevenue,
+				monthlyRevenue: monthlyRevenue
+			})
+
+			const newStats = {
+				totalUsers: userData.length,
+				activeUsers: userData.filter((user) => !user.is_staff).length, // Non-staff users
+				totalStatements: statementsData.length,
+				totalPlans: plansData.length,
+				activeSubscriptions: activeSubscriptions,
+				totalRevenue: totalRevenue,
+				monthlyRevenue: monthlyRevenue
+			}
+
+			console.log('Setting stats:', newStats)
+			setStats(newStats)
+
+			// Generate recent activity from real data
+			const activities = []
+
+			// Recent users (non-staff only)
+			const recentUsers = userData.filter((user) => !user.is_staff).slice(0, 3)
+
+			recentUsers.forEach((user) => {
+				activities.push({
+					id: `user-${user.id}`,
+					type: 'user',
+					title: `User: ${user.first_name} ${user.last_name} (${user.email})`,
+					time: 'Recently active',
+					icon: FiUsers,
+					color: 'blue',
+				})
+			})
+
+			// Active subscriptions
+			const subscribedUsers = userData.filter(
+				(user) => user.usersubscription && user.usersubscription.is_active,
+			)
+
+			subscribedUsers.slice(0, 2).forEach((user) => {
+				activities.push({
+					id: `subscription-${user.id}`,
+					type: 'subscription',
+					title: `${user.first_name} ${user.last_name} - ${user.usersubscription.plan.name_display} plan`,
+					time: `${user.usersubscription.remaining_uploads} uploads remaining`,
+					icon: FiCreditCard,
+					color: 'purple',
+				})
+			})
+
+			// Recent statements (if available)
+			if (statementsData.length > 0) {
+				const recentStatements = statementsData
+					.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+					.slice(0, 2)
+
+				recentStatements.forEach((statement) => {
+					activities.push({
+						id: `statement-${statement.id}`,
+						type: 'statement',
+						title: `Statement processed: ${statement.original_filename}`,
+						time: new Date(statement.created_at).toLocaleString(),
+						icon: FiFileText,
+						color: 'green',
+					})
+				})
+			}
+
+			// Take latest 5 activities
+			setRecentActivity(activities.slice(0, 5))
 		} catch (error) {
-			console.error('Error fetching users:', error)
+			console.error('Error fetching stats:', error)
 		} finally {
 			setLoading(false)
 		}
 	}
 
-	const deleteUser = async (userId) => {
-		try {
-			await AuthApiClient.delete(`admin/user/${userId}/`)
-			setUsers(users.filter((user) => user.id !== userId))
-		} catch (error) {
-			console.error('Error deleting user:', error)
-		}
-	}
-
-	const generateStatement = async () => {
-		try {
-			const newStatement = {
-				id: Date.now(),
-				filename: `Statement_${new Date().toISOString().slice(0, 7)}.pdf`,
-				status: 'Generated',
-			}
-			setStatements([newStatement, ...statements])
-		} catch (error) {
-			console.error('Error generating statement:', error)
-		}
-	}
-
-	const toggleSetting = async (setting) => {
-		try {
-			const newValue = !settings[setting]
-			setSettings({ ...settings, [setting]: newValue })
-		} catch (error) {
-			console.error('Error updating setting:', error)
-		}
-	}
-
 	if (loading) {
 		return (
-			<div className="min-h-screen bg-gray-100 flex items-center justify-center">
-				<div className="text-xl">Loading...</div>
+			<div className="min-h-screen bg-slate-50 flex items-center justify-center">
+				<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
 			</div>
 		)
 	}
 
-	const tabs = [{ id: 'users', name: 'Users', icon: '👥' }]
+	const statCards = [
+		{ title: 'Total Users', value: stats.totalUsers, icon: FiUsers, color: 'blue' },
+		{ title: 'Monthly Revenue', value: `$${stats.monthlyRevenue.toFixed(2)}`, icon: FiTrendingUp, color: 'emerald' },
+		{ title: 'Total Revenue', value: `$${stats.totalRevenue.toFixed(2)}`, icon: FiCreditCard, color: 'green' },
+		{ title: 'Active Subscriptions', value: stats.activeSubscriptions, icon: FiActivity, color: 'orange' }
+	]
 
 	return (
-		<div className="min-h-screen bg-gray-100">
-			<title>Admin Dashboard</title>
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-				<div className="flex space-x-1 bg-gray-200 p-1 rounded-lg mb-6">
-					{tabs.map((tab) => (
-						<button
-							key={tab.id}
-							onClick={() => setActiveTab(tab.id)}
-							className={`flex items-center space-x-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-								activeTab === tab.id
-									? 'bg-white text-blue-600 shadow-sm'
-									: 'text-gray-600 hover:text-gray-900'
-							}`}
-						>
-							<span>{tab.icon}</span>
-							<span>{tab.name}</span>
-						</button>
-					))}
+		<div className="min-h-screen bg-slate-50 relative z-0">
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 transition-all duration-300" style={{marginLeft: 'var(--sidebar-width, 256px)'}}>
+				<div className="mb-8">
+					<h1 className="text-4xl font-bold text-slate-900 mb-3">
+						Admin Dashboard
+					</h1>
+					<p className="text-lg text-slate-600">
+						Comprehensive business analytics and performance metrics
+					</p>
 				</div>
 
-				<div className="bg-white rounded-lg shadow">
-					{activeTab === 'users' && (
-						<div className="p-6">
-							<div className="flex justify-between items-center mb-4">
-								<h2 className="text-lg font-semibold">User Management</h2>
-								<button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm">
-									Add User
-								</button>
-							</div>
-							<div className="space-y-2">
-								{users.length === 0 ? (
-									<div className="text-center py-8 text-gray-500">
-										No users found
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+					{statCards.map((card, index) => {
+						const colorClasses = {
+							blue: 'bg-blue-500 text-blue-600 bg-blue-50',
+							green: 'bg-green-500 text-green-600 bg-green-50',
+							emerald: 'bg-emerald-500 text-emerald-600 bg-emerald-50',
+							purple: 'bg-purple-500 text-purple-600 bg-purple-50',
+							orange: 'bg-orange-500 text-orange-600 bg-orange-50'
+						}
+						return (
+							<div
+								key={index}
+								className="bg-white rounded-xl p-6 shadow-lg border border-slate-200 hover:shadow-xl transition-all duration-300"
+							>
+								<div className="flex items-center justify-between">
+									<div>
+										<p className="text-sm font-medium text-slate-600">
+											{card.title}
+										</p>
+										<p className="text-2xl font-bold text-slate-900 mt-1">
+											{card.value}
+										</p>
 									</div>
-								) : (
-									users.map((user) => (
-										<div
-											key={user.id}
-											className="flex justify-between items-center p-3 border rounded"
-										>
-											<div>
-												<span className="font-medium">
-													{user.email || user.username}
-												</span>
-												<span
-													className={`ml-2 px-2 py-1 text-xs rounded-full ${
-														user.is_active
-															? 'bg-green-100 text-green-800'
-															: 'bg-red-100 text-red-800'
-													}`}
-												>
-													{user.is_active ? 'Active' : 'Inactive'}
-												</span>
-											</div>
-											<div className="space-x-2">
-												<button className="text-blue-600 hover:text-blue-800 text-sm">
-													Edit
-												</button>
-												<button
-													onClick={() => deleteUser(user.id)}
-													className="text-red-600 hover:text-red-800 text-sm"
-												>
-													Delete
-												</button>
-											</div>
-										</div>
-									))
-								)}
-							</div>
-						</div>
-					)}
-
-					{activeTab === 'statements' && (
-						<div className="p-6">
-							<div className="flex justify-between items-center mb-4">
-								<h2 className="text-lg font-semibold">Bank Statements</h2>
-								<button
-									onClick={generateStatement}
-									className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm"
-								>
-									Generate Report
-								</button>
-							</div>
-							<div className="space-y-2">
-								{statements.map((statement) => (
 									<div
-										key={statement.id}
-										className="flex justify-between items-center p-3 border rounded"
+										className={`p-3 rounded-lg ${
+											colorClasses[card.color].split(' ')[2]
+										}`}
 									>
-										<div>
-											<span className="font-medium">
-												{statement.filename}
-											</span>
-											<span className="ml-2 text-sm text-gray-500">
-												{statement.status}
-											</span>
+										<card.icon
+											className={`h-6 w-6 ${
+												colorClasses[card.color].split(' ')[1]
+											}`}
+										/>
+									</div>
+								</div>
+							</div>
+						)
+					})}
+				</div>
+
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+					<div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
+						<h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+							<FiTrendingUp className="h-5 w-5 text-emerald-600" />
+							Popular Plans
+						</h2>
+						<div className="space-y-3">
+							{popularPlans.length === 0 ? (
+								<p className="text-slate-500 text-center py-4">No active plans</p>
+							) : (
+								popularPlans.map((plan, index) => (
+									<div key={plan.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+										<div className="flex items-center gap-3">
+											<div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${
+												index === 0 ? 'bg-yellow-500' : index === 1 ? 'bg-gray-400' : 'bg-orange-600'
+											}`}>
+												{index + 1}
+											</div>
+											<span className="font-medium text-slate-900">{plan.name}</span>
 										</div>
-										<div className="space-x-2">
-											<button className="text-blue-600 hover:text-blue-800 text-sm">
-												Download
-											</button>
-											<button className="text-red-600 hover:text-red-800 text-sm">
-												Delete
-											</button>
+										<span className="text-sm font-semibold text-slate-600">{plan.count} users</span>
+									</div>
+								))
+							)}
+						</div>
+					</div>
+
+					<div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
+						<h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+							<FiActivity className="h-5 w-5 text-blue-600" />
+							Quick Stats
+						</h2>
+						<div className="space-y-4">
+							<div className="flex justify-between items-center">
+								<span className="text-slate-600">Conversion Rate</span>
+								<span className="font-semibold text-slate-900">
+									{stats.totalUsers > 0 ? ((stats.activeSubscriptions / stats.totalUsers) * 100).toFixed(1) : 0}%
+								</span>
+							</div>
+							<div className="flex justify-between items-center">
+								<span className="text-slate-600">Avg Revenue/User</span>
+								<span className="font-semibold text-slate-900">
+									${stats.activeSubscriptions > 0 ? (stats.totalRevenue / stats.activeSubscriptions).toFixed(2) : '0.00'}
+								</span>
+							</div>
+							<div className="flex justify-between items-center">
+								<span className="text-slate-600">Statements/User</span>
+								<span className="font-semibold text-slate-900">
+									{stats.activeUsers > 0 ? (stats.totalStatements / stats.activeUsers).toFixed(1) : '0.0'}
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+					<h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+						<FiActivity className="h-5 w-5 text-slate-600" />
+						Recent Activity
+					</h2>
+					<div className="space-y-4">
+						{recentActivity.length === 0 ? (
+							<div className="text-center py-8 text-slate-500">
+								<FiActivity className="h-12 w-12 mx-auto mb-4 text-slate-300" />
+								<p>No recent activity</p>
+							</div>
+						) : (
+							recentActivity.map((activity) => {
+								const colorClasses = {
+									blue: 'bg-blue-100 text-blue-600',
+									green: 'bg-green-100 text-green-600',
+									purple: 'bg-purple-100 text-purple-600',
+									orange: 'bg-orange-100 text-orange-600',
+								}
+								return (
+									<div
+										key={activity.id}
+										className="flex items-center gap-4 p-4 bg-slate-50 rounded-lg"
+									>
+										<div
+											className={`p-2 rounded-lg ${
+												colorClasses[activity.color]
+											}`}
+										>
+											<activity.icon className="h-5 w-5" />
+										</div>
+										<div>
+											<p className="font-medium text-slate-900">
+												{activity.title}
+											</p>
+											<p className="text-sm text-slate-500">
+												{activity.time}
+											</p>
 										</div>
 									</div>
-								))}
-							</div>
-						</div>
-					)}
-
-					{activeTab === 'settings' && (
-						<div className="p-6">
-							<h2 className="text-lg font-semibold mb-4">System Settings</h2>
-							<div className="space-y-4">
-								<div className="flex justify-between items-center p-3 border rounded">
-									<span>Maintenance Mode</span>
-									<button
-										onClick={() => toggleSetting('maintenanceMode')}
-										className={`px-3 py-1 rounded text-sm ${
-											settings.maintenanceMode
-												? 'bg-red-500 hover:bg-red-600 text-white'
-												: 'bg-gray-300 hover:bg-gray-400'
-										}`}
-									>
-										{settings.maintenanceMode ? 'On' : 'Off'}
-									</button>
-								</div>
-								<div className="flex justify-between items-center p-3 border rounded">
-									<span>Email Notifications</span>
-									<button
-										onClick={() => toggleSetting('emailNotifications')}
-										className={`px-3 py-1 rounded text-sm ${
-											settings.emailNotifications
-												? 'bg-green-500 hover:bg-green-600 text-white'
-												: 'bg-gray-300 hover:bg-gray-400'
-										}`}
-									>
-										{settings.emailNotifications ? 'On' : 'Off'}
-									</button>
-								</div>
-								<div className="flex justify-between items-center p-3 border rounded">
-									<span>Backup Database</span>
-									<button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">
-										Run Now
-									</button>
-								</div>
-							</div>
-						</div>
-					)}
+								)
+							})
+						)}
+					</div>
 				</div>
 			</div>
 		</div>
