@@ -5,6 +5,7 @@ export const sitemapPaths = [
 	'/about',
 	'/login',
 	'/register',
+	'/forgot-password',
 	'/terms-of-service',
 	'/privacy-policy',
 	'/affiliate',

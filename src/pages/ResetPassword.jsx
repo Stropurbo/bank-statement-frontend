@@ -1,54 +1,65 @@
 import { useForm } from 'react-hook-form'
-import useAuthContext from '../hooks/useAuthContext'
-import { Link, useNavigate } from 'react-router'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import { Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import ApiClient from '../services/api-client'
 
-const Login = () => {
+const ResetPassword = () => {
+	const { uid, token } = useParams() // <-- directly get from route
+	const navigate = useNavigate()
+
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm()
 
-	const { loginUser } = useAuthContext()
-	const navigate = useNavigate()
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 	const [success, setSuccess] = useState('')
+	const [showPassword, setShowPassword] = useState(false)
 
 	const onSubmit = async (data) => {
+		if (!uid || !token) {
+			setError('Invalid password reset link.')
+			return
+		}
+
 		setLoading(true)
 		setError('')
 		setSuccess('')
+
 		try {
-			await loginUser(data)
-			setSuccess('Login successful! Welcome back.')
-			navigate('/')
-		} catch (error) {
+			await ApiClient.post('auth/users/reset_password_confirm/', {
+				uid,
+				token,
+				new_password: data.new_password,
+			})
+			setSuccess('Password reset successful! Redirecting to login...')
+			setTimeout(() => navigate('/login'), 2000)
+		} catch (err) {
 			setError(
-				error.response?.data?.detail ||
-					error.message ||
-					'Login failed. Please try again.',
+				err.response?.data?.new_password?.[0] ||
+					err.response?.data?.token?.[0] ||
+					err.response?.data?.uid?.[0] ||
+					'Failed to reset password. Please try again.',
 			)
 		} finally {
 			setLoading(false)
 		}
 	}
 
-	const [showPassword, setShowPassword] = useState(false)
-
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
-			<title>Login</title>
+			<title>Reset Password</title>
 			<div className="w-full max-w-md">
 				{/* Header */}
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-					<p className="text-gray-600">Sign in to your SheetlyPro account</p>
+					<h1 className="text-4xl font-bold text-gray-900 mb-2">Reset Password</h1>
+					<p className="text-gray-600">Enter your new password</p>
 				</div>
 
-				{/* Login Card */}
+				{/* Reset Card */}
 				<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
 					{/* Success/Error Messages */}
 					{success && (
@@ -68,54 +79,30 @@ const Login = () => {
 						onSubmit={handleSubmit(onSubmit)}
 						className="space-y-6"
 					>
-						{/* Email Field */}
+						{/* New Password Field */}
 						<div>
 							<label className="block text-sm font-semibold text-gray-700 mb-2">
-								Email Address
-							</label>
-							<div className="relative">
-								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-									<Mail className="h-5 w-5 text-gray-400" />
-								</div>
-								<input
-									id="email"
-									type="email"
-									placeholder="Enter your email address"
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.email
-											? 'border-red-300 bg-red-50'
-											: 'border-gray-300 hover:border-gray-400'
-									}`}
-									{...register('email', { required: 'Email is required' })}
-								/>
-							</div>
-							{errors.email && (
-								<p className="text-red-600 text-sm mt-1">
-									{errors.email.message}
-								</p>
-							)}
-						</div>
-
-						{/* Password Field */}
-						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
-								Password
+								New Password
 							</label>
 							<div className="relative">
 								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 									<Lock className="h-5 w-5 text-gray-400" />
 								</div>
 								<input
-									id="password"
+									id="new_password"
 									type={showPassword ? 'text' : 'password'}
-									placeholder="Enter your password"
+									placeholder="Enter your new password"
 									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.password
+										errors.new_password
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
 									}`}
-									{...register('password', {
+									{...register('new_password', {
 										required: 'Password is required',
+										minLength: {
+											value: 8,
+											message: 'Password must be at least 8 characters',
+										},
 									})}
 								/>
 								<button
@@ -130,19 +117,11 @@ const Login = () => {
 									)}
 								</button>
 							</div>
-							{errors.password && (
+							{errors.new_password && (
 								<p className="text-red-600 text-sm mt-1">
-									{errors.password.message}
+									{errors.new_password.message}
 								</p>
 							)}
-							<div className="text-right mt-2">
-								<Link
-									to="/forgot-password"
-									className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
-								>
-									Forgot Password?
-								</Link>
-							</div>
 						</div>
 
 						{/* Submit Button */}
@@ -154,30 +133,17 @@ const Login = () => {
 							{loading ? (
 								<>
 									<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-									<span>Signing In...</span>
+									<span>Resetting...</span>
 								</>
 							) : (
-								<span>Sign In</span>
+								<span>Reset Password</span>
 							)}
 						</button>
 					</form>
-
-					{/* Footer Links */}
-					<div className="text-center mt-6 pt-6 border-t border-gray-200 space-y-3">
-						<p className="text-gray-600">
-							Don't have an account?{' '}
-							<Link
-								to="/register"
-								className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
-							>
-								Create Account
-							</Link>
-						</p>
-					</div>
 				</div>
 			</div>
 		</div>
 	)
 }
 
-export default Login
+export default ResetPassword

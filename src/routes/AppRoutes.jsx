@@ -1,7 +1,6 @@
 import React from 'react'
 import MainLayout from '../layout/MainLayout'
 import Home from '../pages/Home'
-import { Route, Routes } from 'react-router'
 import ActivateAccount from '../components/Registration/ActivateAccount'
 import Pricing from '../pages/Pricing'
 import Contact from '../pages/Contact'
@@ -24,6 +23,9 @@ import CreatePlan from '../pages/CreatePlan'
 import AllPlan from '../pages/AllPlan'
 import Affiliate from '../pages/Affiliate'
 import usePageView from '../pages/usePageView'
+import ForgotPassword from '../pages/ForgotPassword'
+import ResetPassword from '../pages/ResetPassword'
+import { Routes, Route } from 'react-router'
 
 
 const publicRoutes = [
@@ -32,6 +34,7 @@ const publicRoutes = [
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
+	{ path: '/forgot-password', element: <ForgotPassword /> },
 	{ path: '/terms-of-service', element: <Terms /> },
 	{ path: '/privacy-policy', element: <Privacy /> },
 	{ path: '/about', element: <About /> },
@@ -98,8 +101,12 @@ function AppRoutes() {
 						path="plans"
 						element={<AllPlan />}
 					/>
-
 				</Route>
+
+				<Route
+					path="/password/reset/confirm/:uid/:token"
+					element={<ResetPassword />}
+				/>
 			</Routes>
 		</div>
 	)

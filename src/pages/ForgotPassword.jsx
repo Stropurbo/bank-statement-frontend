@@ -1,18 +1,16 @@
 import { useForm } from 'react-hook-form'
-import useAuthContext from '../hooks/useAuthContext'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import { useState } from 'react'
-import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import { Mail, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react'
+import axios from 'axios'
 
-const Login = () => {
+const ForgotPassword = () => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 	} = useForm()
 
-	const { loginUser } = useAuthContext()
-	const navigate = useNavigate()
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState('')
 	const [success, setSuccess] = useState('')
@@ -22,33 +20,32 @@ const Login = () => {
 		setError('')
 		setSuccess('')
 		try {
-			await loginUser(data)
-			setSuccess('Login successful! Welcome back.')
-			navigate('/')
+			await axios.post('https://bank-statement-converter-backend-ofyc.onrender.com/api/auth/users/reset_password/', {
+				email: data.email
+			})
+			setSuccess('Password reset email sent! Check your inbox for instructions.')
 		} catch (error) {
 			setError(
+				error.response?.data?.email?.[0] ||
 				error.response?.data?.detail ||
-					error.message ||
-					'Login failed. Please try again.',
+				'Failed to send reset email. Please try again.'
 			)
 		} finally {
 			setLoading(false)
 		}
 	}
 
-	const [showPassword, setShowPassword] = useState(false)
-
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
-			<title>Login</title>
+			<title>Forgot Password</title>
 			<div className="w-full max-w-md">
 				{/* Header */}
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-					<p className="text-gray-600">Sign in to your SheetlyPro account</p>
+					<h1 className="text-4xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
+					<p className="text-gray-600">Enter your email to reset your password</p>
 				</div>
 
-				{/* Login Card */}
+				{/* Reset Card */}
 				<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
 					{/* Success/Error Messages */}
 					{success && (
@@ -64,10 +61,7 @@ const Login = () => {
 						</div>
 					)}
 
-					<form
-						onSubmit={handleSubmit(onSubmit)}
-						className="space-y-6"
-					>
+					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 						{/* Email Field */}
 						<div>
 							<label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -96,55 +90,6 @@ const Login = () => {
 							)}
 						</div>
 
-						{/* Password Field */}
-						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
-								Password
-							</label>
-							<div className="relative">
-								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-									<Lock className="h-5 w-5 text-gray-400" />
-								</div>
-								<input
-									id="password"
-									type={showPassword ? 'text' : 'password'}
-									placeholder="Enter your password"
-									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
-										errors.password
-											? 'border-red-300 bg-red-50'
-											: 'border-gray-300 hover:border-gray-400'
-									}`}
-									{...register('password', {
-										required: 'Password is required',
-									})}
-								/>
-								<button
-									type="button"
-									onClick={() => setShowPassword(!showPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
-								>
-									{showPassword ? (
-										<EyeOff className="h-5 w-5" />
-									) : (
-										<Eye className="h-5 w-5" />
-									)}
-								</button>
-							</div>
-							{errors.password && (
-								<p className="text-red-600 text-sm mt-1">
-									{errors.password.message}
-								</p>
-							)}
-							<div className="text-right mt-2">
-								<Link
-									to="/forgot-password"
-									className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
-								>
-									Forgot Password?
-								</Link>
-							</div>
-						</div>
-
 						{/* Submit Button */}
 						<button
 							type="submit"
@@ -154,25 +99,23 @@ const Login = () => {
 							{loading ? (
 								<>
 									<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-									<span>Signing In...</span>
+									<span>Sending...</span>
 								</>
 							) : (
-								<span>Sign In</span>
+								<span>Send Reset Email</span>
 							)}
 						</button>
 					</form>
 
-					{/* Footer Links */}
-					<div className="text-center mt-6 pt-6 border-t border-gray-200 space-y-3">
-						<p className="text-gray-600">
-							Don't have an account?{' '}
-							<Link
-								to="/register"
-								className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
-							>
-								Create Account
-							</Link>
-						</p>
+					{/* Back to Login */}
+					<div className="text-center mt-6 pt-6 border-t border-gray-200">
+						<Link
+							to="/login"
+							className="inline-flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium transition-colors"
+						>
+							<ArrowLeft className="h-4 w-4" />
+							<span>Back to Login</span>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -180,4 +123,4 @@ const Login = () => {
 	)
 }
 
-export default Login
+export default ForgotPassword
