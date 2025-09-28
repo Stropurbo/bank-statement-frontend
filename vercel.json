@@ -19,5 +19,19 @@
 				}
 			]
 		}
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"has": [
+				{
+					"type": "header",
+					"key": "x-react-router-prerender-data"
+				}
+			],
+			"mitigate": {
+				"action": "deny"
+			}
+		}
 	]
 }
