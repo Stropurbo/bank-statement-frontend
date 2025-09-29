@@ -3,6 +3,7 @@ import { Check } from 'lucide-react'
 import AboveFooter from '../components/Home/AboveFooter'
 import { Link } from 'react-router-dom'
 import ApiClient from '../services/api-client'
+import { setMeta } from '../utils/setMeta'
 
 function Pricing() {
 	const [billing, setBilling] = useState('monthly')
@@ -10,6 +11,16 @@ function Pricing() {
 	const [error, setError] = useState(null)
 	const [pricingTiers, setPricingTiers] = useState([])
 	const [tiersLoading, setTiersLoading] = useState(true)
+
+	useEffect(() => {
+		setMeta({
+			title: 'Pricing - SheetlyPro',
+			description: 'Choose the perfect plan for your needs',
+			keywords: 'pricing, plans, subscription',
+			ogTitle: 'SheetlyPro Pricing Plans',
+			ogDescription: 'Affordable plans for everyone',
+		})
+	}, [])
 
 	useEffect(() => {
 		const fetchPricingTiers = async () => {
@@ -28,17 +39,16 @@ function Pricing() {
 		fetchPricingTiers()
 	}, [])
 
-
 	const refreshToken = async () => {
 		try {
 			const tokens = JSON.parse(localStorage.getItem('authTokens'))
 			const response = await ApiClient.post('auth/token/refresh/', {
-				refresh: tokens.refresh
+				refresh: tokens.refresh,
 			})
 
 			const newTokens = {
 				...tokens,
-				access: response.data.access
+				access: response.data.access,
 			}
 			localStorage.setItem('authTokens', JSON.stringify(newTokens))
 			return newTokens.access
@@ -63,7 +73,11 @@ function Pricing() {
 			let parsedTokens = JSON.parse(token)
 			let accessToken = parsedTokens.access
 
-			console.log('Initiating subscription:', { plan_id: planId, payment_type: paymentType, tiers_count: pricingTiers.length })
+			console.log('Initiating subscription:', {
+				plan_id: planId,
+				payment_type: paymentType,
+				tiers_count: pricingTiers.length,
+			})
 
 			let response
 			try {
@@ -127,7 +141,7 @@ function Pricing() {
 	return (
 		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
 			<div className="container mx-auto px-6 py-24">
-				<title>Pricing</title>
+
 				<div className="text-center mb-16">
 					<div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
 						Pricing Plans

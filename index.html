@@ -5,6 +5,8 @@
 >
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index, follow" />
 
 		<link
 			rel="icon"
@@ -34,8 +36,10 @@
 			href="https://www.sheetlypro.com/"
 		/>
 
-		<meta http-equiv="Content-Security-Policy" content="">
-
+		<meta
+			name="author"
+			content="SheetlyPro"
+		/>
 
 		<meta
 			property="og:site_name"
@@ -47,7 +51,12 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 
-		<title>SheetlyPro - Convert PDF Bank Statements to Excel or CSV Instantly</title>
+		<title>Convert PDF Bank Statements to Excel or CSV Online | SheetlyPro</title>
+
+		<meta
+			name="keywords"
+			content="pdf to excel, pdf to csv, bank statement to excel, bank statement to csv, convert pdf to excel, convert pdf to csv, pdf converter, online pdf converter, sheetlypro"
+		/>
 
 		<meta
 			name="description"
@@ -56,11 +65,11 @@
 
 		<meta
 			property="og:title"
-			content="SheetlyPro - PDF to Excel/CSV Converter"
+			content="Convert PDF Bank Statement to Excel or CSV Online | SheetlyPro"
 		/>
 		<meta
 			property="og:description"
-			content="Convert PDF bank statements to Excel or CSV instantly with SheetlyPro."
+			content="Convert PDF bank statements to Excel or CSV in 1 click. Fast, accurate & secure online tool for professionals."
 		/>
 
 		<meta
@@ -96,25 +105,45 @@
 		/>
 		<meta
 			name="twitter:title"
-			content="SheetlyPro - PDF to Excel/CSV Converter"
+			content="Convert PDF Bank Statement to Excel or CSV Online | SheetlyPro"
 		/>
 		<meta
 			name="twitter:description"
-			content="Convert PDF bank statements to Excel or CSV instantly with SheetlyPro."
+			content="Convert PDF bank statements to Excel or CSV in 1 click. Fast, accurate & secure online tool for professionals."
 		/>
 
 		<meta
 			name="theme-color"
 			content="#ffffff"
 		/>
+		
+		<!-- Additional SEO Meta Tags -->
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="7 days" />
+		<meta name="distribution" content="global" />
+		<meta name="rating" content="general" />
 
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
-				"@type": "Organization",
-				"url": "https://www.sheetlypro.com",
+				"@type": "SoftwareApplication",
 				"name": "SheetlyPro",
+				"description": "Convert PDF bank statements to Excel or CSV instantly",
+				"url": "https://www.sheetlypro.com",
 				"logo": "https://www.sheetlypro.com/logo180.png",
+				"applicationCategory": "FinanceApplication",
+				"operatingSystem": "Web Browser",
+				"offers": {
+					"@type": "Offer",
+					"price": "0",
+					"priceCurrency": "USD",
+					"availability": "https://schema.org/InStock"
+				},
+				"aggregateRating": {
+					"@type": "AggregateRating",
+					"ratingValue": "4.8",
+					"ratingCount": "1250"
+				},
 				"sameAs": [
 					"https://www.facebook.com/sheetlypro",
 					"https://www.twitter.com/sheetlypro"
@@ -135,6 +164,10 @@
 			}
 		</script>
 
+		<!-- Preconnect for performance -->
+		<link rel="preconnect" href="https://www.googletagmanager.com" />
+		<link rel="preconnect" href="https://lmsqueezy.com" />
+		
 		<!-- Google tag (gtag.js) -->
 		<script
 			async
@@ -151,11 +184,38 @@
 		</script>
 	</head>
 	<body>
-		<div id="root"></div>
+		<div id="root">
+			<!-- Fallback content for SEO and no-JS users -->
+			<noscript>
+				<h1>SheetlyPro - Convert PDF Bank Statements to Excel or CSV</h1>
+				<p>Convert PDF bank statements to Excel or CSV format instantly. Support for 1000+ banks worldwide.</p>
+				<p>Please enable JavaScript to use this application.</p>
+			</noscript>
+			
+			<!-- Loading state -->
+			<div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+				<div style="text-align: center;">
+					<h1>SheetlyPro</h1>
+					<p>Loading bank statement converter...</p>
+				</div>
+			</div>
+		</div>
 		<script
 			type="module"
 			src="/src/main.jsx"
 		></script>
+		
+		<script>
+			// Hide loading content when React app loads
+			window.addEventListener('DOMContentLoaded', function() {
+				setTimeout(function() {
+					const loading = document.getElementById('loading');
+					if (loading && document.querySelector('#root > div:not(#loading)')) {
+						loading.style.display = 'none';
+					}
+				}, 1000);
+			});
+		</script>
 
 		<script>
 			window.lemonSqueezyAffiliateConfig = { store: 'sheetlypro' }

@@ -143,7 +143,7 @@ function HeroSection() {
 						Transform Bank Statements
 						<br />
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
-							To Excel Instantly
+							PDF To Excel Instantly
 						</span>
 					</h1>
 					<p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">

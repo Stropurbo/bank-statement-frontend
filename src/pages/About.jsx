@@ -1,13 +1,24 @@
-import React from 'react'
 import { Target, Zap, Shield, Clock, FileText, Users, TrendingUp } from 'lucide-react'
 import AboveFooter from '../components/Home/AboveFooter'
+import React, { useEffect } from 'react'
+import { setMeta } from '../utils/setMeta'
 
 function About() {
-;<title>About SheetlyPro - Bank Statement to CSV Converter</title>
+
+	useEffect(() => {
+			setMeta({
+				title: 'About SheetlyPro - Bank Statement Converter Tool',
+				description: 'Learn about SheetlyPro - the leading bank statement converter tool. Transform PDF bank statements to Excel/CSV instantly with cutting-edge technology.',
+				keywords: 'about sheetlypro, bank statement converter, PDF to Excel, financial data conversion, company mission',
+				ogTitle: 'About SheetlyPro - Bank Statement Converter',
+				ogDescription: 'Discover how SheetlyPro transforms bank statement processing with advanced technology and user-focused design.',
+			})
+		}, [])
+		
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
 			{/* Hero Section */}
-			<title>About</title>
+
 			<div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white py-20">
 				<div className="container mx-auto px-6 text-center">
 					<h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">

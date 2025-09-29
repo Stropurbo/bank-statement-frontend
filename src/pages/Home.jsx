@@ -7,18 +7,20 @@ import Faq from '../components/Home/Faq'
 import AboveFooter from '../components/Home/AboveFooter'
 
 function Home() {
+
 	return (
 		<div>
-			<title>SheetlyPro - PDF to Excel/CSV Converter</title>
 			<Toaster
 				position="top-right"
 				reverseOrder={false}
 			/>
-			<HeroSection />
-			<Features />
-			<PriceSection />
-			<Faq />
-			<AboveFooter />
+			<main>
+				<HeroSection />
+				<Features />
+				<PriceSection />
+				<Faq />
+				<AboveFooter />
+			</main>
 		</div>
 	)
 }

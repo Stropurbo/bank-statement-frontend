@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { setMeta } from '../utils/setMeta'
 
 function Terms() {
+	useEffect(() => {
+		setMeta({
+			title: 'Terms of Service - Legal Agreement | SheetlyPro',
+			description: 'Read SheetlyPro terms of service and legal agreement. Understand your rights and responsibilities when using our PDF to Excel bank statement converter.',
+			keywords: 'terms of service, legal agreement, user agreement, PDF converter terms, bank statement converter legal',
+			ogTitle: 'SheetlyPro Terms of Service - Legal Agreement',
+			ogDescription: 'Review SheetlyPro terms of service to understand the legal agreement for using our bank statement conversion service.',
+		})
+	}, [])
+
 	return (
 		<div className="max-w-4xl mx-auto p-6 text-gray-800">
 			<title>Terms of Service</title>

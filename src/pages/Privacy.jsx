@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { setMeta } from '../utils/setMeta'
 
 function Privacy() {
+	useEffect(() => {
+		setMeta({
+			title: 'Privacy Policy - Data Protection | SheetlyPro',
+			description: 'Read SheetlyPro privacy policy to understand how we protect your data during PDF to Excel conversion. Learn about our data collection, usage, and security practices.',
+			keywords: 'privacy policy, data protection, security, PDF converter privacy, bank statement security, data safety',
+			ogTitle: 'SheetlyPro Privacy Policy - Data Protection',
+			ogDescription: 'Learn how SheetlyPro protects your personal data and bank statement information with our comprehensive privacy policy.',
+		})
+	}, [])
+
 	return (
 		<div className="max-w-4xl mx-auto p-6 text-gray-800">
-			<title>Privacy Policy</title>
+			
 			<h1 className="text-3xl font-bold mb-6">Privacy Policy</h1>
 			<p className="mb-4 text-sm text-gray-500">Last Updated: 21 September, 2025</p>
 

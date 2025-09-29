@@ -27,7 +27,6 @@ import ForgotPassword from '../pages/ForgotPassword'
 import ResetPassword from '../pages/ResetPassword'
 import { Routes, Route } from 'react-router'
 
-
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/pricing', element: <Pricing /> },
@@ -49,11 +48,10 @@ const allRoutes = [
 	{ path: '/profile', element: <Profile /> },
 	{ path: '/subscription/status', element: <PaymentStatus /> },
 	{ path: '/activate/:uid/:token', element: <ActivateAccount /> },
-
 ]
 
 function AppRoutes() {
-	usePageView();
+	usePageView()
 
 	return (
 		<div className="overflow-hidden">

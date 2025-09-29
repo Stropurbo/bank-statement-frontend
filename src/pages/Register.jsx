@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useAuthContext from '../hooks/useAuthContext'
 import { useForm } from 'react-hook-form'
 import { Eye, EyeOff, User, Mail, MapPin, Phone, Lock, CheckCircle, AlertCircle } from 'lucide-react'
 import { useNavigate, Link } from 'react-router'
+import { setMeta } from '../utils/setMeta'
 
 function Register() {
+	useEffect(() => {
+		setMeta({
+			title: 'Create Account - Sign Up for SheetlyPro',
+			description: 'Create your free SheetlyPro account to access premium PDF to Excel conversion features. Join thousands of users converting bank statements efficiently.',
+			keywords: 'create account, sign up sheetlypro, register, PDF converter registration, bank statement converter signup',
+			ogTitle: 'Sign Up for SheetlyPro - Create Account',
+			ogDescription: 'Join SheetlyPro today and start converting your PDF bank statements to Excel format with our premium features.',
+		})
+	}, [])
+
 	const { registerUser } = useAuthContext()
 	const navigate = useNavigate()
 
@@ -46,7 +57,7 @@ function Register() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
-			<title>Register</title>
+
 			<div className="w-full max-w-lg">
 				{/* Header */}
 				<div className="text-center mb-8">

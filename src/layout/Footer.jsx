@@ -125,7 +125,7 @@ function Footer() {
 							</li> */}
 						</ul>
 						<div>
-							<h6 className="text-sm font-semibold text-white mb-3">Legal</h6>
+						
 							<ul className="space-y-2">
 								<li>
 									<a

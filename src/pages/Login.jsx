@@ -1,10 +1,21 @@
 import { useForm } from 'react-hook-form'
 import useAuthContext from '../hooks/useAuthContext'
 import { Link, useNavigate } from 'react-router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
+import { setMeta } from '../utils/setMeta'
 
 const Login = () => {
+	useEffect(() => {
+		setMeta({
+			title: 'Login to SheetlyPro - Access Your Account',
+			description: 'Sign in to your SheetlyPro account to access premium PDF to Excel conversion features. Secure login for bank statement processing.',
+			keywords: 'login sheetlypro, sign in, user account, PDF converter login, bank statement converter access',
+			ogTitle: 'Login to SheetlyPro Account',
+			ogDescription: 'Access your SheetlyPro account to convert PDF bank statements to Excel format with premium features.',
+		})
+	}, [])
+
 	const {
 		register,
 		handleSubmit,
@@ -40,7 +51,7 @@ const Login = () => {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
-			<title>Login</title>
+			
 			<div className="w-full max-w-md">
 				{/* Header */}
 				<div className="text-center mb-8">

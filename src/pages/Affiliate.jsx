@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Users, DollarSign, TrendingUp, Gift, ArrowRight, Star, CheckCircle } from 'lucide-react'
+import { setMeta } from '../utils/setMeta'
 
 function Affiliate() {
+	useEffect(() => {
+		setMeta({
+			title: 'Affiliate Program - Earn 20% Commission | SheetlyPro',
+			description: 'Join SheetlyPro affiliate program and earn up to 20% commission promoting the best PDF to Excel converter. Free to join, monthly payouts, marketing materials included.',
+			keywords: 'affiliate program, earn money online, PDF converter affiliate, commission, referral program, sheetlypro partner',
+			ogTitle: 'SheetlyPro Affiliate Program - Earn 20% Commission',
+			ogDescription: 'Join thousands of partners earning up to 20% commission by promoting SheetlyPro. Free to join with monthly payouts.',
+		})
+	}, [])
+
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
-			<title>Affiliate Program</title>
+			
 			<div className="container mx-auto px-6 py-24">
 				{/* Hero Section */}
 				<div className="text-center mb-20">
