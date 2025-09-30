@@ -170,7 +170,7 @@ function AdminDashboard() {
 				id: `purchase-${user.id}`,
 				userName: `${user.first_name} ${user.last_name}`,
 				planName: user.usersubscription.plan.name_display,
-				price: `$${user.usersubscription.plan.price || 29.99}`,
+				price: `$${user.usersubscription.plan.price || 0}`,
 				date: new Date().toLocaleDateString(),
 				status: 'Active'
 			}))
@@ -239,7 +239,7 @@ function AdminDashboard() {
 
 
 	return (
-		<div className="min-h-screen ml-5 bg-slate-50">
+		<div className="min-h-screen ml-5 bg-gray-50">
 			<div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<div className="mb-8 flex justify-between items-center">
 					<div>

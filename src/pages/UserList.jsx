@@ -13,10 +13,21 @@ const UserList = () => {
 	const [usersPerPage] = useState(10)
 	const [editingUser, setEditingUser] = useState(null)
 	const [editForm, setEditForm] = useState({})
+	const [subscriptionPlans, setSubscriptionPlans] = useState([])
 
 	useEffect(() => {
 		fetchUsers()
+		fetchPlans()
 	}, [])
+
+	const fetchPlans = async () => {
+		try {
+			const res = await AuthApiClient.get('/subscription/plans/')
+			setSubscriptionPlans(res.data || [])
+		} catch (error) {
+			console.error('Error fetching plans:', error)
+		}
+	}
 
 	const fetchUsers = async () => {
 		try {
@@ -63,7 +74,8 @@ const UserList = () => {
 			last_name: user.last_name || '',
 			is_active: user.is_active !== false && user.is_active !== 'false',
 			is_staff: user.is_staff || false,
-			has_subscription: user.has_subscription || false
+			has_subscription: hasActiveSubscription(user),
+			subscription_plan: user.usersubscription?.plan?.id || ''
 		})
 	}
 
@@ -74,13 +86,59 @@ const UserList = () => {
 
 	const updateUser = async () => {
 		try {
-			await AuthApiClient.patch(`/admin/user/${editingUser.id}/`, editForm)
+			const updateData = {
+				email: editForm.email,
+				first_name: editForm.first_name,
+				last_name: editForm.last_name,
+				is_active: editForm.is_active,
+				is_staff: editForm.is_staff
+			}
+			
+			console.log('=== UPDATE USER DEBUG ===')
+			console.log('User ID:', editingUser.id)
+			console.log('Current User (Admin):', currentUser)
+			console.log('Sending data:', JSON.stringify(updateData, null, 2))
+			console.log('API URL:', `/admin/user/${editingUser.id}/`)
+			
+			const response = await AuthApiClient.patch(`/admin/user/${editingUser.id}/`, updateData)
+			console.log('Backend response:', JSON.stringify(response.data, null, 2))
+			console.log('Response status:', response.status)
+			
+			// Update subscription plan if changed
+			if (editForm.subscription_plan !== (editingUser.usersubscription?.plan?.id || '')) {
+				try {
+					if (editingUser.usersubscription?.id) {
+						// Update existing subscription
+						const subResponse = await AuthApiClient.patch(`/subscriptions/${editingUser.usersubscription.id}/`, {
+							plan_id: editForm.subscription_plan || null,
+							is_active: !!editForm.subscription_plan
+						})
+						console.log('Subscription update response:', JSON.stringify(subResponse.data, null, 2))
+						console.log('Subscription updated successfully')
+					} else if (editForm.subscription_plan) {
+						// Create new subscription
+						await AuthApiClient.post('/subscriptions/', {
+							user: editingUser.id,
+							plan_id: editForm.subscription_plan,
+							is_active: true
+						})
+						console.log('Subscription created successfully')
+					}
+				} catch (subError) {
+					console.error('Subscription update error:', subError)
+					alert('User updated but subscription update failed')
+				}
+			}
+			
 			closeEditModal()
 			await fetchUsers()
 			alert('User updated successfully')
 		} catch (error) {
-			console.error('Error updating user:', error)
-			alert('Failed to update user')
+			console.error('=== UPDATE ERROR ===')
+			console.error('Error:', error)
+			console.error('Error response:', error.response?.data)
+			console.error('Error status:', error.response?.status)
+			alert(`Failed to update user: ${error.response?.data?.detail || error.message}`)
 		}
 	}
 
@@ -472,6 +530,28 @@ const UserList = () => {
 											/>
 										</div>
 									</div>
+									<div>
+										<label className="block text-sm font-medium text-gray-700 mb-1">
+											Subscription Plan
+										</label>
+										<select
+											value={editForm.subscription_plan}
+											onChange={(e) =>
+												setEditForm({
+													...editForm,
+													subscription_plan: e.target.value,
+												})
+											}
+											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+										>
+											<option value="">No Plan</option>
+											{subscriptionPlans.map((plan) => (
+												<option key={plan.id} value={plan.id}>
+													{plan.title || plan.name}
+												</option>
+											))}
+										</select>
+									</div>
 									<div className="space-y-3">
 										<label className="flex items-center">
 											<input
@@ -522,6 +602,7 @@ const UserList = () => {
 											</span>
 										</label>
 									</div>
+
 								</div>
 								<div className="flex justify-end gap-3 mt-6">
 									<button
