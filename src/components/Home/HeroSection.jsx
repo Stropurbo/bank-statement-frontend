@@ -140,7 +140,7 @@ function HeroSection() {
 						AI-Powered PDF Conversion
 					</div>
 					<h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
-						Transform Bank Statements
+						Convert Bank Statements
 						<br />
 						<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
 							PDF To Excel Instantly
