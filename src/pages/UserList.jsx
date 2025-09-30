@@ -75,7 +75,8 @@ const UserList = () => {
 			is_active: user.is_active !== false && user.is_active !== 'false',
 			is_staff: user.is_staff || false,
 			has_subscription: hasActiveSubscription(user),
-			subscription_plan: user.usersubscription?.plan?.id || ''
+			subscription_plan: user.usersubscription?.plan?.id || '',
+			end_date: user.usersubscription?.end_date ? user.usersubscription.end_date.split('T')[0] : ''
 		})
 	}
 
@@ -91,36 +92,50 @@ const UserList = () => {
 				first_name: editForm.first_name,
 				last_name: editForm.last_name,
 				is_active: editForm.is_active,
-				is_staff: editForm.is_staff
+				is_staff: editForm.is_staff,
 			}
-			
+
 			console.log('=== UPDATE USER DEBUG ===')
 			console.log('User ID:', editingUser.id)
 			console.log('Current User (Admin):', currentUser)
 			console.log('Sending data:', JSON.stringify(updateData, null, 2))
 			console.log('API URL:', `/admin/user/${editingUser.id}/`)
-			
-			const response = await AuthApiClient.patch(`/admin/user/${editingUser.id}/`, updateData)
+
+			const response = await AuthApiClient.patch(
+				`/admin/user/${editingUser.id}/`,
+				updateData,
+			)
 			console.log('Backend response:', JSON.stringify(response.data, null, 2))
 			console.log('Response status:', response.status)
+
+			// Update subscription if plan or end_date changed
+			const planChanged = editForm.subscription_plan !== (editingUser.usersubscription?.plan?.id || '')
+			const endDateChanged = editForm.end_date !== (editingUser.usersubscription?.end_date ? editingUser.usersubscription.end_date.split('T')[0] : '')
 			
-			// Update subscription plan if changed
-			if (editForm.subscription_plan !== (editingUser.usersubscription?.plan?.id || '')) {
+			if (planChanged || endDateChanged) {
 				try {
 					if (editingUser.usersubscription?.id) {
 						// Update existing subscription
-						const subResponse = await AuthApiClient.patch(`/subscriptions/${editingUser.usersubscription.id}/`, {
-							plan_id: editForm.subscription_plan || null,
-							is_active: !!editForm.subscription_plan
-						})
-						console.log('Subscription update response:', JSON.stringify(subResponse.data, null, 2))
+						const subResponse = await AuthApiClient.patch(
+							`/subscriptions/${editingUser.usersubscription.id}/`,
+							{
+								plan_id: editForm.subscription_plan || null,
+								is_active: !!editForm.subscription_plan,
+								end_date: editForm.end_date || null
+							},
+						)
+						console.log(
+							'Subscription update response:',
+							JSON.stringify(subResponse.data, null, 2),
+						)
 						console.log('Subscription updated successfully')
 					} else if (editForm.subscription_plan) {
 						// Create new subscription
 						await AuthApiClient.post('/subscriptions/', {
 							user: editingUser.id,
 							plan_id: editForm.subscription_plan,
-							is_active: true
+							is_active: true,
+							end_date: editForm.end_date || null
 						})
 						console.log('Subscription created successfully')
 					}
@@ -129,7 +144,7 @@ const UserList = () => {
 					alert('User updated but subscription update failed')
 				}
 			}
-			
+
 			closeEditModal()
 			await fetchUsers()
 			alert('User updated successfully')
@@ -142,13 +157,13 @@ const UserList = () => {
 		}
 	}
 
-	 const hasActiveSubscription = (user) => {
-			if (user.usersubscription?.is_active === true) return true
-			if (user.subscription?.is_active === true) return true
-			if (user.has_subscription === true && !user.usersubscription && !user.subscription)
-				return true
-			return false
-		}
+	const hasActiveSubscription = (user) => {
+		if (user.usersubscription?.is_active === true) return true
+		if (user.subscription?.is_active === true) return true
+		if (user.has_subscription === true && !user.usersubscription && !user.subscription)
+			return true
+		return false
+	}
 
 	// Filter users based on search and status
 	const filteredUsers = users.filter((user) => {
@@ -255,6 +270,9 @@ const UserList = () => {
 									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Plan
 									</th>
+									<th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+										End Date
+									</th>
 									<th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
 										Actions
 									</th>
@@ -264,7 +282,7 @@ const UserList = () => {
 								{currentUsers.length === 0 ? (
 									<tr>
 										<td
-											colSpan="7"
+											colSpan="8"
 											className="px-6 py-12 text-center text-gray-500"
 										>
 											<div className="flex flex-col items-center">
@@ -359,6 +377,12 @@ const UserList = () => {
 														user.plan_name ||
 														'No Plan'}
 												</span>
+											</td>
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+												{user.usersubscription?.end_date ? 
+													new Date(user.usersubscription.end_date).toLocaleDateString() : 
+													'No End Date'
+												}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 												<div className="flex items-center justify-end gap-2">
@@ -546,11 +570,30 @@ const UserList = () => {
 										>
 											<option value="">No Plan</option>
 											{subscriptionPlans.map((plan) => (
-												<option key={plan.id} value={plan.id}>
+												<option
+													key={plan.id}
+													value={plan.id}
+												>
 													{plan.title || plan.name}
 												</option>
 											))}
 										</select>
+									</div>
+									<div>
+										<label className="block text-sm font-medium text-gray-700 mb-1">
+											Subscription End Date
+										</label>
+										<input
+											type="date"
+											value={editForm.end_date}
+											onChange={(e) =>
+												setEditForm({
+													...editForm,
+													end_date: e.target.value,
+												})
+											}
+											className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+										/>
 									</div>
 									<div className="space-y-3">
 										<label className="flex items-center">
@@ -602,7 +645,6 @@ const UserList = () => {
 											</span>
 										</label>
 									</div>
-
 								</div>
 								<div className="flex justify-end gap-3 mt-6">
 									<button

@@ -27,6 +27,7 @@ import usePageView from '../pages/usePageView'
 import ForgotPassword from '../pages/ForgotPassword'
 import ResetPassword from '../pages/ResetPassword'
 import { Routes, Route } from 'react-router'
+import PremiumUsers from '../pages/PremiumUsers'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -104,7 +105,10 @@ function AppRoutes() {
 						path="plans"
 						element={<AllPlan />}
 					/>
-
+					<Route
+						path="subscriber"
+						element={<PremiumUsers />}
+					/>
 				</Route>
 
 				<Route
