@@ -5,10 +5,13 @@ function Terms() {
 	useEffect(() => {
 		setMeta({
 			title: 'Terms of Service - Legal Agreement | SheetlyPro',
-			description: 'Read SheetlyPro terms of service and legal agreement. Understand your rights and responsibilities when using our PDF to Excel bank statement converter.',
-			keywords: 'terms of service, legal agreement, user agreement, PDF converter terms, bank statement converter legal',
+			description:
+				'Read SheetlyPro terms of service and legal agreement. Understand your rights and responsibilities when using our PDF to Excel bank statement converter.',
+			keywords:
+				'terms of service, legal agreement, user agreement, PDF converter terms, bank statement converter legal',
 			ogTitle: 'SheetlyPro Terms of Service - Legal Agreement',
-			ogDescription: 'Review SheetlyPro terms of service to understand the legal agreement for using our bank statement conversion service.',
+			ogDescription:
+				'Review SheetlyPro terms of service to understand the legal agreement for using our bank statement conversion service.',
 		})
 	}, [])
 
@@ -142,10 +145,10 @@ function Terms() {
 			<p className="mb-4">
 				If you have questions about these Terms, please contact us at:{' '}
 				<a
-					href="mailto:myboguraapp@gmail.com"
+					href="mailto:contact@sheetlypro.com"
 					className="underline"
 				>
-					myboguraapp@gmail.com
+					contact@sheetlypro.com
 				</a>
 			</p>
 		</div>

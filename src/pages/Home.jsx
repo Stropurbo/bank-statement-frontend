@@ -7,7 +7,6 @@ import Faq from '../components/Home/Faq'
 import AboveFooter from '../components/Home/AboveFooter'
 
 function Home() {
-
 	return (
 		<div>
 			<Toaster

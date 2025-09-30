@@ -7,14 +7,17 @@ function Contact() {
 	useEffect(() => {
 		setMeta({
 			title: 'Contact Us - Get Support | SheetlyPro',
-			description: 'Contact SheetlyPro support team for help with PDF to Excel conversion. Get answers to your questions about bank statement processing within 24 hours.',
-			keywords: 'contact sheetlypro, customer support, help, PDF converter support, bank statement help, technical support',
+			description:
+				'Contact SheetlyPro support team for help with PDF to Excel conversion. Get answers to your questions about bank statement processing within 24 hours.',
+			keywords:
+				'contact sheetlypro, customer support, help, PDF converter support, bank statement help, technical support',
 			ogTitle: 'Contact SheetlyPro - Customer Support',
-			ogDescription: 'Get help with SheetlyPro bank statement converter. Contact our support team for questions and assistance.',
+			ogDescription:
+				'Get help with SheetlyPro bank statement converter. Contact our support team for questions and assistance.',
 		})
 	}, [])
 
-	const email = 'myboguraapp@gmail.com'
+	const email = 'contact@sheetlypro.com'
 
 	const copyEmail = () => {
 		navigator.clipboard.writeText(email)
@@ -22,7 +25,6 @@ function Contact() {
 
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
-			
 			{/* Hero Section */}
 			<div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white py-20">
 				<div className="container mx-auto px-6 text-center">

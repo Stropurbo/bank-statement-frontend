@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { Mail, Phone, MapPin, X, Share2, Users, Camera } from 'lucide-react'
 
 function Footer() {
-  return (
+	return (
 		<footer className="bg-gray-900 text-white">
 			<div className="container mx-auto px-6 py-16">
 				<div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
@@ -117,7 +117,7 @@ function Footer() {
 						<ul className="space-y-3 mb-6">
 							<li className="flex items-center gap-3 text-gray-400">
 								<Mail className="h-4 w-4" />
-								<span>myboguraapp@gmail.com</span>
+								<span>contact@sheetlypro.com</span>
 							</li>
 							{/* <li className="flex items-center gap-3 text-gray-400">
 								<Phone className="h-4 w-4" />
@@ -125,7 +125,6 @@ function Footer() {
 							</li> */}
 						</ul>
 						<div>
-						
 							<ul className="space-y-2">
 								<li>
 									<a
@@ -161,7 +160,7 @@ function Footer() {
 				</div>
 			</div>
 		</footer>
-  )
+	)
 }
 
 export default Footer
