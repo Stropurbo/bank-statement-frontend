@@ -38,6 +38,7 @@ const Sidebar = () => {
 		{ to: '/dashboard/create-plan', icon: Podcast, label: 'Create Plan' },
 		{ to: '/dashboard/plans', icon: Newspaper, label: 'Plans' },
 		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Premium Users' },
+		{ to: '/dashboard/admin/statements', icon: BsPeople, label: 'ALl Statement' },
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu
@@ -49,7 +50,7 @@ const Sidebar = () => {
 				aria-label="close sidebar"
 				className="drawer-overlay"
 			></label>
-			<aside 
+			<aside
 				className={`bg-slate-50 ${isCollapsed ? 'w-16' : 'w-64'} h-screen transition-all duration-300 flex flex-col fixed z-50`}
 				style={{'--sidebar-width': isCollapsed ? '64px' : '256px'}}
 				onTransitionEnd={() => {

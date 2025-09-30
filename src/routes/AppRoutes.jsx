@@ -15,6 +15,7 @@ import PaymentStatus from '../pages/PaymentStatus'
 import PaymentFail from '../pages/PaymentFail'
 import PaymentCancel from '../pages/PaymentCancel'
 import AdminDashboard from '../pages/AdminDashboard'
+import AdminStatements from '../pages/AdminStatements'
 import DashboardLayout from '../layout/DashboardLayout'
 import PrivateRoute from './PrivateRoute'
 import UserList from '../pages/UserList'
@@ -88,6 +89,10 @@ function AppRoutes() {
 						element={<UserList />}
 					/>
 					<Route
+						path="admin/statements"
+						element={<AdminStatements />}
+					/>
+					<Route
 						path="add-plan"
 						element={<AddPlan />}
 					/>
@@ -99,6 +104,7 @@ function AppRoutes() {
 						path="plans"
 						element={<AllPlan />}
 					/>
+
 				</Route>
 
 				<Route
