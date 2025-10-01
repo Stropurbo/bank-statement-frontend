@@ -15,7 +15,7 @@ function PriceSection() {
 			setError(null)
 			try {
 				const response = await ApiClient.get('/plans/')
-				setPricingTiers(response.data.results || [])
+				setPricingTiers(response.data.results || response.data || [])
 			} catch (err) {
 				console.error('Failed to fetch pricing tiers:', err)
 				setError('Failed to load pricing plans. Please refresh the page.')

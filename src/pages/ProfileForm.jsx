@@ -13,10 +13,13 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 								src={profilePreview}
 								alt="Profile Preview"
 								className="w-full h-full object-cover"
+								onError={(e) => {
+									e.target.style.display = 'none'
+									e.target.nextSibling.style.display = 'flex'
+								}}
 							/>
-						) : (
-							<User className="h-12 w-12 text-purple-400" />
-						)}
+						) : null}
+						<User className={`h-12 w-12 text-purple-400 ${profilePreview ? 'hidden' : 'flex'}`} />
 					</div>
 					{isEditing && (
 						<div className="absolute -bottom-2 -right-2">

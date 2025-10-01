@@ -76,7 +76,9 @@ const UserList = () => {
 			is_staff: user.is_staff || false,
 			has_subscription: hasActiveSubscription(user),
 			subscription_plan: user.usersubscription?.plan?.id || '',
-			end_date: user.usersubscription?.end_date ? user.usersubscription.end_date.split('T')[0] : ''
+			end_date: user.usersubscription?.end_date
+				? user.usersubscription.end_date.split('T')[0]
+				: '',
 		})
 	}
 
@@ -109,9 +111,14 @@ const UserList = () => {
 			console.log('Response status:', response.status)
 
 			// Update subscription if plan or end_date changed
-			const planChanged = editForm.subscription_plan !== (editingUser.usersubscription?.plan?.id || '')
-			const endDateChanged = editForm.end_date !== (editingUser.usersubscription?.end_date ? editingUser.usersubscription.end_date.split('T')[0] : '')
-			
+			const planChanged =
+				editForm.subscription_plan !== (editingUser.usersubscription?.plan?.id || '')
+			const endDateChanged =
+				editForm.end_date !==
+				(editingUser.usersubscription?.end_date
+					? editingUser.usersubscription.end_date.split('T')[0]
+					: '')
+
 			if (planChanged || endDateChanged) {
 				try {
 					if (editingUser.usersubscription?.id) {
@@ -121,7 +128,7 @@ const UserList = () => {
 							{
 								plan_id: editForm.subscription_plan || null,
 								is_active: !!editForm.subscription_plan,
-								end_date: editForm.end_date || null
+								end_date: editForm.end_date || null,
 							},
 						)
 						console.log(
@@ -135,7 +142,7 @@ const UserList = () => {
 							user: editingUser.id,
 							plan_id: editForm.subscription_plan,
 							is_active: true,
-							end_date: editForm.end_date || null
+							end_date: editForm.end_date || null,
 						})
 						console.log('Subscription created successfully')
 					}
@@ -379,10 +386,11 @@ const UserList = () => {
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												{user.usersubscription?.end_date ? 
-													new Date(user.usersubscription.end_date).toLocaleDateString() : 
-													'No End Date'
-												}
+												{user.usersubscription?.end_date
+													? new Date(
+															user.usersubscription.end_date,
+													  ).toLocaleDateString()
+													: 'No End Date'}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 												<div className="flex items-center justify-end gap-2">

@@ -27,7 +27,7 @@ function Pricing() {
 			try {
 				const response = await ApiClient.get('/plans/')
 				console.log('API Response:', response.data)
-				setPricingTiers(response.data.results || [])
+				setPricingTiers(response.data.results || response.data || [])
 			} catch (err) {
 				console.error('Failed to fetch pricing tiers:', err)
 				setError('Failed to load pricing plans')

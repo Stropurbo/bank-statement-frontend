@@ -14,6 +14,7 @@ import {
 	CreditCard,
 } from 'lucide-react'
 import { useLocation, Link } from 'react-router'
+import AuthApiClient from '../services/auth-api-client'
 
 const Profile = () => {
 	const [isEditing, setIsEditing] = useState(false)
@@ -24,8 +25,11 @@ const Profile = () => {
 
 	const getImageUrl = (path) => {
 		if (!path) return null
-		if (path.startsWith('http')) return path
-		return `https://bank-statement-converter-backend-ofyc.onrender.com${path}`
+		if (typeof path === 'string' && path.startsWith('http')) return path
+		if (typeof path === 'string' && path.startsWith('image/upload/')) {
+			return `https://res.cloudinary.com/dwhkvm4zp/${path}`
+		}
+		return path
 	}
 
 	const location = useLocation()
@@ -39,6 +43,20 @@ const Profile = () => {
 	} = useForm()
 	const [successMessage, setSuccessMessage] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
+	const [subscriptionData, setSubscriptionData] = useState(null)
+
+	// Fetch subscription status
+	useEffect(() => {
+		const fetchSubscriptionStatus = async () => {
+			try {
+				const response = await AuthApiClient.get('/subscription/status/')
+				setSubscriptionData(response.data)
+			} catch (error) {
+				console.error('Failed to fetch subscription status:', error)
+			}
+			}
+		fetchSubscriptionStatus()
+	}, [])
 
 	useEffect(() => {
 		const urlParams = new URLSearchParams(location.search)
@@ -56,7 +74,6 @@ const Profile = () => {
 	useEffect(() => {
 		if (user && typeof user === 'object') {
 			Object.keys(user).forEach((key) => setValue(key, user[key]))
-
 			setProfilePreview(getImageUrl(user.profile_image))
 		}
 	}, [user, setValue])
@@ -101,12 +118,14 @@ const Profile = () => {
 			const updatedUser = await updateUserProfile(formData)
 			if (updatedUser.success && updatedUser.data) {
 				setUser(updatedUser.data)
+				// For new uploads, keep the preview from file selection
+				if (!selectedFile) {
+					setProfilePreview(getImageUrl(updatedUser.data.profile_image))
+				}
 			}
 
-			if (updatedUser.success && updatedUser.data) {
-				setUser(updatedUser.data)
-				setProfilePreview(getImageUrl(updatedUser.data.profile_image))
-			}
+			// Clear selected file after successful upload
+			setSelectedFile(null)
 
 			setSuccessMessage('Profile updated successfully!')
 			setTimeout(() => {
@@ -235,8 +254,7 @@ const Profile = () => {
 										<div className="text-xs text-gray-600">
 											<p>
 												Remaining uploads:{' '}
-												{user.usersubscription.remaining_uploads ||
-													'N/A'}
+												{subscriptionData?.remaining_uploads || user.usersubscription.remaining_uploads || 'N/A'}
 											</p>
 											<p>
 												Valid until:{' '}

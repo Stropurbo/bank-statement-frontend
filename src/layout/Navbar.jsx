@@ -10,8 +10,11 @@ function Navbar() {
 
 	const getImageUrl = (path) => {
 		if (!path) return null
-		if (path.startsWith('http')) return path
-		return `https://res.cloudinary.com/dwhkvm4zp/${path}`
+		if (typeof path === 'string' && path.startsWith('http')) return path
+		if (typeof path === 'string' && path.startsWith('image/upload/')) {
+			return `https://res.cloudinary.com/dwhkvm4zp/${path}`
+		}
+		return path
 	}
 
 	return (
