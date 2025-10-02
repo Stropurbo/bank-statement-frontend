@@ -21,14 +21,13 @@ function HeroSection() {
 		if (!user) return
 		try {
 			const response = await AuthApiClient.get('user-subscription-status/')
-			console.log('User Status Response:', response.data) // Debug log
+			console.log('User Status Response:', response.data)
 			setUserStatus(response.data)
 		} catch (error) {
 			console.error('Failed to fetch user status:', error)
 		}
 	}
 
-	// Fetch user status when component mounts or user changes
 	React.useEffect(() => {
 		fetchUserStatus()
 	}, [user])
@@ -58,32 +57,34 @@ function HeroSection() {
 
 			setPassword('')
 			setFileToUpload(null)
-			// Refresh user status after successful upload
 			await fetchUserStatus()
 		} catch (error) {
 			console.error('Upload error:', error)
 			if (error.response) {
 				console.error('Error response:', error.response.data)
 				const errorData = error.response.data
-				const errorMessage =
-					errorData.error ||
-					errorData.detail ||
-					errorData.message ||
-					'Server error occurred'
-				const errorString =
-					typeof errorMessage === 'string'
-						? errorMessage
-						: JSON.stringify(errorMessage)
+				let errorMessage = errorData.error || errorData.detail || errorData.message || 'Server error occurred'
+				
+				const errorString = typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
+				
+				console.log('Full error string:', errorString)
+				console.log('Current password being sent:', currentPassword)
+				console.log('FileToUpload state:', fileToUpload?.name)
 
-				// Check if it's a password-protected PDF error
 				if (
 					error.response.status === 400 &&
-					(errorString.includes('password-protected') ||
-						errorString.includes('Please provide the password') ||
-						errorString.includes('Incorrect password'))
+					(errorString.includes('Password-protected PDFs are not supported') ||
+						errorString.includes('PDF is password protected') ||
+						errorString.includes('Please provide password') ||
+						errorString.includes('Invalid password') ||
+						errorString.includes('PASSWORD_REQUIRED') ||
+						errorString.includes('INVALID_PASSWORD') ||
+						errorData.error_code === 'PASSWORD_REQUIRED' ||
+						errorData.error_code === 'INVALID_PASSWORD')
 				) {
 					setError('This PDF is password protected. Please enter the password below.')
 					setFileToUpload(file)
+					console.log('Setting fileToUpload:', file.name) // Debug log
 				} else if (
 					error.response.status === 403 &&
 					(errorString.includes('Daily limit exceeded') || errorString.includes('monthly upload limit'))
@@ -99,7 +100,8 @@ function HeroSection() {
 					errorString.includes('No /Root object') ||
 					errorString.includes('OCR completely failed') ||
 					errorString.includes('Cannot open empty stream') ||
-					errorString.includes('PDFPlumber failed')
+					errorString.includes('PDFPlumber failed') ||
+					errorString.includes('Unable to extract data from this PDF')
 				) {
 					setError('Unable to extract text from this PDF. Please ensure: 1) PDF is not password protected 2) Contains readable text (not just images) 3) Try a different bank statement PDF.')
 				} else {
@@ -118,13 +120,11 @@ function HeroSection() {
 		const file = e.target.files[0]
 		if (!file) return
 
-		// Validate file type
 		if (!file.type.includes('pdf') && !file.name.toLowerCase().endsWith('.pdf')) {
 			setError('Please select a valid PDF file.')
 			return
 		}
 
-		// Validate file size
 		if (file.size === 0) {
 			setError('The selected file is empty. Please choose a valid PDF.')
 			return
@@ -140,7 +140,6 @@ function HeroSection() {
 			return
 		}
 
-		// Basic PDF header validation
 		try {
 			const arrayBuffer = await file.slice(0, 8).arrayBuffer()
 			const uint8Array = new Uint8Array(arrayBuffer)
@@ -151,7 +150,7 @@ function HeroSection() {
 				return
 			}
 		} catch (error) {
-			console.log(error);
+			console.log(error)
 			setError('Unable to read file. Please try again.')
 			return
 		}
@@ -191,48 +190,12 @@ function HeroSection() {
 		} catch (error) {
 			console.error('Download failed:', error)
 			if (error.response?.status === 403 || error.message?.includes('token')) {
-				setError(
-					'Session expired or invalid token. Please log in again with premium plan.',
-				)
+				setError('Session expired or invalid token. Please log in again with premium plan.')
 			} else if (error.response?.status === 401) {
 				setError('Authentication required. Please login and purchase premium plan.')
 			} else {
 				setError('Download failed! Please try again or contact support.')
 			}
-		} finally {
-			setDownloading(false)
-		}
-	}
-
-	const handleGoogleDriveSave = async () => {
-		if (!statementId) return alert('No statement available to save')
-
-		if (!user) {
-			alert('Please log in to save your file to Google Drive.')
-			return
-		}
-
-		setDownloading(true)
-		try {
-			// Load Google APIs
-			await loadGoogleAPIs()
-
-			// Authenticate with Google
-			const authToken = await authenticateGoogle()
-			window.currentAccessToken = authToken
-
-			// Get the file blob
-			const response = await AuthApiClient.get(`download-excel/${statementId}/`, {
-				responseType: 'blob',
-			})
-
-			// Upload directly to Google Drive root
-			await uploadToGoogleDrive(response.data, null, 'bank_statement.csv')
-
-			alert('File saved to Google Drive successfully!')
-		} catch (error) {
-			console.error('Google Drive save failed:', error)
-			setError('Failed to save to Google Drive. Please try again.')
 		} finally {
 			setDownloading(false)
 		}
@@ -279,51 +242,70 @@ function HeroSection() {
 		})
 	}
 
-
-
 	const uploadToGoogleDrive = (fileBlob, folderId, fileName) => {
 		return new Promise((resolve, reject) => {
 			const metadata = {
 				name: fileName
 			}
-			// Only add parents if folderId is provided, otherwise save to root
+
 			if (folderId) {
 				metadata.parents = [folderId]
 			}
 
 			const form = new FormData()
-			form.append(
-				'metadata',
-				new Blob([JSON.stringify(metadata)], { type: 'application/json' }),
-			)
+			form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }))
 			form.append('file', fileBlob)
 
 			fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
 				method: 'POST',
 				headers: {
-					Authorization: `Bearer ${window.currentAccessToken}`,
+					'Authorization': `Bearer ${window.currentAccessToken}`
 				},
-				body: form,
+				body: form
 			})
-				.then((response) => {
-					if (response.ok) {
-						resolve(response.json())
+				.then(response => response.json())
+				.then(data => {
+					if (data.error) {
+						reject(new Error(data.error.message))
 					} else {
-						reject(new Error('Upload failed'))
+						resolve(data)
 					}
 				})
 				.catch(reject)
 		})
 	}
 
-	const handleClick = () => {
-		if (inputRef.current) inputRef.current.click()
+	const handleGoogleDriveSave = async () => {
+		if (!statementId) return alert('No statement available to save')
+
+		if (!user) {
+			alert('Please log in to save your file to Google Drive.')
+			return
+		}
+
+		setDownloading(true)
+		try {
+			await loadGoogleAPIs()
+			const authToken = await authenticateGoogle()
+			window.currentAccessToken = authToken
+
+			const response = await AuthApiClient.get(`download-excel/${statementId}/`, {
+				responseType: 'blob',
+			})
+
+			await uploadToGoogleDrive(response.data, null, 'bank_statement.csv')
+			alert('File saved to Google Drive successfully!')
+		} catch (error) {
+			console.error('Google Drive save failed:', error)
+			setError('Failed to save to Google Drive. Please try again.')
+		} finally {
+			setDownloading(false)
+		}
 	}
 
 	return (
 		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 flex items-center">
 			<div className="container mx-auto px-6 py-24">
-				{/* Hero Header */}
 				<div className="text-center mb-16">
 					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
 						<Sparkles className="h-4 w-4" />
@@ -343,7 +325,7 @@ function HeroSection() {
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 1 FREE PDF conversion per day • Upgrade for unlimited access
+								🆓 Login for 2 FREE PDF conversions per day • Upgrade for unlimited access
 							</p>
 						</div>
 					) : userStatus && (
@@ -365,7 +347,6 @@ function HeroSection() {
 						</div>
 					)}
 
-					{/* Trust Indicators */}
 					<div className="flex flex-wrap justify-center gap-8 mb-16 text-sm text-gray-600">
 						<div className="flex items-center gap-2">
 							<CheckCircle className="h-5 w-5 text-green-600" />
@@ -388,7 +369,6 @@ function HeroSection() {
 					</div>
 				)}
 
-				{/* Upload Section */}
 				<div className="max-w-3xl mx-auto mb-20">
 					<div className="bg-white border-2 border-dashed border-purple-200 rounded-3xl p-16 hover:border-purple-400 transition-all duration-300 shadow-2xl hover:shadow-3xl">
 						<div className="flex flex-col items-center gap-8">
@@ -419,7 +399,7 @@ function HeroSection() {
 
 							<button
 								type="button"
-								onClick={handleClick}
+								onClick={() => inputRef.current?.click()}
 								disabled={loading || !user || (userStatus?.remaining_uploads === 0)}
 								className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
 									user
@@ -439,16 +419,13 @@ function HeroSection() {
 						</div>
 					</div>
 
-					{fileToUpload && (
+					{(fileToUpload && error && (error.toLowerCase().includes('password protected') || error.toLowerCase().includes('password required'))) && (
 						<div className="mt-8 max-w-md mx-auto">
 							<div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
 								<h4 className="font-semibold text-yellow-800 mb-4 text-center">
 									Password Protected PDF
 								</h4>
-								<form
-									onSubmit={handlePasswordSubmit}
-									className="space-y-4"
-								>
+								<form onSubmit={handlePasswordSubmit} className="space-y-4">
 									<input
 										type="password"
 										placeholder="Enter PDF password"
@@ -486,7 +463,6 @@ function HeroSection() {
 					{tableData && (
 						<div className="mt-12 max-w-6xl mx-auto">
 							<div className="bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden">
-								{/* Success Header */}
 								<div className="bg-gradient-to-r from-green-50 to-emerald-50 p-8 border-b border-gray-200">
 									<div className="flex items-center justify-center gap-3 mb-4">
 										<div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
@@ -502,7 +478,6 @@ function HeroSection() {
 									</p>
 								</div>
 
-								{/* Data Table */}
 								<div className="p-8">
 									<div className="overflow-x-auto">
 										<table className="w-full">
@@ -541,13 +516,11 @@ function HeroSection() {
 										</table>
 										{tableData.rows.length > 10 && (
 											<p className="text-center text-gray-500 mt-4 text-sm">
-												Showing first 10 rows of {tableData.rows.length}{' '}
-												total transactions
+												Showing first 10 rows of {tableData.rows.length} total transactions
 											</p>
 										)}
 									</div>
 
-									{/* Download Section */}
 									<div className="text-center mt-8">
 										<div
 											className="flex items-center justify-center gap-2 mb-4 cursor-pointer hover:bg-blue-50 p-2 rounded-lg transition-colors"
