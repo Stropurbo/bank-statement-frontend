@@ -95,9 +95,11 @@ function HeroSection() {
 				} else if (
 					errorString.includes('No text could be extracted') ||
 					errorString.includes('No /Root object') ||
-					errorString.includes('OCR completely failed')
+					errorString.includes('OCR completely failed') ||
+					errorString.includes('Cannot open empty stream') ||
+					errorString.includes('PDFPlumber failed')
 				) {
-					setError('Unable to process this PDF. Please ensure it\'s a valid bank statement and try again.')
+					setError('Unable to extract text from this PDF. Please ensure: 1) PDF is not password protected 2) Contains readable text (not just images) 3) Try a different bank statement PDF.')
 				} else {
 					setError(`Failed to process file: ${errorString}`)
 				}
@@ -110,23 +112,44 @@ function HeroSection() {
 		}
 	}
 
-	const handleFileSelect = (e) => {
+	const handleFileSelect = async (e) => {
 		const file = e.target.files[0]
 		if (!file) return
 		
-		// Validate file
-		if (!file.type.includes('pdf')) {
+		// Validate file type
+		if (!file.type.includes('pdf') && !file.name.toLowerCase().endsWith('.pdf')) {
 			setError('Please select a valid PDF file.')
 			return
 		}
 		
+		// Validate file size
 		if (file.size === 0) {
 			setError('The selected file is empty. Please choose a valid PDF.')
 			return
 		}
 		
+		if (file.size < 1024) {
+			setError('File too small. Please select a valid PDF file.')
+			return
+		}
+		
 		if (file.size > 20 * 1024 * 1024) {
 			setError('File too large. Maximum size is 20MB.')
+			return
+		}
+		
+		// Basic PDF header validation
+		try {
+			const arrayBuffer = await file.slice(0, 8).arrayBuffer()
+			const uint8Array = new Uint8Array(arrayBuffer)
+			const header = String.fromCharCode(...uint8Array)
+			
+			if (!header.startsWith('%PDF-')) {
+				setError('Invalid PDF file. Please select a valid bank statement PDF.')
+				return
+			}
+		} catch (error) {
+			setError('Unable to read file. Please try again.')
 			return
 		}
 		
