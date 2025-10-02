@@ -28,6 +28,7 @@ import ForgotPassword from '../pages/ForgotPassword'
 import ResetPassword from '../pages/ResetPassword'
 import { Routes, Route } from 'react-router'
 import PremiumUsers from '../pages/PremiumUsers'
+import MailMarketing from '../pages/MailMarketing'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -108,6 +109,10 @@ function AppRoutes() {
 					<Route
 						path="subscriber"
 						element={<PremiumUsers />}
+					/>
+					<Route
+						path="mail-marketing"
+						element={<MailMarketing />}
 					/>
 				</Route>
 

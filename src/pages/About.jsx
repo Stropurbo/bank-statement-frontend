@@ -1,20 +1,22 @@
 import { Target, Zap, Shield, Clock, FileText, Users, TrendingUp } from 'lucide-react'
-import AboveFooter from '../components/Home/AboveFooter'
+import AboveFooter from '../pdf_to_excel/AboveFooter'
 import React, { useEffect } from 'react'
 import { setMeta } from '../utils/setMeta'
 
 function About() {
-
 	useEffect(() => {
-			setMeta({
-				title: 'About SheetlyPro - Bank Statement Converter Tool',
-				description: 'Learn about SheetlyPro - the leading bank statement converter tool. Transform PDF bank statements to Excel/CSV instantly with cutting-edge technology.',
-				keywords: 'about sheetlypro, bank statement converter, PDF to Excel, financial data conversion, company mission',
-				ogTitle: 'About SheetlyPro - Bank Statement Converter',
-				ogDescription: 'Discover how SheetlyPro transforms bank statement processing with advanced technology and user-focused design.',
-			})
-		}, [])
-		
+		setMeta({
+			title: 'About SheetlyPro - Bank Statement Converter Tool',
+			description:
+				'Learn about SheetlyPro - the leading bank statement converter tool. Transform PDF bank statements to Excel/CSV instantly with cutting-edge technology.',
+			keywords:
+				'about sheetlypro, bank statement converter, PDF to Excel, financial data conversion, company mission',
+			ogTitle: 'About SheetlyPro - Bank Statement Converter',
+			ogDescription:
+				'Discover how SheetlyPro transforms bank statement processing with advanced technology and user-focused design.',
+		})
+	}, [])
+
 	return (
 		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
 			{/* Hero Section */}

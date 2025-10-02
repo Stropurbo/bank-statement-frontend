@@ -1,7 +1,7 @@
 import { Upload, FileText, Download, CheckCircle, ArrowRight, Sparkles } from 'lucide-react'
 import React, { useRef, useState, useContext } from 'react'
-import AuthApiClient from '../../services/auth-api-client'
-import AuthContext from '../../context/AuthContext'
+import AuthApiClient from '../services/auth-api-client'
+import AuthContext from '../context/AuthContext'
 
 function HeroSection() {
 	const { user } = useContext(AuthContext)
@@ -116,10 +116,12 @@ function HeroSection() {
 			window.URL.revokeObjectURL(url)
 		} catch (error) {
 			console.error('Download failed:', error)
-			if (error.response?.status === 403) {
-				alert('Session expired. Please log in again.')
+			if (error.response?.status === 403 || error.message?.includes('token')) {
+				setError('Session expired or invalid token. Please log in again with premium plan.')
+			} else if (error.response?.status === 401) {
+				setError('Authentication required. Please login and purchase premium plan.')
 			} else {
-				alert('Download failed! Please try again.')
+				setError('Download failed! Please try again or contact support.')
 			}
 		} finally {
 			setDownloading(false)
@@ -146,10 +148,17 @@ function HeroSection() {
 							PDF To Excel Instantly
 						</span>
 					</h1>
-					<p className="text-xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+					<p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
 						Upload your PDF bank statement and watch our AI convert it into a clean,
 						organized Excel file in seconds. No manual data entry required.
 					</p>
+					{!user && (
+						<div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
+							<p className="text-amber-800 text-center font-medium">
+								🔒 Please login and purchase a premium plan to upload and convert your bank statements
+							</p>
+						</div>
+					)}
 
 					{/* Trust Indicators */}
 					<div className="flex flex-wrap justify-center gap-8 mb-16 text-sm text-gray-600">
@@ -206,11 +215,15 @@ function HeroSection() {
 							<button
 								type="button"
 								onClick={handleClick}
-								disabled={loading}
-								className="group bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+								disabled={loading || !user}
+								className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
+									user 
+										? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700'
+										: 'bg-gray-400 text-gray-600'
+								}`}
 							>
 								<Upload className="inline-block mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
-								{loading ? 'Processing...' : 'Choose PDF File'}
+								{loading ? 'Processing...' : user ? 'Choose PDF File' : 'Login Required'}
 							</button>
 						</div>
 					</div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Mail, Copy } from 'lucide-react'
-import AboveFooter from '../components/Home/AboveFooter'
+import AboveFooter from '../pdf_to_excel/AboveFooter'
 import { setMeta } from '../utils/setMeta'
 
 function Contact() {

@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router'
 import { BiLogOut } from 'react-icons/bi'
-import { Newspaper, Podcast } from 'lucide-react'
+import { Newspaper, Podcast, Mail } from 'lucide-react'
 import { BsPeople } from 'react-icons/bs'
 import useAuthContext from '../hooks/useAuthContext'
 import { useState, useEffect } from 'react'
@@ -39,6 +39,7 @@ const Sidebar = () => {
 		{ to: '/dashboard/plans', icon: Newspaper, label: 'Plans' },
 		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Premium Users' },
 		{ to: '/dashboard/admin/statements', icon: BsPeople, label: 'ALl Statement' },
+		{ to: '/dashboard/mail-marketing', icon: Mail, label: 'Mail Marketing' },
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu

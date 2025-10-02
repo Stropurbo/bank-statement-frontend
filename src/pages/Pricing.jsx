@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
-import AboveFooter from '../components/Home/AboveFooter'
+import AboveFooter from '../pdf_to_excel/AboveFooter'
 import { Link } from 'react-router-dom'
 import ApiClient from '../services/api-client'
 import { setMeta } from '../utils/setMeta'
@@ -141,7 +141,6 @@ function Pricing() {
 	return (
 		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
 			<div className="container mx-auto px-6 py-24">
-
 				<div className="text-center mb-16">
 					<div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
 						Pricing Plans

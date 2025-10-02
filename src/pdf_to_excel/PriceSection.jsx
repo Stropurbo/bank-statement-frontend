@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Sparkles, Loader2 } from 'lucide-react'
-import ApiClient from '../../services/api-client'
+import ApiClient from '../services/api-client'
 
 function PriceSection() {
 	const [billing, setBilling] = useState('monthly')
