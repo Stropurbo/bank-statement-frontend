@@ -21,6 +21,7 @@ function HeroSection() {
 		if (!user) return
 		try {
 			const response = await AuthApiClient.get('user-subscription-status/')
+			console.log('User Status Response:', response.data) // Debug log
 			setUserStatus(response.data)
 		} catch (error) {
 			console.error('Failed to fetch user status:', error)
