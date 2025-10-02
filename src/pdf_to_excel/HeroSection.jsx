@@ -63,10 +63,17 @@ function HeroSection() {
 			if (error.response) {
 				console.error('Error response:', error.response.data)
 				const errorData = error.response.data
-				let errorMessage = errorData.error || errorData.detail || errorData.message || 'Server error occurred'
-				
-				const errorString = typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
-				
+				let errorMessage =
+					errorData.error ||
+					errorData.detail ||
+					errorData.message ||
+					'Server error occurred'
+
+				const errorString =
+					typeof errorMessage === 'string'
+						? errorMessage
+						: JSON.stringify(errorMessage)
+
 				console.log('Full error string:', errorString)
 				console.log('Current password being sent:', currentPassword)
 				console.log('FileToUpload state:', fileToUpload?.name)
@@ -87,10 +94,13 @@ function HeroSection() {
 					console.log('Setting fileToUpload:', file.name) // Debug log
 				} else if (
 					error.response.status === 403 &&
-					(errorString.includes('Daily limit exceeded') || errorString.includes('monthly upload limit'))
+					(errorString.includes('Daily limit exceeded') ||
+						errorString.includes('monthly upload limit'))
 				) {
 					console.log('Limit error details:', errorData)
-					setError('Daily upload limit reached! Upgrade to premium for unlimited access.')
+					setError(
+						'Daily upload limit reached! Upgrade to premium for unlimited access.',
+					)
 				} else if (
 					errorString.includes('Authentication credentials were not provided')
 				) {
@@ -103,7 +113,9 @@ function HeroSection() {
 					errorString.includes('PDFPlumber failed') ||
 					errorString.includes('Unable to extract data from this PDF')
 				) {
-					setError('Unable to extract text from this PDF. Please ensure: 1) PDF is not password protected 2) Contains readable text (not just images) 3) Try a different bank statement PDF.')
+					setError(
+						'Unable to extract text from this PDF. Please ensure: 1) PDF is not password protected 2) Contains readable text (not just images) 3) Try a different bank statement PDF.',
+					)
 				} else {
 					setError(`Failed to process file: ${errorString}`)
 				}
@@ -190,7 +202,9 @@ function HeroSection() {
 		} catch (error) {
 			console.error('Download failed:', error)
 			if (error.response?.status === 403 || error.message?.includes('token')) {
-				setError('Session expired or invalid token. Please log in again with premium plan.')
+				setError(
+					'Session expired or invalid token. Please log in again with premium plan.',
+				)
 			} else if (error.response?.status === 401) {
 				setError('Authentication required. Please login and purchase premium plan.')
 			} else {
@@ -225,7 +239,8 @@ function HeroSection() {
 	const authenticateGoogle = () => {
 		return new Promise((resolve, reject) => {
 			const client = window.google.accounts.oauth2.initTokenClient({
-				client_id: '806556000803-fb90k8tqovgh3m3fh1em1vt5l54mgdse.apps.googleusercontent.com',
+				client_id:
+					'806556000803-fb90k8tqovgh3m3fh1em1vt5l54mgdse.apps.googleusercontent.com',
 				scope: 'https://www.googleapis.com/auth/drive.file',
 				callback: (response) => {
 					if (response.access_token) {
@@ -236,7 +251,7 @@ function HeroSection() {
 				},
 				error_callback: (error) => {
 					reject(error)
-				}
+				},
 			})
 			client.requestAccessToken()
 		})
@@ -245,7 +260,7 @@ function HeroSection() {
 	const uploadToGoogleDrive = (fileBlob, folderId, fileName) => {
 		return new Promise((resolve, reject) => {
 			const metadata = {
-				name: fileName
+				name: fileName,
 			}
 
 			if (folderId) {
@@ -253,18 +268,21 @@ function HeroSection() {
 			}
 
 			const form = new FormData()
-			form.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }))
+			form.append(
+				'metadata',
+				new Blob([JSON.stringify(metadata)], { type: 'application/json' }),
+			)
 			form.append('file', fileBlob)
 
 			fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
 				method: 'POST',
 				headers: {
-					'Authorization': `Bearer ${window.currentAccessToken}`
+					Authorization: `Bearer ${window.currentAccessToken}`,
 				},
-				body: form
+				body: form,
 			})
-				.then(response => response.json())
-				.then(data => {
+				.then((response) => response.json())
+				.then((data) => {
 					if (data.error) {
 						reject(new Error(data.error.message))
 					} else {
@@ -325,26 +343,32 @@ function HeroSection() {
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 2 FREE PDF conversions per day • Upgrade for unlimited access
+								🆓 Login for 2 FREE PDF conversions per day • Upgrade for
+								unlimited access
 							</p>
 						</div>
-					) : userStatus && (
-						<div className={`border rounded-xl p-4 mb-8 max-w-2xl mx-auto ${
-							userStatus.user_type === 'free'
-								? 'bg-green-50 border-green-200'
-								: 'bg-purple-50 border-purple-200'
-						}`}>
-							<p className={`text-center font-medium ${
-								userStatus.user_type === 'free'
-									? 'text-green-800'
-									: 'text-purple-800'
-							}`}>
-								{userStatus.user_type === 'free'
-									? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining today`
-									: `⭐ ${userStatus.plan_name}: ${userStatus.remaining_uploads} uploads remaining this month`
-								}
-							</p>
-						</div>
+					) : (
+						userStatus && (
+							<div
+								className={`border rounded-xl p-4 mb-8 max-w-2xl mx-auto ${
+									userStatus.user_type === 'free'
+										? 'bg-green-50 border-green-200'
+										: 'bg-purple-50 border-purple-200'
+								}`}
+							>
+								<p
+									className={`text-center font-medium ${
+										userStatus.user_type === 'free'
+											? 'text-green-800'
+											: 'text-purple-800'
+									}`}
+								>
+									{userStatus.user_type === 'free'
+										? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining today`
+										: `⭐ ${userStatus.plan_name}: ${userStatus.remaining_uploads} uploads remaining this month`}
+								</p>
+							</div>
+						)
 					)}
 
 					<div className="flex flex-wrap justify-center gap-8 mb-16 text-sm text-gray-600">
@@ -400,7 +424,9 @@ function HeroSection() {
 							<button
 								type="button"
 								onClick={() => inputRef.current?.click()}
-								disabled={loading || !user || (userStatus?.remaining_uploads === 0)}
+								disabled={
+									loading || !user || userStatus?.remaining_uploads === 0
+								}
 								className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
 									user
 										? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700'
@@ -419,32 +445,38 @@ function HeroSection() {
 						</div>
 					</div>
 
-					{(fileToUpload && error && (error.toLowerCase().includes('password protected') || error.toLowerCase().includes('password required'))) && (
-						<div className="mt-8 max-w-md mx-auto">
-							<div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-								<h4 className="font-semibold text-yellow-800 mb-4 text-center">
-									Password Protected PDF
-								</h4>
-								<form onSubmit={handlePasswordSubmit} className="space-y-4">
-									<input
-										type="password"
-										placeholder="Enter PDF password"
-										value={password}
-										onChange={(e) => setPassword(e.target.value)}
-										className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-										required
-									/>
-									<button
-										type="submit"
-										disabled={loading}
-										className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50"
+					{fileToUpload &&
+						error &&
+						(error.toLowerCase().includes('password protected') ||
+							error.toLowerCase().includes('password required')) && (
+							<div className="mt-8 max-w-md mx-auto">
+								<div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+									<h4 className="font-semibold text-yellow-800 mb-4 text-center">
+										Password Protected PDF
+									</h4>
+									<form
+										onSubmit={handlePasswordSubmit}
+										className="space-y-4"
 									>
-										{loading ? 'Processing...' : 'Unlock & Convert'}
-									</button>
-								</form>
+										<input
+											type="password"
+											placeholder="Enter PDF password"
+											value={password}
+											onChange={(e) => setPassword(e.target.value)}
+											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+											required
+										/>
+										<button
+											type="submit"
+											disabled={loading}
+											className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50"
+										>
+											{loading ? 'Processing...' : 'Unlock & Convert'}
+										</button>
+									</form>
+								</div>
 							</div>
-						</div>
-					)}
+						)}
 
 					{loading && (
 						<div className="mt-8 max-w-md mx-auto">
@@ -516,7 +548,8 @@ function HeroSection() {
 										</table>
 										{tableData.rows.length > 10 && (
 											<p className="text-center text-gray-500 mt-4 text-sm">
-												Showing first 10 rows of {tableData.rows.length} total transactions
+												Showing first 10 rows of {tableData.rows.length}{' '}
+												total transactions
 											</p>
 										)}
 									</div>
