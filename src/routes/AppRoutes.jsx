@@ -50,7 +50,7 @@ const allRoutes = [
 	...publicRoutes,
 	{ path: '/profile', element: <Profile /> },
 	{ path: '/subscription/status', element: <PaymentStatus /> },
-	{ path: '/activate/:uid/:token', element: <ActivateAccount /> },
+	{ path: '/auth/activate/:uid/:token', element: <ActivateAccount /> },
 ]
 
 function AppRoutes() {

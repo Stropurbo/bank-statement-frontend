@@ -14,4 +14,15 @@ export default defineConfig({
 			generateRobotsTxt: true,
 		}),
 	],
+	build: {
+		chunkSizeWarningLimit: 1000,
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					vendor: ['react', 'react-dom'],
+					router: ['react-router', 'react-router-dom'],
+				},
+			},
+		},
+	},
 })
