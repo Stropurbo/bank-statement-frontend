@@ -2,6 +2,7 @@ import { Upload, FileText, Download, CheckCircle, ArrowRight, Sparkles } from 'l
 import React, { useRef, useState, useContext } from 'react'
 import AuthApiClient from '../services/auth-api-client'
 import AuthContext from '../context/AuthContext'
+import { FaGoogleDrive } from 'react-icons/fa'
 
 function HeroSection() {
 	const { user } = useContext(AuthContext)
@@ -117,7 +118,9 @@ function HeroSection() {
 		} catch (error) {
 			console.error('Download failed:', error)
 			if (error.response?.status === 403 || error.message?.includes('token')) {
-				setError('Session expired or invalid token. Please log in again with premium plan.')
+				setError(
+					'Session expired or invalid token. Please log in again with premium plan.',
+				)
 			} else if (error.response?.status === 401) {
 				setError('Authentication required. Please login and purchase premium plan.')
 			} else {
@@ -126,6 +129,118 @@ function HeroSection() {
 		} finally {
 			setDownloading(false)
 		}
+	}
+
+	const handleGoogleDriveSave = async () => {
+		if (!statementId) return alert('No statement available to save')
+
+		if (!user) {
+			alert('Please log in to save your file to Google Drive.')
+			return
+		}
+
+		setDownloading(true)
+		try {
+			// Load Google APIs
+			await loadGoogleAPIs()
+
+			// Authenticate with Google
+			const authToken = await authenticateGoogle()
+			window.currentAccessToken = authToken
+
+			// Get the file blob
+			const response = await AuthApiClient.get(`download-excel/${statementId}/`, {
+				responseType: 'blob',
+			})
+
+			// Upload directly to Google Drive root
+			await uploadToGoogleDrive(response.data, null, 'bank_statement.csv')
+
+			alert('File saved to Google Drive successfully!')
+		} catch (error) {
+			console.error('Google Drive save failed:', error)
+			setError('Failed to save to Google Drive. Please try again.')
+		} finally {
+			setDownloading(false)
+		}
+	}
+
+	const loadGoogleAPIs = () => {
+		return new Promise((resolve, reject) => {
+			if (window.google && window.google.accounts) {
+				resolve()
+				return
+			}
+
+			const script1 = document.createElement('script')
+			script1.src = 'https://accounts.google.com/gsi/client'
+			script1.onload = () => {
+				const script2 = document.createElement('script')
+				script2.src = 'https://apis.google.com/js/picker.js'
+				script2.onload = resolve
+				script2.onerror = reject
+				document.head.appendChild(script2)
+			}
+			script1.onerror = reject
+			document.head.appendChild(script1)
+		})
+	}
+
+	const authenticateGoogle = () => {
+		return new Promise((resolve, reject) => {
+			const client = window.google.accounts.oauth2.initTokenClient({
+				client_id: '806556000803-fb90k8tqovgh3m3fh1em1vt5l54mgdse.apps.googleusercontent.com',
+				scope: 'https://www.googleapis.com/auth/drive.file',
+				callback: (response) => {
+					if (response.access_token) {
+						resolve(response.access_token)
+					} else {
+						reject(new Error('Failed to get access token'))
+					}
+				},
+				error_callback: (error) => {
+					reject(error)
+				}
+			})
+			client.requestAccessToken()
+		})
+	}
+
+
+
+	const uploadToGoogleDrive = (fileBlob, folderId, fileName) => {
+		return new Promise((resolve, reject) => {
+			const metadata = {
+				name: fileName
+			}
+			// Only add parents if folderId is provided, otherwise save to root
+			if (folderId) {
+				metadata.parents = [folderId]
+			}
+
+			const form = new FormData()
+			form.append(
+				'metadata',
+				new Blob([JSON.stringify(metadata)], { type: 'application/json' }),
+			)
+			form.append('file', fileBlob)
+
+			fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+				method: 'POST',
+				headers: {
+					Authorization: `Bearer ${window.currentAccessToken}`,
+				},
+				body: form,
+			})
+				.then((response) => {
+					if (response.ok) {
+						resolve(response.json())
+					} else {
+						reject(new Error('Upload failed'))
+					}
+				})
+				.catch(reject)
+		})
 	}
 
 	const handleClick = () => {
@@ -155,7 +270,8 @@ function HeroSection() {
 					{!user && (
 						<div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-amber-800 text-center font-medium">
-								🔒 Please login and purchase a premium plan to upload and convert your bank statements
+								🔒 Please login and purchase a premium plan to upload and
+								convert your bank statements
 							</p>
 						</div>
 					)}
@@ -217,13 +333,17 @@ function HeroSection() {
 								onClick={handleClick}
 								disabled={loading || !user}
 								className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
-									user 
+									user
 										? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700'
 										: 'bg-gray-400 text-gray-600'
 								}`}
 							>
 								<Upload className="inline-block mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
-								{loading ? 'Processing...' : user ? 'Choose PDF File' : 'Login Required'}
+								{loading
+									? 'Processing...'
+									: user
+									? 'Choose PDF File'
+									: 'Login Required'}
 							</button>
 						</div>
 					</div>
@@ -336,8 +456,19 @@ function HeroSection() {
 										)}
 									</div>
 
-									{/* Download Button */}
-									<div className="flex justify-center mt-8">
+									{/* Download Section */}
+									<div className="text-center mt-8">
+										<div
+											className="flex items-center justify-center gap-2 mb-4 cursor-pointer hover:bg-blue-50 p-2 rounded-lg transition-colors"
+											onClick={handleGoogleDriveSave}
+										>
+											<Download className="h-5 w-5 text-blue-600" />
+											<FaGoogleDrive className="h-5 w-5 text-blue-600" />
+											<span className="text-sm text-gray-600 font-medium">
+												Download & Save to Google Drive
+											</span>
+										</div>
+
 										<button
 											onClick={handleDownload}
 											disabled={downloading || !user}
