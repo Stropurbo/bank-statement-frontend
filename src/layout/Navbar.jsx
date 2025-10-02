@@ -22,8 +22,9 @@ function Navbar() {
 			<div className="container mx-auto px-6">
 				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
-					<Link
-						to="/"
+					<a
+					href='/'
+						
 						className="flex items-center space-x-3 group"
 					>
 						<div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -36,7 +37,7 @@ function Navbar() {
 						<span className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
 							SheetlyPro
 						</span>
-					</Link>
+					</a>
 
 					{/* Desktop Navigation */}
 					<div className="hidden md:flex items-center space-x-8">
