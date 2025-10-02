@@ -13,7 +13,24 @@ function HeroSection() {
 	const [fileToUpload, setFileToUpload] = useState(null)
 	const [error, setError] = useState(null)
 	const [statementId, setStatementId] = useState(null)
+	const [userStatus, setUserStatus] = useState(null)
 	const inputRef = useRef(null)
+
+	// Fetch user subscription status
+	const fetchUserStatus = async () => {
+		if (!user) return
+		try {
+			const response = await AuthApiClient.get('user-subscription-status/')
+			setUserStatus(response.data)
+		} catch (error) {
+			console.error('Failed to fetch user status:', error)
+		}
+	}
+
+	// Fetch user status when component mounts or user changes
+	React.useEffect(() => {
+		fetchUserStatus()
+	}, [user])
 
 	const processUpload = async (file, currentPassword = '') => {
 		let formData = new FormData()
@@ -40,6 +57,8 @@ function HeroSection() {
 
 			setPassword('')
 			setFileToUpload(null)
+			// Refresh user status after successful upload
+			await fetchUserStatus()
 		} catch (error) {
 			console.error('Upload error:', error)
 			if (error.response) {
@@ -65,9 +84,20 @@ function HeroSection() {
 					setError('This PDF is password protected. Please enter the password below.')
 					setFileToUpload(file)
 				} else if (
+					error.response.status === 403 &&
+					(errorString.includes('Daily limit exceeded') || errorString.includes('monthly upload limit'))
+				) {
+					setError('Upload limit reached! Upgrade to premium for unlimited access.')
+				} else if (
 					errorString.includes('Authentication credentials were not provided')
 				) {
-					setError('Please login and purchase a subscription to continue uploading.')
+					setError('Please login to continue uploading.')
+				} else if (
+					errorString.includes('No text could be extracted') ||
+					errorString.includes('No /Root object') ||
+					errorString.includes('OCR completely failed')
+				) {
+					setError('Unable to process this PDF. Please ensure it\'s a valid bank statement and try again.')
 				} else {
 					setError(`Failed to process file: ${errorString}`)
 				}
@@ -83,6 +113,23 @@ function HeroSection() {
 	const handleFileSelect = (e) => {
 		const file = e.target.files[0]
 		if (!file) return
+		
+		// Validate file
+		if (!file.type.includes('pdf')) {
+			setError('Please select a valid PDF file.')
+			return
+		}
+		
+		if (file.size === 0) {
+			setError('The selected file is empty. Please choose a valid PDF.')
+			return
+		}
+		
+		if (file.size > 20 * 1024 * 1024) {
+			setError('File too large. Maximum size is 20MB.')
+			return
+		}
+		
 		processUpload(file)
 	}
 
@@ -267,11 +314,27 @@ function HeroSection() {
 						Upload your PDF bank statement and watch our AI convert it into a clean,
 						organized Excel file in seconds. No manual data entry required.
 					</p>
-					{!user && (
-						<div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
-							<p className="text-amber-800 text-center font-medium">
-								🔒 Please login and purchase a premium plan to upload and
-								convert your bank statements
+					{!user ? (
+						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
+							<p className="text-blue-800 text-center font-medium">
+								🆓 Login for 1 FREE PDF conversion per day • Upgrade for unlimited access
+							</p>
+						</div>
+					) : userStatus && (
+						<div className={`border rounded-xl p-4 mb-8 max-w-2xl mx-auto ${
+							userStatus.user_type === 'free' 
+								? 'bg-green-50 border-green-200' 
+								: 'bg-purple-50 border-purple-200'
+						}`}>
+							<p className={`text-center font-medium ${
+								userStatus.user_type === 'free' 
+									? 'text-green-800' 
+									: 'text-purple-800'
+							}`}>
+								{userStatus.user_type === 'free' 
+									? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining today`
+									: `⭐ ${userStatus.plan_name}: ${userStatus.remaining_uploads} uploads remaining this month`
+								}
 							</p>
 						</div>
 					)}
@@ -331,7 +394,7 @@ function HeroSection() {
 							<button
 								type="button"
 								onClick={handleClick}
-								disabled={loading || !user}
+								disabled={loading || !user || (userStatus?.remaining_uploads === 0)}
 								className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
 									user
 										? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700'
@@ -341,9 +404,11 @@ function HeroSection() {
 								<Upload className="inline-block mr-3 h-6 w-6 group-hover:scale-110 transition-transform" />
 								{loading
 									? 'Processing...'
-									: user
-									? 'Choose PDF File'
-									: 'Login Required'}
+									: !user
+									? 'Login Required'
+									: userStatus?.remaining_uploads === 0
+									? 'Limit Reached'
+									: 'Choose PDF File'}
 							</button>
 						</div>
 					</div>
