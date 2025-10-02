@@ -343,7 +343,7 @@ function HeroSection() {
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 5 FREE PDF conversions per day • Upgrade for unlimited access
+								🆓 Login for 1 FREE PDF conversion per day • Upgrade for unlimited access
 							</p>
 						</div>
 					) : userStatus && (
