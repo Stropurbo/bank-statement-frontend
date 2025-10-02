@@ -88,7 +88,7 @@ function HeroSection() {
 					error.response.status === 403 &&
 					(errorString.includes('Daily limit exceeded') || errorString.includes('monthly upload limit'))
 				) {
-					setError('Upload limit reached! Upgrade to premium for unlimited access.')
+					setError('Daily upload limit reached for your network. Try from a different network or upgrade to premium for unlimited access.')
 				} else if (
 					errorString.includes('Authentication credentials were not provided')
 				) {
@@ -116,44 +116,45 @@ function HeroSection() {
 	const handleFileSelect = async (e) => {
 		const file = e.target.files[0]
 		if (!file) return
-		
+
 		// Validate file type
 		if (!file.type.includes('pdf') && !file.name.toLowerCase().endsWith('.pdf')) {
 			setError('Please select a valid PDF file.')
 			return
 		}
-		
+
 		// Validate file size
 		if (file.size === 0) {
 			setError('The selected file is empty. Please choose a valid PDF.')
 			return
 		}
-		
+
 		if (file.size < 1024) {
 			setError('File too small. Please select a valid PDF file.')
 			return
 		}
-		
+
 		if (file.size > 20 * 1024 * 1024) {
 			setError('File too large. Maximum size is 20MB.')
 			return
 		}
-		
+
 		// Basic PDF header validation
 		try {
 			const arrayBuffer = await file.slice(0, 8).arrayBuffer()
 			const uint8Array = new Uint8Array(arrayBuffer)
 			const header = String.fromCharCode(...uint8Array)
-			
+
 			if (!header.startsWith('%PDF-')) {
 				setError('Invalid PDF file. Please select a valid bank statement PDF.')
 				return
 			}
 		} catch (error) {
+			console.log(error);
 			setError('Unable to read file. Please try again.')
 			return
 		}
-		
+
 		processUpload(file)
 	}
 
@@ -346,17 +347,17 @@ function HeroSection() {
 						</div>
 					) : userStatus && (
 						<div className={`border rounded-xl p-4 mb-8 max-w-2xl mx-auto ${
-							userStatus.user_type === 'free' 
-								? 'bg-green-50 border-green-200' 
+							userStatus.user_type === 'free'
+								? 'bg-green-50 border-green-200'
 								: 'bg-purple-50 border-purple-200'
 						}`}>
 							<p className={`text-center font-medium ${
-								userStatus.user_type === 'free' 
-									? 'text-green-800' 
+								userStatus.user_type === 'free'
+									? 'text-green-800'
 									: 'text-purple-800'
 							}`}>
-								{userStatus.user_type === 'free' 
-									? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining today`
+								{userStatus.user_type === 'free'
+									? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining (shared per network)`
 									: `⭐ ${userStatus.plan_name}: ${userStatus.remaining_uploads} uploads remaining this month`
 								}
 							</p>
