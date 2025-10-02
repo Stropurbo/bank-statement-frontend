@@ -88,7 +88,8 @@ function HeroSection() {
 					error.response.status === 403 &&
 					(errorString.includes('Daily limit exceeded') || errorString.includes('monthly upload limit'))
 				) {
-					setError('Daily upload limit reached for your network. Try from a different network or upgrade to premium for unlimited access.')
+					console.log('Limit error details:', errorData)
+					setError('Daily upload limit reached! Upgrade to premium for unlimited access.')
 				} else if (
 					errorString.includes('Authentication credentials were not provided')
 				) {
@@ -342,7 +343,7 @@ function HeroSection() {
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 1 FREE PDF conversion per day • Upgrade for unlimited access
+								🆓 Login for 5 FREE PDF conversions per day • Upgrade for unlimited access
 							</p>
 						</div>
 					) : userStatus && (
@@ -357,7 +358,7 @@ function HeroSection() {
 									: 'text-purple-800'
 							}`}>
 								{userStatus.user_type === 'free'
-									? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining (shared per network)`
+									? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining today`
 									: `⭐ ${userStatus.plan_name}: ${userStatus.remaining_uploads} uploads remaining this month`
 								}
 							</p>
