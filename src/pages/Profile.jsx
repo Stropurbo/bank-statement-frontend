@@ -44,6 +44,7 @@ const Profile = () => {
 	const [successMessage, setSuccessMessage] = useState('')
 	const [errorMessage, setErrorMessage] = useState('')
 	const [subscriptionData, setSubscriptionData] = useState(null)
+	const [portalLoading, setPortalLoading] = useState(false)
 
 	// Fetch subscription status
 	useEffect(() => {
@@ -100,6 +101,25 @@ const Profile = () => {
 		},
 		[objectUrl],
 	)
+
+	const handleManageSubscription = async () => {
+		setPortalLoading(true)
+		try {
+			const response = await AuthApiClient.post('/customer-portal/')
+			if (response.data.portal_url) {
+				window.open(response.data.portal_url, '_blank')
+			} else {
+				setErrorMessage('Unable to access customer portal')
+				setTimeout(() => setErrorMessage(''), 3000)
+			}
+		} catch (error) {
+			console.error('Portal error:', error)
+			setErrorMessage(error.response?.data?.error || 'Failed to access customer portal')
+			setTimeout(() => setErrorMessage(''), 3000)
+		} finally {
+			setPortalLoading(false)
+		}
+	}
 
 	const onSubmit = async (data) => {
 		try {
@@ -306,6 +326,18 @@ const Profile = () => {
 												Manage your subscription
 											</p>
 											<div className="flex flex-col space-y-2">
+												<button
+													onClick={handleManageSubscription}
+													disabled={portalLoading}
+													className="inline-flex items-center justify-center space-x-2 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200 w-full"
+												>
+													{portalLoading ? (
+														<div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" />
+													) : (
+														<CreditCard className="h-3 w-3" />
+													)}
+													<span>{portalLoading ? 'Loading...' : 'Manage Subscription'}</span>
+												</button>
 												<Link
 													to="/pricing"
 													className="inline-flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"

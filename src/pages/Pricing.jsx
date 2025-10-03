@@ -116,10 +116,18 @@ function Pricing() {
 				}
 			}
 
-			if (response.data.payment_url) {
-				window.location.href = response.data.payment_url
+			console.log('Backend response:', response.data)
+			
+			// Backend returns checkout_url, not payment_url
+			const paymentUrl = response.data.checkout_url || response.data.payment_url
+			
+			if (paymentUrl) {
+				window.location.href = paymentUrl
 			} else {
-				setError(response.data.error || 'Payment initiation failed.')
+				const errorMessage = response.data.error || response.data.message || 'Payment initiation failed.'
+				console.error('Payment initiation failed:', errorMessage)
+				console.error('Full response:', response.data)
+				setError(errorMessage)
 			}
 		} catch (err) {
 			let errorMsg = 'Network error. Please try again.'
