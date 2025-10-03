@@ -14,6 +14,7 @@ function HeroSection() {
 	const [error, setError] = useState(null)
 	const [statementId, setStatementId] = useState(null)
 	const [userStatus, setUserStatus] = useState(null)
+	const [hoveredCategory, setHoveredCategory] = useState(null)
 	const inputRef = useRef(null)
 
 	// Fetch user subscription status
@@ -349,11 +350,13 @@ function HeroSection() {
 		})
 		sqlContent += ');\n\n'
 
-		tableData.rows.forEach(row => {
-			const values = tableData.columns.map(col => {
-				const value = row[col] ?? ''
-				return `'${String(value).replace(/'/g, "''")}'`
-			}).join(', ')
+		tableData.rows.forEach((row) => {
+			const values = tableData.columns
+				.map((col) => {
+					const value = row[col] ?? ''
+					return `'${String(value).replace(/'/g, "''")}'`
+				})
+				.join(', ')
 			sqlContent += `INSERT INTO bank_statement VALUES (${values});\n`
 		})
 
@@ -372,11 +375,14 @@ function HeroSection() {
 		if (!tableData) return alert('No data available to download')
 
 		let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n<bank_statement>\n'
-		tableData.rows.forEach(row => {
+		tableData.rows.forEach((row) => {
 			xmlContent += '  <transaction>\n'
-			tableData.columns.forEach(col => {
+			tableData.columns.forEach((col) => {
 				const value = row[col] ?? ''
-				const escapedValue = String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+				const escapedValue = String(value)
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;')
 				xmlContent += `    <${col}>${escapedValue}</${col}>\n`
 			})
 			xmlContent += '  </transaction>\n'
@@ -392,6 +398,96 @@ function HeroSection() {
 		link.click()
 		link.remove()
 		window.URL.revokeObjectURL(url)
+	}
+
+	const generateSummary = () => {
+		if (!tableData) return null
+
+		let totalIncome = 0
+		let totalExpense = 0
+		const categories = {}
+
+		// Find amount column (case insensitive)
+		const amountCol = tableData.columns.find(
+			(col) =>
+				col.toLowerCase().includes('amount') ||
+				col.toLowerCase().includes('balance') ||
+				col.toLowerCase().includes('debit') ||
+				col.toLowerCase().includes('credit'),
+		)
+
+		// Find description column
+		const descCol = tableData.columns.find(
+			(col) =>
+				col.toLowerCase().includes('description') ||
+				col.toLowerCase().includes('narration') ||
+				col.toLowerCase().includes('details'),
+		)
+
+		console.log('Available columns:', tableData.columns)
+		console.log('Amount column found:', amountCol)
+		console.log('Description column found:', descCol)
+
+		// Find debit/credit columns
+		const debitCol = tableData.columns.find((col) => col.toLowerCase().includes('debit'))
+		const creditCol = tableData.columns.find((col) => col.toLowerCase().includes('credit'))
+
+		tableData.rows.forEach((row) => {
+			let income = 0
+			let expense = 0
+			const description = row[descCol] || ''
+
+			// Handle separate debit/credit columns
+			if (debitCol && creditCol) {
+				const debitAmount =
+					parseFloat(String(row[debitCol] || '0').replace(/[^\d.-]/g, '')) || 0
+				const creditAmount =
+					parseFloat(String(row[creditCol] || '0').replace(/[^\d.-]/g, '')) || 0
+
+				if (creditAmount > 0) income = creditAmount
+				if (debitAmount > 0) expense = debitAmount
+			} else if (amountCol) {
+				// Handle single amount column
+				const amountStr = row[amountCol] || '0'
+				const amount = parseFloat(String(amountStr).replace(/[^\d.-]/g, '')) || 0
+
+				if (amount > 0) {
+					income = amount
+				} else if (amount < 0) {
+					expense = Math.abs(amount)
+				}
+			}
+
+			totalIncome += income
+			totalExpense += expense
+
+			// Categorize expenses
+			if (expense > 0) {
+				const category = String(description).toLowerCase().includes('atm')
+					? 'ATM'
+					: String(description).toLowerCase().includes('grocery')
+					? 'Grocery'
+					: String(description).toLowerCase().includes('fuel')
+					? 'Fuel'
+					: String(description).toLowerCase().includes('restaurant')
+					? 'Food'
+					: 'Others'
+				categories[category] = (categories[category] || 0) + expense
+			}
+		})
+
+		const topCategory = Object.entries(categories).sort((a, b) => b[1] - a[1])[0]
+
+		return {
+			totalIncome: totalIncome.toFixed(2),
+			totalExpense: totalExpense.toFixed(2),
+			netBalance: (totalIncome - totalExpense).toFixed(2),
+			topCategory: topCategory
+				? `${topCategory[0]} (৳${topCategory[1].toFixed(2)})`
+				: 'N/A',
+			totalTransactions: tableData.rows.length,
+			categories: categories,
+		}
 	}
 
 	return (
@@ -582,7 +678,6 @@ function HeroSection() {
 										Preview your data below.
 									</p>
 								</div>
-
 								<div className="p-8">
 									<div className="overflow-x-auto">
 										<table className="w-full">
@@ -685,6 +780,141 @@ function HeroSection() {
 							</div>
 						</div>
 					)}
+
+					{(() => {
+						const summary = generateSummary()
+						return summary ? (
+							<div className="mt-5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-8">
+								<h4 className="text-xl font-bold text-gray-900 mb-4 text-center">
+									📊 Financial Summary
+								</h4>
+								<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+									<div className="bg-green-100 p-4 rounded-lg text-center">
+										<p className="text-green-700 font-semibold">
+											💰 Total Income
+										</p>
+										<p className="text-2xl font-bold text-green-800">
+											৳{summary.totalIncome}
+										</p>
+									</div>
+									<div className="bg-red-100 p-4 rounded-lg text-center">
+										<p className="text-red-700 font-semibold">
+											💸 Total Expense
+										</p>
+										<p className="text-2xl font-bold text-red-800">
+											৳{summary.totalExpense}
+										</p>
+									</div>
+									<div className="bg-blue-100 p-4 rounded-lg text-center">
+										<p className="text-blue-700 font-semibold">
+											💳 Net Balance
+										</p>
+										<p
+											className={`text-2xl font-bold ${
+												parseFloat(summary.netBalance) >= 0
+													? 'text-green-800'
+													: 'text-red-800'
+											}`}
+										>
+											৳{summary.netBalance}
+										</p>
+									</div>
+									<div className="bg-purple-100 p-4 rounded-lg text-center">
+										<p className="text-purple-700 font-semibold">
+											🏆 Top Category
+										</p>
+										<p className="text-lg font-bold text-purple-800">
+											{summary.topCategory}
+										</p>
+									</div>
+								</div>
+								<p className="text-center text-gray-600 mt-4">
+									📈 Total {summary.totalTransactions} transactions analyzed
+								</p>
+							</div>
+						) : null
+					})()}
+
+					{/* Complete Financial Flow Chart */}
+					{(() => {
+						const summary = generateSummary()
+						if (!summary) return null
+
+						const financialData = {
+							'💰 Income': parseFloat(summary.totalIncome) || 0,
+							'💸 Expenses': parseFloat(summary.totalExpense) || 0,
+							...summary.categories
+						}
+
+						const totalAmount = Object.values(financialData).reduce((a, b) => a + b, 0)
+						if (totalAmount === 0) return null
+
+						return (
+							<div className="mt-8 max-w-4xl mx-auto">
+								<div className="bg-white p-6 rounded-xl shadow-lg border">
+									<h5 className="font-semibold text-gray-800 mb-6 text-center">
+										📊 Complete Financial Flow Analysis
+									</h5>
+									
+									<div className="flex justify-center mb-6">
+										<div className="w-48 h-48 rounded-full relative cursor-pointer transform transition-all duration-300 hover:scale-110 hover:shadow-2xl" style={{
+											background: `conic-gradient(${Object.entries(financialData).map(([category, amount], i) => {
+												const colors = ['#22c55e', '#ef4444', '#f97316', '#eab308', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
+												const percentage = (amount / totalAmount) * 100
+												const prevPercentage = Object.entries(financialData)
+													.slice(0, i)
+													.reduce((acc, [, amt]) => acc + (amt / totalAmount) * 100, 0)
+												const isHovered = hoveredCategory === category
+												const color = isHovered ? colors[i % colors.length] : (hoveredCategory ? '#e5e7eb' : colors[i % colors.length])
+												return `${color} ${prevPercentage}% ${prevPercentage + percentage}%`
+											}).join(', ')}`
+										}}>
+											<div className="absolute inset-6 bg-white rounded-full flex items-center justify-center shadow-inner">
+												<div className="text-center">
+													<div className="text-lg font-bold text-gray-700 transition-all duration-300 hover:text-purple-600">৳{totalAmount.toFixed(0)}</div>
+													<div className="text-xs text-gray-500">Total</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+										{Object.entries(financialData)
+											.sort((a, b) => b[1] - a[1])
+											.map(([category, amount], i) => {
+												const colors = ['bg-green-500', 'bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-blue-500', 'bg-purple-500', 'bg-pink-500', 'bg-cyan-500']
+												const percentage = ((amount / totalAmount) * 100).toFixed(1)
+												const isIncome = category.includes('💰')
+												const isExpense = category.includes('💸')
+												
+												return (
+													<div 
+														key={category} 
+														className={`p-3 rounded-lg border-l-4 cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg ${
+															isIncome ? 'bg-green-50 border-green-500 hover:bg-green-100' : 
+															isExpense ? 'bg-red-50 border-red-500 hover:bg-red-100' : 'bg-gray-50 border-gray-400 hover:bg-gray-100'
+														} ${hoveredCategory === category ? 'ring-2 ring-purple-400 shadow-lg' : ''}`}
+														onMouseEnter={() => setHoveredCategory(category)}
+														onMouseLeave={() => setHoveredCategory(null)}
+													>
+														<div className="flex items-center justify-between">
+															<div className="flex items-center gap-2">
+																<div className={`w-3 h-3 rounded-full transition-all duration-200 hover:scale-125 ${colors[i % colors.length]}`}></div>
+																<span className="font-medium text-sm transition-colors duration-200 hover:text-gray-900">{category}</span>
+															</div>
+															<div className="text-right">
+																<div className="font-bold text-gray-800 transition-colors duration-200 hover:text-purple-600">৳{amount.toFixed(2)}</div>
+																<div className="text-xs text-gray-500 transition-colors duration-200 hover:text-gray-700">{percentage}%</div>
+															</div>
+														</div>
+													</div>
+												)
+											})}
+									</div>
+								</div>
+							</div>
+						)
+					})()}
 				</div>
 			</div>
 		</section>
