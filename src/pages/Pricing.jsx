@@ -121,7 +121,10 @@ function Pricing() {
 			// Backend returns checkout_url, not payment_url
 			const paymentUrl = response.data.checkout_url || response.data.payment_url
 
-			if (paymentUrl && (paymentUrl.startsWith('https://') || paymentUrl.startsWith('http://'))) {
+			if (
+				paymentUrl &&
+				(paymentUrl.startsWith('https://') || paymentUrl.startsWith('http://'))
+			) {
 				window.location.href = paymentUrl
 			} else {
 				const errorMessage =
@@ -191,7 +194,9 @@ function Pricing() {
 
 					{error && (
 						<div className="max-w-md mx-auto mb-8 p-4 bg-red-50 border border-red-200 rounded-xl">
-							<p className="text-red-700 text-center font-medium">{String(error).replace(/<[^>]*>/g, '')}</p>
+							<p className="text-red-700 text-center font-medium">
+								{String(error).replace(/<[^>]*>/g, '')}
+							</p>
 						</div>
 					)}
 				</div>

@@ -257,7 +257,7 @@ function HeroSection() {
 		})
 	}
 
-	const uploadToGoogleDrive = (fileBlob, folderId, fileName) => {
+	const uploadToGoogleDrive = (fileBlob, folderId, fileName, asGoogleSheets = false) => {
 		return new Promise((resolve, reject) => {
 			const metadata = {
 				name: fileName,
@@ -265,6 +265,10 @@ function HeroSection() {
 
 			if (folderId) {
 				metadata.parents = [folderId]
+			}
+
+			if (asGoogleSheets) {
+				metadata.mimeType = 'application/vnd.google-apps.spreadsheet'
 			}
 
 			const form = new FormData()
@@ -311,8 +315,8 @@ function HeroSection() {
 				responseType: 'blob',
 			})
 
-			await uploadToGoogleDrive(response.data, null, 'bank_statement.csv')
-			alert('File saved to Google Drive successfully!')
+			await uploadToGoogleDrive(response.data, null, 'Bank Statement', true)
+			alert('File saved to Google Sheets successfully!')
 		} catch (error) {
 			console.error('Google Drive save failed:', error)
 			setError('Failed to save to Google Drive. Please try again.')
@@ -343,7 +347,7 @@ function HeroSection() {
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 2 FREE PDF conversions per day • Upgrade for
+								🆓 Login for 1 FREE PDF convert per day • Upgrade for
 								unlimited access
 							</p>
 						</div>
@@ -562,7 +566,7 @@ function HeroSection() {
 											<Download className="h-5 w-5 text-blue-600" />
 											<FaGoogleDrive className="h-5 w-5 text-blue-600" />
 											<span className="text-sm text-gray-600 font-medium">
-												Download & Save to Google Drive
+												Save as Google Sheets 📊
 											</span>
 										</div>
 
