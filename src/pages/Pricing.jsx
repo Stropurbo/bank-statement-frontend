@@ -117,17 +117,18 @@ function Pricing() {
 			}
 
 			console.log('Backend response:', response.data)
-			
+
 			// Backend returns checkout_url, not payment_url
 			const paymentUrl = response.data.checkout_url || response.data.payment_url
-			
-			if (paymentUrl) {
+
+			if (paymentUrl && (paymentUrl.startsWith('https://') || paymentUrl.startsWith('http://'))) {
 				window.location.href = paymentUrl
 			} else {
-				const errorMessage = response.data.error || response.data.message || 'Payment initiation failed.'
+				const errorMessage =
+					response.data.error || response.data.message || 'Payment initiation failed.'
 				console.error('Payment initiation failed:', errorMessage)
 				console.error('Full response:', response.data)
-				setError(errorMessage)
+				setError(String(errorMessage).replace(/<[^>]*>/g, ''))
 			}
 		} catch (err) {
 			let errorMsg = 'Network error. Please try again.'
@@ -135,7 +136,7 @@ function Pricing() {
 				errorMsg =
 					'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
 			} else if (err.response?.data?.error) {
-				errorMsg = err.response.data.error
+				errorMsg = String(err.response.data.error).replace(/<[^>]*>/g, '')
 			}
 			setError(errorMsg)
 			console.error('Full error:', err)
@@ -190,7 +191,7 @@ function Pricing() {
 
 					{error && (
 						<div className="max-w-md mx-auto mb-8 p-4 bg-red-50 border border-red-200 rounded-xl">
-							<p className="text-red-700 text-center font-medium">{error}</p>
+							<p className="text-red-700 text-center font-medium">{String(error).replace(/<[^>]*>/g, '')}</p>
 						</div>
 					)}
 				</div>
@@ -296,16 +297,14 @@ function Pricing() {
 				<div className="text-center mt-20">
 					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-md mx-auto">
 						<h3 className="text-xl font-bold text-gray-900 mb-2">
-							Need Help Choosing?
+							Enterprise Plan Required?
 						</h3>
-						<p className="text-gray-600 mb-4">
-							Our team is here to help you find the perfect plan
-						</p>
+						<p className="text-gray-600 mb-4">Contact us for enterprise plan</p>
 						<Link
 							to="/contact"
 							className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
 						>
-							Contact Our Team
+							Contact
 						</Link>
 					</div>
 				</div>
