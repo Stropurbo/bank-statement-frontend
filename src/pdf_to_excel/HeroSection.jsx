@@ -9,12 +9,15 @@ function HeroSection() {
 	const [tableData, setTableData] = useState(null)
 	const [loading, setLoading] = useState(false)
 	const [downloading, setDownloading] = useState(false)
+	const [savingToDrive, setSavingToDrive] = useState(false)
 	const [password, setPassword] = useState('')
 	const [fileToUpload, setFileToUpload] = useState(null)
 	const [error, setError] = useState(null)
 	const [statementId, setStatementId] = useState(null)
 	const [userStatus, setUserStatus] = useState(null)
 	const [hoveredCategory, setHoveredCategory] = useState(null)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [rowsPerPage] = useState(20)
 	const inputRef = useRef(null)
 
 	// Fetch user subscription status
@@ -306,7 +309,7 @@ function HeroSection() {
 			return
 		}
 
-		setDownloading(true)
+		setSavingToDrive(true)
 		try {
 			await loadGoogleAPIs()
 			const authToken = await authenticateGoogle()
@@ -322,7 +325,7 @@ function HeroSection() {
 			console.error('Google Drive save failed:', error)
 			setError('Failed to save to Google Drive. Please try again.')
 		} finally {
-			setDownloading(false)
+			setSavingToDrive(false)
 		}
 	}
 
@@ -461,17 +464,62 @@ function HeroSection() {
 			totalIncome += income
 			totalExpense += expense
 
+			// Enhanced categorization for both income and expenses
+			const desc = String(description).toLowerCase()
+
+			// Categorize income
+			if (income > 0) {
+				let category = 'Other Income'
+
+				if (desc.includes('salary') || desc.includes('payroll') || desc.includes('wages') || desc.includes('pay')) {
+					category = 'Salary'
+				} else if (desc.includes('transfer') || desc.includes('deposit') || desc.includes('credit')) {
+					category = 'Transfer In'
+				} else if (desc.includes('interest') || desc.includes('dividend') || desc.includes('investment')) {
+					category = 'Investment'
+				} else if (desc.includes('refund') || desc.includes('return') || desc.includes('cashback')) {
+					category = 'Refund'
+				}
+
+				categories[category] = (categories[category] || 0) + income
+			}
+
 			// Categorize expenses
 			if (expense > 0) {
-				const category = String(description).toLowerCase().includes('atm')
-					? 'ATM'
-					: String(description).toLowerCase().includes('grocery')
-					? 'Grocery'
-					: String(description).toLowerCase().includes('fuel')
-					? 'Fuel'
-					: String(description).toLowerCase().includes('restaurant')
-					? 'Food'
-					: 'Others'
+				let category = 'Others'
+
+				if (desc.includes('atm') || desc.includes('cash withdrawal')) {
+					category = 'ATM'
+				} else if (desc.includes('grocery') || desc.includes('supermarket') || desc.includes('food') || desc.includes('mart')) {
+					category = 'Grocery'
+				} else if (desc.includes('fuel') || desc.includes('gas') || desc.includes('petrol') || desc.includes('diesel')) {
+					category = 'Fuel'
+				} else if (desc.includes('restaurant') || desc.includes('cafe') || desc.includes('dining') || desc.includes('pizza') || desc.includes('burger')) {
+					category = 'Food & Dining'
+				} else if (desc.includes('rent') || desc.includes('housing') || desc.includes('apartment')) {
+					category = 'Rent'
+				} else if (desc.includes('electric') || desc.includes('gas bill') || desc.includes('water') || desc.includes('utility') || desc.includes('internet') || desc.includes('phone')) {
+					category = 'Utilities'
+				} else if (desc.includes('transfer') || desc.includes('send money') || desc.includes('wire')) {
+					category = 'Transfer Out'
+				} else if (desc.includes('loan') || desc.includes('emi') || desc.includes('installment') || desc.includes('mortgage')) {
+					category = 'Loan Payment'
+				} else if (desc.includes('shopping') || desc.includes('store') || desc.includes('mall') || desc.includes('amazon') || desc.includes('flipkart')) {
+					category = 'Shopping'
+				} else if (desc.includes('medical') || desc.includes('hospital') || desc.includes('doctor') || desc.includes('pharmacy') || desc.includes('health')) {
+					category = 'Healthcare'
+				} else if (desc.includes('transport') || desc.includes('taxi') || desc.includes('uber') || desc.includes('bus') || desc.includes('train')) {
+					category = 'Transportation'
+				} else if (desc.includes('education') || desc.includes('school') || desc.includes('college') || desc.includes('tuition') || desc.includes('course')) {
+					category = 'Education'
+				} else if (desc.includes('insurance') || desc.includes('premium')) {
+					category = 'Insurance'
+				} else if (desc.includes('entertainment') || desc.includes('movie') || desc.includes('netflix') || desc.includes('spotify') || desc.includes('game')) {
+					category = 'Entertainment'
+				} else if (desc.includes('bank') || desc.includes('fee') || desc.includes('charge') || desc.includes('service')) {
+					category = 'Bank Fees'
+				}
+
 				categories[category] = (categories[category] || 0) + expense
 			}
 		})
@@ -506,8 +554,10 @@ function HeroSection() {
 						</span>
 					</h1>
 					<p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-						Upload your PDF bank statement and convert it to Excel, JSON, SQL, XML, or Google Sheets instantly. 
-						Get smart financial analytics with interactive charts and expense categorization. No manual data entry required.
+						Upload your PDF bank statement and convert it to Excel, JSON, SQL, XML,
+						or Google Sheets instantly. Get smart financial analytics with
+						interactive charts and expense categorization. No manual data entry
+						required.
 					</p>
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
@@ -577,7 +627,7 @@ function HeroSection() {
 									Drag & drop your PDF file here or click to browse
 								</p>
 								<p className="text-sm text-gray-500 mt-2">
-									Supports all major banks • Max file size: 10MB
+									Supports all major banks • Max file size: 20MB
 								</p>
 							</div>
 
@@ -679,60 +729,125 @@ function HeroSection() {
 									</p>
 								</div>
 								<div className="p-8">
+									{/* Performance Info */}
+									{tableData.rows.length > 100 && (
+										<div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+											<p className="text-blue-800 text-sm text-center">
+												🚀 Large dataset detected ({tableData.rows.length} transactions).
+												Showing paginated preview for better performance.
+											</p>
+										</div>
+									)}
+
 									<div className="overflow-x-auto">
 										<table className="w-full">
 											<thead>
 												<tr className="bg-gray-50">
-													{tableData.columns.map((col, i) => (
+													{tableData.columns.slice(0, 8).map((col, i) => (
 														<th
 															key={i}
-															className="px-6 py-4 text-left font-semibold text-gray-900 uppercase tracking-wider text-sm"
+															className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs"
 														>
-															{col}
+															{col.length > 15 ? col.substring(0, 15) + '...' : col}
 														</th>
 													))}
+													{tableData.columns.length > 8 && (
+														<th className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs">
+															+{tableData.columns.length - 8} more
+														</th>
+													)}
 												</tr>
 											</thead>
 											<tbody className="divide-y divide-gray-200">
-												{tableData.rows.slice(0, 10).map((row, i) => (
-													<tr
-														key={i}
-														className="hover:bg-gray-50 transition-colors"
-													>
-														{tableData.columns.map((col, j) => (
-															<td
-																key={j}
-																className="px-6 py-4 text-sm text-gray-700"
-															>
-																{typeof row[col] === 'object' &&
-																row[col] !== null
-																	? JSON.stringify(row[col])
-																	: row[col] ?? ''}
-															</td>
-														))}
-													</tr>
-												))}
+												{(() => {
+													const startIndex = (currentPage - 1) * rowsPerPage
+													const endIndex = startIndex + rowsPerPage
+													const currentRows = tableData.rows.slice(startIndex, endIndex)
+
+													return currentRows.map((row, i) => (
+														<tr
+															key={startIndex + i}
+															className="hover:bg-gray-50 transition-colors"
+														>
+															{tableData.columns.slice(0, 8).map((col, j) => (
+																<td
+																	key={j}
+																	className="px-4 py-3 text-sm text-gray-700"
+																>
+																	{(() => {
+																		const value = typeof row[col] === 'object' && row[col] !== null
+																			? JSON.stringify(row[col])
+																			: String(row[col] ?? '')
+																		return value.length > 30 ? value.substring(0, 30) + '...' : value
+																	})()}
+																</td>
+															))}
+															{tableData.columns.length > 8 && (
+																<td className="px-4 py-3 text-sm text-gray-500">
+																	...
+																</td>
+															)}
+														</tr>
+													))
+												})()}
 											</tbody>
 										</table>
-										{tableData.rows.length > 10 && (
-											<p className="text-center text-gray-500 mt-4 text-sm">
-												Showing first 10 rows of {tableData.rows.length}{' '}
-												total transactions
-											</p>
-										)}
 									</div>
+
+									{/* Pagination Controls */}
+									{tableData.rows.length > rowsPerPage && (
+										<div className="flex items-center justify-between mt-6 px-4">
+											<div className="text-sm text-gray-600">
+												Showing {((currentPage - 1) * rowsPerPage) + 1} to {Math.min(currentPage * rowsPerPage, tableData.rows.length)} of {tableData.rows.length} transactions
+											</div>
+											<div className="flex items-center gap-2">
+												<button
+													onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+													disabled={currentPage === 1}
+													className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed rounded transition-colors"
+												>
+													Previous
+												</button>
+												<span className="text-sm text-gray-600">
+													Page {currentPage} of {Math.ceil(tableData.rows.length / rowsPerPage)}
+												</span>
+												<button
+													onClick={() => setCurrentPage(Math.min(Math.ceil(tableData.rows.length / rowsPerPage), currentPage + 1))}
+													disabled={currentPage >= Math.ceil(tableData.rows.length / rowsPerPage)}
+													className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed rounded transition-colors"
+												>
+													Next
+												</button>
+											</div>
+										</div>
+									)}
 
 									<div className="text-center mt-8">
 										<div
-											className="flex items-center justify-center gap-2 mb-4 cursor-pointer hover:bg-blue-50 p-2 rounded-lg transition-colors"
-											onClick={handleGoogleDriveSave}
+											className={`flex items-center justify-center gap-2 mb-4 cursor-pointer p-2 rounded-lg transition-colors ${
+												savingToDrive ? 'bg-blue-100' : 'hover:bg-blue-50'
+											}`}
+											onClick={savingToDrive ? null : handleGoogleDriveSave}
 										>
-											<Download className="h-5 w-5 text-blue-600" />
+											{savingToDrive ? (
+												<div className="animate-spin rounded-full h-5 w-5 border-2 border-blue-200 border-t-blue-600"></div>
+											) : (
+												<Download className="h-5 w-5 text-blue-600" />
+											)}
 											<FaGoogleDrive className="h-5 w-5 text-blue-600" />
 											<span className="text-sm text-gray-600 font-medium">
-												Save as Google Sheets 📊
+												{savingToDrive ? 'Saving to Drive...' : 'Save as Google Sheets 📊'}
 											</span>
 										</div>
+
+										{/* Quick Download Notice for Large Files */}
+										{tableData.rows.length > 500 && (
+											<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+												<p className="text-yellow-800 text-sm text-center">
+													⚡ Large file detected! Download directly without full preview for better performance.
+												</p>
+											</div>
+										)}
 
 										<div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
 											<button
@@ -988,8 +1103,6 @@ function HeroSection() {
 							</div>
 						)
 					})()}
-
-					
 				</div>
 			</div>
 		</section>
