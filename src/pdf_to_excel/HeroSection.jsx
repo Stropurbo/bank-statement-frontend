@@ -325,6 +325,75 @@ function HeroSection() {
 		}
 	}
 
+	const handleJsonDownload = () => {
+		if (!tableData) return alert('No data available to download')
+
+		const jsonData = JSON.stringify(tableData.rows, null, 2)
+		const blob = new Blob([jsonData], { type: 'application/json' })
+		const url = window.URL.createObjectURL(blob)
+		const link = document.createElement('a')
+		link.href = url
+		link.setAttribute('download', 'bank_statement.json')
+		document.body.appendChild(link)
+		link.click()
+		link.remove()
+		window.URL.revokeObjectURL(url)
+	}
+
+	const handleSqlDownload = () => {
+		if (!tableData) return alert('No data available to download')
+
+		let sqlContent = 'CREATE TABLE bank_statement (\n'
+		tableData.columns.forEach((col, i) => {
+			sqlContent += `  ${col} TEXT${i < tableData.columns.length - 1 ? ',' : ''}\n`
+		})
+		sqlContent += ');\n\n'
+
+		tableData.rows.forEach(row => {
+			const values = tableData.columns.map(col => {
+				const value = row[col] ?? ''
+				return `'${String(value).replace(/'/g, "''")}'`
+			}).join(', ')
+			sqlContent += `INSERT INTO bank_statement VALUES (${values});\n`
+		})
+
+		const blob = new Blob([sqlContent], { type: 'text/sql' })
+		const url = window.URL.createObjectURL(blob)
+		const link = document.createElement('a')
+		link.href = url
+		link.setAttribute('download', 'bank_statement.sql')
+		document.body.appendChild(link)
+		link.click()
+		link.remove()
+		window.URL.revokeObjectURL(url)
+	}
+
+	const handleXmlDownload = () => {
+		if (!tableData) return alert('No data available to download')
+
+		let xmlContent = '<?xml version="1.0" encoding="UTF-8"?>\n<bank_statement>\n'
+		tableData.rows.forEach(row => {
+			xmlContent += '  <transaction>\n'
+			tableData.columns.forEach(col => {
+				const value = row[col] ?? ''
+				const escapedValue = String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+				xmlContent += `    <${col}>${escapedValue}</${col}>\n`
+			})
+			xmlContent += '  </transaction>\n'
+		})
+		xmlContent += '</bank_statement>'
+
+		const blob = new Blob([xmlContent], { type: 'text/xml' })
+		const url = window.URL.createObjectURL(blob)
+		const link = document.createElement('a')
+		link.href = url
+		link.setAttribute('download', 'bank_statement.xml')
+		document.body.appendChild(link)
+		link.click()
+		link.remove()
+		window.URL.revokeObjectURL(url)
+	}
+
 	return (
 		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 flex items-center">
 			<div className="container mx-auto px-6 py-24">
@@ -347,8 +416,8 @@ function HeroSection() {
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
 							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 1 FREE PDF convert per day • Upgrade for
-								unlimited access
+								🆓 Login for 1 FREE PDF convert per day • Upgrade for unlimited
+								access
 							</p>
 						</div>
 					) : (
@@ -568,6 +637,31 @@ function HeroSection() {
 											<span className="text-sm text-gray-600 font-medium">
 												Save as Google Sheets 📊
 											</span>
+										</div>
+
+										<div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
+											<button
+												onClick={handleJsonDownload}
+												className="flex items-center gap-2 px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-lg transition-colors font-medium text-sm mb-4"
+											>
+												<Download className="h-4 w-4" />
+												JSON Export
+											</button>
+
+											<button
+												onClick={handleSqlDownload}
+												className="flex items-center gap-2 px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg transition-colors font-medium text-sm mb-4"
+											>
+												<Download className="h-4 w-4" />
+												SQL Export
+											</button>
+											<button
+												onClick={handleXmlDownload}
+												className="flex items-center gap-2 px-4 py-2 bg-green-100 hover:bg-green-200 text-green-700 rounded-lg transition-colors font-medium text-sm mb-4"
+											>
+												<Download className="h-4 w-4" />
+												XML Export
+											</button>
 										</div>
 
 										<button
