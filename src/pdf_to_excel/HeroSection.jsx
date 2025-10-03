@@ -506,8 +506,8 @@ function HeroSection() {
 						</span>
 					</h1>
 					<p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-						Upload your PDF bank statement and watch our AI convert it into a clean,
-						organized Excel file in seconds. No manual data entry required.
+						Upload your PDF bank statement and convert it to Excel, JSON, SQL, XML, or Google Sheets instantly. 
+						Get smart financial analytics with interactive charts and expense categorization. No manual data entry required.
 					</p>
 					{!user ? (
 						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
@@ -988,6 +988,8 @@ function HeroSection() {
 							</div>
 						)
 					})()}
+
+					
 				</div>
 			</div>
 		</section>
