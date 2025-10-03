@@ -789,41 +789,41 @@ function HeroSection() {
 									📊 Financial Summary
 								</h4>
 								<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-									<div className="bg-green-100 p-4 rounded-lg text-center">
-										<p className="text-green-700 font-semibold">
+									<div className="bg-green-100 p-4 rounded-lg text-center cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-green-200">
+										<p className="text-green-700 font-semibold transition-colors duration-200 hover:text-green-900">
 											💰 Total Income
 										</p>
-										<p className="text-2xl font-bold text-green-800">
+										<p className="text-2xl font-bold text-green-800 transition-colors duration-200 hover:text-green-900">
 											৳{summary.totalIncome}
 										</p>
 									</div>
-									<div className="bg-red-100 p-4 rounded-lg text-center">
-										<p className="text-red-700 font-semibold">
+									<div className="bg-red-100 p-4 rounded-lg text-center cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-red-200">
+										<p className="text-red-700 font-semibold transition-colors duration-200 hover:text-red-900">
 											💸 Total Expense
 										</p>
-										<p className="text-2xl font-bold text-red-800">
+										<p className="text-2xl font-bold text-red-800 transition-colors duration-200 hover:text-red-900">
 											৳{summary.totalExpense}
 										</p>
 									</div>
-									<div className="bg-blue-100 p-4 rounded-lg text-center">
-										<p className="text-blue-700 font-semibold">
+									<div className="bg-blue-100 p-4 rounded-lg text-center cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-blue-200">
+										<p className="text-blue-700 font-semibold transition-colors duration-200 hover:text-blue-900">
 											💳 Net Balance
 										</p>
 										<p
-											className={`text-2xl font-bold ${
+											className={`text-2xl font-bold transition-colors duration-200 ${
 												parseFloat(summary.netBalance) >= 0
-													? 'text-green-800'
-													: 'text-red-800'
+													? 'text-green-800 hover:text-green-900'
+													: 'text-red-800 hover:text-red-900'
 											}`}
 										>
 											৳{summary.netBalance}
 										</p>
 									</div>
-									<div className="bg-purple-100 p-4 rounded-lg text-center">
-										<p className="text-purple-700 font-semibold">
+									<div className="bg-purple-100 p-4 rounded-lg text-center cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-purple-200">
+										<p className="text-purple-700 font-semibold transition-colors duration-200 hover:text-purple-900">
 											🏆 Top Category
 										</p>
-										<p className="text-lg font-bold text-purple-800">
+										<p className="text-lg font-bold text-purple-800 transition-colors duration-200 hover:text-purple-900">
 											{summary.topCategory}
 										</p>
 									</div>
@@ -843,10 +843,13 @@ function HeroSection() {
 						const financialData = {
 							'💰 Income': parseFloat(summary.totalIncome) || 0,
 							'💸 Expenses': parseFloat(summary.totalExpense) || 0,
-							...summary.categories
+							...summary.categories,
 						}
 
-						const totalAmount = Object.values(financialData).reduce((a, b) => a + b, 0)
+						const totalAmount = Object.values(financialData).reduce(
+							(a, b) => a + b,
+							0,
+						)
 						if (totalAmount === 0) return null
 
 						return (
@@ -855,56 +858,126 @@ function HeroSection() {
 									<h5 className="font-semibold text-gray-800 mb-6 text-center">
 										📊 Complete Financial Flow Analysis
 									</h5>
-									
+
 									<div className="flex justify-center mb-6">
-										<div className="w-48 h-48 rounded-full relative cursor-pointer transform transition-all duration-300 hover:scale-110 hover:shadow-2xl" style={{
-											background: `conic-gradient(${Object.entries(financialData).map(([category, amount], i) => {
-												const colors = ['#22c55e', '#ef4444', '#f97316', '#eab308', '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4']
-												const percentage = (amount / totalAmount) * 100
-												const prevPercentage = Object.entries(financialData)
-													.slice(0, i)
-													.reduce((acc, [, amt]) => acc + (amt / totalAmount) * 100, 0)
-												const isHovered = hoveredCategory === category
-												const color = isHovered ? colors[i % colors.length] : (hoveredCategory ? '#e5e7eb' : colors[i % colors.length])
-												return `${color} ${prevPercentage}% ${prevPercentage + percentage}%`
-											}).join(', ')}`
-										}}>
+										<div
+											className="w-48 h-48 rounded-full relative cursor-pointer transform transition-all duration-300 hover:scale-110 hover:shadow-2xl"
+											style={{
+												background: `conic-gradient(${Object.entries(
+													financialData,
+												)
+													.map(([category, amount], i) => {
+														const colors = [
+															'#22c55e',
+															'#ef4444',
+															'#f97316',
+															'#eab308',
+															'#3b82f6',
+															'#8b5cf6',
+															'#ec4899',
+															'#06b6d4',
+														]
+														const percentage =
+															(amount / totalAmount) * 100
+														const prevPercentage = Object.entries(
+															financialData,
+														)
+															.slice(0, i)
+															.reduce(
+																(acc, [, amt]) =>
+																	acc +
+																	(amt / totalAmount) * 100,
+																0,
+															)
+														const isHovered =
+															hoveredCategory === category
+														const color = isHovered
+															? colors[i % colors.length]
+															: hoveredCategory
+															? '#e5e7eb'
+															: colors[i % colors.length]
+														return `${color} ${prevPercentage}% ${
+															prevPercentage + percentage
+														}%`
+													})
+													.join(', ')}`,
+											}}
+										>
 											<div className="absolute inset-6 bg-white rounded-full flex items-center justify-center shadow-inner">
 												<div className="text-center">
-													<div className="text-lg font-bold text-gray-700 transition-all duration-300 hover:text-purple-600">৳{totalAmount.toFixed(0)}</div>
-													<div className="text-xs text-gray-500">Total</div>
+													<div className="text-lg font-bold text-gray-700 transition-all duration-300 hover:text-purple-600">
+														৳{totalAmount.toFixed(0)}
+													</div>
+													<div className="text-xs text-gray-500">
+														Total
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									
+
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 										{Object.entries(financialData)
 											.sort((a, b) => b[1] - a[1])
 											.map(([category, amount], i) => {
-												const colors = ['bg-green-500', 'bg-red-500', 'bg-orange-500', 'bg-yellow-500', 'bg-blue-500', 'bg-purple-500', 'bg-pink-500', 'bg-cyan-500']
-												const percentage = ((amount / totalAmount) * 100).toFixed(1)
+												const colors = [
+													'bg-green-500',
+													'bg-red-500',
+													'bg-orange-500',
+													'bg-yellow-500',
+													'bg-blue-500',
+													'bg-purple-500',
+													'bg-pink-500',
+													'bg-cyan-500',
+												]
+												const percentage = (
+													(amount / totalAmount) *
+													100
+												).toFixed(1)
 												const isIncome = category.includes('💰')
 												const isExpense = category.includes('💸')
-												
+
 												return (
-													<div 
-														key={category} 
+													<div
+														key={category}
 														className={`p-3 rounded-lg border-l-4 cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg ${
-															isIncome ? 'bg-green-50 border-green-500 hover:bg-green-100' : 
-															isExpense ? 'bg-red-50 border-red-500 hover:bg-red-100' : 'bg-gray-50 border-gray-400 hover:bg-gray-100'
-														} ${hoveredCategory === category ? 'ring-2 ring-purple-400 shadow-lg' : ''}`}
-														onMouseEnter={() => setHoveredCategory(category)}
-														onMouseLeave={() => setHoveredCategory(null)}
+															isIncome
+																? 'bg-green-50 border-green-500 hover:bg-green-100'
+																: isExpense
+																? 'bg-red-50 border-red-500 hover:bg-red-100'
+																: 'bg-gray-50 border-gray-400 hover:bg-gray-100'
+														} ${
+															hoveredCategory === category
+																? 'ring-2 ring-purple-400 shadow-lg'
+																: ''
+														}`}
+														onMouseEnter={() =>
+															setHoveredCategory(category)
+														}
+														onMouseLeave={() =>
+															setHoveredCategory(null)
+														}
 													>
 														<div className="flex items-center justify-between">
 															<div className="flex items-center gap-2">
-																<div className={`w-3 h-3 rounded-full transition-all duration-200 hover:scale-125 ${colors[i % colors.length]}`}></div>
-																<span className="font-medium text-sm transition-colors duration-200 hover:text-gray-900">{category}</span>
+																<div
+																	className={`w-3 h-3 rounded-full transition-all duration-200 hover:scale-125 ${
+																		colors[
+																			i % colors.length
+																		]
+																	}`}
+																></div>
+																<span className="font-medium text-sm transition-colors duration-200 hover:text-gray-900">
+																	{category}
+																</span>
 															</div>
 															<div className="text-right">
-																<div className="font-bold text-gray-800 transition-colors duration-200 hover:text-purple-600">৳{amount.toFixed(2)}</div>
-																<div className="text-xs text-gray-500 transition-colors duration-200 hover:text-gray-700">{percentage}%</div>
+																<div className="font-bold text-gray-800 transition-colors duration-200 hover:text-purple-600">
+																	৳{amount.toFixed(2)}
+																</div>
+																<div className="text-xs text-gray-500 transition-colors duration-200 hover:text-gray-700">
+																	{percentage}%
+																</div>
 															</div>
 														</div>
 													</div>
