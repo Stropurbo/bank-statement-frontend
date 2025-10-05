@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
-	FileSpreadsheet, FilePlus2, Search, Receipt, DollarSign, FileText,
-	TrendingUp, BarChart3, Users, Repeat, Eraser, ShieldCheck,
-	FileCheck, Lightbulb
+	FileSpreadsheet,
+	FilePlus2,
+	Search,
+	Receipt,
+	DollarSign,
+	FileText,
+	TrendingUp,
+	BarChart3,
+	Users,
+	Repeat,
+	Eraser,
+	ShieldCheck,
+	FileCheck,
+	Lightbulb,
 } from 'lucide-react'
 import { setMeta } from '../utils/setMeta'
 
@@ -13,10 +24,13 @@ function BrowseTools() {
 	useEffect(() => {
 		setMeta({
 			title: 'Browse Tools - SheetlyPro',
-			description: 'Explore our comprehensive collection of business tools for document processing, financial reporting, and data management',
-			keywords: 'pdf tools, excel tools, business reports, receipt scanner, invoice extractor, financial tools',
+			description:
+				'Explore our comprehensive collection of business tools for document processing, financial reporting, and data management',
+			keywords:
+				'pdf tools, excel tools, business reports, receipt scanner, invoice extractor, financial tools',
 			ogTitle: 'SheetlyPro Business Tools',
-			ogDescription: 'Powerful tools for your business document and data management needs',
+			ogDescription:
+				'Powerful tools for your business document and data management needs',
 		})
 	}, [])
 
@@ -46,7 +60,87 @@ function BrowseTools() {
 					bgColor: 'bg-green-50',
 					iconColor: 'text-green-600',
 				},
-			]
+				{
+					id: 'compress-pdf',
+					name: 'Compress PDF',
+					description: 'Reduce PDF file size without losing quality',
+					icon: FileText,
+					link: '/compress-pdf',
+					color: 'from-blue-600 to-cyan-600',
+					bgColor: 'bg-blue-50',
+					iconColor: 'text-blue-600',
+				},
+				{
+					id: 'split-pdf',
+					name: 'Split PDF',
+					description: 'Split PDF into multiple files or extract pages',
+					icon: FileText,
+					link: '/split-pdf',
+					color: 'from-orange-600 to-amber-600',
+					bgColor: 'bg-orange-50',
+					iconColor: 'text-orange-600',
+				},
+				{
+					id: 'pdf-word',
+					name: 'PDF to Word',
+					description: 'Convert PDF documents to editable Word files',
+					icon: FileText,
+					link: '/pdf-to-word',
+					color: 'from-indigo-600 to-blue-600',
+					bgColor: 'bg-indigo-50',
+					iconColor: 'text-indigo-600',
+				},
+				{
+					id: 'word-pdf',
+					name: 'Word to PDF',
+					description: 'Convert Word documents to PDF format',
+					icon: FileText,
+					link: '/word-to-pdf',
+					color: 'from-pink-600 to-rose-600',
+					bgColor: 'bg-pink-50',
+					iconColor: 'text-pink-600',
+				},
+				{
+					id: 'pdf-ppt',
+					name: 'PDF to PowerPoint',
+					description: 'Convert PDF to editable PowerPoint presentations',
+					icon: FileText,
+					link: '/pdf-to-powerpoint',
+					color: 'from-red-600 to-orange-600',
+					bgColor: 'bg-red-50',
+					iconColor: 'text-red-600',
+				},
+				{
+					id: 'ppt-pdf',
+					name: 'PowerPoint to PDF',
+					description: 'Convert PowerPoint presentations to PDF',
+					icon: FileText,
+					link: '/powerpoint-to-pdf',
+					color: 'from-teal-600 to-emerald-600',
+					bgColor: 'bg-teal-50',
+					iconColor: 'text-teal-600',
+				},
+				{
+					id: 'excel-pdf',
+					name: 'Excel to PDF',
+					description: 'Convert Excel spreadsheets to PDF format',
+					icon: FileSpreadsheet,
+					link: '/excel-to-pdf',
+					color: 'from-emerald-600 to-green-600',
+					bgColor: 'bg-emerald-50',
+					iconColor: 'text-emerald-600',
+				},
+				{
+					id: 'html-pdf',
+					name: 'HTML to PDF',
+					description: 'Convert HTML web pages to PDF documents',
+					icon: FileText,
+					link: '/html-to-pdf',
+					color: 'from-violet-600 to-purple-600',
+					bgColor: 'bg-violet-50',
+					iconColor: 'text-violet-600',
+				},
+			],
 		},
 		{
 			id: 2,
@@ -73,7 +167,7 @@ function BrowseTools() {
 					bgColor: 'bg-teal-50',
 					iconColor: 'text-teal-600',
 				},
-			]
+			],
 		},
 		{
 			id: 3,
@@ -110,7 +204,7 @@ function BrowseTools() {
 					bgColor: 'bg-violet-50',
 					iconColor: 'text-violet-600',
 				},
-			]
+			],
 		},
 		{
 			id: 4,
@@ -137,7 +231,7 @@ function BrowseTools() {
 					bgColor: 'bg-indigo-50',
 					iconColor: 'text-indigo-600',
 				},
-			]
+			],
 		},
 		{
 			id: 5,
@@ -164,19 +258,24 @@ function BrowseTools() {
 					bgColor: 'bg-emerald-50',
 					iconColor: 'text-emerald-600',
 				},
-			]
+			],
 		},
 	]
 
 	const filteredSections = searchQuery
-		? toolSections.map(section => ({
-				...section,
-				tools: section.tools.filter(tool =>
-					tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-					tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-					section.title.toLowerCase().includes(searchQuery.toLowerCase())
-				)
-			})).filter(section => section.tools.length > 0)
+		? toolSections
+				.map((section) => ({
+					...section,
+					tools: section.tools.filter(
+						(tool) =>
+							tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+							tool.description
+								.toLowerCase()
+								.includes(searchQuery.toLowerCase()) ||
+							section.title.toLowerCase().includes(searchQuery.toLowerCase()),
+					),
+				}))
+				.filter((section) => section.tools.length > 0)
 		: toolSections
 
 	return (
@@ -191,7 +290,8 @@ function BrowseTools() {
 						Browse Our Tools
 					</h1>
 					<p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-						Discover powerful tools to streamline your workflow and boost productivity
+						Discover powerful tools to streamline your workflow and boost
+						productivity
 					</p>
 
 					{/* Search Bar */}
@@ -215,7 +315,10 @@ function BrowseTools() {
 				{filteredSections.length > 0 ? (
 					<div className="space-y-16 max-w-7xl mx-auto">
 						{filteredSections.map((section) => (
-							<div key={section.id} className="space-y-8">
+							<div
+								key={section.id}
+								className="space-y-8"
+							>
 								{/* Section Header */}
 								<div className="text-center">
 									<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
@@ -237,8 +340,12 @@ function BrowseTools() {
 												className="group relative bg-white rounded-3xl p-8 border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
 											>
 												{/* Icon Container */}
-												<div className={`${tool.bgColor} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-													<Icon className={`h-8 w-8 ${tool.iconColor}`} />
+												<div
+													className={`${tool.bgColor} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+												>
+													<Icon
+														className={`h-8 w-8 ${tool.iconColor}`}
+													/>
 												</div>
 
 												{/* Tool Info */}
@@ -250,9 +357,13 @@ function BrowseTools() {
 												</p>
 
 												{/* CTA Button */}
-												<div className={`inline-flex items-center text-transparent bg-clip-text bg-gradient-to-r ${tool.color} font-semibold group-hover:gap-2 transition-all duration-300`}>
+												<div
+													className={`inline-flex items-center text-transparent bg-clip-text bg-gradient-to-r ${tool.color} font-semibold group-hover:gap-2 transition-all duration-300`}
+												>
 													Try Now
-													<span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</span>
+													<span className="ml-2 group-hover:translate-x-1 transition-transform duration-300">
+														→
+													</span>
 												</div>
 											</Link>
 										)
@@ -269,9 +380,7 @@ function BrowseTools() {
 						<h3 className="text-2xl font-bold text-gray-900 mb-2">
 							No tools found
 						</h3>
-						<p className="text-gray-600">
-							Try searching with different keywords
-						</p>
+						<p className="text-gray-600">Try searching with different keywords</p>
 					</div>
 				)}
 

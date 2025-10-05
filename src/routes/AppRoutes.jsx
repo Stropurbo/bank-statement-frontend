@@ -32,12 +32,16 @@ import MailMarketing from '../pages/MailMarketing'
 import UserStatements from '../pages/UserStatements'
 import BrowseTools from '../pages/BrowseTools'
 import MergePDF from '../pages/MergePDF'
+import CompressPDF from '../pages/CompressPDF'
+import SplitPDF from '../pages/SplitPDF'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/pricing', element: <Pricing /> },
 	{ path: '/tools', element: <BrowseTools /> },
 	{ path: '/merge-pdf', element: <MergePDF /> },
+	{ path: '/compress-pdf', element: <CompressPDF /> },
+	{ path: '/split-pdf', element: <SplitPDF /> },
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
