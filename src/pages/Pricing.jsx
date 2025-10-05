@@ -5,11 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import ApiClient from '../services/api-client'
 import PublicApiClient from '../services/public-api-client'
 import { setMeta } from '../utils/setMeta'
-import useAuth from '../hooks/useAuth'
+import useAuthContext from '../hooks/useAuthContext'
 
 function Pricing() {
 	const navigate = useNavigate()
-	const { isAuthenticated, loading: authLoading } = useAuth()
+	const { isAuthenticated } = useAuthContext()
 	const [billing, setBilling] = useState('monthly')
 	const [loading, setLoading] = useState(null)
 	const [error, setError] = useState(null)
@@ -32,6 +32,7 @@ function Pricing() {
 				const response = await PublicApiClient.get('/subscription/plans/')
 				setPricingTiers(response.data.results || response.data || [])
 			} catch (err) {
+				console.log(err);
 				setPricingTiers([])
 				setError(null)
 			} finally {

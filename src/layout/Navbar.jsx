@@ -24,7 +24,7 @@ function Navbar() {
 					{/* Logo */}
 					<a
 					href='/'
-						
+
 						className="flex items-center space-x-3 group"
 					>
 						<div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -48,10 +48,10 @@ function Navbar() {
 							Pricing
 						</Link>
 						<Link
-							to="/about"
+							to="/tools"
 							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
 						>
-							About
+							Tools
 						</Link>
 						<Link
 							to="/contact"
@@ -157,11 +157,11 @@ function Navbar() {
 								Pricing
 							</Link>
 							<Link
-								to="/about"
+								to="/tools"
 								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
 								onClick={() => setIsMenuOpen(false)}
 							>
-								About
+								Tools
 							</Link>
 							<Link
 								to="/contact"

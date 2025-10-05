@@ -30,10 +30,14 @@ import { Routes, Route } from 'react-router'
 import PremiumUsers from '../pages/PremiumUsers'
 import MailMarketing from '../pages/MailMarketing'
 import UserStatements from '../pages/UserStatements'
+import BrowseTools from '../pages/BrowseTools'
+import MergePDF from '../pages/MergePDF'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/pricing', element: <Pricing /> },
+	{ path: '/tools', element: <BrowseTools /> },
+	{ path: '/merge-pdf', element: <MergePDF /> },
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
@@ -46,6 +50,7 @@ const publicRoutes = [
 	{ path: '/payment/fail', element: <PaymentFail /> },
 	{ path: '/affiliate', element: <Affiliate /> },
 ]
+
 
 const allRoutes = [
 	...publicRoutes,

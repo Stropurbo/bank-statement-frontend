@@ -3,11 +3,11 @@ import { Check, Star, ArrowRight, Sparkles, Loader2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import ApiClient from '../services/api-client'
 import PublicApiClient from '../services/public-api-client'
-import useAuth from '../hooks/useAuth'
+import useAuthContext from '../hooks/useAuthContext'
 
 function PriceSection() {
 	const navigate = useNavigate()
-	const { isAuthenticated } = useAuth()
+	const { isAuthenticated } = useAuthContext()
 	const [billing, setBilling] = useState('monthly')
 	const [pricingTiers, setPricingTiers] = useState([])
 	const [loading, setLoading] = useState(null)
