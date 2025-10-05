@@ -110,7 +110,7 @@ function MergePDF() {
 			files.forEach((file) => {
 				formData.append('files', file)
 			})
-			
+
 			console.log('Passwords:', passwords)
 			if (passwords.some(p => p)) {
 				const passwordJson = JSON.stringify(passwords)
@@ -141,7 +141,7 @@ function MergePDF() {
 				const url = window.URL.createObjectURL(new Blob([downloadResponse.data]))
 				const link = document.createElement('a')
 				link.href = url
-				link.setAttribute('download', 'merged_document.pdf')
+				link.setAttribute('download', 'sheetlypro_merge.pdf')
 				document.body.appendChild(link)
 				link.click()
 				link.remove()
