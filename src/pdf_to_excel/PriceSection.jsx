@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Sparkles, Loader2 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import ApiClient from '../services/api-client'
 import PublicApiClient from '../services/public-api-client'
+import useAuth from '../hooks/useAuth'
 
 function PriceSection() {
+	const navigate = useNavigate()
+	const { isAuthenticated } = useAuth()
 	const [billing, setBilling] = useState('monthly')
 	const [pricingTiers, setPricingTiers] = useState([])
 	const [loading, setLoading] = useState(null)
@@ -30,6 +34,15 @@ function PriceSection() {
 	}, [])
 
 	const handleSubscribe = async (planId, paymentType) => {
+		// Check if user is authenticated first
+		if (!isAuthenticated) {
+			setError('Please login to subscribe')
+			setTimeout(() => {
+				navigate('/login?redirect=/')
+			}, 1500)
+			return
+		}
+
 		setLoading(planId)
 		setError(null)
 		try {
@@ -45,7 +58,10 @@ function PriceSection() {
 			}
 		} catch (err) {
 			if (err.response?.status === 401) {
-				window.location.href = '/login'
+				setError('Please login to subscribe')
+				setTimeout(() => {
+					window.location.href = '/login'
+				}, 1500)
 				return
 			}
 

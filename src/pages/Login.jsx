@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form'
 import useAuthContext from '../hooks/useAuthContext'
-import { Link, useNavigate } from 'react-router'
+import { Link, useNavigate, useSearchParams } from 'react-router'
 import { useState, useEffect } from 'react'
 import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import { setMeta } from '../utils/setMeta'
@@ -8,6 +8,9 @@ import { GoogleLogin } from '@react-oauth/google'
 import axios from 'axios'
 
 const Login = () => {
+	const [searchParams] = useSearchParams()
+	const redirectUrl = searchParams.get('redirect') || '/'
+
 	useEffect(() => {
 		setMeta({
 			title: 'Login to SheetlyPro - Access Your Account',
@@ -37,7 +40,7 @@ const Login = () => {
 		try {
 			await loginUser(data)
 			setSuccess('Login successful! Welcome back.')
-			navigate('/')
+			navigate(redirectUrl)
 		} catch (error) {
 			setError(
 				error.response?.data?.detail ||
@@ -62,7 +65,7 @@ const Login = () => {
 
 			if (response.data && response.data.user) {
 				setSuccess('Login successful! Welcome back.')
-				window.location.href = '/'
+				window.location.href = redirectUrl
 			}
 		} catch (error) {
 			setError(

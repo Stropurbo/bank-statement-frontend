@@ -164,16 +164,16 @@ function useAuth() {
 		setUser(null)
 		setIsAuthenticated(false)
 		localStorage.removeItem('cartId')
-		
-		// Redirect immediately for instant logout
-		window.location.href = '/'
-		
-		// Call backend in background to clear cookies
+
+		// Call backend to clear httpOnly cookies
 		try {
 			await ApiClient.post('/auth/cookie/logout/')
 		} catch (error) {
 			console.error('Logout error:', error)
 		}
+
+		// Redirect after cookies are cleared
+		window.location.href = '/'
 	}
 
 	return {

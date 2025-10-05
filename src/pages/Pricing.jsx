@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Check } from 'lucide-react'
 import AboveFooter from '../pdf_to_excel/AboveFooter'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ApiClient from '../services/api-client'
 import PublicApiClient from '../services/public-api-client'
 import { setMeta } from '../utils/setMeta'
+import useAuth from '../hooks/useAuth'
 
 function Pricing() {
+	const navigate = useNavigate()
+	const { isAuthenticated, loading: authLoading } = useAuth()
 	const [billing, setBilling] = useState('monthly')
 	const [loading, setLoading] = useState(null)
 	const [error, setError] = useState(null)
@@ -43,6 +46,15 @@ function Pricing() {
 	// No need for manual token management with cookies
 
 	const handleSubscribe = async (planId, paymentType) => {
+		// Check if user is authenticated first
+		if (!isAuthenticated) {
+			setError('Please login to subscribe')
+			setTimeout(() => {
+				navigate('/login?redirect=/pricing')
+			}, 1500)
+			return
+		}
+
 		setLoading(planId)
 		setError(null)
 
@@ -62,7 +74,10 @@ function Pricing() {
 			}
 		} catch (err) {
 			if (err.response?.status === 401) {
-				window.location.href = '/login'
+				setError('Please login to subscribe')
+				setTimeout(() => {
+					window.location.href = '/login'
+				}, 1500)
 				return
 			}
 

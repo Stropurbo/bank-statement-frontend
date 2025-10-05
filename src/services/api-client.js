@@ -39,8 +39,8 @@ ApiClient.interceptors.response.use(
 	async (error) => {
 		const originalRequest = error.config
 
-		// Prevent infinite loops
-		const isAuthEndpoint = originalRequest.url?.includes('/auth/')
+		// Prevent infinite loops - check for auth endpoints
+		const isAuthEndpoint = originalRequest.url?.includes('auth/')
 
 		// If 401 and not already retried, try to refresh token
 		if (error.response?.status === 401 && !originalRequest._retry && !isAuthEndpoint) {
@@ -55,7 +55,8 @@ ApiClient.interceptors.response.use(
 				return ApiClient(originalRequest)
 			} catch (refreshError) {
 				if (!window.location.pathname.includes('/login') && !isPublicPath()) {
-					window.location.href = '/login'
+					const currentPath = window.location.pathname
+					window.location.href = `/login?redirect=${encodeURIComponent(currentPath)}`
 				}
 				return Promise.reject(refreshError)
 			}
