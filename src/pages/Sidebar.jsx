@@ -21,8 +21,8 @@ const Sidebar = () => {
 		document.documentElement.style.setProperty('--sidebar-width', isCollapsed ? '64px' : '256px')
 	}, [isCollapsed])
 
-	const logoutUser = () => {
-		userLogout()
+	const logoutUser = async () => {
+		await userLogout()
 		navigate('/')
 	}
 

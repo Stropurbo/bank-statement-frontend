@@ -117,8 +117,8 @@ function Navbar() {
 											Profile
 										</Link>
 										<button
-											onClick={() => {
-												logoutUser()
+											onClick={async () => {
+												await logoutUser()
 												setIsMenuOpen(false)
 											}}
 											className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
@@ -225,8 +225,8 @@ function Navbar() {
 										<span>Profile</span>
 									</Link>
 									<button
-										onClick={() => {
-											logoutUser()
+										onClick={async () => {
+											await logoutUser()
 											setIsMenuOpen(false)
 										}}
 										className="flex items-center space-x-3 text-gray-700 hover:text-red-600 transition-colors w-full"

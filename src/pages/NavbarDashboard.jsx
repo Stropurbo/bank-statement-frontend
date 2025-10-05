@@ -8,8 +8,8 @@ const NavbarDashboard = ({ sidebarOpen }) => {
 	const { user, logoutUser: userLogout } = useAuthContext()
 	const navigate = useNavigate()
 
-	const logoutUser = () => {
-		userLogout()
+	const logoutUser = async () => {
+		await userLogout()
 		navigate('/')
 	}
 
