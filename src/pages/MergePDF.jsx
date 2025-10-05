@@ -57,6 +57,8 @@ function MergePDF() {
 
 	const removeFile = (index) => {
 		setFiles(prev => prev.filter((_, i) => i !== index))
+		setPasswords(prev => prev.filter((_, i) => i !== index))
+		setShowPasswords(prev => prev.filter((_, i) => i !== index))
 	}
 
 	const handleDragStart = (index) => {
@@ -68,11 +70,25 @@ function MergePDF() {
 		if (draggedIndex === null || draggedIndex === index) return
 
 		const newFiles = [...files]
+		const newPasswords = [...passwords]
+		const newShowPasswords = [...showPasswords]
+
 		const draggedFile = newFiles[draggedIndex]
+		const draggedPassword = newPasswords[draggedIndex]
+		const draggedShowPassword = newShowPasswords[draggedIndex]
+
 		newFiles.splice(draggedIndex, 1)
 		newFiles.splice(index, 0, draggedFile)
 
+		newPasswords.splice(draggedIndex, 1)
+		newPasswords.splice(index, 0, draggedPassword)
+
+		newShowPasswords.splice(draggedIndex, 1)
+		newShowPasswords.splice(index, 0, draggedShowPassword)
+
 		setFiles(newFiles)
+		setPasswords(newPasswords)
+		setShowPasswords(newShowPasswords)
 		setDraggedIndex(index)
 	}
 
@@ -95,8 +111,11 @@ function MergePDF() {
 				formData.append('files', file)
 			})
 			
+			console.log('Passwords:', passwords)
 			if (passwords.some(p => p)) {
-				formData.append('password', JSON.stringify(passwords))
+				const passwordJson = JSON.stringify(passwords)
+				console.log('Sending passwords:', passwordJson)
+				formData.append('password', passwordJson)
 			}
 
 			// Step 1: Upload and merge PDFs
@@ -130,6 +149,8 @@ function MergePDF() {
 
 				// Clear files after successful merge
 				setFiles([])
+				setPasswords([])
+				setShowPasswords([])
 			} else {
 				setError('Download URL not received. Please try again.')
 			}
@@ -155,11 +176,11 @@ function MergePDF() {
 	}
 
 	return (
-		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50">
+		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
 			<div className="container mx-auto px-6 py-24">
 				{/* Header */}
 				<div className="text-center mb-16">
-					<div className="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-medium mb-6">
+					<div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
 						PDF Tools
 					</div>
 					<h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -180,18 +201,18 @@ function MergePDF() {
 							onDrop={handleDrop}
 							className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
 								isDragging
-									? 'border-green-500 bg-green-50'
-									: 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
+									? 'border-purple-500 bg-purple-50'
+									: 'border-gray-300 hover:border-purple-400 hover:bg-gray-50'
 							}`}
 						>
-							<Upload className={`h-16 w-16 mx-auto mb-4 ${isDragging ? 'text-green-500' : 'text-gray-400'}`} />
+							<Upload className={`h-16 w-16 mx-auto mb-4 ${isDragging ? 'text-purple-500' : 'text-gray-400'}`} />
 							<h3 className="text-xl font-semibold text-gray-900 mb-2">
 								Drop PDF files here
 							</h3>
 							<p className="text-gray-600 mb-6">
 								or click to browse your files
 							</p>
-							<label className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-semibold rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer transform hover:scale-105">
+							<label className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer transform hover:scale-105">
 								<Upload className="h-5 w-5 mr-2" />
 								Select PDF Files
 								<input
@@ -220,7 +241,11 @@ function MergePDF() {
 										Selected Files ({files.length})
 									</h3>
 									<button
-										onClick={() => setFiles([])}
+										onClick={() => {
+											setFiles([])
+											setPasswords([])
+											setShowPasswords([])
+										}}
 										className="text-sm text-red-600 hover:text-red-700 font-medium transition-colors"
 									>
 										Clear All
@@ -235,13 +260,13 @@ function MergePDF() {
 											onDragStart={() => handleDragStart(index)}
 											onDragOver={(e) => handleDragOverItem(e, index)}
 											onDragEnd={handleDragEnd}
-											className={`flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-green-300 transition-all duration-200 cursor-move ${
+											className={`flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-purple-300 transition-all duration-200 cursor-move ${
 												draggedIndex === index ? 'opacity-50' : ''
 											}`}
 										>
 											<div className="flex items-center space-x-3 flex-1">
 												<GripVertical className="h-5 w-5 text-gray-400 flex-shrink-0" />
-												<FileText className="h-8 w-8 text-green-600 flex-shrink-0" />
+												<FileText className="h-8 w-8 text-purple-600 flex-shrink-0" />
 												<div className="flex-1 min-w-0">
 													<p className="text-sm font-medium text-gray-900 truncate">
 														{file.name}
@@ -250,17 +275,17 @@ function MergePDF() {
 														{formatFileSize(file.size)}
 													</p>
 													<div className="mt-2 flex items-center space-x-2">
-														<Lock className="h-3 w-3 text-gray-400" />
+														<Lock className="h-4 w-4 text-purple-600" />
 														<input
 															type={showPasswords[index] ? 'text' : 'password'}
-															placeholder="Password (if protected)"
+															placeholder="Enter password if protected"
 															value={passwords[index] || ''}
 															onChange={(e) => {
 																const newPasswords = [...passwords]
 																newPasswords[index] = e.target.value
 																setPasswords(newPasswords)
 															}}
-															className="flex-1 px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-green-500"
+															className="flex-1 px-3 py-2 text-sm border-2 border-purple-300 bg-purple-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder-gray-500"
 														/>
 														<button
 															type="button"
@@ -270,9 +295,9 @@ function MergePDF() {
 																newShowPasswords[index] = !newShowPasswords[index]
 																setShowPasswords(newShowPasswords)
 															}}
-															className="p-1 hover:bg-gray-100 rounded"
+															className="p-1.5 hover:bg-purple-100 rounded-lg transition-colors"
 														>
-															{showPasswords[index] ? <EyeOff className="h-3 w-3 text-gray-400" /> : <Eye className="h-3 w-3 text-gray-400" />}
+															{showPasswords[index] ? <EyeOff className="h-4 w-4 text-purple-600" /> : <Eye className="h-4 w-4 text-purple-600" />}
 														</button>
 													</div>
 												</div>
@@ -291,7 +316,7 @@ function MergePDF() {
 								<button
 									onClick={handleMerge}
 									disabled={merging || files.length < 2}
-									className="w-full mt-6 py-4 px-6 bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold text-lg rounded-xl hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none transform hover:scale-[1.02] flex items-center justify-center space-x-2"
+									className="w-full mt-6 py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-lg rounded-xl hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none transform hover:scale-[1.02] flex items-center justify-center space-x-2"
 								>
 									{merging ? (
 										<>
@@ -314,19 +339,19 @@ function MergePDF() {
 
 						{/* Instructions */}
 						{files.length === 0 && (
-							<div className="mt-8 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-100">
+							<div className="mt-8 bg-gradient-to-br from-green-50 to-indigo-50 rounded-2xl p-6 border border-purple-100">
 								<h4 className="font-semibold text-gray-900 mb-3">How to merge PDFs:</h4>
 								<ol className="space-y-2 text-gray-700">
 									<li className="flex items-start">
-										<span className="font-bold text-green-600 mr-2">1.</span>
+										<span className="font-bold text-purple-600 mr-2">1.</span>
 										<span>Upload multiple PDF files using the upload area above</span>
 									</li>
 									<li className="flex items-start">
-										<span className="font-bold text-green-600 mr-2">2.</span>
+										<span className="font-bold text-purple-600 mr-2">2.</span>
 										<span>Drag and drop files to rearrange their order</span>
 									</li>
 									<li className="flex items-start">
-										<span className="font-bold text-green-600 mr-2">3.</span>
+										<span className="font-bold text-purple-600 mr-2">3.</span>
 										<span>Click "Merge & Download" to combine them into one PDF</span>
 									</li>
 								</ol>
@@ -338,22 +363,22 @@ function MergePDF() {
 				{/* Features Section */}
 				<div className="mt-16 grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
 					<div className="text-center">
-						<div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-							<FileText className="h-8 w-8 text-green-600" />
+						<div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+							<FileText className="h-8 w-8 text-purple-600" />
 						</div>
 						<h3 className="font-semibold text-gray-900 mb-2">Unlimited Files</h3>
 						<p className="text-gray-600 text-sm">Merge as many PDF files as you need</p>
 					</div>
 					<div className="text-center">
-						<div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-							<GripVertical className="h-8 w-8 text-green-600" />
+						<div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+							<GripVertical className="h-8 w-8 text-purple-600" />
 						</div>
 						<h3 className="font-semibold text-gray-900 mb-2">Reorder Pages</h3>
 						<p className="text-gray-600 text-sm">Drag & drop to arrange files in any order</p>
 					</div>
 					<div className="text-center">
-						<div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-							<Download className="h-8 w-8 text-green-600" />
+						<div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+							<Download className="h-8 w-8 text-purple-600" />
 						</div>
 						<h3 className="font-semibold text-gray-900 mb-2">Fast Download</h3>
 						<p className="text-gray-600 text-sm">Get your merged PDF instantly</p>
