@@ -9,4 +9,9 @@ export const sitemapPaths = [
 	'/terms-of-service',
 	'/privacy-policy',
 	'/affiliate',
+	'/tools',
+	'/merge-pdf',
+	'/compress-pdf',
+	'/split-pdf',
+	'/pdf-to-word',
 ]
