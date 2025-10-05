@@ -27,10 +27,8 @@ function Pricing() {
 		const fetchPricingTiers = async () => {
 			try {
 				const response = await PublicApiClient.get('/subscription/plans/')
-				console.log('API Response:', response.data)
 				setPricingTiers(response.data.results || response.data || [])
 			} catch (err) {
-				console.error('Failed to fetch pricing tiers:', err)
 				setPricingTiers([])
 				setError(null)
 			} finally {
@@ -49,36 +47,20 @@ function Pricing() {
 		setError(null)
 
 		try {
-			console.log('Initiating subscription:', {
-				plan_id: planId,
-				payment_type: paymentType,
-				tiers_count: pricingTiers.length,
-			})
-
 			const response = await ApiClient.post('subscription/initiate/', {
 				plan_id: planId,
 				payment_type: paymentType,
 			})
 
-			console.log('Backend response:', response.data)
-
-			// Backend returns checkout_url, not payment_url
 			const paymentUrl = response.data.checkout_url || response.data.payment_url
 
-			if (
-				paymentUrl &&
-				(paymentUrl.startsWith('https://') || paymentUrl.startsWith('http://'))
-			) {
+			if (paymentUrl && (paymentUrl.startsWith('https://') || paymentUrl.startsWith('http://'))) {
 				window.location.href = paymentUrl
 			} else {
-				const errorMessage =
-					response.data.error || response.data.message || 'Payment initiation failed.'
-				console.error('Payment initiation failed:', errorMessage)
-				console.error('Full response:', response.data)
+				const errorMessage = response.data.error || response.data.message || 'Payment initiation failed.'
 				setError(String(errorMessage).replace(/<[^>]*>/g, ''))
 			}
 		} catch (err) {
-			// Check if user is not authenticated
 			if (err.response?.status === 401) {
 				window.location.href = '/login'
 				return
@@ -86,15 +68,11 @@ function Pricing() {
 
 			let errorMsg = 'Network error. Please try again.'
 			if (err.response?.status === 500) {
-				errorMsg =
-					'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
+				errorMsg = 'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
 			} else if (err.response?.data?.error) {
 				errorMsg = String(err.response.data.error).replace(/<[^>]*>/g, '')
 			}
 			setError(errorMsg)
-			console.error('Full error:', err)
-			console.error('Error response:', err.response)
-			console.error('Error response data:', err.response?.data)
 		} finally {
 			setLoading(null)
 		}

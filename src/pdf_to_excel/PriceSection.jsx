@@ -33,50 +33,29 @@ function PriceSection() {
 		setLoading(planId)
 		setError(null)
 		try {
-			const token = localStorage.getItem('authTokens')
-			if (!token) {
-				return (window.location.href = '/login')
-			}
-
-			const parsedTokens = JSON.parse(token)
-			const accessToken = parsedTokens.access
-
-			console.log('Initiating subscription:', {
+			const response = await ApiClient.post('subscription/initiate/', {
 				plan_id: planId,
 				payment_type: paymentType,
-				tiers_count: pricingTiers.length,
 			})
 
-			const response = await ApiClient.post(
-				'subscription/initiate/',
-				{
-					plan_id: planId,
-					payment_type: paymentType,
-				},
-				{
-					headers: {
-						Authorization: `JWT ${accessToken}`,
-					},
-				},
-			)
-
-			if (response.data.payment_url) {
-				window.location.href = response.data.payment_url
+			if (response.data.checkout_url || response.data.payment_url) {
+				window.location.href = response.data.checkout_url || response.data.payment_url
 			} else {
 				setError(response.data.error || 'Payment initiation failed.')
 			}
 		} catch (err) {
+			if (err.response?.status === 401) {
+				window.location.href = '/login'
+				return
+			}
+
 			let errorMsg = 'Network error. Please try again.'
 			if (err.response?.status === 500) {
-				errorMsg =
-					'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
+				errorMsg = 'Payment system is temporarily unavailable. Please try again in a few minutes or contact support.'
 			} else if (err.response?.data?.error) {
 				errorMsg = err.response.data.error
 			}
 			setError(errorMsg)
-			console.error('Full error:', err)
-			console.error('Error response:', err.response)
-			console.error('Error response data:', err.response?.data)
 		} finally {
 			setLoading(null)
 		}
