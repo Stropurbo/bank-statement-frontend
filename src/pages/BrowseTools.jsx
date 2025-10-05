@@ -51,6 +51,16 @@ function BrowseTools() {
 					iconColor: 'text-purple-600',
 				},
 				{
+					id: 'excel-pdf',
+					name: 'Excel to PDF',
+					description: 'Convert Excel spreadsheets to PDF format',
+					icon: FileSpreadsheet,
+					link: '/excel-to-pdf',
+					color: 'from-emerald-600 to-green-600',
+					bgColor: 'bg-emerald-50',
+					iconColor: 'text-emerald-600',
+				},
+				{
 					id: 'merge-pdf',
 					name: 'Merge PDF',
 					description: 'Combine multiple PDF files into a single document',
@@ -119,16 +129,6 @@ function BrowseTools() {
 					color: 'from-teal-600 to-emerald-600',
 					bgColor: 'bg-teal-50',
 					iconColor: 'text-teal-600',
-				},
-				{
-					id: 'excel-pdf',
-					name: 'Excel to PDF',
-					description: 'Convert Excel spreadsheets to PDF format',
-					icon: FileSpreadsheet,
-					link: '/excel-to-pdf',
-					color: 'from-emerald-600 to-green-600',
-					bgColor: 'bg-emerald-50',
-					iconColor: 'text-emerald-600',
 				},
 				{
 					id: 'html-pdf',

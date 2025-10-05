@@ -39,6 +39,8 @@ import WordToPDF from '../pages/WordToPDF'
 import PDFToPowerPoint from '../pages/PDFToPowerPoint'
 import PowerPointToPDF from '../pages/PowerPointToPDF'
 import ExcelToPDF from '../pages/ExcelToPDF'
+import HTMLToPDF from '../pages/HTMLToPDF'
+import ReceiptScanner from '../pages/ReceiptScanner'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -52,6 +54,8 @@ const publicRoutes = [
 	{ path: '/pdf-to-powerpoint', element: <PDFToPowerPoint /> },
 	{ path: '/powerpoint-to-pdf', element: <PowerPointToPDF /> },
 	{ path: '/excel-to-pdf', element: <ExcelToPDF /> },
+	{ path: '/html-to-pdf', element: <HTMLToPDF /> },
+	{ path: '/receipt-scanner', element: <ReceiptScanner /> },
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },

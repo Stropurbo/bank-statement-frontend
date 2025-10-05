@@ -267,23 +267,25 @@ const Profile = () => {
 											Current Plan
 										</span>
 										<span className="px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-semibold rounded-full">
-											{user?.usersubscription?.plan?.name || 'Free Plan'}
+											{subscriptionData?.plan_name || user?.usersubscription?.plan?.name || (user?.is_staff ? 'Admin' : 'Free Plan')}
 										</span>
 									</div>
-									{user?.usersubscription && (
-										<div className="text-xs text-gray-600">
-											<p>
-												Remaining uploads:{' '}
-												{subscriptionData?.remaining_uploads || user.usersubscription.remaining_uploads || 'N/A'}
-											</p>
+									<div className="text-xs text-gray-600">
+										<p>
+											Remaining uploads:{' '}
+											{subscriptionData?.remaining_uploads !== undefined
+												? subscriptionData.remaining_uploads
+												: (user?.usersubscription?.remaining_uploads || 'N/A')}
+										</p>
+										{(subscriptionData?.end_date || user?.usersubscription?.end_date) && (
 											<p>
 												Valid until:{' '}
 												{new Date(
-													user.usersubscription.end_date,
+													subscriptionData?.end_date || user.usersubscription.end_date
 												).toLocaleDateString()}
 											</p>
-										</div>
-									)}
+										)}
+									</div>
 								</div>
 
 								<div className="bg-gray-50 p-4 rounded-lg">
@@ -293,13 +295,15 @@ const Profile = () => {
 									<div className="flex items-center space-x-2">
 										<CheckCircle
 											className={`h-4 w-4 ${
-												user?.usersubscription
+												user?.is_staff || user?.usersubscription
 													? 'text-green-600'
 													: 'text-gray-400'
 											}`}
 										/>
 										<span className="text-sm text-gray-600">
-											{user?.usersubscription
+											{user?.is_staff
+												? 'Admin Account - Full Access'
+												: user?.usersubscription
 												? 'Subscription Active'
 												: 'No Active Subscription'}
 										</span>
@@ -307,7 +311,7 @@ const Profile = () => {
 								</div>
 
 								<div className="pt-4 border-t border-gray-200">
-									{!user?.usersubscription ? (
+									{!user?.usersubscription && !user?.is_staff ? (
 										<div className="text-center">
 											<p className="text-xs text-gray-500 mb-3">
 												Upgrade to unlock premium features!
@@ -319,6 +323,12 @@ const Profile = () => {
 												<span>Upgrade Now</span>
 												<ArrowRight className="h-4 w-4" />
 											</Link>
+										</div>
+									) : user?.is_staff ? (
+										<div className="text-center">
+											<p className="text-xs text-gray-500">
+												You have full administrative access
+											</p>
 										</div>
 									) : (
 										<div className="space-y-3">

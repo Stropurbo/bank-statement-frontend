@@ -18,4 +18,6 @@ export const sitemapPaths = [
 	'/pdf-to-powerpoint',
 	'/powerpoint-to-pdf',
 	'/excel-to-pdf',
+	'/html-to-pdf',
+	'/receipt-scanner',
 ]
