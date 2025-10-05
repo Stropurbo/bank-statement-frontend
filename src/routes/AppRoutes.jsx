@@ -36,6 +36,9 @@ import CompressPDF from '../pages/CompressPDF'
 import SplitPDF from '../pages/SplitPDF'
 import PDFToWord from '../pages/PDFToWord'
 import WordToPDF from '../pages/WordToPDF'
+import PDFToPowerPoint from '../pages/PDFToPowerPoint'
+import PowerPointToPDF from '../pages/PowerPointToPDF'
+import ExcelToPDF from '../pages/ExcelToPDF'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -46,6 +49,9 @@ const publicRoutes = [
 	{ path: '/split-pdf', element: <SplitPDF /> },
 	{ path: '/pdf-to-word', element: <PDFToWord /> },
 	{ path: '/word-to-pdf', element: <WordToPDF /> },
+	{ path: '/pdf-to-powerpoint', element: <PDFToPowerPoint /> },
+	{ path: '/powerpoint-to-pdf', element: <PowerPointToPDF /> },
+	{ path: '/excel-to-pdf', element: <ExcelToPDF /> },
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
