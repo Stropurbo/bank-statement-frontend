@@ -41,9 +41,27 @@ function useAuth() {
 		}
 	}, [])
 
-	const handleAPIError = (error, defaultMessage = 'Somethings went wrong!') => {
+	const handleAPIError = (error, defaultMessage = 'Something went wrong!') => {
 		if (error.response && error.response.data) {
-			const errormsg = Object.values(error.response.data).flat().join('\n')
+			let errormsg = ''
+			
+			// Handle different error response formats
+			if (typeof error.response.data === 'string') {
+				errormsg = error.response.data
+			} else if (error.response.data.email) {
+				// Email validation errors
+				errormsg = Array.isArray(error.response.data.email) 
+					? error.response.data.email.join(' ') 
+					: error.response.data.email
+			} else if (error.response.data.detail) {
+				errormsg = error.response.data.detail
+			} else if (error.response.data.error) {
+				errormsg = error.response.data.error
+			} else {
+				// Flatten all error messages
+				errormsg = Object.values(error.response.data).flat().join(' ')
+			}
+			
 			setErrMsg(errormsg)
 			return { success: false, message: errormsg }
 		}

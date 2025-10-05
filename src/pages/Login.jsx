@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import { setMeta } from '../utils/setMeta'
 import { GoogleLogin } from '@react-oauth/google'
-import AuthApiClient from '../services/auth-api-client'
+import PublicApiClient from '../services/public-api-client'
 
 const Login = () => {
 	useEffect(() => {
@@ -54,13 +54,12 @@ const Login = () => {
 		setError('')
 		setSuccess('')
 		try {
-			const response = await AuthApiClient.post('auth/google/', {
+			const response = await PublicApiClient.post('auth/google/', {
 				token: credentialResponse.credential
 			})
 
 			if (response.data && response.data.user) {
 				setSuccess('Login successful! Welcome back.')
-				// Redirect immediately - cookies are already set
 				window.location.href = '/'
 			}
 		} catch (error) {

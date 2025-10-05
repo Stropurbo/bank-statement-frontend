@@ -5,7 +5,7 @@ import { Eye, EyeOff, User, Mail, MapPin, Phone, Lock, CheckCircle, AlertCircle 
 import { useNavigate, Link } from 'react-router'
 import { setMeta } from '../utils/setMeta'
 import { GoogleLogin } from '@react-oauth/google'
-import AuthApiClient from '../services/auth-api-client'
+import PublicApiClient from '../services/public-api-client'
 
 function Register() {
 	useEffect(() => {
@@ -46,10 +46,10 @@ function Register() {
 				setSuccessMsg(res.message)
 				navigate('/login')
 			} else {
-				setErrorMsg(res.message || 'Something went wrong')
+				setErrorMsg(res.message || 'Registration failed. Please try again.')
 			}
 		} catch (error) {
-			console.log('Error response:', error.response?.data)
+			setErrorMsg('Registration failed. Please try again.')
 		} finally {
 			setLoading(false)
 		}
@@ -60,13 +60,12 @@ function Register() {
 		setErrorMsg('')
 		setSuccessMsg('')
 		try {
-			const response = await AuthApiClient.post('auth/google/', {
+			const response = await PublicApiClient.post('auth/google/', {
 				token: credentialResponse.credential
 			})
 
 			if (response.data && response.data.user) {
 				setSuccessMsg('Account created successfully! Welcome to SheetlyPro.')
-				// Redirect immediately - cookies are already set
 				window.location.href = '/'
 			}
 		} catch (error) {
