@@ -160,16 +160,19 @@ function useAuth() {
 	}
 
 	const logoutUser = async () => {
+		// Clear state immediately
+		setUser(null)
+		setIsAuthenticated(false)
+		localStorage.removeItem('cartId')
+		
+		// Redirect immediately for instant logout
+		window.location.href = '/'
+		
+		// Call backend in background to clear cookies
 		try {
 			await ApiClient.post('/auth/cookie/logout/')
 		} catch (error) {
 			console.error('Logout error:', error)
-		} finally {
-			// Clear state regardless of API success
-			setUser(null)
-			setIsAuthenticated(false)
-			// Clean up localStorage items
-			localStorage.removeItem('cartId')
 		}
 	}
 
