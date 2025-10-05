@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { Eye, EyeOff, User, Mail, MapPin, Phone, Lock, CheckCircle, AlertCircle } from 'lucide-react'
 import { useNavigate, Link } from 'react-router'
 import { setMeta } from '../utils/setMeta'
+import { GoogleLogin } from '@react-oauth/google'
+import AuthApiClient from '../services/auth-api-client'
 
 function Register() {
 	useEffect(() => {
@@ -42,9 +44,7 @@ function Register() {
 			const res = await registerUser(data)
 			if (res.success) {
 				setSuccessMsg(res.message)
-				setTimeout(() => {
-					navigate('/login')
-				}, 2000)
+				navigate('/login')
 			} else {
 				setErrorMsg(res.message || 'Something went wrong')
 			}
@@ -53,6 +53,35 @@ function Register() {
 		} finally {
 			setLoading(false)
 		}
+	}
+
+	const handleGoogleSuccess = async (credentialResponse) => {
+		setLoading(true)
+		setErrorMsg('')
+		setSuccessMsg('')
+		try {
+			const response = await AuthApiClient.post('auth/google/', {
+				token: credentialResponse.credential
+			})
+
+			if (response.data && response.data.user) {
+				setSuccessMsg('Account created successfully! Welcome to SheetlyPro.')
+				// Redirect immediately - cookies are already set
+				window.location.href = '/'
+			}
+		} catch (error) {
+			setErrorMsg(
+				error.response?.data?.error ||
+				error.message ||
+				'Google sign up failed. Please try again.'
+			)
+		} finally {
+			setLoading(false)
+		}
+	}
+
+	const handleGoogleError = () => {
+		setErrorMsg('Google sign up failed. Please try again.')
 	}
 
 	return (
@@ -186,6 +215,9 @@ function Register() {
 									{errors.email.message}
 								</p>
 							)}
+							<p className="text-gray-500 text-xs mt-1">
+								Use Gmail, Yahoo, Outlook, or other trusted providers
+							</p>
 						</div>
 
 						{/* Address Field */}
@@ -331,6 +363,29 @@ function Register() {
 							)}
 						</button>
 					</form>
+
+					{/* Divider */}
+					<div className="relative my-6">
+						<div className="absolute inset-0 flex items-center">
+							<div className="w-full border-t border-gray-300"></div>
+						</div>
+						<div className="relative flex justify-center text-sm">
+							<span className="px-2 bg-white text-gray-500">Or sign up with</span>
+						</div>
+					</div>
+
+					{/* Google Sign-up Button */}
+					<div className="flex justify-center">
+						<GoogleLogin
+							onSuccess={handleGoogleSuccess}
+							onError={handleGoogleError}
+							theme="outline"
+							size="large"
+							text="signup_with"
+							shape="rectangular"
+							width="100%"
+						/>
+					</div>
 
 					{/* Sign In Link */}
 					<div className="text-center mt-6 pt-6 border-t border-gray-200">

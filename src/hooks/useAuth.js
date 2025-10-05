@@ -5,28 +5,41 @@ import AuthApiClient from '../services/auth-api-client'
 function useAuth() {
 	const [user, setUser] = useState(null)
 	const [errMsg, setErrMsg] = useState('')
+	const [isAuthenticated, setIsAuthenticated] = useState(false)
+	const [loading, setLoading] = useState(true)
 
+	// Fetch user profile using cookie-based authentication
 	const fetchUserProfile = async () => {
 		try {
-			const res = await ApiClient.get('auth/users/me', {
-				headers: { Authorization: `JWT ${authToken?.access}` },
-			})
+			setLoading(true)
+			const res = await ApiClient.get('auth/users/me')
 			setUser(res.data)
+			setIsAuthenticated(true)
 		} catch (error) {
-			console.log('Fetch user data', error)
+			// Silently handle 401 - user not logged in
+			setUser(null)
+			setIsAuthenticated(false)
+		} finally {
+			setLoading(false)
 		}
 	}
 
-	const getToken = () => {
-		const token = localStorage.getItem('authTokens')
-		return token ? JSON.parse(token) : null
-	}
-
-	const [authToken, setAuthToken] = useState(getToken())
-
+	// Check authentication on mount - only once
 	useEffect(() => {
-		if (authToken) fetchUserProfile()
-	}, [authToken])
+		let mounted = true
+
+		const checkAuth = async () => {
+			if (mounted) {
+				await fetchUserProfile()
+			}
+		}
+
+		checkAuth()
+
+		return () => {
+			mounted = false
+		}
+	}, [])
 
 	const handleAPIError = (error, defaultMessage = 'Somethings went wrong!') => {
 		if (error.response && error.response.data) {
@@ -43,7 +56,6 @@ function useAuth() {
 		try {
 			const response = await AuthApiClient.patch('/auth/users/me/', formData, {
 				headers: {
-					Authorization: `JWT ${authToken?.access}`,
 					'Content-Type': 'multipart/form-data',
 				},
 			})
@@ -57,11 +69,7 @@ function useAuth() {
 	// password change
 	const passwordChange = async (data) => {
 		try {
-			await ApiClient.post('/auth/users/set_password/', data, {
-				headers: {
-					Authorization: `JWT ${authToken?.access}`,
-				},
-			})
+			await ApiClient.post('/auth/users/set_password/', data)
 		} catch (error) {
 			return handleAPIError(error)
 		}
@@ -106,16 +114,16 @@ function useAuth() {
 		}
 	}
 
-	// login user
+	// login user with cookie-based authentication
 	const loginUser = async (userData) => {
 		try {
-			const response = await ApiClient.post('/auth/jwt/create/', userData)
-			setAuthToken(response.data)
-			localStorage.setItem('authTokens', JSON.stringify(response.data))
-
-			await fetchUserProfile()
+			const response = await ApiClient.post('/auth/cookie/login/', userData)
+			// No need to store tokens - they're in httpOnly cookies
+			setUser(response.data.user)
+			setIsAuthenticated(true)
 		} catch (error) {
-			setErrMsg(error.response.data?.detail)
+			setErrMsg(error.response?.data?.detail || 'Login failed')
+			setIsAuthenticated(false)
 			throw error
 		}
 	}
@@ -133,11 +141,18 @@ function useAuth() {
 		}
 	}
 
-	const logoutUser = () => {
-		setAuthToken(null)
-		setUser(null)
-		localStorage.removeItem('authTokens')
-		localStorage.removeItem('cartId')
+	const logoutUser = async () => {
+		try {
+			await ApiClient.post('/auth/cookie/logout/')
+		} catch (error) {
+			console.error('Logout error:', error)
+		} finally {
+			// Clear state regardless of API success
+			setUser(null)
+			setIsAuthenticated(false)
+			// Clean up localStorage items
+			localStorage.removeItem('cartId')
+		}
 	}
 
 	return {
@@ -152,6 +167,8 @@ function useAuth() {
 		passwordReset,
 		passwordResetConfirm,
 		ResendActivationEmail,
+		isAuthenticated,
+		loading,
 	}
 }
 

@@ -102,7 +102,7 @@ function Navbar() {
 										)}
 									</div>
 									<span className="text-sm font-medium text-gray-700">
-										{user?.first_name?.split('@')[0]}
+										{user?.first_name || user?.email?.split('@')[0]}
 									</span>
 								</button>
 

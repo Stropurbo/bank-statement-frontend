@@ -29,6 +29,7 @@ import ResetPassword from '../pages/ResetPassword'
 import { Routes, Route } from 'react-router'
 import PremiumUsers from '../pages/PremiumUsers'
 import MailMarketing from '../pages/MailMarketing'
+import UserStatements from '../pages/UserStatements'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -70,6 +71,17 @@ function AppRoutes() {
 				</Route>
 
 				{/* private routes */}
+				<Route
+					path="/user-dashboard"
+					element={
+						<PrivateRoute>
+							<DashboardLayout />
+						</PrivateRoute>
+					}
+				>
+					<Route index element={<UserStatements />} />
+				</Route>
+
 				<Route
 					path="dashboard/*"
 					element={

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Check, Star, ArrowRight, Sparkles, Loader2 } from 'lucide-react'
 import ApiClient from '../services/api-client'
+import PublicApiClient from '../services/public-api-client'
 
 function PriceSection() {
 	const [billing, setBilling] = useState('monthly')
@@ -14,11 +15,12 @@ function PriceSection() {
 			setTiersLoading(true)
 			setError(null)
 			try {
-				const response = await ApiClient.get('/plans/')
+				const response = await PublicApiClient.get('/subscription/plans/')
 				setPricingTiers(response.data.results || response.data || [])
 			} catch (err) {
 				console.error('Failed to fetch pricing tiers:', err)
-				setError('Failed to load pricing plans. Please refresh the page.')
+				setPricingTiers([])
+				setError(null)
 			} finally {
 				setTiersLoading(false)
 			}

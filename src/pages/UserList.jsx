@@ -137,14 +137,15 @@ const UserList = () => {
 						)
 						console.log('Subscription updated successfully')
 					} else if (editForm.subscription_plan) {
-						// Create new subscription
-						await AuthApiClient.post('/subscriptions/', {
-							user: editingUser.id,
+						// Use assign-to-user endpoint for new subscriptions
+						const assignResponse = await AuthApiClient.post('/plans/assign-to-user/', {
+							user_id: editingUser.id,
 							plan_id: editForm.subscription_plan,
-							is_active: true,
-							end_date: editForm.end_date || null,
+							duration_days: editForm.end_date
+								? Math.ceil((new Date(editForm.end_date) - new Date()) / (1000 * 60 * 60 * 24))
+								: 365,
 						})
-						console.log('Subscription created successfully')
+						console.log('Subscription assigned successfully:', assignResponse.data)
 					}
 				} catch (subError) {
 					console.error('Subscription update error:', subError)

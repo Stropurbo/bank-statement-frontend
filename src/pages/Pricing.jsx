@@ -3,6 +3,7 @@ import { Check } from 'lucide-react'
 import AboveFooter from '../pdf_to_excel/AboveFooter'
 import { Link } from 'react-router-dom'
 import ApiClient from '../services/api-client'
+import PublicApiClient from '../services/public-api-client'
 import { setMeta } from '../utils/setMeta'
 
 function Pricing() {
@@ -25,12 +26,13 @@ function Pricing() {
 	useEffect(() => {
 		const fetchPricingTiers = async () => {
 			try {
-				const response = await ApiClient.get('/plans/')
+				const response = await PublicApiClient.get('/subscription/plans/')
 				console.log('API Response:', response.data)
 				setPricingTiers(response.data.results || response.data || [])
 			} catch (err) {
 				console.error('Failed to fetch pricing tiers:', err)
-				setError('Failed to load pricing plans')
+				setPricingTiers([])
+				setError(null)
 			} finally {
 				setTiersLoading(false)
 			}
@@ -39,82 +41,24 @@ function Pricing() {
 		fetchPricingTiers()
 	}, [])
 
-	const refreshToken = async () => {
-		try {
-			const tokens = JSON.parse(localStorage.getItem('authTokens'))
-			const response = await ApiClient.post('auth/token/refresh/', {
-				refresh: tokens.refresh,
-			})
-
-			const newTokens = {
-				...tokens,
-				access: response.data.access,
-			}
-			localStorage.setItem('authTokens', JSON.stringify(newTokens))
-			return newTokens.access
-		} catch (error) {
-			console.log(error)
-			localStorage.removeItem('authTokens')
-			window.location.href = '/login'
-			return null
-		}
-	}
+	// Token refresh is now handled automatically by axios interceptors
+	// No need for manual token management with cookies
 
 	const handleSubscribe = async (planId, paymentType) => {
 		setLoading(planId)
 		setError(null)
 
 		try {
-			const token = localStorage.getItem('authTokens')
-			if (!token) {
-				return (window.location.href = '/login')
-			}
-
-			let parsedTokens = JSON.parse(token)
-			let accessToken = parsedTokens.access
-
 			console.log('Initiating subscription:', {
 				plan_id: planId,
 				payment_type: paymentType,
 				tiers_count: pricingTiers.length,
 			})
 
-			let response
-			try {
-				response = await ApiClient.post(
-					'subscription/initiate/',
-					{
-						plan_id: planId,
-						payment_type: paymentType,
-					},
-					{
-						headers: {
-							Authorization: `JWT ${accessToken}`,
-						},
-					},
-				)
-			} catch (tokenError) {
-				if (tokenError.response?.status === 401) {
-					// Token expired, refresh and retry
-					accessToken = await refreshToken()
-					if (!accessToken) return
-
-					response = await ApiClient.post(
-						'subscription/initiate/',
-						{
-							plan_id: planId,
-							payment_type: paymentType,
-						},
-						{
-							headers: {
-								Authorization: `JWT ${accessToken}`,
-							},
-						},
-					)
-				} else {
-					throw tokenError
-				}
-			}
+			const response = await ApiClient.post('subscription/initiate/', {
+				plan_id: planId,
+				payment_type: paymentType,
+			})
 
 			console.log('Backend response:', response.data)
 
@@ -134,6 +78,12 @@ function Pricing() {
 				setError(String(errorMessage).replace(/<[^>]*>/g, ''))
 			}
 		} catch (err) {
+			// Check if user is not authenticated
+			if (err.response?.status === 401) {
+				window.location.href = '/login'
+				return
+			}
+
 			let errorMsg = 'Network error. Please try again.'
 			if (err.response?.status === 500) {
 				errorMsg =

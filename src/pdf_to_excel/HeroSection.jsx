@@ -471,13 +471,30 @@ function HeroSection() {
 			if (income > 0) {
 				let category = 'Other Income'
 
-				if (desc.includes('salary') || desc.includes('payroll') || desc.includes('wages') || desc.includes('pay')) {
+				if (
+					desc.includes('salary') ||
+					desc.includes('payroll') ||
+					desc.includes('wages') ||
+					desc.includes('pay')
+				) {
 					category = 'Salary'
-				} else if (desc.includes('transfer') || desc.includes('deposit') || desc.includes('credit')) {
+				} else if (
+					desc.includes('transfer') ||
+					desc.includes('deposit') ||
+					desc.includes('credit')
+				) {
 					category = 'Transfer In'
-				} else if (desc.includes('interest') || desc.includes('dividend') || desc.includes('investment')) {
+				} else if (
+					desc.includes('interest') ||
+					desc.includes('dividend') ||
+					desc.includes('investment')
+				) {
 					category = 'Investment'
-				} else if (desc.includes('refund') || desc.includes('return') || desc.includes('cashback')) {
+				} else if (
+					desc.includes('refund') ||
+					desc.includes('return') ||
+					desc.includes('cashback')
+				) {
 					category = 'Refund'
 				}
 
@@ -490,33 +507,104 @@ function HeroSection() {
 
 				if (desc.includes('atm') || desc.includes('cash withdrawal')) {
 					category = 'ATM'
-				} else if (desc.includes('grocery') || desc.includes('supermarket') || desc.includes('food') || desc.includes('mart')) {
+				} else if (
+					desc.includes('grocery') ||
+					desc.includes('supermarket') ||
+					desc.includes('food') ||
+					desc.includes('mart')
+				) {
 					category = 'Grocery'
-				} else if (desc.includes('fuel') || desc.includes('gas') || desc.includes('petrol') || desc.includes('diesel')) {
+				} else if (
+					desc.includes('fuel') ||
+					desc.includes('gas') ||
+					desc.includes('petrol') ||
+					desc.includes('diesel')
+				) {
 					category = 'Fuel'
-				} else if (desc.includes('restaurant') || desc.includes('cafe') || desc.includes('dining') || desc.includes('pizza') || desc.includes('burger')) {
+				} else if (
+					desc.includes('restaurant') ||
+					desc.includes('cafe') ||
+					desc.includes('dining') ||
+					desc.includes('pizza') ||
+					desc.includes('burger')
+				) {
 					category = 'Food & Dining'
-				} else if (desc.includes('rent') || desc.includes('housing') || desc.includes('apartment')) {
+				} else if (
+					desc.includes('rent') ||
+					desc.includes('housing') ||
+					desc.includes('apartment')
+				) {
 					category = 'Rent'
-				} else if (desc.includes('electric') || desc.includes('gas bill') || desc.includes('water') || desc.includes('utility') || desc.includes('internet') || desc.includes('phone')) {
+				} else if (
+					desc.includes('electric') ||
+					desc.includes('gas bill') ||
+					desc.includes('water') ||
+					desc.includes('utility') ||
+					desc.includes('internet') ||
+					desc.includes('phone')
+				) {
 					category = 'Utilities'
-				} else if (desc.includes('transfer') || desc.includes('send money') || desc.includes('wire')) {
+				} else if (
+					desc.includes('transfer') ||
+					desc.includes('send money') ||
+					desc.includes('wire')
+				) {
 					category = 'Transfer Out'
-				} else if (desc.includes('loan') || desc.includes('emi') || desc.includes('installment') || desc.includes('mortgage')) {
+				} else if (
+					desc.includes('loan') ||
+					desc.includes('emi') ||
+					desc.includes('installment') ||
+					desc.includes('mortgage')
+				) {
 					category = 'Loan Payment'
-				} else if (desc.includes('shopping') || desc.includes('store') || desc.includes('mall') || desc.includes('amazon') || desc.includes('flipkart')) {
+				} else if (
+					desc.includes('shopping') ||
+					desc.includes('store') ||
+					desc.includes('mall') ||
+					desc.includes('amazon') ||
+					desc.includes('flipkart')
+				) {
 					category = 'Shopping'
-				} else if (desc.includes('medical') || desc.includes('hospital') || desc.includes('doctor') || desc.includes('pharmacy') || desc.includes('health')) {
+				} else if (
+					desc.includes('medical') ||
+					desc.includes('hospital') ||
+					desc.includes('doctor') ||
+					desc.includes('pharmacy') ||
+					desc.includes('health')
+				) {
 					category = 'Healthcare'
-				} else if (desc.includes('transport') || desc.includes('taxi') || desc.includes('uber') || desc.includes('bus') || desc.includes('train')) {
+				} else if (
+					desc.includes('transport') ||
+					desc.includes('taxi') ||
+					desc.includes('uber') ||
+					desc.includes('bus') ||
+					desc.includes('train')
+				) {
 					category = 'Transportation'
-				} else if (desc.includes('education') || desc.includes('school') || desc.includes('college') || desc.includes('tuition') || desc.includes('course')) {
+				} else if (
+					desc.includes('education') ||
+					desc.includes('school') ||
+					desc.includes('college') ||
+					desc.includes('tuition') ||
+					desc.includes('course')
+				) {
 					category = 'Education'
 				} else if (desc.includes('insurance') || desc.includes('premium')) {
 					category = 'Insurance'
-				} else if (desc.includes('entertainment') || desc.includes('movie') || desc.includes('netflix') || desc.includes('spotify') || desc.includes('game')) {
+				} else if (
+					desc.includes('entertainment') ||
+					desc.includes('movie') ||
+					desc.includes('netflix') ||
+					desc.includes('spotify') ||
+					desc.includes('game')
+				) {
 					category = 'Entertainment'
-				} else if (desc.includes('bank') || desc.includes('fee') || desc.includes('charge') || desc.includes('service')) {
+				} else if (
+					desc.includes('bank') ||
+					desc.includes('fee') ||
+					desc.includes('charge') ||
+					desc.includes('service')
+				) {
 					category = 'Bank Fees'
 				}
 
@@ -733,8 +821,9 @@ function HeroSection() {
 									{tableData.rows.length > 100 && (
 										<div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
 											<p className="text-blue-800 text-sm text-center">
-												🚀 Large dataset detected ({tableData.rows.length} transactions).
-												Showing paginated preview for better performance.
+												🚀 Large dataset detected (
+												{tableData.rows.length} transactions). Showing
+												paginated preview for better performance.
 											</p>
 										</div>
 									)}
@@ -743,14 +832,19 @@ function HeroSection() {
 										<table className="w-full">
 											<thead>
 												<tr className="bg-gray-50">
-													{tableData.columns.slice(0, 8).map((col, i) => (
-														<th
-															key={i}
-															className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs"
-														>
-															{col.length > 15 ? col.substring(0, 15) + '...' : col}
-														</th>
-													))}
+													{tableData.columns
+														.slice(0, 8)
+														.map((col, i) => (
+															<th
+																key={i}
+																className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs"
+															>
+																{col.length > 15
+																	? col.substring(0, 15) +
+																	  '...'
+																	: col}
+															</th>
+														))}
 													{tableData.columns.length > 8 && (
 														<th className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs">
 															+{tableData.columns.length - 8} more
@@ -760,28 +854,55 @@ function HeroSection() {
 											</thead>
 											<tbody className="divide-y divide-gray-200">
 												{(() => {
-													const startIndex = (currentPage - 1) * rowsPerPage
+													const startIndex =
+														(currentPage - 1) * rowsPerPage
 													const endIndex = startIndex + rowsPerPage
-													const currentRows = tableData.rows.slice(startIndex, endIndex)
+													const currentRows = tableData.rows.slice(
+														startIndex,
+														endIndex,
+													)
 
 													return currentRows.map((row, i) => (
 														<tr
 															key={startIndex + i}
 															className="hover:bg-gray-50 transition-colors"
 														>
-															{tableData.columns.slice(0, 8).map((col, j) => (
-																<td
-																	key={j}
-																	className="px-4 py-3 text-sm text-gray-700"
-																>
-																	{(() => {
-																		const value = typeof row[col] === 'object' && row[col] !== null
-																			? JSON.stringify(row[col])
-																			: String(row[col] ?? '')
-																		return value.length > 30 ? value.substring(0, 30) + '...' : value
-																	})()}
-																</td>
-															))}
+															{tableData.columns
+																.slice(0, 8)
+																.map((col, j) => (
+																	<td
+																		key={j}
+																		className="px-4 py-3 text-sm text-gray-700"
+																	>
+																		{(() => {
+																			const value =
+																				typeof row[
+																					col
+																				] ===
+																					'object' &&
+																				row[col] !==
+																					null
+																					? JSON.stringify(
+																							row[
+																								col
+																							],
+																					  )
+																					: String(
+																							row[
+																								col
+																							] ??
+																								'',
+																					  )
+																			return value.length >
+																				30
+																				? value.substring(
+																						0,
+																						30,
+																				  ) + '...'
+																				: value
+																		})()}
+																	</td>
+																))}
 															{tableData.columns.length > 8 && (
 																<td className="px-4 py-3 text-sm text-gray-500">
 																	...
@@ -798,22 +919,49 @@ function HeroSection() {
 									{tableData.rows.length > rowsPerPage && (
 										<div className="flex items-center justify-between mt-6 px-4">
 											<div className="text-sm text-gray-600">
-												Showing {((currentPage - 1) * rowsPerPage) + 1} to {Math.min(currentPage * rowsPerPage, tableData.rows.length)} of {tableData.rows.length} transactions
+												Showing {(currentPage - 1) * rowsPerPage + 1} to{' '}
+												{Math.min(
+													currentPage * rowsPerPage,
+													tableData.rows.length,
+												)}{' '}
+												of {tableData.rows.length} transactions
 											</div>
 											<div className="flex items-center gap-2">
 												<button
-													onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+													onClick={() =>
+														setCurrentPage(
+															Math.max(1, currentPage - 1),
+														)
+													}
 													disabled={currentPage === 1}
 													className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed rounded transition-colors"
 												>
 													Previous
 												</button>
 												<span className="text-sm text-gray-600">
-													Page {currentPage} of {Math.ceil(tableData.rows.length / rowsPerPage)}
+													Page {currentPage} of{' '}
+													{Math.ceil(
+														tableData.rows.length / rowsPerPage,
+													)}
 												</span>
 												<button
-													onClick={() => setCurrentPage(Math.min(Math.ceil(tableData.rows.length / rowsPerPage), currentPage + 1))}
-													disabled={currentPage >= Math.ceil(tableData.rows.length / rowsPerPage)}
+													onClick={() =>
+														setCurrentPage(
+															Math.min(
+																Math.ceil(
+																	tableData.rows.length /
+																		rowsPerPage,
+																),
+																currentPage + 1,
+															),
+														)
+													}
+													disabled={
+														currentPage >=
+														Math.ceil(
+															tableData.rows.length / rowsPerPage,
+														)
+													}
 													className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed rounded transition-colors"
 												>
 													Next
@@ -825,9 +973,13 @@ function HeroSection() {
 									<div className="text-center mt-8">
 										<div
 											className={`flex items-center justify-center gap-2 mb-4 cursor-pointer p-2 rounded-lg transition-colors ${
-												savingToDrive ? 'bg-blue-100' : 'hover:bg-blue-50'
+												savingToDrive
+													? 'bg-blue-100'
+													: 'hover:bg-blue-50'
 											}`}
-											onClick={savingToDrive ? null : handleGoogleDriveSave}
+											onClick={
+												savingToDrive ? null : handleGoogleDriveSave
+											}
 										>
 											{savingToDrive ? (
 												<div className="animate-spin rounded-full h-5 w-5 border-2 border-blue-200 border-t-blue-600"></div>
@@ -836,7 +988,9 @@ function HeroSection() {
 											)}
 											<FaGoogleDrive className="h-5 w-5 text-blue-600" />
 											<span className="text-sm text-gray-600 font-medium">
-												{savingToDrive ? 'Saving to Drive...' : 'Save as Google Sheets 📊'}
+												{savingToDrive
+													? 'Saving to Drive...'
+													: 'Save as Google Sheets 📊'}
 											</span>
 										</div>
 
@@ -844,7 +998,8 @@ function HeroSection() {
 										{tableData.rows.length > 500 && (
 											<div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
 												<p className="text-yellow-800 text-sm text-center">
-													⚡ Large file detected! Download directly without full preview for better performance.
+													⚡ Large file detected! Download directly
+													without full preview for better performance.
 												</p>
 											</div>
 										)}

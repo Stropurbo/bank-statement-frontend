@@ -74,18 +74,38 @@ function Terms() {
 			</p>
 			<ul className="list-disc list-inside mb-4 space-y-1">
 				<li>Attempt to copy, modify, or reverse-engineer our software.</li>
-				<li>
-					Use the Services in a way that could damage, disable, or impair
-					functionality.
-				</li>
+				<li>Upload files larger than 20MB or attempt to bypass our file size limits.</li>
+				<li>Attempt to circumvent upload limits or subscription restrictions.</li>
+				<li>Share your account credentials with others.</li>
+				<li>Use the Services in a way that could damage, disable, or impair functionality.</li>
 				<li>Violate any applicable laws or regulations.</li>
+			</ul>
+
+			<h2 className="text-xl font-semibold mt-6 mb-2">3.1 Upload Limits</h2>
+			<ul className="list-disc list-inside mb-4 space-y-1">
+				<li><strong>Free Users:</strong> 1 bank statement conversion per day.</li>
+				<li><strong>Paid Users:</strong> Upload limits based on your subscription plan (monthly or annual billing cycle).</li>
+				<li><strong>File Size:</strong> Maximum 20MB per PDF file.</li>
+				<li><strong>File Retention:</strong> All uploaded files are automatically deleted after 24 hours for your security.</li>
 			</ul>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">4. Subscription & Payment</h2>
 			<ul className="list-disc list-inside mb-4 space-y-1">
-				<li>Some features require a paid subscription.</li>
-				<li>Payments are processed securely via our trusted payment providers.</li>
+				<li>SheetlyPro offers both free and paid subscription plans.</li>
+				<li>Payments are processed securely via <strong>Lemon Squeezy</strong>, our trusted payment provider.</li>
+				<li>Subscription plans are available on monthly or annual billing cycles.</li>
+				<li>You can upgrade, downgrade, or cancel your subscription at any time through your account dashboard or customer portal.</li>
 				<li>All fees are non-refundable unless required by law.</li>
+				<li>Subscriptions automatically renew unless cancelled before the renewal date.</li>
+				<li>Upload limits reset at the beginning of each billing cycle (monthly or annual).</li>
+			</ul>
+
+			<h2 className="text-xl font-semibold mt-6 mb-2">4.1 Cancellation & Refunds</h2>
+			<ul className="list-disc list-inside mb-4 space-y-1">
+				<li>You can cancel your subscription anytime through the customer portal.</li>
+				<li>Upon cancellation, you retain access until the end of your current billing period.</li>
+				<li>No partial refunds are provided for unused portions of the billing cycle.</li>
+				<li>Refunds may be issued at our sole discretion in cases of service failure or technical issues.</li>
 			</ul>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">5. Intellectual Property</h2>
@@ -104,9 +124,15 @@ function Terms() {
 				>
 					Privacy Policy
 				</a>
-				. We take reasonable steps to protect your data but cannot guarantee absolute
-				security.
+				. Key points:
 			</p>
+			<ul className="list-disc list-inside mb-4 space-y-1">
+				<li>Uploaded bank statements are automatically deleted after 24 hours.</li>
+				<li>We use secure httpOnly cookies for authentication (cannot be accessed by JavaScript).</li>
+				<li>All data transmission is encrypted using HTTPS/SSL.</li>
+				<li>We do not sell or share your personal data with third parties except as required to provide our Services.</li>
+				<li>You have the right to request deletion of your account and all associated data at any time.</li>
+			</ul>
 
 			<h2 className="text-xl font-semibold mt-6 mb-2">7. Termination</h2>
 			<p className="mb-4">
