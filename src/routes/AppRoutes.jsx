@@ -35,6 +35,7 @@ import MergePDF from '../pages/MergePDF'
 import CompressPDF from '../pages/CompressPDF'
 import SplitPDF from '../pages/SplitPDF'
 import PDFToWord from '../pages/PDFToWord'
+import WordToPDF from '../pages/WordToPDF'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -44,6 +45,7 @@ const publicRoutes = [
 	{ path: '/compress-pdf', element: <CompressPDF /> },
 	{ path: '/split-pdf', element: <SplitPDF /> },
 	{ path: '/pdf-to-word', element: <PDFToWord /> },
+	{ path: '/word-to-pdf', element: <WordToPDF /> },
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
