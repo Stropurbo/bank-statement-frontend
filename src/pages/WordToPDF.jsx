@@ -21,12 +21,11 @@ function WordToPDF() {
 
 	const handleFileSelect = (e) => {
 		const selectedFile = e.target.files[0]
-		const validTypes = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword']
-		if (selectedFile && validTypes.includes(selectedFile.type)) {
+		if (selectedFile && selectedFile.name.toLowerCase().endsWith('.docx')) {
 			setFile(selectedFile)
 			setError(null)
 		} else {
-			setError('Please select a valid Word file (.docx or .doc)')
+			setError('Please select a valid Word file (.docx only)')
 		}
 	}
 
@@ -44,12 +43,11 @@ function WordToPDF() {
 		e.preventDefault()
 		setIsDragging(false)
 		const droppedFile = e.dataTransfer.files[0]
-		const validTypes = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword']
-		if (droppedFile && validTypes.includes(droppedFile.type)) {
+		if (droppedFile && droppedFile.name.toLowerCase().endsWith('.docx')) {
 			setFile(droppedFile)
 			setError(null)
 		} else {
-			setError('Please drop a valid Word file (.docx or .doc)')
+			setError('Please drop a valid Word file (.docx only)')
 		}
 	}
 
@@ -88,12 +86,7 @@ function WordToPDF() {
 				setFile(null)
 			}
 		} catch (err) {
-			const errorMsg = err.response?.data?.error || 'Failed to convert Word document. Please try again.'
-			if (errorMsg.includes('not implemented for linux')) {
-				setError('Word to PDF conversion is currently unavailable. This feature requires Windows server. We are working on a Linux-compatible solution.')
-			} else {
-				setError(errorMsg)
-			}
+			setError(err.response?.data?.error || 'Failed to convert Word document. Please try again.')
 		} finally {
 			setConverting(false)
 		}
@@ -144,7 +137,7 @@ function WordToPDF() {
 								Select Word File
 								<input
 									type="file"
-									accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+									accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 									onChange={handleFileSelect}
 									className="hidden"
 								/>

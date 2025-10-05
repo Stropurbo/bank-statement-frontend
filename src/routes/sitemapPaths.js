@@ -14,4 +14,5 @@ export const sitemapPaths = [
 	'/compress-pdf',
 	'/split-pdf',
 	'/pdf-to-word',
+	'/word-to-pdf',
 ]
