@@ -5,7 +5,7 @@ import { Eye, EyeOff, User, Mail, MapPin, Phone, Lock, CheckCircle, AlertCircle 
 import { useNavigate, Link } from 'react-router'
 import { setMeta } from '../utils/setMeta'
 import { GoogleLogin } from '@react-oauth/google'
-import PublicApiClient from '../services/public-api-client'
+import axios from 'axios'
 
 function Register() {
 	useEffect(() => {
@@ -60,9 +60,11 @@ function Register() {
 		setErrorMsg('')
 		setSuccessMsg('')
 		try {
-			const response = await PublicApiClient.post('auth/google/', {
-				token: credentialResponse.credential
-			})
+			const response = await axios.post(
+				'https://bank-statement-converter-backend-ofyc.onrender.com/api/auth/google/',
+				{ token: credentialResponse.credential },
+				{ withCredentials: true }
+			)
 
 			if (response.data && response.data.user) {
 				setSuccessMsg('Account created successfully! Welcome to SheetlyPro.')
