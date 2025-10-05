@@ -34,6 +34,7 @@ import BrowseTools from '../pages/BrowseTools'
 import MergePDF from '../pages/MergePDF'
 import CompressPDF from '../pages/CompressPDF'
 import SplitPDF from '../pages/SplitPDF'
+import PDFToWord from '../pages/PDFToWord'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
@@ -42,6 +43,7 @@ const publicRoutes = [
 	{ path: '/merge-pdf', element: <MergePDF /> },
 	{ path: '/compress-pdf', element: <CompressPDF /> },
 	{ path: '/split-pdf', element: <SplitPDF /> },
+	{ path: '/pdf-to-word', element: <PDFToWord /> },
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
