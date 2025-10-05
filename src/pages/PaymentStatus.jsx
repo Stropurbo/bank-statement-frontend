@@ -8,14 +8,8 @@ function PaymentStatus() {
 	useEffect(() => {
 		const fetchStatus = async () => {
 			try {
-				const token = localStorage.getItem('authTokens')
-				if (token) {
-					const parsedTokens = JSON.parse(token)
-					const response = await ApiClient.get('/subscription/status/', {
-						headers: { Authorization: `JWT ${parsedTokens.access}` }
-					})
-					setStatus(response.data)
-				}
+				const response = await ApiClient.get('/subscription/status/')
+				setStatus(response.data)
 			} catch (error) {
 				console.error('Failed to fetch subscription status:', error)
 			} finally {
