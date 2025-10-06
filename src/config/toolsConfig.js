@@ -318,6 +318,32 @@ export const toolsConfig = {
 			{ icon: Download, title: 'Fast Conversion', description: 'Get your images instantly' }
 		]
 	},
+	'utility-bill-parser': {
+		title: 'Utility Bill Parser',
+		description: 'Extract and organize data from utility bills automatically',
+		category: 'PDF Tools',
+		apiEndpoint: 'bill/utility-bill-parser/',
+		allowMultiple: false,
+		allowedTypes: ['application/pdf', 'image/jpeg', 'image/png'],
+		fileTypeLabel: 'Utility bill file',
+		requiresPassword: false,
+		allowReorder: false,
+		buttonLabel: 'Parse & Extract',
+		processingLabel: 'Parsing bill...',
+		actionLabel: 'parse utility bill',
+		outputFileName: 'sheetlypro_utility_bill_data.json',
+		keywords: 'utility bill parser, extract bill data, electricity bill, water bill, gas bill',
+		instructions: [
+			'Upload your utility bill (PDF or image)',
+			'Click "Parse & Extract"',
+			'Get organized bill data'
+		],
+		features: [
+			{ icon: FileText, title: 'Smart Extraction', description: 'Automatically extract bill details' },
+			{ icon: Table, title: 'Organized Data', description: 'Get structured bill information' },
+			{ icon: Download, title: 'Export Data', description: 'Download in multiple formats' }
+		]
+	},
 
 	// Notun tools add korte just evabe add koro:
 	// 'tool-name': {
