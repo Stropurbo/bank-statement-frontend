@@ -10,17 +10,21 @@ import {
 	Lock,
 	Eye,
 	EyeOff,
+	CreditCard,
 } from 'lucide-react'
 import { setMeta } from '../utils/setMeta'
 import ApiClient from '../services/api-client'
+import { useNavigate } from 'react-router-dom'
 
 function UniversalToolPage({ config }) {
+	const navigate = useNavigate()
 	const [files, setFiles] = useState([])
 	const [passwords, setPasswords] = useState([])
 	const [showPasswords, setShowPasswords] = useState([])
 	const [isDragging, setIsDragging] = useState(false)
 	const [processing, setProcessing] = useState(false)
 	const [error, setError] = useState(null)
+	const [isSubscriptionError, setIsSubscriptionError] = useState(false)
 	const [draggedIndex, setDraggedIndex] = useState(null)
 	const [quality, setQuality] = useState(config.defaultQuality || 'medium')
 	const [customFieldValues, setCustomFieldValues] = useState(() => {
@@ -68,7 +72,11 @@ function UniversalToolPage({ config }) {
 
 		if (validFiles.length !== newFiles.length) {
 			setError(`Only ${config.fileTypeLabel || 'valid'} files are allowed`)
-			setTimeout(() => setError(null), 3000)
+			setIsSubscriptionError(false)
+			setTimeout(() => {
+				setError(null)
+				setIsSubscriptionError(false)
+			}, 3000)
 		}
 
 		if (config.allowMultiple) {
@@ -162,6 +170,7 @@ function UniversalToolPage({ config }) {
 
 		setProcessing(true)
 		setError(null)
+		setIsSubscriptionError(false)
 
 		try {
 			const formData = new FormData()
@@ -230,11 +239,19 @@ function UniversalToolPage({ config }) {
 			}
 		} catch (err) {
 			console.error('Processing error:', err)
-			setError(
-				err.response?.data?.error ||
-					err.response?.data?.message ||
-					`Failed to ${config.actionLabel || 'process'}. Please try again.`,
-			)
+			const errorMessage = err.response?.data?.error ||
+				err.response?.data?.message ||
+				`Failed to ${config.actionLabel || 'process'}. Please try again.`
+
+			// Check if it's a subscription/limit error
+			const errorCode = err.response?.data?.error_code
+			const isLimitError = errorCode === 'DAILY_LIMIT_EXCEEDED' ||
+				errorCode === 'UPLOAD_LIMIT_EXCEEDED' ||
+				errorMessage.includes('limit exceeded') ||
+				errorMessage.includes('subscription')
+
+			setError(errorMessage)
+			setIsSubscriptionError(isLimitError)
 		} finally {
 			setProcessing(false)
 		}
@@ -302,9 +319,20 @@ function UniversalToolPage({ config }) {
 
 						{/* Error Message */}
 						{error && (
-							<div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center space-x-3">
-								<AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
-								<p className="text-red-700 font-medium">{error}</p>
+							<div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+								<div className="flex items-center space-x-3">
+									<AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+									<p className="text-red-700 font-medium flex-1">{error}</p>
+								</div>
+								{isSubscriptionError && (
+									<button
+										onClick={() => navigate('/pricing')}
+										className="mt-4 w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center space-x-2"
+									>
+										<CreditCard className="h-5 w-5" />
+										<span>Upgrade Plan</span>
+									</button>
+								)}
 							</div>
 						)}
 
@@ -321,6 +349,8 @@ function UniversalToolPage({ config }) {
 											setFiles([])
 											setPasswords([])
 											setShowPasswords([])
+											setError(null)
+											setIsSubscriptionError(false)
 										}}
 										className="text-sm text-red-600 hover:text-red-700 font-medium transition-colors"
 									>

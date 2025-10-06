@@ -3,7 +3,8 @@ import { FileText, GripVertical, Download, Image, FileCode, Table } from 'lucide
 export const toolsConfig = {
 	'merge-pdf': {
 		title: 'Merge PDF Files',
-		description: 'Combine multiple PDF documents into a single file. Drag to reorder pages before merging.',
+		description:
+			'Combine multiple PDF documents into a single file. Drag to reorder pages before merging.',
 		category: 'PDF Tools',
 		apiEndpoint: 'pdf/merged/',
 		allowMultiple: true,
@@ -20,13 +21,25 @@ export const toolsConfig = {
 		instructions: [
 			'Upload multiple PDF files using the upload area above',
 			'Drag and drop files to rearrange their order',
-			'Click "Merge & Download" to combine them into one PDF'
+			'Click "Merge & Download" to combine them into one PDF',
 		],
 		features: [
-			{ icon: FileText, title: 'Unlimited Files', description: 'Merge as many PDF files as you need' },
-			{ icon: GripVertical, title: 'Reorder Pages', description: 'Drag & drop to arrange files in any order' },
-			{ icon: Download, title: 'Fast Download', description: 'Get your merged PDF instantly' }
-		]
+			{
+				icon: FileText,
+				title: 'Unlimited Files',
+				description: 'Merge as many PDF files as you need',
+			},
+			{
+				icon: GripVertical,
+				title: 'Reorder Pages',
+				description: 'Drag & drop to arrange files in any order',
+			},
+			{
+				icon: Download,
+				title: 'Fast Download',
+				description: 'Get your merged PDF instantly',
+			},
+		],
 	},
 	'compress-pdf': {
 		title: 'Compress PDF',
@@ -45,22 +58,46 @@ export const toolsConfig = {
 		keywords: 'compress pdf, reduce pdf size, pdf optimizer',
 		hasQualitySelector: true,
 		qualityOptions: [
-			{ value: 'low', label: 'Low Quality', description: 'Maximum compression, smaller file size' },
-			{ value: 'medium', label: 'Balanced', description: 'Good balance between quality and size' },
-			{ value: 'high', label: 'High Quality', description: 'Minimum compression, better quality' }
+			{
+				value: 'low',
+				label: 'Low Quality',
+				description: 'Maximum compression, smaller file size',
+			},
+			{
+				value: 'medium',
+				label: 'Balanced',
+				description: 'Good balance between quality and size',
+			},
+			{
+				value: 'high',
+				label: 'High Quality',
+				description: 'Minimum compression, better quality',
+			},
 		],
 		defaultQuality: 'medium',
 		instructions: [
 			'Upload your PDF file',
 			'Select compression quality',
 			'Click "Compress & Download"',
-			'Get your compressed PDF'
+			'Get your compressed PDF',
 		],
 		features: [
-			{ icon: FileText, title: 'High Quality', description: 'Maintain quality while reducing size' },
-			{ icon: Download, title: 'Fast Processing', description: 'Compress PDFs in seconds' },
-			{ icon: FileCode, title: 'Smart Compression', description: 'Optimized compression algorithm' }
-		]
+			{
+				icon: FileText,
+				title: 'High Quality',
+				description: 'Maintain quality while reducing size',
+			},
+			{
+				icon: Download,
+				title: 'Fast Processing',
+				description: 'Compress PDFs in seconds',
+			},
+			{
+				icon: FileCode,
+				title: 'Smart Compression',
+				description: 'Optimized compression algorithm',
+			},
+		],
 	},
 	'split-pdf': {
 		title: 'Split PDF',
@@ -87,28 +124,32 @@ export const toolsConfig = {
 				options: [
 					{ value: 'range', label: 'Page Ranges (e.g., 1-5, 10-15)' },
 					{ value: 'individual', label: 'Individual Pages (e.g., 1, 3, 5, 10)' },
-					{ value: 'chunks', label: 'Split into Chunks (e.g., every 5 pages)' }
-				]
+					{ value: 'chunks', label: 'Split into Chunks (e.g., every 5 pages)' },
+				],
 			},
 			{
 				name: 'pages',
 				label: 'Pages/Range',
 				type: 'text',
 				placeholder: 'e.g., 1-5, 10-15 or 1,3,5 or 5',
-				required: true
-			}
+				required: true,
+			},
 		],
 		instructions: [
 			'Upload your PDF file',
 			'Select split type and enter page numbers',
 			'Click "Split & Download"',
-			'Get your split PDFs'
+			'Get your split PDFs',
 		],
 		features: [
 			{ icon: FileText, title: 'Easy Split', description: 'Split PDF files easily' },
-			{ icon: Download, title: 'Quick Download', description: 'Get all split files in a zip' },
-			{ icon: FileCode, title: 'Preserve Quality', description: 'No quality loss' }
-		]
+			{
+				icon: Download,
+				title: 'Quick Download',
+				description: 'Get all split files in a zip',
+			},
+			{ icon: FileCode, title: 'Preserve Quality', description: 'No quality loss' },
+		],
 	},
 	'pdf-to-word': {
 		title: 'PDF to Word',
@@ -128,13 +169,21 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your PDF file',
 			'Click "Convert & Download"',
-			'Get your Word document'
+			'Get your Word document',
 		],
 		features: [
-			{ icon: FileText, title: 'Accurate Conversion', description: 'Preserve formatting and layout' },
+			{
+				icon: FileText,
+				title: 'Accurate Conversion',
+				description: 'Preserve formatting and layout',
+			},
 			{ icon: Download, title: 'Fast Download', description: 'Get your DOCX instantly' },
-			{ icon: FileCode, title: 'Editable Output', description: 'Fully editable Word document' }
-		]
+			{
+				icon: FileCode,
+				title: 'Editable Output',
+				description: 'Fully editable Word document',
+			},
+		],
 	},
 	'word-to-pdf': {
 		title: 'Word to PDF',
@@ -142,7 +191,10 @@ export const toolsConfig = {
 		category: 'PDF Tools',
 		apiEndpoint: 'pdf/word-to-pdf/',
 		allowMultiple: false,
-		allowedTypes: ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword'],
+		allowedTypes: [
+			'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+			'application/msword',
+		],
 		fileTypeLabel: 'Word file',
 		requiresPassword: false,
 		allowReorder: false,
@@ -154,13 +206,17 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your Word file',
 			'Click "Convert & Download"',
-			'Get your PDF document'
+			'Get your PDF document',
 		],
 		features: [
-			{ icon: FileText, title: 'Perfect Conversion', description: 'Keep all formatting intact' },
+			{
+				icon: FileText,
+				title: 'Perfect Conversion',
+				description: 'Keep all formatting intact',
+			},
 			{ icon: Download, title: 'Instant Download', description: 'Get your PDF quickly' },
-			{ icon: FileCode, title: 'High Quality', description: 'Professional PDF output' }
-		]
+			{ icon: FileCode, title: 'High Quality', description: 'Professional PDF output' },
+		],
 	},
 	'pdf-to-powerpoint': {
 		title: 'PDF to PowerPoint',
@@ -180,13 +236,17 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your PDF file',
 			'Click "Convert & Download"',
-			'Get your PowerPoint presentation'
+			'Get your PowerPoint presentation',
 		],
 		features: [
-			{ icon: FileText, title: 'Smart Conversion', description: 'Convert PDF pages to slides' },
+			{
+				icon: FileText,
+				title: 'Smart Conversion',
+				description: 'Convert PDF pages to slides',
+			},
 			{ icon: Download, title: 'Quick Process', description: 'Fast conversion' },
-			{ icon: FileCode, title: 'Editable Slides', description: 'Fully editable PPTX' }
-		]
+			{ icon: FileCode, title: 'Editable Slides', description: 'Fully editable PPTX' },
+		],
 	},
 	'powerpoint-to-pdf': {
 		title: 'PowerPoint to PDF',
@@ -194,7 +254,10 @@ export const toolsConfig = {
 		category: 'PDF Tools',
 		apiEndpoint: 'pdf/ppt-to-pdf/',
 		allowMultiple: false,
-		allowedTypes: ['application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.ms-powerpoint'],
+		allowedTypes: [
+			'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+			'application/vnd.ms-powerpoint',
+		],
 		fileTypeLabel: 'PowerPoint file',
 		requiresPassword: false,
 		allowReorder: false,
@@ -206,13 +269,17 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your PowerPoint file',
 			'Click "Convert & Download"',
-			'Get your PDF document'
+			'Get your PDF document',
 		],
 		features: [
-			{ icon: FileText, title: 'Perfect Output', description: 'Preserve all slides and formatting' },
+			{
+				icon: FileText,
+				title: 'Perfect Output',
+				description: 'Preserve all slides and formatting',
+			},
 			{ icon: Download, title: 'Fast Conversion', description: 'Quick processing' },
-			{ icon: FileCode, title: 'High Quality', description: 'Professional PDF output' }
-		]
+			{ icon: FileCode, title: 'High Quality', description: 'Professional PDF output' },
+		],
 	},
 	'excel-to-pdf': {
 		title: 'Excel to PDF',
@@ -220,7 +287,10 @@ export const toolsConfig = {
 		category: 'PDF Tools',
 		apiEndpoint: 'pdf/excel-to-pdf/',
 		allowMultiple: false,
-		allowedTypes: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'],
+		allowedTypes: [
+			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+			'application/vnd.ms-excel',
+		],
 		fileTypeLabel: 'Excel file',
 		requiresPassword: false,
 		allowReorder: false,
@@ -232,13 +302,17 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your Excel file',
 			'Click "Convert & Download"',
-			'Get your PDF document'
+			'Get your PDF document',
 		],
 		features: [
-			{ icon: Table, title: 'Table Preservation', description: 'Keep all tables and data' },
+			{
+				icon: Table,
+				title: 'Table Preservation',
+				description: 'Keep all tables and data',
+			},
 			{ icon: Download, title: 'Quick Convert', description: 'Fast processing' },
-			{ icon: FileCode, title: 'Clean Output', description: 'Professional PDF' }
-		]
+			{ icon: FileCode, title: 'Clean Output', description: 'Professional PDF' },
+		],
 	},
 	'html-to-pdf': {
 		title: 'HTML to PDF',
@@ -258,13 +332,17 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your HTML file',
 			'Click "Convert & Download"',
-			'Get your PDF document'
+			'Get your PDF document',
 		],
 		features: [
-			{ icon: FileCode, title: 'Style Support', description: 'CSS and styling preserved' },
+			{
+				icon: FileCode,
+				title: 'Style Support',
+				description: 'CSS and styling preserved',
+			},
 			{ icon: Download, title: 'Fast Process', description: 'Quick conversion' },
-			{ icon: FileText, title: 'Clean PDF', description: 'Professional output' }
-		]
+			{ icon: FileText, title: 'Clean PDF', description: 'Professional output' },
+		],
 	},
 	'receipt-scanner': {
 		title: 'Receipt Scanner',
@@ -284,13 +362,17 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your receipt image or PDF',
 			'Click "Scan & Extract"',
-			'Get extracted receipt data'
+			'Get extracted receipt data',
 		],
 		features: [
 			{ icon: FileText, title: 'Smart OCR', description: 'Extract text accurately' },
 			{ icon: Download, title: 'Data Export', description: 'Get structured data' },
-			{ icon: FileCode, title: 'Multiple Formats', description: 'Support PDF and images' }
-		]
+			{
+				icon: FileCode,
+				title: 'Multiple Formats',
+				description: 'Support PDF and images',
+			},
+		],
 	},
 	'pdf-to-image': {
 		title: 'PDF to Image',
@@ -310,13 +392,25 @@ export const toolsConfig = {
 		instructions: [
 			'Upload your PDF file',
 			'Click "Convert to Image"',
-			'Download your images'
+			'Download your images',
 		],
 		features: [
-			{ icon: Image, title: 'High Quality', description: 'Convert PDF to high-quality images' },
-			{ icon: FileText, title: 'All Pages', description: 'Convert all PDF pages to images' },
-			{ icon: Download, title: 'Fast Conversion', description: 'Get your images instantly' }
-		]
+			{
+				icon: Image,
+				title: 'High Quality',
+				description: 'Convert PDF to high-quality images',
+			},
+			{
+				icon: FileText,
+				title: 'All Pages',
+				description: 'Convert all PDF pages to images',
+			},
+			{
+				icon: Download,
+				title: 'Fast Conversion',
+				description: 'Get your images instantly',
+			},
+		],
 	},
 	'utility-bill-parser': {
 		title: 'Utility Bill Parser',
@@ -332,17 +426,30 @@ export const toolsConfig = {
 		processingLabel: 'Parsing bill...',
 		actionLabel: 'parse utility bill',
 		outputFileName: 'sheetlypro_utility_bill_data.json',
-		keywords: 'utility bill parser, extract bill data, electricity bill, water bill, gas bill',
+		keywords:
+			'utility bill parser, extract bill data, electricity bill, water bill, gas bill',
 		instructions: [
 			'Upload your utility bill (PDF or image)',
 			'Click "Parse & Extract"',
-			'Get organized bill data'
+			'Get organized bill data',
 		],
 		features: [
-			{ icon: FileText, title: 'Smart Extraction', description: 'Automatically extract bill details' },
-			{ icon: Table, title: 'Organized Data', description: 'Get structured bill information' },
-			{ icon: Download, title: 'Export Data', description: 'Download in multiple formats' }
-		]
+			{
+				icon: FileText,
+				title: 'Smart Extraction',
+				description: 'Automatically extract bill details',
+			},
+			{
+				icon: Table,
+				title: 'Organized Data',
+				description: 'Get structured bill information',
+			},
+			{
+				icon: Download,
+				title: 'Export Data',
+				description: 'Download in multiple formats',
+			},
+		],
 	},
 
 	// Notun tools add korte just evabe add koro:
