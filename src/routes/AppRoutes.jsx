@@ -31,31 +31,13 @@ import PremiumUsers from '../pages/PremiumUsers'
 import MailMarketing from '../pages/MailMarketing'
 import UserStatements from '../pages/UserStatements'
 import BrowseTools from '../pages/BrowseTools'
-import MergePDF from '../pages/MergePDF'
-import CompressPDF from '../pages/CompressPDF'
-import SplitPDF from '../pages/SplitPDF'
-import PDFToWord from '../pages/PDFToWord'
-import WordToPDF from '../pages/WordToPDF'
-import PDFToPowerPoint from '../pages/PDFToPowerPoint'
-import PowerPointToPDF from '../pages/PowerPointToPDF'
-import ExcelToPDF from '../pages/ExcelToPDF'
-import HTMLToPDF from '../pages/HTMLToPDF'
-import ReceiptScanner from '../pages/ReceiptScanner'
+import DynamicToolPage from '../pages/DynamicToolPage'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/pricing', element: <Pricing /> },
 	{ path: '/tools', element: <BrowseTools /> },
-	{ path: '/merge-pdf', element: <MergePDF /> },
-	{ path: '/compress-pdf', element: <CompressPDF /> },
-	{ path: '/split-pdf', element: <SplitPDF /> },
-	{ path: '/pdf-to-word', element: <PDFToWord /> },
-	{ path: '/word-to-pdf', element: <WordToPDF /> },
-	{ path: '/pdf-to-powerpoint', element: <PDFToPowerPoint /> },
-	{ path: '/powerpoint-to-pdf', element: <PowerPointToPDF /> },
-	{ path: '/excel-to-pdf', element: <ExcelToPDF /> },
-	{ path: '/html-to-pdf', element: <HTMLToPDF /> },
-	{ path: '/receipt-scanner', element: <ReceiptScanner /> },
+	{ path: '/:toolType', element: <DynamicToolPage /> }, // Dynamic route for all tools
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
 	{ path: '/register', element: <Register /> },
@@ -68,7 +50,6 @@ const publicRoutes = [
 	{ path: '/payment/fail', element: <PaymentFail /> },
 	{ path: '/affiliate', element: <Affiliate /> },
 ]
-
 
 const allRoutes = [
 	...publicRoutes,
@@ -102,7 +83,10 @@ function AppRoutes() {
 						</PrivateRoute>
 					}
 				>
-					<Route index element={<UserStatements />} />
+					<Route
+						index
+						element={<UserStatements />}
+					/>
 				</Route>
 
 				<Route
