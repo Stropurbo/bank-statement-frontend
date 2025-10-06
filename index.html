@@ -168,20 +168,23 @@
 		<link rel="preconnect" href="https://www.googletagmanager.com" />
 		<link rel="preconnect" href="https://lmsqueezy.com" />
 		
-		<!-- Google tag (gtag.js) -->
-		<script
-			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-DW2XH02R1V"
-		></script>
+		<!-- Google tag (gtag.js) with Consent Mode -->
 		<script>
 			window.dataLayer = window.dataLayer || []
 			function gtag() {
 				dataLayer.push(arguments)
 			}
+			// Set default consent to 'denied'
+			gtag('consent', 'default', {
+				analytics_storage: 'denied'
+			})
 			gtag('js', new Date())
-
 			gtag('config', 'G-DW2XH02R1V')
 		</script>
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-DW2XH02R1V"
+		></script>
 	</head>
 	<body>
 		<div id="root">

@@ -214,8 +214,14 @@ function UniversalToolPage({ config }) {
 
 			// Download file
 			if (response.data.download_url) {
+				// Remove leading /api/ if present to avoid double /api/
+				let downloadUrl = response.data.download_url.replace(/^\/api\//, '')
+				// Add bill/ prefix if missing for utility-bill-parser
+				if (downloadUrl.startsWith('utility-bill-parser/')) {
+					downloadUrl = 'bill/' + downloadUrl
+				}
 				const downloadResponse = await ApiClient.get(
-					response.data.download_url,
+					downloadUrl,
 					{
 						responseType: 'blob',
 					},

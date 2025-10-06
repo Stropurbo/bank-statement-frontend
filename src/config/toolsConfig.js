@@ -425,13 +425,13 @@ export const toolsConfig = {
 		buttonLabel: 'Parse & Extract',
 		processingLabel: 'Parsing bill...',
 		actionLabel: 'parse utility bill',
-		outputFileName: 'sheetlypro_utility_bill_data.json',
+		outputFileName: 'sheetlypro_utility_bill.xlsx',
 		keywords:
 			'utility bill parser, extract bill data, electricity bill, water bill, gas bill',
 		instructions: [
 			'Upload your utility bill (PDF or image)',
 			'Click "Parse & Extract"',
-			'Get organized bill data',
+			'Get organized bill data in Excel',
 		],
 		features: [
 			{
@@ -446,8 +446,8 @@ export const toolsConfig = {
 			},
 			{
 				icon: Download,
-				title: 'Export Data',
-				description: 'Download in multiple formats',
+				title: 'Excel Export',
+				description: 'Download as Excel spreadsheet',
 			},
 		],
 	},
