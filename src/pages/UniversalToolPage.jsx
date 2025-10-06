@@ -23,6 +23,14 @@ function UniversalToolPage({ config }) {
 	const [error, setError] = useState(null)
 	const [draggedIndex, setDraggedIndex] = useState(null)
 	const [quality, setQuality] = useState(config.defaultQuality || 'medium')
+	const [customFieldValues, setCustomFieldValues] = useState(() => {
+		if (!config.customFields) return {}
+		const initialValues = {}
+		config.customFields.forEach(field => {
+			initialValues[field.name] = field.defaultValue || ''
+		})
+		return initialValues
+	})
 
 	useEffect(() => {
 		setMeta({
@@ -34,6 +42,14 @@ function UniversalToolPage({ config }) {
 		})
 		// Reset quality when config changes
 		setQuality(config.defaultQuality || 'medium')
+		// Reset custom fields
+		if (config.customFields) {
+			const initialValues = {}
+			config.customFields.forEach(field => {
+				initialValues[field.name] = field.defaultValue || ''
+			})
+			setCustomFieldValues(initialValues)
+		}
 	}, [config])
 
 	const handleFileSelect = (e) => {
@@ -165,6 +181,15 @@ function UniversalToolPage({ config }) {
 
 			if (config.hasQualitySelector) {
 				formData.append('quality', quality)
+			}
+
+			// Add custom field values
+			if (config.hasCustomFields && config.customFields) {
+				config.customFields.forEach(field => {
+					if (customFieldValues[field.name]) {
+						formData.append(field.name, customFieldValues[field.name])
+					}
+				})
 			}
 
 			// API call
@@ -434,6 +459,56 @@ function UniversalToolPage({ config }) {
 														{option.description}
 													</p>
 												</button>
+											))}
+										</div>
+									</div>
+								)}
+
+								{/* Custom Fields */}
+								{config.hasCustomFields && config.customFields && (
+									<div className="mt-6">
+										<h4 className="text-sm font-semibold text-gray-900 mb-3">
+											Options:
+										</h4>
+										<div className="space-y-4">
+											{config.customFields.map((field) => (
+												<div key={field.name}>
+													<label className="block text-sm font-medium text-gray-700 mb-2">
+														{field.label}
+													</label>
+													{field.type === 'select' ? (
+														<select
+															value={customFieldValues[field.name] || ''}
+															onChange={(e) =>
+																setCustomFieldValues({
+																	...customFieldValues,
+																	[field.name]: e.target.value,
+																})
+															}
+															className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+														>
+															{field.options?.map((option) => (
+																<option key={option.value} value={option.value}>
+																	{option.label}
+																</option>
+															))}
+														</select>
+													) : (
+														<input
+															type={field.type}
+															value={customFieldValues[field.name] || ''}
+															onChange={(e) =>
+																setCustomFieldValues({
+																	...customFieldValues,
+																	[field.name]: e.target.value,
+																})
+															}
+															placeholder={field.placeholder}
+															required={field.required}
+															className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+														/>
+													)}
+												</div>
 											))}
 										</div>
 									</div>

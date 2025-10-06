@@ -77,8 +77,30 @@ export const toolsConfig = {
 		actionLabel: 'split PDF',
 		outputFileName: 'sheetlypro_split.zip',
 		keywords: 'split pdf, divide pdf, pdf splitter',
+		hasCustomFields: true,
+		customFields: [
+			{
+				name: 'split_type',
+				label: 'Split Type',
+				type: 'select',
+				defaultValue: 'range',
+				options: [
+					{ value: 'range', label: 'Page Ranges (e.g., 1-5, 10-15)' },
+					{ value: 'individual', label: 'Individual Pages (e.g., 1, 3, 5, 10)' },
+					{ value: 'chunks', label: 'Split into Chunks (e.g., every 5 pages)' }
+				]
+			},
+			{
+				name: 'pages',
+				label: 'Pages/Range',
+				type: 'text',
+				placeholder: 'e.g., 1-5, 10-15 or 1,3,5 or 5',
+				required: true
+			}
+		],
 		instructions: [
 			'Upload your PDF file',
+			'Select split type and enter page numbers',
 			'Click "Split & Download"',
 			'Get your split PDFs'
 		],
