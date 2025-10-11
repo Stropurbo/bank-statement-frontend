@@ -7,7 +7,7 @@ import {
 	Receipt,
 	DollarSign,
 	FileText,
-	TrendingUp,
+	FileCheck,
 } from 'lucide-react'
 import { setMeta } from '../utils/setMeta'
 
@@ -133,14 +133,14 @@ function BrowseTools() {
 					iconColor: 'text-teal-600',
 				},
 				{
-					id: 'profit-loss',
-					name: 'Profit and Loss Generator',
-					description: 'Create comprehensive P&L statements from your financial data',
-					icon: TrendingUp,
-					link: '/profit-loss',
-					color: 'from-orange-600 to-amber-600',
-					bgColor: 'bg-orange-50',
-					iconColor: 'text-orange-600',
+					id: 'invoice-generator',
+					name: 'Invoice Generator',
+					description: 'Create professional invoices with automatic calculations',
+					icon: FileCheck,
+					link: '/invoice-generator',
+					color: 'from-blue-600 to-cyan-600',
+					bgColor: 'bg-blue-50',
+					iconColor: 'text-blue-600',
 				}
 				
 			],
@@ -208,7 +208,7 @@ function BrowseTools() {
 				{/* Tools by Section */}
 				{filteredSections.length > 0 ? (
 					<div className="space-y-20 max-w-7xl mx-auto">
-						{filteredSections.map((section, idx) => (
+						{filteredSections.map((section) => (
 							<div key={section.id} className="space-y-10">
 								<div className="text-center relative">
 									<div className="inline-block">
@@ -223,7 +223,7 @@ function BrowseTools() {
 								</div>
 
 								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-									{section.tools.map((tool, toolIdx) => {
+									{section.tools.map((tool) => {
 										const Icon = tool.icon
 										return (
 											<Link

@@ -15,9 +15,8 @@ export const sitemapPaths = [
 	'/split-pdf',
 	'/pdf-to-word',
 	'/word-to-pdf',
-	'/pdf-to-powerpoint',
-	'/powerpoint-to-pdf',
 	'/excel-to-pdf',
-	'/html-to-pdf',
 	'/receipt-scanner',
+	'/utility-bill-parser',
+	'/invoice-generator',
 ]

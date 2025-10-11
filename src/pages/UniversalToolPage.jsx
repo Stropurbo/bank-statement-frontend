@@ -195,8 +195,9 @@ function UniversalToolPage({ config }) {
 			// Add custom field values
 			if (config.hasCustomFields && config.customFields) {
 				config.customFields.forEach(field => {
-					if (customFieldValues[field.name]) {
-						formData.append(field.name, customFieldValues[field.name])
+					const value = customFieldValues[field.name]
+					if (value !== undefined && value !== null && value !== '') {
+						formData.append(field.name, value)
 					}
 				})
 			}
@@ -245,8 +246,10 @@ function UniversalToolPage({ config }) {
 			}
 		} catch (err) {
 			console.error('Processing error:', err)
+			console.error('Error response:', err.response?.data)
 			const errorMessage = err.response?.data?.error ||
 				err.response?.data?.message ||
+				JSON.stringify(err.response?.data) ||
 				`Failed to ${config.actionLabel || 'process'}. Please try again.`
 
 			// Check if it's a subscription/limit error

@@ -32,11 +32,13 @@ import MailMarketing from '../pages/MailMarketing'
 import UserStatements from '../pages/UserStatements'
 import BrowseTools from '../pages/BrowseTools'
 import DynamicToolPage from '../pages/DynamicToolPage'
+import InvoiceGenerator from '../pages/InvoiceGenerator'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/pricing', element: <Pricing /> },
 	{ path: '/tools', element: <BrowseTools /> },
+	{ path: '/invoice-generator', element: <InvoiceGenerator /> },
 	{ path: '/:toolType', element: <DynamicToolPage /> }, // Dynamic route for all tools
 	{ path: '/contact', element: <Contact /> },
 	{ path: '/login', element: <Login /> },
