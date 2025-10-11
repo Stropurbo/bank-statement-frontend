@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
-import { Mail, Copy } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
+import { Mail, Copy, Check } from 'lucide-react'
 import AboveFooter from '../pdf_to_excel/AboveFooter'
 import { setMeta } from '../utils/setMeta'
 
 function Contact() {
+	const [copied, setCopied] = useState(false)
+
 	useEffect(() => {
 		setMeta({
 			title: 'Contact Us - Get Support | SheetlyPro',
@@ -21,6 +23,8 @@ function Contact() {
 
 	const copyEmail = () => {
 		navigator.clipboard.writeText(email)
+		setCopied(true)
+		setTimeout(() => setCopied(false), 2000)
 	}
 
 	return (
@@ -67,10 +71,18 @@ function Contact() {
 										</span>
 										<button
 											onClick={copyEmail}
-											className="p-2 text-gray-500 hover:text-purple-600 hover:bg-white rounded-lg transition-all duration-200"
-											title="Copy email address"
+											className={`p-2 rounded-lg transition-all duration-200 ${
+												copied
+													? 'bg-green-100 text-green-600'
+													: 'text-gray-500 hover:text-purple-600 hover:bg-white'
+											}`}
+											title={copied ? 'Copied!' : 'Copy email address'}
 										>
-											<Copy className="h-5 w-5" />
+											{copied ? (
+												<Check className="h-5 w-5" />
+											) : (
+												<Copy className="h-5 w-5" />
+											)}
 										</button>
 									</div>
 								</div>

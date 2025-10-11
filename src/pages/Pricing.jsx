@@ -95,18 +95,24 @@ function Pricing() {
 	}
 
 	return (
-		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
-			<div className="container mx-auto px-6 py-24">
+		<section className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
+			{/* Animated Background */}
+			<div className="absolute inset-0 overflow-hidden pointer-events-none">
+				<div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+				<div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+				<div className="absolute top-1/2 left-1/2 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+			</div>
+			<div className="container mx-auto px-6 py-24 relative z-10">
 				<div className="text-center mb-16">
-					<div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
+					<div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600/10 to-indigo-600/10 backdrop-blur-sm border border-purple-200/50 text-purple-700 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-purple-500/10">
+						<span className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></span>
 						Pricing Plans
 					</div>
-					<h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+					<h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-purple-900 to-indigo-900 mb-6 leading-tight">
 						Choose Your Perfect Plan
 					</h1>
 					<p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-						Transform your bank statements into Excel files with our powerful
-						conversion tool. Select the plan that matches your business needs.
+						Transform your bank statements into Excel files with our powerful conversion tool. Select the plan that matches your business needs.
 					</p>
 
 					{/* Billing toggle */}

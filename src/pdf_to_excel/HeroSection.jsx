@@ -1,5 +1,6 @@
 import { Upload, FileText, Download, CheckCircle, ArrowRight, Sparkles } from 'lucide-react'
 import React, { useRef, useState, useContext } from 'react'
+import { Link } from 'react-router-dom'
 import AuthApiClient from '../services/auth-api-client'
 import AuthContext from '../context/AuthContext'
 import { FaGoogleDrive } from 'react-icons/fa'
@@ -627,7 +628,7 @@ function HeroSection() {
 	}
 
 	return (
-		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50 flex items-center">
+		<section className="min-h-screen flex items-center relative">
 			<div className="container mx-auto px-6 py-24">
 				<div className="text-center mb-16">
 					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
@@ -648,12 +649,15 @@ function HeroSection() {
 						required.
 					</p>
 					{!user ? (
-						<div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto">
-							<p className="text-blue-800 text-center font-medium">
-								🆓 Login for 1 FREE PDF convert per day • Upgrade for unlimited
-								access
+						<Link
+							to="/login"
+							className="block bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 max-w-2xl mx-auto hover:bg-blue-100 hover:border-blue-300 transition-all duration-200 cursor-pointer group"
+						>
+							<p className="text-blue-800 text-center font-medium group-hover:text-blue-900">
+								🆓 Login for 1 FREE PDF convert per day • Upgrade for unlimited access
+								<span className="ml-2 inline-block group-hover:translate-x-1 transition-transform">→</span>
 							</p>
-						</div>
+						</Link>
 					) : (
 						userStatus && (
 							<div
@@ -701,10 +705,12 @@ function HeroSection() {
 				)}
 
 				<div className="max-w-3xl mx-auto mb-20">
-					<div className="bg-white border-2 border-dashed border-purple-200 rounded-3xl p-16 hover:border-purple-400 transition-all duration-300 shadow-2xl hover:shadow-3xl">
-						<div className="flex flex-col items-center gap-8">
-							<div className="w-24 h-24 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl flex items-center justify-center">
-								<FileText className="h-12 w-12 text-purple-600" />
+					<div className="relative group">
+						<div className="absolute -inset-1 bg-gradient-to-r  rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+						<div className="relative bg-white/80 backdrop-blur-xl border-2 border-dashed border-purple-200 rounded-3xl p-16 hover:border-purple-400 transition-all duration-300 shadow-2xl">
+							<div className="flex flex-col items-center gap-8">
+							<div className="w-24 h-24 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+								<FileText className="h-12 w-12 text-purple-600 group-hover:-rotate-6 transition-transform duration-300" />
 							</div>
 
 							<div className="text-center">
@@ -749,6 +755,7 @@ function HeroSection() {
 									? 'Limit Reached'
 									: 'Choose PDF File'}
 							</button>
+							</div>
 						</div>
 					</div>
 
