@@ -62,9 +62,14 @@ function AutoPostDashboard() {
 
 	const connectAccount = async (platformId) => {
 		try {
-			alert(`Connecting to ${platformId}... (OAuth integration needed)`)
+			const response = await apiClient.get(`/autopost/accounts/connect/${platformId}/`)
+			if (response.data.auth_url) {
+				window.location.href = response.data.auth_url
+			}
 		} catch (error) {
 			console.error('Error:', error)
+			const errorMsg = error.response?.data?.error || 'Failed to connect. Please try again.'
+			alert(errorMsg)
 		}
 	}
 
