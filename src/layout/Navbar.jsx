@@ -60,17 +60,6 @@ function Navbar() {
 							Tools
 						</Link>
 
-						{user && (
-							<>
-								<Link
-									to="/autopost"
-									className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
-								>
-									AutoPost
-								</Link>
-							</>
-						)}
-
 						{(user?.role === 'Admin' || user?.is_staff) && (
 							<Link
 								to="/dashboard"
@@ -192,18 +181,6 @@ function Navbar() {
 							>
 								Tools
 							</Link>
-
-							{user && (
-								<>
-									<Link
-										to="/autopost"
-										className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
-										onClick={() => setIsMenuOpen(false)}
-									>
-										AutoPost
-									</Link>
-								</>
-							)}
 
 							{(user?.role === 'Admin' || user?.is_staff) && (
 								<Link

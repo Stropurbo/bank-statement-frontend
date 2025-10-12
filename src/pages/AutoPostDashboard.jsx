@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FaInstagram, FaFacebookF, FaTwitter, FaLinkedinIn, FaTiktok, FaYoutube, FaPinterestP, FaSnapchatGhost, FaCalendarAlt, FaImage, FaChartLine, FaCheckCircle, FaExclamationCircle, FaPlus, FaTrash } from 'react-icons/fa'
 import { BiWorld } from 'react-icons/bi'
 import apiClient from '../services/api-client'
+import Navbar from '../layout/Navbar'
 
 function AutoPostDashboard() {
 	const [postContent, setPostContent] = useState('')
@@ -16,6 +17,7 @@ function AutoPostDashboard() {
 	const [videoTitle, setVideoTitle] = useState('')
 	const [videoDescription, setVideoDescription] = useState('')
 	const [videoTags, setVideoTags] = useState('')
+	const [connecting, setConnecting] = useState(null)
 
 	const BlueskyIcon = () => (
 		<img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/bluesky-icon.png" alt="Bluesky" className="w-6 h-6 object-contain" />
@@ -43,6 +45,19 @@ function AutoPostDashboard() {
 
 	useEffect(() => {
 		fetchData()
+		// Check for OAuth callback success/error
+		const params = new URLSearchParams(window.location.search)
+		const success = params.get('success')
+		const error = params.get('error')
+		const platform = params.get('platform')
+		
+		if (success === 'connected' && platform) {
+			alert(`✅ ${platform.charAt(0).toUpperCase() + platform.slice(1)} connected successfully!`)
+			window.history.replaceState({}, '', '/autopost/dashboard')
+		} else if (error) {
+			alert(`❌ Connection failed: ${error}`)
+			window.history.replaceState({}, '', '/autopost/dashboard')
+		}
 	}, [])
 
 	const fetchData = async () => {
@@ -61,6 +76,7 @@ function AutoPostDashboard() {
 	}
 
 	const connectAccount = async (platformId) => {
+		setConnecting(platformId)
 		try {
 			const response = await apiClient.get(`/autopost/accounts/connect/${platformId}/`)
 			if (response.data.auth_url) {
@@ -70,6 +86,7 @@ function AutoPostDashboard() {
 			console.error('Error:', error)
 			const errorMsg = error.response?.data?.error || 'Failed to connect. Please try again.'
 			alert(errorMsg)
+			setConnecting(null)
 		}
 	}
 
@@ -104,7 +121,9 @@ function AutoPostDashboard() {
 	}
 
 	const handleSchedulePost = async () => {
-		if (!postContent.trim()) return alert('⚠️ Please enter post content')
+		// Check if content or media is provided
+		const hasMedia = mediaFiles.length > 0
+		if (!postContent.trim() && !hasMedia) return alert('⚠️ Please enter post content or upload media')
 		if (selectedPlatforms.length === 0) return alert('⚠️ Please select at least one platform')
 		if (!postNow && (!scheduledDate || !scheduledTime)) return alert('⚠️ Please select date and time')
 		
@@ -117,7 +136,6 @@ function AutoPostDashboard() {
 		}
 		
 		// Check media requirement for Instagram, Threads, Pinterest
-		const hasMedia = mediaFiles.length > 0
 		const mediaRequiredPlatforms = selectedPlatforms.filter(p => 
 			['instagram', 'threads', 'pinterest'].includes(p)
 		)
@@ -126,8 +144,17 @@ function AutoPostDashboard() {
 		}
 
 		try {
+			// Determine post_type based on media
+			let postType = 'text'
+			if (hasVideo) {
+				postType = 'video'
+			} else if (hasMedia) {
+				postType = 'image'
+			}
+			
 			const payload = {
 				content: postContent,
+				post_type: postType,
 				platforms: selectedPlatforms,
 				social_account_ids: connectedAccounts.filter(acc => selectedPlatforms.includes(acc.platform)).map(acc => acc.id),
 				post_immediately: postNow,
@@ -138,6 +165,7 @@ function AutoPostDashboard() {
 					video_tags: videoTags
 				})
 			}
+			console.log('Payload:', payload)
 			await apiClient.post('/autopost/posts/', payload)
 			alert(postNow ? '✅ Posted!' : '✅ Scheduled!')
 			setPostContent('')
@@ -152,7 +180,9 @@ function AutoPostDashboard() {
 			fetchData()
 		} catch (error) {
 			console.error('Error:', error)
-			alert('❌ Failed to create post')
+			console.error('Error response:', error.response?.data)
+			const errorMsg = error.response?.data?.error || error.response?.data?.detail || JSON.stringify(error.response?.data) || 'Failed to create post'
+			alert(`❌ ${errorMsg}`)
 		}
 	}
 
@@ -181,7 +211,9 @@ function AutoPostDashboard() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 pt-20 pb-12">
+		<>
+			<Navbar />
+			<div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 pt-20 pb-12">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="mb-8">
 					<h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
@@ -451,8 +483,17 @@ function AutoPostDashboard() {
 													Disconnect
 												</button>
 											) : (
-												<button onClick={() => connectAccount(platform.id)} className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg hover:shadow-lg transition-all text-sm font-semibold">
-													Connect
+												<button 
+													onClick={() => connectAccount(platform.id)} 
+													disabled={connecting === platform.id}
+													className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg hover:shadow-lg transition-all text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+												>
+													{connecting === platform.id ? (
+														<>
+															<div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+															Connecting...
+														</>
+													) : 'Connect'}
 												</button>
 											)}
 										</div>
@@ -473,7 +514,8 @@ function AutoPostDashboard() {
 					</div>
 				</div>
 			</div>
-		</div>
+			</div>
+		</>
 	)
 }
 
