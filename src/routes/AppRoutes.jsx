@@ -37,10 +37,11 @@ import AutoPost from '../pages/AutoPost'
 import AutoPostDashboard from '../pages/AutoPostDashboard'
 import AutoPostCreate from '../pages/AutoPostCreate'
 import AutoPostAccounts from '../pages/AutoPostAccounts'
-import UserDashboard from '../pages/UserDashboard'
+import PdfToExcel from '../pdf_to_excel/PdToExcel'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
+	{ path: '/pdf-to-excel', element: <PdfToExcel /> },
 	{ path: '/pricing', element: <Pricing /> },
 	{ path: '/autopost', element: <AutoPost /> },
 	{ path: '/tools', element: <BrowseTools /> },

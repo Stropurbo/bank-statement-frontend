@@ -1,6 +1,7 @@
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
-import PdfToExcel from '../pdf_to_excel/PdToExcel'
+
+import LandingPage from './LandingPage'
 
 
 function Home() {
@@ -11,7 +12,7 @@ function Home() {
 				reverseOrder={false}
 			/>
 			<main>
-				<PdfToExcel />
+				<LandingPage />
 			</main>
 		</div>
 	)

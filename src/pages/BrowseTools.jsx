@@ -38,7 +38,7 @@ function BrowseTools() {
 					name: 'PDF to Excel',
 					description: 'Convert your PDF bank statements to Excel format with ease',
 					icon: FileSpreadsheet,
-					link: '/',
+					link: '/pdf-to-excel',
 					color: 'from-purple-600 to-indigo-600',
 					bgColor: 'bg-purple-50',
 					iconColor: 'text-purple-600',
@@ -103,8 +103,6 @@ function BrowseTools() {
 					bgColor: 'bg-pink-50',
 					iconColor: 'text-pink-600',
 				},
-
-
 			],
 		},
 		{
@@ -141,11 +139,9 @@ function BrowseTools() {
 					color: 'from-blue-600 to-cyan-600',
 					bgColor: 'bg-blue-50',
 					iconColor: 'text-blue-600',
-				}
-				
+				},
 			],
 		},
-		
 	]
 
 	const filteredSections = searchQuery
@@ -233,10 +229,10 @@ function BrowseTools() {
 											>
 												{/* Gradient Overlay on Hover */}
 												<div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-												
+
 												{/* Shine Effect */}
 												<div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-												
+
 												<div className="relative z-10">
 													<div className={`${tool.bgColor} w-16 h-16 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg`}>
 														<Icon className={`h-8 w-8 ${tool.iconColor}`} />

@@ -99,15 +99,42 @@ function AutoPostDashboard() {
 		}
 	}
 
-	const handleMediaUpload = (e) => {
+	const handleMediaUpload = async (e) => {
 		const files = Array.from(e.target.files)
-		const newMedia = files.map(file => ({
-			id: Date.now() + Math.random(),
-			file,
-			preview: URL.createObjectURL(file),
-			type: file.type.startsWith('video/') ? 'video' : 'image'
-		}))
-		setMediaFiles([...mediaFiles, ...newMedia])
+		
+		for (const file of files) {
+			const mediaType = file.type.startsWith('video/') ? 'video' : 'image'
+			const preview = URL.createObjectURL(file)
+			
+			// Add to UI immediately
+			const tempMedia = {
+				id: Date.now() + Math.random(),
+				file,
+				preview,
+				type: mediaType,
+				uploading: true
+			}
+			setMediaFiles(prev => [...prev, tempMedia])
+			
+			// Upload to Cloudinary
+			try {
+				const formData = new FormData()
+				formData.append('file', file)
+				
+				const response = await apiClient.post('/autopost/media/upload_to_cloudinary/', formData, {
+					headers: { 'Content-Type': 'multipart/form-data' }
+				})
+				
+				// Update with Cloudinary URL
+				setMediaFiles(prev => prev.map(m => 
+					m.id === tempMedia.id ? { ...m, url: response.data.url, uploading: false } : m
+				))
+			} catch (error) {
+				console.error('Upload error:', error)
+				alert('Failed to upload media')
+				setMediaFiles(prev => prev.filter(m => m.id !== tempMedia.id))
+			}
+		}
 	}
 
 	const removeMedia = (mediaId) => {
@@ -144,6 +171,11 @@ function AutoPostDashboard() {
 		}
 
 		try {
+			// Check if media is still uploading
+			if (mediaFiles.some(m => m.uploading)) {
+				return alert('⏳ Please wait for media upload to complete')
+			}
+			
 			// Determine post_type based on media
 			let postType = 'text'
 			if (hasVideo) {
@@ -152,9 +184,13 @@ function AutoPostDashboard() {
 				postType = 'image'
 			}
 			
+			// Get Cloudinary URLs
+			const mediaUrls = mediaFiles.filter(m => m.url).map(m => m.url)
+			
 			const payload = {
 				content: postContent,
 				post_type: postType,
+				media_urls: mediaUrls,
 				platforms: selectedPlatforms,
 				social_account_ids: connectedAccounts.filter(acc => selectedPlatforms.includes(acc.platform)).map(acc => acc.id),
 				post_immediately: postNow,
