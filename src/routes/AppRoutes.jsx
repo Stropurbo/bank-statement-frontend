@@ -10,6 +10,7 @@ import Profile from '../pages/Profile'
 import PaymentSuccess from '../pages/PaymentSuccess'
 import Terms from '../pages/Terms'
 import Privacy from '../pages/Privacy'
+import DataDeletion from '../pages/DataDeletion'
 import About from '../pages/About'
 import PaymentStatus from '../pages/PaymentStatus'
 import PaymentFail from '../pages/PaymentFail'
@@ -53,6 +54,7 @@ const publicRoutes = [
 	{ path: '/forgot-password', element: <ForgotPassword /> },
 	{ path: '/terms-of-service', element: <Terms /> },
 	{ path: '/privacy-policy', element: <Privacy /> },
+	{ path: '/data-deletion', element: <DataDeletion /> },
 	{ path: '/about', element: <About /> },
 	{ path: '/payment/success', element: <PaymentSuccess /> },
 	{ path: '/payment/cancel', element: <PaymentCancel /> },

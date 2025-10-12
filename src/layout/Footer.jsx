@@ -142,6 +142,14 @@ function Footer() {
 										Privacy Policy
 									</a>
 								</li>
+								<li>
+									<a
+										href="/data-deletion"
+										className="text-gray-400 hover:text-white transition-colors text-sm"
+									>
+										Data Deletion
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>

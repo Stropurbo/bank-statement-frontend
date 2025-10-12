@@ -1,4 +1,4 @@
-import { Target, Zap, Shield, Clock, FileText, Users, TrendingUp } from 'lucide-react'
+import { Target, Zap, Shield, Clock, FileText, Users, TrendingUp, Sparkles } from 'lucide-react'
 import AboveFooter from '../pdf_to_excel/AboveFooter'
 import React, { useEffect } from 'react'
 import { setMeta } from '../utils/setMeta'
@@ -6,14 +6,14 @@ import { setMeta } from '../utils/setMeta'
 function About() {
 	useEffect(() => {
 		setMeta({
-			title: 'About SheetlyPro - Bank Statement Converter Tool',
+			title: 'About SheetlyPro - Business Productivity Tools',
 			description:
-				'Learn about SheetlyPro - the leading bank statement converter tool. Transform PDF bank statements to Excel/CSV instantly with cutting-edge technology.',
+				'Learn about SheetlyPro - your all-in-one platform for document conversion, social media automation, and business productivity tools.',
 			keywords:
-				'about sheetlypro, bank statement converter, PDF to Excel, financial data conversion, company mission',
-			ogTitle: 'About SheetlyPro - Bank Statement Converter',
+				'about sheetlypro, business tools, PDF converter, social media automation, productivity platform',
+			ogTitle: 'About SheetlyPro - Business Productivity Platform',
 			ogDescription:
-				'Discover how SheetlyPro transforms bank statement processing with advanced technology and user-focused design.',
+				'Discover how SheetlyPro transforms business workflows with powerful tools and user-focused design.',
 		})
 	}, [])
 
@@ -27,8 +27,8 @@ function About() {
 						About SheetlyPro
 					</h1>
 					<p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
-						Transforming the way you handle bank statements with cutting-edge
-						technology and user-focused design.
+						Your all-in-one platform for document processing, social media automation,
+						and business productivity tools.
 					</p>
 				</div>
 			</div>
@@ -39,11 +39,10 @@ function About() {
 					<div className="max-w-4xl mx-auto text-center mb-16">
 						<h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
 						<p className="text-xl text-gray-600 leading-relaxed">
-							We empower individuals, freelancers, and small businesses by
-							automating the tedious task of transforming bank statements into
-							structured CSV files. Our goal is to simplify financial workflows,
-							reduce errors, and let you focus on what matters most – analysis and
-							decision-making.
+							We empower individuals, freelancers, and businesses by providing
+							powerful tools that automate tedious tasks. From document conversion
+							to social media management, our goal is to simplify workflows,
+							reduce errors, and let you focus on what matters most – growing your business.
 						</p>
 					</div>
 
@@ -54,24 +53,24 @@ function About() {
 								<FileText className="h-8 w-8 text-white" />
 							</div>
 							<h3 className="text-xl font-bold text-gray-900 mb-4">
-								Instant Conversion
+								Intelligent Document Processing
 							</h3>
 							<p className="text-gray-600 leading-relaxed">
-								Convert PDF or Excel bank statements into structured CSV files
-								instantly with our advanced processing technology.
+								Transform, optimize, and manage your documents with AI-powered
+								conversion and processing technology.
 							</p>
 						</div>
 
 						<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
 							<div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-								<Users className="h-8 w-8 text-white" />
+								<Sparkles className="h-8 w-8 text-white" />
 							</div>
 							<h3 className="text-xl font-bold text-gray-900 mb-4">
-								Multi-Bank Support
+								Marketing Automation Suite
 							</h3>
 							<p className="text-gray-600 leading-relaxed">
-								Support for multiple banks and statement formats ensures
-								hassle-free processing regardless of your financial institution.
+								Streamline your digital presence with powerful automation tools
+								for content scheduling, publishing, and performance tracking.
 							</p>
 						</div>
 
@@ -80,11 +79,11 @@ function About() {
 								<TrendingUp className="h-8 w-8 text-white" />
 							</div>
 							<h3 className="text-xl font-bold text-gray-900 mb-4">
-								Easy Integration
+								Enterprise Productivity Tools
 							</h3>
 							<p className="text-gray-600 leading-relaxed">
-								Seamlessly import CSV files into your favorite accounting
-								software or spreadsheets for immediate use.
+								Elevate your workflow with professional-grade tools designed
+								for efficiency, accuracy, and seamless integration.
 							</p>
 						</div>
 					</div>
@@ -109,8 +108,8 @@ function About() {
 										User-Friendly
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
-										No technical skills required – simply upload your
-										statement and receive a perfectly formatted CSV file.
+										No technical skills required – intuitive interfaces
+										designed for everyone from beginners to professionals.
 									</p>
 								</div>
 							</div>
@@ -121,11 +120,11 @@ function About() {
 								</div>
 								<div>
 									<h3 className="text-xl font-bold text-gray-900 mb-2">
-										Reliable & Secure
+										Secure & Private
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
-										Lightning-fast processing with enterprise-grade security
-										to protect your sensitive financial data.
+										Enterprise-grade security with automatic file deletion
+										and encrypted data storage to protect your information.
 									</p>
 								</div>
 							</div>
@@ -139,8 +138,8 @@ function About() {
 										Time-Saving
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
-										Automate repetitive data entry tasks and focus your
-										energy on financial analysis and strategic decisions.
+										Automate repetitive tasks and save hours every week
+										with our powerful automation tools.
 									</p>
 								</div>
 							</div>
@@ -151,11 +150,11 @@ function About() {
 								</div>
 								<div>
 									<h3 className="text-xl font-bold text-gray-900 mb-2">
-										Precision Focused
+										All-in-One Platform
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
-										Advanced algorithms ensure accurate data extraction and
-										formatting, minimizing errors in your financial records.
+										Multiple tools in one place – no need to juggle
+										between different services and subscriptions.
 									</p>
 								</div>
 							</div>
@@ -170,10 +169,10 @@ function About() {
 					<div className="max-w-4xl mx-auto text-center">
 						<h2 className="text-4xl font-bold text-gray-900 mb-8">Our Vision</h2>
 						<p className="text-xl text-gray-600 leading-relaxed mb-12">
-							We envision a future where managing financial data is seamless and
-							stress-free. SheetlyPro continues to innovate and evolve, becoming
-							the go-to solution for effortless bank statement conversion
-							worldwide.
+							We envision a future where managing business tasks is seamless and
+							stress-free. SheetlyPro continues to innovate and evolve, adding
+							new tools and features to become your complete business productivity
+							platform.
 						</p>
 
 						{/* CTA Section */}
@@ -182,8 +181,8 @@ function About() {
 								Ready to Get Started?
 							</h3>
 							<p className="text-gray-600 mb-6">
-								Join thousands of users who trust SheetlyPro for their financial
-								data management needs.
+								Join thousands of users who trust SheetlyPro for their business
+								productivity needs.
 							</p>
 							<a
 								href="mailto:support@sheetlypro.com"
