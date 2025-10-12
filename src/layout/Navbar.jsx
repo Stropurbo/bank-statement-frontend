@@ -23,8 +23,7 @@ function Navbar() {
 				<div className="flex items-center justify-between h-16">
 					{/* Logo */}
 					<a
-					href='/'
-
+						href="/"
 						className="flex items-center space-x-3 group"
 					>
 						<div className="w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform">
@@ -48,24 +47,36 @@ function Navbar() {
 							Pricing
 						</Link>
 						<Link
+							to="/autopost"
+							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+						>
+							AutoPost
+						</Link>
+
+						<Link
 							to="/tools"
 							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
 						>
 							Tools
 						</Link>
-						<Link
-							to="/contact"
-							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
-						>
-							Contact
-						</Link>
+
+						{user && (
+							<>
+								<Link
+									to="/autopost"
+									className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								>
+									AutoPost
+								</Link>
+							</>
+						)}
 
 						{(user?.role === 'Admin' || user?.is_staff) && (
 							<Link
 								to="/dashboard"
 								className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg"
 							>
-								Dashboard
+								Admin Panel
 							</Link>
 						)}
 
@@ -116,6 +127,16 @@ function Navbar() {
 											<Settings className="h-4 w-4 mr-3" />
 											Profile
 										</Link>
+
+										<Link
+											to="/autopost/dashboard"
+											className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+											onClick={() => setIsMenuOpen(false)}
+										>
+											<Settings className="h-4 w-4 mr-3" />
+											Dashoard
+										</Link>
+
 										<button
 											onClick={async () => {
 												await logoutUser()
@@ -156,6 +177,14 @@ function Navbar() {
 							>
 								Pricing
 							</Link>
+
+							<Link
+								to="/autopost"
+								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								onClick={() => setIsMenuOpen(false)}
+							>
+								AutoPost
+							</Link>
 							<Link
 								to="/tools"
 								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
@@ -163,13 +192,18 @@ function Navbar() {
 							>
 								Tools
 							</Link>
-							<Link
-								to="/contact"
-								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								Contact
-							</Link>
+
+							{user && (
+								<>
+									<Link
+										to="/autopost"
+										className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+										onClick={() => setIsMenuOpen(false)}
+									>
+										AutoPost
+									</Link>
+								</>
+							)}
 
 							{(user?.role === 'Admin' || user?.is_staff) && (
 								<Link
@@ -177,7 +211,7 @@ function Navbar() {
 									className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold text-center"
 									onClick={() => setIsMenuOpen(false)}
 								>
-									Dashboard
+									Admin Panel
 								</Link>
 							)}
 
@@ -224,6 +258,15 @@ function Navbar() {
 										<Settings className="h-4 w-4" />
 										<span>Profile</span>
 									</Link>
+									<Link
+										to="/autopost/dashboard"
+										className="flex items-center space-x-3 text-gray-700 hover:text-purple-600 transition-colors"
+										onClick={() => setIsMenuOpen(false)}
+									>
+										<Settings className="h-4 w-4" />
+										<span>AutoPost Dashoard</span>
+									</Link>
+
 									<button
 										onClick={async () => {
 											await logoutUser()

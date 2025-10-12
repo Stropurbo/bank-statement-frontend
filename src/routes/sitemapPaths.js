@@ -19,4 +19,5 @@ export const sitemapPaths = [
 	'/receipt-scanner',
 	'/utility-bill-parser',
 	'/invoice-generator',
+	'/autopost',
 ]

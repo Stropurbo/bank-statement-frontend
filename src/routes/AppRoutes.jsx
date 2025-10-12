@@ -33,10 +33,16 @@ import UserStatements from '../pages/UserStatements'
 import BrowseTools from '../pages/BrowseTools'
 import DynamicToolPage from '../pages/DynamicToolPage'
 import InvoiceGenerator from '../pages/InvoiceGenerator'
+import AutoPost from '../pages/AutoPost'
+import AutoPostDashboard from '../pages/AutoPostDashboard'
+import AutoPostCreate from '../pages/AutoPostCreate'
+import AutoPostAccounts from '../pages/AutoPostAccounts'
+import UserDashboard from '../pages/UserDashboard'
 
 const publicRoutes = [
 	{ path: '/', element: <Home /> },
 	{ path: '/pricing', element: <Pricing /> },
+	{ path: '/autopost', element: <AutoPost /> },
 	{ path: '/tools', element: <BrowseTools /> },
 	{ path: '/invoice-generator', element: <InvoiceGenerator /> },
 	{ path: '/:toolType', element: <DynamicToolPage /> }, // Dynamic route for all tools
@@ -90,6 +96,11 @@ function AppRoutes() {
 						element={<UserStatements />}
 					/>
 				</Route>
+
+				{/* AutoPost Routes */}
+				<Route path="/autopost/dashboard" element={<PrivateRoute><AutoPostDashboard /></PrivateRoute>} />
+				<Route path="/autopost/create" element={<PrivateRoute><AutoPostCreate /></PrivateRoute>} />
+				<Route path="/autopost/accounts" element={<PrivateRoute><AutoPostAccounts /></PrivateRoute>} />
 
 				<Route
 					path="dashboard/*"
