@@ -30,8 +30,9 @@ function CreatePlan() {
 				name: data.name,
 				monthly_price: parseFloat(data.monthly_price),
 				annual_price: parseFloat(data.annual_price),
-				pages_monthly: parseInt(data.monthly_pages),
-				pages_annual: parseInt(data.annual_pages),
+				tokens: parseInt(data.tokens_monthly) || parseInt(data.tokens_annual),
+				tokens_monthly: parseInt(data.tokens_monthly),
+				tokens_annual: parseInt(data.tokens_annual),
 				description: data.description,
 				features: data.features.split('\n').filter((f) => f.trim()),
 			}
@@ -156,37 +157,39 @@ function CreatePlan() {
 
 							<div className="grid grid-cols-2 gap-4">
 								<div className="form-control">
-									<label className="label">Monthly Pages</label>
+									<label className="label">Monthly Tokens</label>
 									<input
 										type="number"
+										defaultValue="0"
 										className={`input input-bordered ${
-											errors.monthly_pages ? 'input-error' : ''
+											errors.tokens_monthly ? 'input-error' : ''
 										}`}
-										{...register('monthly_pages', {
-											required: 'Monthly pages is required',
+										{...register('tokens_monthly', {
+											required: 'Monthly tokens is required',
 										})}
 									/>
-									{errors.monthly_pages && (
+									{errors.tokens_monthly && (
 										<span className="text-error text-sm">
-											{errors.monthly_pages.message}
+											{errors.tokens_monthly.message}
 										</span>
 									)}
 								</div>
 
 								<div className="form-control">
-									<label className="label">Annual Pages</label>
+									<label className="label">Annual Tokens</label>
 									<input
 										type="number"
+										defaultValue="0"
 										className={`input input-bordered ${
-											errors.annual_pages ? 'input-error' : ''
+											errors.tokens_annual ? 'input-error' : ''
 										}`}
-										{...register('annual_pages', {
-											required: 'Annual pages is required',
+										{...register('tokens_annual', {
+											required: 'Annual tokens is required',
 										})}
 									/>
-									{errors.annual_pages && (
+									{errors.tokens_annual && (
 										<span className="text-error text-sm">
-											{errors.annual_pages.message}
+											{errors.tokens_annual.message}
 										</span>
 									)}
 								</div>

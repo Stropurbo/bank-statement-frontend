@@ -231,7 +231,16 @@ function InvoiceGenerator() {
 			link.remove()
 		} catch (error) {
 			console.error('Error:', error)
-			alert('Failed to download PDF: ' + (error.response?.data?.message || error.message))
+			const errorMsg = error.response?.data?.error || error.response?.data?.message || error.message
+			const isLimitError = error.response?.status === 403 || errorMsg.includes('limit') || errorMsg.includes('subscription')
+			
+			if (isLimitError) {
+				if (window.confirm(errorMsg + '\n\nWould you like to upgrade your plan?')) {
+					window.location.href = '/pricing'
+				}
+			} else {
+				alert('Failed to download PDF: ' + errorMsg)
+			}
 		} finally {
 			setLoading(false)
 		}

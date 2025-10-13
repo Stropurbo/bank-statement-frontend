@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { FiUsers, FiFileText, FiActivity, FiCreditCard, FiRefreshCw, FiCheckCircle, FiDollarSign, FiTrendingUp } from 'react-icons/fi'
+import { FiUsers, FiFileText, FiActivity, FiCreditCard, FiRefreshCw, FiCheckCircle, FiDollarSign, FiTrendingUp, FiEdit2, FiSave, FiX } from 'react-icons/fi'
+import { Coins } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import AuthApiClient from '../services/auth-api-client'
 import ApiClient from '../services/api-client'
@@ -25,9 +26,14 @@ function AdminDashboard() {
 		database: 'connected',
 		uptime: '99.9%'
 	})
+	const [tokenPackages, setTokenPackages] = useState([])
+	const [serviceCosts, setServiceCosts] = useState([])
+	const [editingPackage, setEditingPackage] = useState(null)
+	const [editingCost, setEditingCost] = useState(null)
 
 	useEffect(() => {
 		fetchStats()
+		fetchTokenData()
 	}, [])
 
 	const fetchStats = async () => {
@@ -210,6 +216,39 @@ function AdminDashboard() {
 		}
 	}
 
+	const fetchTokenData = async () => {
+		try {
+			const [packagesRes, costsRes] = await Promise.all([
+				ApiClient.get('/tokens/packages/'),
+				ApiClient.get('/tokens/costs/')
+			])
+			setTokenPackages(packagesRes.data)
+			setServiceCosts(costsRes.data)
+		} catch (error) {
+			console.error('Error fetching token data:', error)
+		}
+	}
+
+	const updatePackage = async (id, data) => {
+		try {
+			await ApiClient.patch(`/tokens/packages/${id}/`, data)
+			await fetchTokenData()
+			setEditingPackage(null)
+		} catch (error) {
+			console.error('Error updating package:', error)
+		}
+	}
+
+	const updateServiceCost = async (id, data) => {
+		try {
+			await ApiClient.patch(`/tokens/costs/${id}/`, data)
+			await fetchTokenData()
+			setEditingCost(null)
+		} catch (error) {
+			console.error('Error updating cost:', error)
+		}
+	}
+
 	if (loading) {
 		return (
 			<div className="min-h-screen bg-slate-50 flex items-center justify-center">
@@ -374,6 +413,114 @@ function AdminDashboard() {
 									</div>
 								))
 							)}
+						</div>
+					</div>
+				</div>
+
+				{/* Token Management Section */}
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+					<div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+						<div className="flex items-center gap-3 mb-6">
+							<Coins className="h-6 w-6 text-yellow-600" />
+							<h3 className="text-lg font-semibold text-slate-900">Token Packages</h3>
+						</div>
+						<div className="space-y-3 max-h-96 overflow-y-auto">
+							{tokenPackages.map(pkg => (
+								<div key={pkg.id} className="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg border border-yellow-200">
+									{editingPackage?.id === pkg.id ? (
+										<div className="space-y-2">
+											<input
+												type="text"
+												value={editingPackage.name}
+												onChange={(e) => setEditingPackage({...editingPackage, name: e.target.value})}
+												className="w-full px-3 py-2 border rounded text-sm"
+												placeholder="Package Name"
+											/>
+											<input
+												type="number"
+												value={editingPackage.tokens}
+												onChange={(e) => setEditingPackage({...editingPackage, tokens: e.target.value})}
+												className="w-full px-3 py-2 border rounded text-sm"
+												placeholder="Tokens"
+											/>
+											<input
+												type="number"
+												step="0.01"
+												value={editingPackage.price}
+												onChange={(e) => setEditingPackage({...editingPackage, price: e.target.value})}
+												className="w-full px-3 py-2 border rounded text-sm"
+												placeholder="Price"
+											/>
+											<div className="flex gap-2">
+												<button onClick={() => updatePackage(pkg.id, editingPackage)} className="flex-1 bg-green-600 text-white px-3 py-2 rounded text-sm flex items-center justify-center gap-2">
+													<FiSave className="h-4 w-4" /> Save
+												</button>
+												<button onClick={() => setEditingPackage(null)} className="flex-1 bg-gray-600 text-white px-3 py-2 rounded text-sm flex items-center justify-center gap-2">
+													<FiX className="h-4 w-4" /> Cancel
+												</button>
+											</div>
+										</div>
+									) : (
+										<div className="flex justify-between items-center">
+											<div>
+												<p className="font-bold text-gray-900">{pkg.name}</p>
+												<p className="text-sm text-gray-600">{pkg.tokens} tokens</p>
+											</div>
+											<div className="flex items-center gap-3">
+												<p className="text-lg font-bold text-orange-600">${pkg.price}</p>
+												<button onClick={() => setEditingPackage(pkg)} className="p-2 hover:bg-yellow-100 rounded">
+													<FiEdit2 className="h-4 w-4 text-gray-600" />
+												</button>
+											</div>
+										</div>
+									)}
+								</div>
+							))}
+						</div>
+					</div>
+
+					<div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
+						<div className="flex items-center gap-3 mb-6">
+							<FiDollarSign className="h-6 w-6 text-blue-600" />
+							<h3 className="text-lg font-semibold text-slate-900">Service Token Costs</h3>
+						</div>
+						<div className="space-y-3">
+							{serviceCosts.map(cost => (
+								<div key={cost.id} className="p-4 bg-blue-50 rounded-lg border border-blue-200">
+									{editingCost?.id === cost.id ? (
+										<div className="space-y-2">
+											<input
+												type="number"
+												value={editingCost.token_cost}
+												onChange={(e) => setEditingCost({...editingCost, token_cost: e.target.value})}
+												className="w-full px-3 py-2 border rounded text-sm"
+												placeholder="Token Cost"
+											/>
+											<div className="flex gap-2">
+												<button onClick={() => updateServiceCost(cost.id, editingCost)} className="flex-1 bg-green-600 text-white px-3 py-2 rounded text-sm flex items-center justify-center gap-2">
+													<FiSave className="h-4 w-4" /> Save
+												</button>
+												<button onClick={() => setEditingCost(null)} className="flex-1 bg-gray-600 text-white px-3 py-2 rounded text-sm flex items-center justify-center gap-2">
+													<FiX className="h-4 w-4" /> Cancel
+												</button>
+											</div>
+										</div>
+									) : (
+										<div className="flex justify-between items-center">
+											<div>
+												<p className="font-bold text-gray-900">{cost.service_name_display}</p>
+												<p className="text-xs text-gray-500">{cost.service_name}</p>
+											</div>
+											<div className="flex items-center gap-3">
+												<p className="text-lg font-bold text-blue-600">{cost.token_cost} tokens</p>
+												<button onClick={() => setEditingCost(cost)} className="p-2 hover:bg-blue-100 rounded">
+													<FiEdit2 className="h-4 w-4 text-gray-600" />
+												</button>
+											</div>
+										</div>
+									)}
+								</div>
+							))}
 						</div>
 					</div>
 				</div>

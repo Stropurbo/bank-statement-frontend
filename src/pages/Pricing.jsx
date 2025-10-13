@@ -29,12 +29,55 @@ function Pricing() {
 	useEffect(() => {
 		const fetchPricingTiers = async () => {
 			try {
-				const response = await PublicApiClient.get('/subscription/plans/')
-				setPricingTiers(response.data.results || response.data || [])
+				let response
+				try {
+					response = await PublicApiClient.get('/subscriptions/plans/')
+				} catch (err) {
+					try {
+						response = await PublicApiClient.get('/subscription/plans/')
+					} catch (fallbackErr) {
+						// Use default plans if backend fails
+						const defaultPlans = [
+							{ id: 1, name: 'Basic', tokens: 500, price: 9.99, duration_days: 30 },
+							{ id: 2, name: 'Pro', tokens: 2000, price: 29.99, duration_days: 30 },
+							{ id: 3, name: 'Premium', tokens: 5000, price: 49.99, duration_days: 30 }
+						]
+						response = { data: defaultPlans }
+					}
+				}
+				
+				const plans = response.data.results || response.data || []
+				
+				if (plans.length > 0 && plans[0].tokens !== undefined) {
+					const transformedPlans = plans.map(plan => ({
+						id: plan.id,
+						plan_id: plan.id,
+						title: plan.name,
+						description: `${plan.tokens} tokens included`,
+						price: {
+							monthly: plan.duration_days === 30 ? `$${plan.price}` : '-',
+							annual: plan.duration_days === 365 ? `$${plan.price}` : '-'
+						},
+						pages: {
+							monthly: `${plan.tokens} tokens`,
+							annual: `${plan.tokens} tokens`
+						},
+						features: [
+							'All PDF formats supported',
+							'Excel output',
+							'Priority support',
+							'Auto-renewal'
+						],
+						buttonText: 'Subscribe Now',
+						popular: false
+					}))
+					setPricingTiers(transformedPlans)
+				} else {
+					setPricingTiers(plans)
+				}
 			} catch (err) {
-				console.log(err);
+				console.log(err)
 				setPricingTiers([])
-				setError(null)
 			} finally {
 				setTiersLoading(false)
 			}
@@ -158,7 +201,9 @@ function Pricing() {
 					</div>
 				) : (
 					<div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-						{pricingTiers.map((tier) => (
+						{pricingTiers
+							.filter(tier => billing === 'monthly' ? tier.price.monthly !== '-' : tier.price.annual !== '-')
+							.map((tier) => (
 							<div
 								key={tier.title}
 								className={`relative rounded-3xl bg-white p-8 transition-all duration-300 hover:-translate-y-2 ${
@@ -181,13 +226,17 @@ function Pricing() {
 										{tier.title.charAt(0).toUpperCase() +
 											tier.title.slice(1)}
 									</h3>
-									<div className="mb-4">
+									<div className="mb-2">
 										<span className="text-5xl font-bold text-gray-900">
 											{tier.price[billing]}
 										</span>
 										<span className="text-gray-500 text-lg ml-2">
 											/{billing}
 										</span>
+									</div>
+									<div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-4">
+										<span>🪙</span>
+										{tier.pages[billing]}
 									</div>
 									<p className="text-gray-600 leading-relaxed">
 										{tier.description}
@@ -197,14 +246,6 @@ function Pricing() {
 								{/* Features */}
 								<div className="space-y-8">
 									<ul className="space-y-4">
-										<li className="flex items-center gap-4 text-gray-800">
-											<div className="flex-shrink-0 w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-												<Check className="h-4 w-4 text-green-600" />
-											</div>
-											<span className="font-medium">
-												{tier.pages[billing]}
-											</span>
-										</li>
 										{tier.features.map((feature, idx) => (
 											<li
 												key={idx}

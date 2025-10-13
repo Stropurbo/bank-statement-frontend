@@ -7,7 +7,7 @@ import {
 } from 'react-icons/fi'
 import { Link, useNavigate } from 'react-router'
 import { BiLogOut } from 'react-icons/bi'
-import { Newspaper, Podcast, Mail } from 'lucide-react'
+import { Newspaper, Podcast, Mail, Coins } from 'lucide-react'
 import { BsPeople } from 'react-icons/bs'
 import useAuthContext from '../hooks/useAuthContext'
 import { useState, useEffect } from 'react'

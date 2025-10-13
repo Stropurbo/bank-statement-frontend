@@ -700,7 +700,16 @@ function HeroSection() {
 
 				{error && (
 					<div className="max-w-md mx-auto mb-8 p-4 bg-red-50 border border-red-200 rounded-xl">
-						<p className="text-red-700 text-center font-medium">{error}</p>
+						<p className="text-red-700 text-center font-medium mb-3">{error}</p>
+						{(error.includes('limit') || error.includes('Upgrade')) && (
+							<Link
+								to="/pricing"
+								className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg font-semibold"
+							>
+								<ArrowRight className="h-4 w-4" />
+								Upgrade Plan
+							</Link>
+						)}
 					</div>
 				)}
 

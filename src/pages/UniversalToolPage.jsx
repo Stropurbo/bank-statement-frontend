@@ -256,8 +256,11 @@ function UniversalToolPage({ config }) {
 			const errorCode = err.response?.data?.error_code
 			const isLimitError = errorCode === 'DAILY_LIMIT_EXCEEDED' ||
 				errorCode === 'UPLOAD_LIMIT_EXCEEDED' ||
+				errorCode === 'SUBSCRIPTION_REQUIRED' ||
 				errorMessage.includes('limit exceeded') ||
-				errorMessage.includes('subscription')
+				errorMessage.includes('subscription') ||
+				errorMessage.includes('upgrade') ||
+				err.response?.status === 403
 
 			setError(errorMessage)
 			setIsSubscriptionError(isLimitError)

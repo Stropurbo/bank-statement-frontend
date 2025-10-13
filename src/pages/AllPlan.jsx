@@ -28,13 +28,16 @@ function AllPlan() {
 
   const handleEdit = (plan) => {
     setEditingPlan(plan)
+    const monthlyTokens = plan.pages?.monthly?.match(/(\d+) tokens/) ? plan.pages.monthly.match(/(\d+) tokens/)[1] : '0'
+    const annualTokens = plan.pages?.annual?.match(/(\d+) tokens/) ? plan.pages.annual.match(/(\d+) tokens/)[1] : '0'
+    
     setEditForm({
       name: plan.title || plan.name || '',
       description: plan.description || '',
       monthly_price: plan.price?.monthly?.replace('$', '') || '',
       annual_price: plan.price?.annual?.replace('$', '') || '',
-      monthly_pages: plan.pages?.monthly?.split(' ')[0] || '',
-      annual_pages: plan.pages?.annual?.split(' ')[0] || '',
+      tokens_monthly: monthlyTokens,
+      tokens_annual: annualTokens,
       features: Array.isArray(plan.features) ? plan.features.join('\n') : ''
     })
   }
@@ -46,8 +49,9 @@ function AllPlan() {
         description: editForm.description,
         monthly_price: parseFloat(editForm.monthly_price),
         annual_price: parseFloat(editForm.annual_price),
-        pages_monthly: parseInt(editForm.monthly_pages),
-        pages_annual: parseInt(editForm.annual_pages),
+        tokens: parseInt(editForm.tokens_monthly) || parseInt(editForm.tokens_annual),
+        tokens_monthly: parseInt(editForm.tokens_monthly),
+        tokens_annual: parseInt(editForm.tokens_annual),
         features: editForm.features.split('\n').filter(f => f.trim())
       }
 
@@ -55,7 +59,6 @@ function AllPlan() {
       const response = await ApiClient.patch(`/plans/${editingPlan.id}/`, saveData)
       console.log('Save response:', response)
 
-      // Refetch plans to get updated data from server
       await fetchPlans()
       setEditingPlan(null)
     } catch (err) {
@@ -244,29 +247,29 @@ function AllPlan() {
 							</div>
 							<div className="grid grid-cols-2 gap-4">
 								<div>
-									<label className="label">Monthly Pages</label>
+									<label className="label">Monthly Tokens</label>
 									<input
 										type="number"
 										className="input input-bordered w-full"
-										value={editForm.monthly_pages}
+										value={editForm.tokens_monthly}
 										onChange={(e) =>
 											setEditForm({
 												...editForm,
-												monthly_pages: e.target.value,
+												tokens_monthly: e.target.value,
 											})
 										}
 									/>
 								</div>
 								<div>
-									<label className="label">Annual Pages</label>
+									<label className="label">Annual Tokens</label>
 									<input
 										type="number"
 										className="input input-bordered w-full"
-										value={editForm.annual_pages}
+										value={editForm.tokens_annual}
 										onChange={(e) =>
 											setEditForm({
 												...editForm,
-												annual_pages: e.target.value,
+												tokens_annual: e.target.value,
 											})
 										}
 									/>

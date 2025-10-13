@@ -12,9 +12,13 @@ import {
 	ArrowRight,
 	Settings,
 	CreditCard,
+	Coins,
+	ShoppingCart,
+	History,
 } from 'lucide-react'
 import { useLocation, Link } from 'react-router'
 import AuthApiClient from '../services/auth-api-client'
+import apiClient from '../services/api-client'
 
 const Profile = () => {
 	const [isEditing, setIsEditing] = useState(false)
@@ -45,18 +49,29 @@ const Profile = () => {
 	const [errorMessage, setErrorMessage] = useState('')
 	const [subscriptionData, setSubscriptionData] = useState(null)
 	const [portalLoading, setPortalLoading] = useState(false)
+	const [tokenData, setTokenData] = useState(null)
+	const [tokenPackages, setTokenPackages] = useState([])
+	const [showTokenPurchase, setShowTokenPurchase] = useState(false)
+	const [tokenTransactions, setTokenTransactions] = useState([])
+	const [showTransactions, setShowTransactions] = useState(false)
 
-	// Fetch subscription status
+	// Fetch subscription status and token balance
 	useEffect(() => {
-		const fetchSubscriptionStatus = async () => {
+		const fetchData = async () => {
 			try {
-				const response = await AuthApiClient.get('/subscription/status/')
-				setSubscriptionData(response.data)
+				const [subResponse, tokenResponse, packagesResponse] = await Promise.all([
+					AuthApiClient.get('/subscription/status/'),
+					apiClient.get('/tokens/balance/balance/'),
+					apiClient.get('/tokens/packages/')
+				])
+				setSubscriptionData(subResponse.data)
+				setTokenData(tokenResponse.data)
+				setTokenPackages(packagesResponse.data)
 			} catch (error) {
-				console.error('Failed to fetch subscription status:', error)
+				console.error('Failed to fetch data:', error)
 			}
-			}
-		fetchSubscriptionStatus()
+		}
+		fetchData()
 	}, [])
 
 	useEffect(() => {
@@ -245,8 +260,8 @@ const Profile = () => {
 						</div>
 					</div>
 
-					{/* Subscription Card */}
-					<div className="lg:col-span-1">
+					{/* Sidebar */}
+					<div className="lg:col-span-1 space-y-6">
 						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
 							<div className="flex items-center space-x-3 mb-6">
 								<div className="w-12 h-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
@@ -359,6 +374,135 @@ const Profile = () => {
 										</div>
 									)}
 								</div>
+							</div>
+						</div>
+
+						{/* Token Card */}
+						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
+							<div className="flex items-center space-x-3 mb-6">
+								<div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
+									<Coins className="h-6 w-6 text-white" />
+								</div>
+								<div>
+									<h3 className="text-xl font-bold text-gray-900">Tokens</h3>
+									<p className="text-gray-600 text-sm">For AutoPost</p>
+								</div>
+							</div>
+
+							<div className="space-y-4">
+								<div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-lg border border-yellow-100">
+									<div className="text-center">
+										<p className="text-sm text-gray-600 mb-2">Current Balance</p>
+										<p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600">
+											{tokenData?.balance || 0}
+										</p>
+										<p className="text-xs text-gray-500 mt-1">tokens</p>
+									</div>
+								</div>
+
+								<div className="grid grid-cols-2 gap-3 text-xs">
+									<div className="bg-gray-50 p-3 rounded-lg">
+										<p className="text-gray-600 mb-1">Total Purchased</p>
+										<p className="text-lg font-bold text-gray-900">{tokenData?.total_purchased || 0}</p>
+									</div>
+									<div className="bg-gray-50 p-3 rounded-lg">
+										<p className="text-gray-600 mb-1">Total Used</p>
+										<p className="text-lg font-bold text-gray-900">{tokenData?.total_used || 0}</p>
+									</div>
+								</div>
+
+								<div className="pt-4 border-t border-gray-200 space-y-2">
+									<button
+										onClick={() => setShowTokenPurchase(!showTokenPurchase)}
+										className="w-full inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+									>
+										<ShoppingCart className="h-4 w-4" />
+										<span>Buy Tokens</span>
+									</button>
+									<button
+										onClick={async () => {
+											if (!showTransactions) {
+												try {
+													const response = await apiClient.get('/tokens/balance/transactions/')
+													setTokenTransactions(response.data)
+												} catch (error) {
+													console.error('Error fetching transactions:', error)
+												}
+											}
+											setShowTransactions(!showTransactions)
+										}}
+										className="w-full inline-flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+									>
+										<History className="h-4 w-4" />
+										<span>Transaction History</span>
+									</button>
+								</div>
+
+								{/* Token Packages */}
+								{showTokenPurchase && (
+									<div className="pt-4 border-t border-gray-200">
+										<h4 className="font-semibold text-gray-900 mb-3 text-sm">Select Package</h4>
+										<div className="space-y-2">
+											{tokenPackages.map(pkg => (
+												<button
+													key={pkg.id}
+													onClick={async () => {
+														try {
+															await apiClient.post('/tokens/balance/purchase/', {
+																package_id: pkg.id,
+																payment_method: 'demo'
+															})
+															const response = await apiClient.get('/tokens/balance/balance/')
+															setTokenData(response.data)
+															setSuccessMessage(`✅ ${pkg.tokens} tokens added!`)
+															setTimeout(() => setSuccessMessage(''), 3000)
+															setShowTokenPurchase(false)
+														} catch (error) {
+															setErrorMessage('Failed to purchase tokens')
+															setTimeout(() => setErrorMessage(''), 3000)
+														}
+													}}
+													className="w-full p-3 bg-gradient-to-r from-yellow-50 to-orange-50 hover:from-yellow-100 hover:to-orange-100 border border-yellow-200 rounded-lg transition-all text-left"
+												>
+													<div className="flex justify-between items-center">
+														<div>
+															<p className="font-bold text-gray-900">{pkg.name}</p>
+															<p className="text-xs text-gray-600">{pkg.tokens} tokens</p>
+														</div>
+														<p className="text-lg font-bold text-orange-600">${pkg.price}</p>
+													</div>
+												</button>
+											))}
+										</div>
+									</div>
+								)}
+
+								{/* Transaction History */}
+								{showTransactions && (
+									<div className="pt-4 border-t border-gray-200">
+										<h4 className="font-semibold text-gray-900 mb-3 text-sm">Recent Transactions</h4>
+										<div className="space-y-2 max-h-60 overflow-y-auto">
+											{tokenTransactions.length === 0 ? (
+												<p className="text-xs text-gray-500 text-center py-4">No transactions yet</p>
+											) : (
+												tokenTransactions.map(tx => (
+													<div key={tx.id} className="p-2 bg-gray-50 rounded text-xs">
+														<div className="flex justify-between items-start">
+															<div>
+																<p className="font-semibold text-gray-900">{tx.transaction_type_display}</p>
+																<p className="text-gray-600">{tx.description}</p>
+															</div>
+															<p className={`font-bold ${tx.amount > 0 ? 'text-green-600' : 'text-red-600'}`}>
+																{tx.amount > 0 ? '+' : ''}{tx.amount}
+															</p>
+														</div>
+														<p className="text-gray-500 mt-1">{new Date(tx.created_at).toLocaleDateString()}</p>
+													</div>
+												))
+											)}
+										</div>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>
