@@ -101,9 +101,30 @@ function AppRoutes() {
 				</Route>
 
 				{/* AutoPost Routes */}
-				<Route path="/autopost/dashboard" element={<PrivateRoute><AutoPostDashboard /></PrivateRoute>} />
-				<Route path="/autopost/create" element={<PrivateRoute><AutoPostCreate /></PrivateRoute>} />
-				<Route path="/autopost/accounts" element={<PrivateRoute><AutoPostAccounts /></PrivateRoute>} />
+				<Route
+					path="/autopost/dashboard"
+					element={
+						<PrivateRoute>
+							<AutoPostDashboard />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/autopost/create"
+					element={
+						<PrivateRoute>
+							<AutoPostCreate />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/autopost/accounts"
+					element={
+						<PrivateRoute>
+							<AutoPostAccounts />
+						</PrivateRoute>
+					}
+				/>
 
 				<Route
 					path="dashboard/*"

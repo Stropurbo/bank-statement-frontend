@@ -675,8 +675,8 @@ function HeroSection() {
 									}`}
 								>
 									{userStatus.user_type === 'free'
-										? `🆓 Free Plan: ${userStatus.remaining_uploads}/${userStatus.daily_limit} uploads remaining today`
-										: `⭐ ${userStatus.plan_name}: ${userStatus.remaining_uploads} uploads remaining this month`}
+										? `🆓 Free Plan: ${userStatus.tokens_remaining || userStatus.remaining_uploads} tokens remaining`
+										: `⭐ ${userStatus.plan_name}: ${userStatus.tokens_remaining || userStatus.remaining_uploads} tokens remaining`}
 								</p>
 							</div>
 						)
