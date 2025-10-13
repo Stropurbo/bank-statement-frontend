@@ -179,8 +179,8 @@ function About() {
 						<div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-8 mb-12">
 							<h3 className="text-2xl font-bold text-gray-900 mb-4">Business Information</h3>
 							<div className="text-gray-700 space-y-2">
-								<p><strong>Legal Business Name:</strong> Sabbir Hasan</p>
-								<p><strong>Owner:</strong> Sabbir Hasan</p>
+								<p><strong>Legal Business Name:</strong> Md. Sabbir Hasan</p>
+								<p><strong>Owner:</strong> Md. Sabbir Hasan</p>
 								<p><strong>Contact Email:</strong> hasansabbir263@gmail.com</p>
 								<p><strong>Business Email:</strong> contact@sheetlypro.com</p>
 							</div>
