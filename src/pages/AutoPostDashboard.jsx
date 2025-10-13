@@ -19,6 +19,7 @@ function AutoPostDashboard() {
 	const [videoTags, setVideoTags] = useState('')
 	const [connecting, setConnecting] = useState(null)
 	const [posting, setPosting] = useState(false)
+	const [isDragging, setIsDragging] = useState(false)
 
 	const BlueskyIcon = () => (
 		<img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/bluesky-icon.png" alt="Bluesky" className="w-6 h-6 object-contain" />
@@ -114,9 +115,7 @@ function AutoPostDashboard() {
 		}
 	}
 
-	const handleMediaUpload = async (e) => {
-		const files = Array.from(e.target.files)
-		
+	const processFiles = async (files) => {
 		for (const file of files) {
 			const mediaType = file.type.startsWith('video/') ? 'video' : 'image'
 			const preview = URL.createObjectURL(file)
@@ -150,6 +149,28 @@ function AutoPostDashboard() {
 				setMediaFiles(prev => prev.filter(m => m.id !== tempMedia.id))
 			}
 		}
+	}
+
+	const handleMediaUpload = async (e) => {
+		const files = Array.from(e.target.files)
+		await processFiles(files)
+	}
+
+	const handleDragOver = (e) => {
+		e.preventDefault()
+		setIsDragging(true)
+	}
+
+	const handleDragLeave = (e) => {
+		e.preventDefault()
+		setIsDragging(false)
+	}
+
+	const handleDrop = async (e) => {
+		e.preventDefault()
+		setIsDragging(false)
+		const files = Array.from(e.dataTransfer.files)
+		await processFiles(files)
 	}
 
 	const removeMedia = (mediaId) => {
@@ -382,9 +403,16 @@ function AutoPostDashboard() {
 
 							<div className="mb-6">
 								<label className="block text-gray-700 font-semibold mb-2">Media Files</label>
-								<label className="flex items-center justify-center gap-3 w-full px-4 py-6 border-2 border-dashed border-gray-300 rounded-xl hover:border-purple-500 cursor-pointer transition-all">
+								<label 
+									onDragOver={handleDragOver}
+									onDragLeave={handleDragLeave}
+									onDrop={handleDrop}
+									className={`flex items-center justify-center gap-3 w-full px-4 py-6 border-2 border-dashed rounded-xl cursor-pointer transition-all ${
+										isDragging ? 'border-purple-500 bg-purple-50' : 'border-gray-300 hover:border-purple-500'
+									}`}
+								>
 									<FaImage className="text-2xl text-gray-400" />
-									<span className="text-gray-600">Click to upload</span>
+									<span className="text-gray-600">Click to upload or drag and drop</span>
 									<input type="file" multiple accept="image/*,video/*" onChange={handleMediaUpload} className="hidden" />
 								</label>
 								{mediaFiles.length > 0 && (
