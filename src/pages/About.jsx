@@ -175,6 +175,17 @@ function About() {
 							platform.
 						</p>
 
+						{/* Business Info */}
+						<div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-8 mb-12">
+							<h3 className="text-2xl font-bold text-gray-900 mb-4">Business Information</h3>
+							<div className="text-gray-700 space-y-2">
+								<p><strong>Legal Business Name:</strong> Sabbir Hasan</p>
+								<p><strong>Owner:</strong> Sabbir Hasan</p>
+								<p><strong>Contact Email:</strong> hasansabbir263@gmail.com</p>
+								<p><strong>Business Email:</strong> contact@sheetlypro.com</p>
+							</div>
+						</div>
+
 						{/* CTA Section */}
 						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
 							<h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -185,7 +196,7 @@ function About() {
 								productivity needs.
 							</p>
 							<a
-								href="mailto:support@sheetlypro.com"
+								href="mailto:contact@sheetlypro.com"
 								className="inline-flex items-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-8 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
 							>
 								Contact Us Today
