@@ -396,9 +396,16 @@ function AutoPostDashboard() {
 												) : (
 													<img src={media.preview} alt="Preview" className="w-full h-24 object-cover rounded-lg" />
 												)}
-												<button onClick={() => removeMedia(media.id)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100">
-													<FaTrash className="text-xs" />
-												</button>
+												{media.uploading && (
+													<div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg flex items-center justify-center">
+														<div className="animate-spin rounded-full h-8 w-8 border-2 border-white border-t-transparent"></div>
+													</div>
+												)}
+												{!media.uploading && (
+													<button onClick={() => removeMedia(media.id)} className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100">
+														<FaTrash className="text-xs" />
+													</button>
+												)}
 											</div>
 										))}
 									</div>
@@ -483,7 +490,7 @@ function AutoPostDashboard() {
 									<p className="text-gray-500">No posts yet</p>
 								</div>
 							) : (
-								<div className="space-y-4">
+								<div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
 									{scheduledPosts.map(post => (
 										<div key={post.id} className="border-2 border-gray-200 rounded-xl p-6 hover:border-purple-300 transition-all">
 											<div className="flex justify-between items-start mb-3">
