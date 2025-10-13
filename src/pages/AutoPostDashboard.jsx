@@ -18,6 +18,7 @@ function AutoPostDashboard() {
 	const [videoDescription, setVideoDescription] = useState('')
 	const [videoTags, setVideoTags] = useState('')
 	const [connecting, setConnecting] = useState(null)
+	const [posting, setPosting] = useState(false)
 
 	const BlueskyIcon = () => (
 		<img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/bluesky-icon.png" alt="Bluesky" className="w-6 h-6 object-contain" />
@@ -58,6 +59,13 @@ function AutoPostDashboard() {
 			alert(`❌ Connection failed: ${error}`)
 			window.history.replaceState({}, '', '/autopost/dashboard')
 		}
+		
+		// Realtime polling - refresh every 10 seconds
+		const interval = setInterval(() => {
+			fetchData()
+		}, 10000)
+		
+		return () => clearInterval(interval)
 	}, [])
 
 	const fetchData = async () => {
@@ -66,7 +74,14 @@ function AutoPostDashboard() {
 				apiClient.get('/autopost/posts/'),
 				apiClient.get('/autopost/accounts/')
 			])
-			setScheduledPosts(postsRes.data.results || postsRes.data)
+			// Sort posts: scheduled first, then others
+			const posts = postsRes.data.results || postsRes.data
+			const sortedPosts = posts.sort((a, b) => {
+				if (a.status === 'scheduled' && b.status !== 'scheduled') return -1
+				if (a.status !== 'scheduled' && b.status === 'scheduled') return 1
+				return 0
+			})
+			setScheduledPosts(sortedPosts)
 			setConnectedAccounts(accountsRes.data.results || accountsRes.data)
 		} catch (error) {
 			console.error('Error:', error)
@@ -170,6 +185,7 @@ function AutoPostDashboard() {
 			return alert('⚠️ Instagram, Threads, and Pinterest require image or video content')
 		}
 
+		setPosting(true)
 		try {
 			// Check if media is still uploading
 			if (mediaFiles.some(m => m.uploading)) {
@@ -203,7 +219,8 @@ function AutoPostDashboard() {
 			}
 			console.log('Payload:', payload)
 			await apiClient.post('/autopost/posts/', payload)
-			alert(postNow ? '✅ Posted!' : '✅ Scheduled!')
+			
+			// Clear form
 			setPostContent('')
 			setSelectedPlatforms([])
 			setMediaFiles([])
@@ -213,12 +230,18 @@ function AutoPostDashboard() {
 			setVideoTitle('')
 			setVideoDescription('')
 			setVideoTags('')
-			fetchData()
+			
+			// Refresh data
+			await fetchData()
+			
+			alert(postNow ? '✅ Posted!' : '✅ Scheduled!')
 		} catch (error) {
 			console.error('Error:', error)
 			console.error('Error response:', error.response?.data)
 			const errorMsg = error.response?.data?.error || error.response?.data?.detail || JSON.stringify(error.response?.data) || 'Failed to create post'
 			alert(`❌ ${errorMsg}`)
+		} finally {
+			setPosting(false)
 		}
 	}
 
@@ -432,8 +455,19 @@ function AutoPostDashboard() {
 								)}
 							</div>
 
-							<button onClick={handleSchedulePost} className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 rounded-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all">
-								{postNow ? '📤 Post Now' : '⏰ Schedule Post'}
+							<button 
+								onClick={handleSchedulePost} 
+								disabled={posting}
+								className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 rounded-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+							>
+								{posting ? (
+									<>
+										<div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent"></div>
+										{postNow ? 'Posting...' : 'Scheduling...'}
+									</>
+								) : (
+									postNow ? '📤 Post Now' : '⏰ Schedule Post'
+								)}
 							</button>
 						</div>
 
