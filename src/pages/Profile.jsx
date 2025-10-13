@@ -62,7 +62,7 @@ const Profile = () => {
 				const [subResponse, tokenResponse, packagesResponse] = await Promise.all([
 					AuthApiClient.get('/subscription/status/'),
 					apiClient.get('/tokens/balance/balance/'),
-					apiClient.get('/tokens/packages/')
+					apiClient.get('/tokens/packages/'),
 				])
 				setSubscriptionData(subResponse.data)
 				setTokenData(tokenResponse.data)
@@ -282,7 +282,9 @@ const Profile = () => {
 											Current Plan
 										</span>
 										<span className="px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-semibold rounded-full">
-											{subscriptionData?.plan_name || user?.usersubscription?.plan?.name || (user?.is_staff ? 'Admin' : 'Free Plan')}
+											{subscriptionData?.plan_name ||
+												user?.usersubscription?.plan?.name ||
+												(user?.is_staff ? 'Admin' : 'Free Plan')}
 										</span>
 									</div>
 									<div className="text-xs text-gray-600">
@@ -290,13 +292,16 @@ const Profile = () => {
 											Remaining uploads:{' '}
 											{subscriptionData?.remaining_uploads !== undefined
 												? subscriptionData.remaining_uploads
-												: (user?.usersubscription?.remaining_uploads || 'N/A')}
+												: user?.usersubscription?.remaining_uploads ||
+												  'N/A'}
 										</p>
-										{(subscriptionData?.end_date || user?.usersubscription?.end_date) && (
+										{(subscriptionData?.end_date ||
+											user?.usersubscription?.end_date) && (
 											<p>
 												Valid until:{' '}
 												{new Date(
-													subscriptionData?.end_date || user.usersubscription.end_date
+													subscriptionData?.end_date ||
+														user.usersubscription.end_date,
 												).toLocaleDateString()}
 											</p>
 										)}
@@ -361,7 +366,11 @@ const Profile = () => {
 													) : (
 														<CreditCard className="h-3 w-3" />
 													)}
-													<span>{portalLoading ? 'Loading...' : 'Manage Subscription'}</span>
+													<span>
+														{portalLoading
+															? 'Loading...'
+															: 'Manage Subscription'}
+													</span>
 												</button>
 												<Link
 													to="/pricing"
@@ -385,14 +394,16 @@ const Profile = () => {
 								</div>
 								<div>
 									<h3 className="text-xl font-bold text-gray-900">Tokens</h3>
-									<p className="text-gray-600 text-sm">For AutoPost</p>
+									<p className="text-gray-600 text-sm">For workspace</p>
 								</div>
 							</div>
 
 							<div className="space-y-4">
 								<div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-4 rounded-lg border border-yellow-100">
 									<div className="text-center">
-										<p className="text-sm text-gray-600 mb-2">Current Balance</p>
+										<p className="text-sm text-gray-600 mb-2">
+											Current Balance
+										</p>
 										<p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600">
 											{tokenData?.balance || 0}
 										</p>
@@ -403,30 +414,39 @@ const Profile = () => {
 								<div className="grid grid-cols-2 gap-3 text-xs">
 									<div className="bg-gray-50 p-3 rounded-lg">
 										<p className="text-gray-600 mb-1">Total Purchased</p>
-										<p className="text-lg font-bold text-gray-900">{tokenData?.total_purchased || 0}</p>
+										<p className="text-lg font-bold text-gray-900">
+											{tokenData?.total_purchased || 0}
+										</p>
 									</div>
 									<div className="bg-gray-50 p-3 rounded-lg">
 										<p className="text-gray-600 mb-1">Total Used</p>
-										<p className="text-lg font-bold text-gray-900">{tokenData?.total_used || 0}</p>
+										<p className="text-lg font-bold text-gray-900">
+											{tokenData?.total_used || 0}
+										</p>
 									</div>
 								</div>
 
 								<div className="pt-4 border-t border-gray-200 space-y-2">
-									<button
-										onClick={() => setShowTokenPurchase(!showTokenPurchase)}
+									<Link
+										to="/pricing"
 										className="w-full inline-flex items-center justify-center space-x-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:from-yellow-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
 									>
 										<ShoppingCart className="h-4 w-4" />
 										<span>Buy Tokens</span>
-									</button>
+									</Link>
 									<button
 										onClick={async () => {
 											if (!showTransactions) {
 												try {
-													const response = await apiClient.get('/tokens/balance/transactions/')
+													const response = await apiClient.get(
+														'/tokens/balance/transactions/',
+													)
 													setTokenTransactions(response.data)
 												} catch (error) {
-													console.error('Error fetching transactions:', error)
+													console.error(
+														'Error fetching transactions:',
+														error,
+													)
 												}
 											}
 											setShowTransactions(!showTransactions)
@@ -441,35 +461,60 @@ const Profile = () => {
 								{/* Token Packages */}
 								{showTokenPurchase && (
 									<div className="pt-4 border-t border-gray-200">
-										<h4 className="font-semibold text-gray-900 mb-3 text-sm">Select Package</h4>
+										<h4 className="font-semibold text-gray-900 mb-3 text-sm">
+											Select Package
+										</h4>
 										<div className="space-y-2">
-											{tokenPackages.map(pkg => (
+											{tokenPackages.map((pkg) => (
 												<button
 													key={pkg.id}
 													onClick={async () => {
 														try {
-															await apiClient.post('/tokens/balance/purchase/', {
-																package_id: pkg.id,
-																payment_method: 'demo'
-															})
-															const response = await apiClient.get('/tokens/balance/balance/')
+															await apiClient.post(
+																'/tokens/balance/purchase/',
+																{
+																	package_id: pkg.id,
+																	payment_method: 'demo',
+																},
+															)
+															const response =
+																await apiClient.get(
+																	'/tokens/balance/balance/',
+																)
 															setTokenData(response.data)
-															setSuccessMessage(`✅ ${pkg.tokens} tokens added!`)
-															setTimeout(() => setSuccessMessage(''), 3000)
+															setSuccessMessage(
+																`✅ ${pkg.tokens} tokens added!`,
+															)
+															setTimeout(
+																() => setSuccessMessage(''),
+																3000,
+															)
 															setShowTokenPurchase(false)
 														} catch (error) {
-															setErrorMessage('Failed to purchase tokens')
-															setTimeout(() => setErrorMessage(''), 3000)
+															console.error(error)
+															setErrorMessage(
+																'Failed to purchase tokens',
+															)
+															setTimeout(
+																() => setErrorMessage(''),
+																3000,
+															)
 														}
 													}}
 													className="w-full p-3 bg-gradient-to-r from-yellow-50 to-orange-50 hover:from-yellow-100 hover:to-orange-100 border border-yellow-200 rounded-lg transition-all text-left"
 												>
 													<div className="flex justify-between items-center">
 														<div>
-															<p className="font-bold text-gray-900">{pkg.name}</p>
-															<p className="text-xs text-gray-600">{pkg.tokens} tokens</p>
+															<p className="font-bold text-gray-900">
+																{pkg.name}
+															</p>
+															<p className="text-xs text-gray-600">
+																{pkg.tokens} tokens
+															</p>
 														</div>
-														<p className="text-lg font-bold text-orange-600">${pkg.price}</p>
+														<p className="text-lg font-bold text-orange-600">
+															${pkg.price}
+														</p>
 													</div>
 												</button>
 											))}
@@ -480,23 +525,47 @@ const Profile = () => {
 								{/* Transaction History */}
 								{showTransactions && (
 									<div className="pt-4 border-t border-gray-200">
-										<h4 className="font-semibold text-gray-900 mb-3 text-sm">Recent Transactions</h4>
+										<h4 className="font-semibold text-gray-900 mb-3 text-sm">
+											Recent Transactions
+										</h4>
 										<div className="space-y-2 max-h-60 overflow-y-auto">
 											{tokenTransactions.length === 0 ? (
-												<p className="text-xs text-gray-500 text-center py-4">No transactions yet</p>
+												<p className="text-xs text-gray-500 text-center py-4">
+													No transactions yet
+												</p>
 											) : (
-												tokenTransactions.map(tx => (
-													<div key={tx.id} className="p-2 bg-gray-50 rounded text-xs">
+												tokenTransactions.map((tx) => (
+													<div
+														key={tx.id}
+														className="p-2 bg-gray-50 rounded text-xs"
+													>
 														<div className="flex justify-between items-start">
 															<div>
-																<p className="font-semibold text-gray-900">{tx.transaction_type_display}</p>
-																<p className="text-gray-600">{tx.description}</p>
+																<p className="font-semibold text-gray-900">
+																	{
+																		tx.transaction_type_display
+																	}
+																</p>
+																<p className="text-gray-600">
+																	{tx.description}
+																</p>
 															</div>
-															<p className={`font-bold ${tx.amount > 0 ? 'text-green-600' : 'text-red-600'}`}>
-																{tx.amount > 0 ? '+' : ''}{tx.amount}
+															<p
+																className={`font-bold ${
+																	tx.amount > 0
+																		? 'text-green-600'
+																		: 'text-red-600'
+																}`}
+															>
+																{tx.amount > 0 ? '+' : ''}
+																{tx.amount}
 															</p>
 														</div>
-														<p className="text-gray-500 mt-1">{new Date(tx.created_at).toLocaleDateString()}</p>
+														<p className="text-gray-500 mt-1">
+															{new Date(
+																tx.created_at,
+															).toLocaleDateString()}
+														</p>
 													</div>
 												))
 											)}
