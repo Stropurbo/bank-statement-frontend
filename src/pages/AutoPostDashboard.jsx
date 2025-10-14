@@ -204,6 +204,10 @@ function AutoPostDashboard() {
 		if ((hasTikTok || hasYouTube) && !hasVideo) {
 			return alert('⚠️ TikTok and YouTube require video content')
 		}
+		// Check YouTube required fields
+		if (hasYouTube && hasVideo && (!videoTitle.trim() || !videoDescription.trim())) {
+			return alert('⚠️ YouTube requires video title and description')
+		}
 
 		// Check media requirement for Instagram, Threads, Pinterest
 		const mediaRequiredPlatforms = selectedPlatforms.filter(p =>
