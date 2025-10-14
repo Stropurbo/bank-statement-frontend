@@ -18,10 +18,10 @@ function AutoPostDashboard() {
 	const [videoDescription, setVideoDescription] = useState('')
 	const [videoTags, setVideoTags] = useState('')
 	const [connecting, setConnecting] = useState(null)
+	const [disconnecting, setDisconnecting] = useState(null)
 	const [posting, setPosting] = useState(false)
 	const [isDragging, setIsDragging] = useState(false)
-	const [tokenBalance, setTokenBalance] = useState(0)
-	const [tokenCost, setTokenCost] = useState(5)
+	const [notification, setNotification] = useState(null)
 
 	const BlueskyIcon = () => (
 		<img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/bluesky-icon.png" alt="Bluesky" className="w-6 h-6 object-contain" />
@@ -49,27 +49,27 @@ function AutoPostDashboard() {
 
 	useEffect(() => {
 		fetchData()
-		fetchTokenBalance()
 		// Check for OAuth callback success/error
 		const params = new URLSearchParams(window.location.search)
 		const success = params.get('success')
 		const error = params.get('error')
 		const platform = params.get('platform')
-		
+
 		if (success === 'connected' && platform) {
-			alert(`✅ ${platform.charAt(0).toUpperCase() + platform.slice(1)} connected successfully!`)
+			setNotification({ type: 'success', message: `${platform.charAt(0).toUpperCase() + platform.slice(1)} connected successfully!` })
 			window.history.replaceState({}, '', '/autopost/dashboard')
+			setTimeout(() => setNotification(null), 5000)
 		} else if (error) {
-			alert(`❌ Connection failed: ${error}`)
+			setNotification({ type: 'error', message: `Connection failed: ${error}` })
 			window.history.replaceState({}, '', '/autopost/dashboard')
+			setTimeout(() => setNotification(null), 5000)
 		}
-		
+
 		// Realtime polling - refresh every 10 seconds
 		const interval = setInterval(() => {
 			fetchData()
-			fetchTokenBalance()
 		}, 10000)
-		
+
 		return () => clearInterval(interval)
 	}, [])
 
@@ -95,15 +95,6 @@ function AutoPostDashboard() {
 		}
 	}
 
-	const fetchTokenBalance = async () => {
-		try {
-			const response = await apiClient.get('/tokens/balance/balance/')
-			setTokenBalance(response.data.balance || 0)
-		} catch (error) {
-			console.error('Error fetching token balance:', error)
-		}
-	}
-
 	const connectAccount = async (platformId) => {
 		setConnecting(platformId)
 		try {
@@ -120,11 +111,14 @@ function AutoPostDashboard() {
 	}
 
 	const disconnectAccount = async (accountId) => {
+		setDisconnecting(accountId)
 		try {
 			await apiClient.delete(`/autopost/accounts/${accountId}/`)
-			fetchData()
+			await fetchData()
 		} catch (error) {
 			console.error('Error:', error)
+		} finally {
+			setDisconnecting(null)
 		}
 	}
 
@@ -132,7 +126,7 @@ function AutoPostDashboard() {
 		for (const file of files) {
 			const mediaType = file.type.startsWith('video/') ? 'video' : 'image'
 			const preview = URL.createObjectURL(file)
-			
+
 			// Add to UI immediately
 			const tempMedia = {
 				id: Date.now() + Math.random(),
@@ -142,18 +136,18 @@ function AutoPostDashboard() {
 				uploading: true
 			}
 			setMediaFiles(prev => [...prev, tempMedia])
-			
+
 			// Upload to Cloudinary
 			try {
 				const formData = new FormData()
 				formData.append('file', file)
-				
+
 				const response = await apiClient.post('/autopost/media/upload_to_cloudinary/', formData, {
 					headers: { 'Content-Type': 'multipart/form-data' }
 				})
-				
+
 				// Update with Cloudinary URL
-				setMediaFiles(prev => prev.map(m => 
+				setMediaFiles(prev => prev.map(m =>
 					m.id === tempMedia.id ? { ...m, url: response.data.url, uploading: false } : m
 				))
 			} catch (error) {
@@ -197,17 +191,12 @@ function AutoPostDashboard() {
 	}
 
 	const handleSchedulePost = async () => {
-		// Check token balance
-		if (tokenBalance < tokenCost) {
-			return alert(`⚠️ Insufficient tokens! You need ${tokenCost} tokens to post. Current balance: ${tokenBalance} tokens. Please purchase tokens from your Profile page.`)
-		}
-		
 		// Check if content or media is provided
 		const hasMedia = mediaFiles.length > 0
 		if (!postContent.trim() && !hasMedia) return alert('⚠️ Please enter post content or upload media')
 		if (selectedPlatforms.length === 0) return alert('⚠️ Please select at least one platform')
 		if (!postNow && (!scheduledDate || !scheduledTime)) return alert('⚠️ Please select date and time')
-		
+
 		// Check TikTok/YouTube video requirement
 		const hasVideo = mediaFiles.some(m => m.type === 'video')
 		const hasTikTok = selectedPlatforms.includes('tiktok')
@@ -215,9 +204,9 @@ function AutoPostDashboard() {
 		if ((hasTikTok || hasYouTube) && !hasVideo) {
 			return alert('⚠️ TikTok and YouTube require video content')
 		}
-		
+
 		// Check media requirement for Instagram, Threads, Pinterest
-		const mediaRequiredPlatforms = selectedPlatforms.filter(p => 
+		const mediaRequiredPlatforms = selectedPlatforms.filter(p =>
 			['instagram', 'threads', 'pinterest'].includes(p)
 		)
 		if (mediaRequiredPlatforms.length > 0 && !hasMedia) {
@@ -230,7 +219,7 @@ function AutoPostDashboard() {
 			if (mediaFiles.some(m => m.uploading)) {
 				return alert('⏳ Please wait for media upload to complete')
 			}
-			
+
 			// Determine post_type based on media
 			let postType = 'text'
 			if (hasVideo) {
@@ -238,10 +227,10 @@ function AutoPostDashboard() {
 			} else if (hasMedia) {
 				postType = 'image'
 			}
-			
+
 			// Get Cloudinary URLs
 			const mediaUrls = mediaFiles.filter(m => m.url).map(m => m.url)
-			
+
 			const payload = {
 				content: postContent,
 				post_type: postType,
@@ -258,7 +247,7 @@ function AutoPostDashboard() {
 			}
 			console.log('Payload:', payload)
 			await apiClient.post('/autopost/posts/', payload)
-			
+
 			// Clear form
 			setPostContent('')
 			setSelectedPlatforms([])
@@ -269,12 +258,11 @@ function AutoPostDashboard() {
 			setVideoTitle('')
 			setVideoDescription('')
 			setVideoTags('')
-			
-			// Refresh data and token balance
+
+			// Refresh data
 			await fetchData()
-			await fetchTokenBalance()
-			
-			alert(postNow ? `✅ Posted! ${tokenCost} tokens deducted.` : `✅ Scheduled! ${tokenCost} tokens will be deducted when posted.`)
+
+			alert(postNow ? '✅ Posted successfully!' : '✅ Scheduled successfully!')
 		} catch (error) {
 			console.error('Error:', error)
 			console.error('Error response:', error.response?.data)
@@ -312,6 +300,11 @@ function AutoPostDashboard() {
 	return (
 		<>
 			<Navbar />
+			{notification && (
+				<div className={`fixed top-24 right-4 z-50 px-6 py-4 rounded-lg shadow-lg ${notification.type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white animate-slide-in`}>
+					{notification.message}
+				</div>
+			)}
 			<div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 pt-20 pb-12">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="mb-8">
@@ -321,32 +314,8 @@ function AutoPostDashboard() {
 					<p className="text-gray-600">Schedule and manage your social media posts</p>
 				</div>
 
-				{/* Token Balance Alert */}
-				{tokenBalance < tokenCost && (
-					<div className="mb-6 bg-red-50 border-2 border-red-200 rounded-2xl p-6">
-						<div className="flex items-center gap-4">
-							<FaExclamationCircle className="text-4xl text-red-500" />
-							<div className="flex-1">
-								<h3 className="text-lg font-bold text-red-900 mb-1">Insufficient Tokens</h3>
-								<p className="text-red-700 text-sm">You need {tokenCost} tokens to create a post. Current balance: {tokenBalance} tokens.</p>
-								<a href="/profile" className="inline-block mt-2 text-sm font-semibold text-red-600 hover:text-red-800 underline">Purchase tokens →</a>
-							</div>
-						</div>
-					</div>
-				)}
-
 				{/* Stats */}
-				<div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-					<div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-yellow-500">
-						<div className="flex items-center justify-between">
-							<div>
-								<p className="text-gray-500 text-sm mb-1">Token Balance</p>
-								<p className="text-3xl font-bold text-yellow-600">{tokenBalance}</p>
-								<p className="text-xs text-gray-500 mt-1">{tokenCost} tokens/post</p>
-							</div>
-							<FaCheckCircle className="text-4xl text-yellow-500" />
-						</div>
-					</div>
+				<div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
 					<div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-purple-500">
 						<div className="flex items-center justify-between">
 							<div>
@@ -446,7 +415,7 @@ function AutoPostDashboard() {
 
 							<div className="mb-6">
 								<label className="block text-gray-700 font-semibold mb-2">Media Files</label>
-								<label 
+								<label
 									onDragOver={handleDragOver}
 									onDragLeave={handleDragLeave}
 									onDrop={handleDrop}
@@ -533,8 +502,8 @@ function AutoPostDashboard() {
 								)}
 							</div>
 
-							<button 
-								onClick={handleSchedulePost} 
+							<button
+								onClick={handleSchedulePost}
 								disabled={posting}
 								className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold py-4 rounded-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
 							>
@@ -627,12 +596,21 @@ function AutoPostDashboard() {
 													Coming Soon
 												</div>
 											) : isConnected ? (
-												<button onClick={() => disconnectAccount(account.id)} className="w-full bg-red-50 text-red-600 py-2 rounded-lg hover:bg-red-100 transition-all text-sm font-semibold">
-													Disconnect
+												<button
+													onClick={() => disconnectAccount(account.id)}
+													disabled={disconnecting === account.id}
+													className="w-full bg-red-50 text-red-600 py-2 rounded-lg hover:bg-red-100 transition-all text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+												>
+													{disconnecting === account.id ? (
+														<>
+															<div className="animate-spin rounded-full h-4 w-4 border-2 border-red-600 border-t-transparent"></div>
+															Disconnecting...
+														</>
+													) : 'Disconnect'}
 												</button>
 											) : (
-												<button 
-													onClick={() => connectAccount(platform.id)} 
+												<button
+													onClick={() => connectAccount(platform.id)}
 													disabled={connecting === platform.id}
 													className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-lg hover:shadow-lg transition-all text-sm font-semibold flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
 												>

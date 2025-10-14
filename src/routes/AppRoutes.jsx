@@ -37,7 +37,6 @@ import InvoiceGenerator from '../pages/InvoiceGenerator'
 import AutoPost from '../pages/AutoPost'
 import AutoPostDashboard from '../pages/AutoPostDashboard'
 import AutoPostCreate from '../pages/AutoPostCreate'
-import AutoPostAccounts from '../pages/AutoPostAccounts'
 import PdfToExcel from '../pdf_to_excel/PdToExcel'
 
 const publicRoutes = [
@@ -114,14 +113,6 @@ function AppRoutes() {
 					element={
 						<PrivateRoute>
 							<AutoPostCreate />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/autopost/accounts"
-					element={
-						<PrivateRoute>
-							<AutoPostAccounts />
 						</PrivateRoute>
 					}
 				/>
