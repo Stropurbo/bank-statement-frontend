@@ -88,7 +88,7 @@ function AutoPostCreate() {
 		<div className="min-h-screen bg-gray-50">
 			<div className="bg-white border-b">
 				<div className="container mx-auto px-6 py-6">
-					<h1 className="text-3xl font-bold text-gray-900">Create New Post</h1>
+					<h1 className="text-3xl font-bold text-black">Create New Post</h1>
 					<p className="text-gray-600 mt-1">Schedule content across your social media accounts</p>
 				</div>
 			</div>
@@ -98,14 +98,14 @@ function AutoPostCreate() {
 					<form onSubmit={(e) => handleSubmit(e, false)} className="space-y-6">
 						{/* Content */}
 						<div className="bg-white rounded-xl shadow-sm border p-6">
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-sm font-medium text-black mb-2">
 								Post Content *
 							</label>
 							<textarea
 								value={formData.content}
 								onChange={(e) => setFormData({ ...formData, content: e.target.value })}
 								rows={6}
-								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+								className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
 								placeholder="What's on your mind?"
 								required
 							/>
@@ -114,7 +114,7 @@ function AutoPostCreate() {
 
 						{/* Hashtags */}
 						<div className="bg-white rounded-xl shadow-sm border p-6">
-							<label className="block text-sm font-medium text-gray-700 mb-2">
+							<label className="block text-sm font-medium text-black mb-2">
 								Hashtags
 							</label>
 							<div className="flex gap-2 mb-3">
@@ -123,20 +123,20 @@ function AutoPostCreate() {
 									value={hashtagInput}
 									onChange={(e) => setHashtagInput(e.target.value)}
 									onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addHashtag())}
-									className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+									className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
 									placeholder="Add hashtag (press Enter)"
 								/>
 								<button
 									type="button"
 									onClick={addHashtag}
-									className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+									className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-900"
 								>
 									Add
 								</button>
 							</div>
 							<div className="flex flex-wrap gap-2">
 								{formData.hashtags.map((tag, index) => (
-									<span key={index} className="inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+									<span key={index} className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-black rounded-full text-sm">
 										{tag}
 										<button type="button" onClick={() => removeHashtag(index)}>
 											<X className="w-4 h-4" />
@@ -148,7 +148,7 @@ function AutoPostCreate() {
 
 						{/* Select Accounts */}
 						<div className="bg-white rounded-xl shadow-sm border p-6">
-							<label className="block text-sm font-medium text-gray-700 mb-4">
+							<label className="block text-sm font-medium text-black mb-4">
 								Select Accounts *
 							</label>
 							{accounts.length > 0 ? (
@@ -158,18 +158,18 @@ function AutoPostCreate() {
 											key={account.id}
 											className={`flex items-center gap-3 p-4 border-2 rounded-lg cursor-pointer transition-all ${
 												formData.social_account_ids.includes(account.id)
-													? 'border-purple-600 bg-purple-50'
-													: 'border-gray-200 hover:border-purple-300'
+													? 'border-black bg-gray-50'
+													: 'border-gray-200 hover:border-black'
 											}`}
 										>
 											<input
 												type="checkbox"
 												checked={formData.social_account_ids.includes(account.id)}
 												onChange={() => toggleAccount(account.id, account.platform)}
-												className="w-5 h-5 text-purple-600"
+												className="w-5 h-5 text-black"
 											/>
 											<div className="flex-1">
-												<p className="font-medium text-gray-900">@{account.username}</p>
+												<p className="font-medium text-black">@{account.username}</p>
 												<p className="text-sm text-gray-500 capitalize">{account.platform}</p>
 											</div>
 										</label>
@@ -181,7 +181,7 @@ function AutoPostCreate() {
 									<button
 										type="button"
 										onClick={() => navigate('/autopost/accounts')}
-										className="text-purple-600 hover:text-purple-700 font-medium"
+										className="text-black hover:text-black font-medium"
 									>
 										Connect Account
 									</button>
@@ -191,7 +191,7 @@ function AutoPostCreate() {
 
 						{/* Scheduling */}
 						<div className="bg-white rounded-xl shadow-sm border p-6">
-							<label className="block text-sm font-medium text-gray-700 mb-4">
+							<label className="block text-sm font-medium text-black mb-4">
 								Schedule
 							</label>
 							<div className="space-y-4">
@@ -200,9 +200,9 @@ function AutoPostCreate() {
 										type="checkbox"
 										checked={formData.post_immediately}
 										onChange={(e) => setFormData({ ...formData, post_immediately: e.target.checked })}
-										className="w-5 h-5 text-purple-600"
+										className="w-5 h-5 text-black"
 									/>
-									<span className="text-gray-700">Post immediately</span>
+									<span className="text-black">Post immediately</span>
 								</label>
 								{!formData.post_immediately && (
 									<div>
@@ -211,7 +211,7 @@ function AutoPostCreate() {
 											type="datetime-local"
 											value={formData.scheduled_for}
 											onChange={(e) => setFormData({ ...formData, scheduled_for: e.target.value })}
-											className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+											className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
 											required={!formData.post_immediately}
 										/>
 									</div>
@@ -224,7 +224,7 @@ function AutoPostCreate() {
 							<button
 								type="submit"
 								disabled={loading || formData.social_account_ids.length === 0}
-								className="flex-1 flex items-center justify-center gap-2 bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+								className="flex-1 flex items-center justify-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-900 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
 							>
 								{loading ? (
 									<div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
@@ -239,7 +239,7 @@ function AutoPostCreate() {
 								type="button"
 								onClick={(e) => handleSubmit(e, true)}
 								disabled={loading}
-								className="flex items-center gap-2 bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300 disabled:opacity-50 font-medium"
+								className="flex items-center gap-2 bg-gray-200 text-black px-6 py-3 rounded-lg hover:bg-gray-300 disabled:opacity-50 font-medium"
 							>
 								<Save className="w-5 h-5" />
 								Save Draft
@@ -253,3 +253,6 @@ function AutoPostCreate() {
 }
 
 export default AutoPostCreate
+
+
+

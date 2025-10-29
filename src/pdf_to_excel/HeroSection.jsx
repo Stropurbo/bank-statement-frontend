@@ -631,14 +631,14 @@ function HeroSection() {
 		<section className="min-h-screen flex items-center relative">
 			<div className="container mx-auto px-6 py-24">
 				<div className="text-center mb-16">
-					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-8">
+					<div className="inline-flex items-center gap-2 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-8">
 						<Sparkles className="h-4 w-4" />
 						AI-Powered PDF Conversion
 					</div>
-					<h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-8 leading-tight">
+					<h1 className="text-6xl md:text-7xl font-bold text-black mb-8 leading-tight">
 						Convert Bank Statements
 						<br />
-						<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+						<span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-900">
 							PDF To Excel Instantly
 						</span>
 					</h1>
@@ -664,7 +664,7 @@ function HeroSection() {
 								className={`border rounded-xl p-4 mb-8 max-w-2xl mx-auto ${
 									userStatus.user_type === 'free'
 										? 'bg-green-50 border-green-200'
-										: 'bg-purple-50 border-purple-200'
+										: 'bg-gray-50 border-gray-200'
 								}`}
 							>
 								<p
@@ -704,7 +704,7 @@ function HeroSection() {
 						{(error.includes('limit') || error.includes('Upgrade')) && (
 							<Link
 								to="/pricing"
-								className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg font-semibold"
+								className="flex items-center justify-center gap-2 bg-gradient-to-r from-black to-gray-900 text-white px-4 py-2 rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200 shadow-md hover:shadow-lg font-semibold"
 							>
 								<ArrowRight className="h-4 w-4" />
 								Upgrade Plan
@@ -716,14 +716,14 @@ function HeroSection() {
 				<div className="max-w-3xl mx-auto mb-20">
 					<div className="relative group">
 						<div className="absolute -inset-1 bg-gradient-to-r  rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-						<div className="relative bg-white/80 backdrop-blur-xl border-2 border-dashed border-purple-200 rounded-3xl p-16 hover:border-purple-400 transition-all duration-300 shadow-2xl">
+						<div className="relative bg-white/80 backdrop-blur-xl border-2 border-dashed border-gray-200 rounded-3xl p-16 hover:border-black transition-all duration-300 shadow-2xl">
 							<div className="flex flex-col items-center gap-8">
-							<div className="w-24 h-24 bg-gradient-to-r from-purple-100 to-indigo-100 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
-								<FileText className="h-12 w-12 text-purple-600 group-hover:-rotate-6 transition-transform duration-300" />
+							<div className="w-24 h-24 bg-gradient-to-r from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+								<FileText className="h-12 w-12 text-black group-hover:-rotate-6 transition-transform duration-300" />
 							</div>
 
 							<div className="text-center">
-								<h3 className="text-3xl font-bold text-gray-900 mb-4">
+								<h3 className="text-3xl font-bold text-black mb-4">
 									Upload Your Bank Statement
 								</h3>
 								<p className="text-gray-600 text-lg">
@@ -751,7 +751,7 @@ function HeroSection() {
 								}
 								className={`group px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none ${
 									user
-										? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700'
+										? 'bg-gradient-to-r from-black to-gray-900 text-white hover:from-gray-900 hover:to-black'
 										: 'bg-gray-400 text-gray-600'
 								}`}
 							>
@@ -786,13 +786,13 @@ function HeroSection() {
 											placeholder="Enter PDF password"
 											value={password}
 											onChange={(e) => setPassword(e.target.value)}
-											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+											className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
 											required
 										/>
 										<button
 											type="submit"
 											disabled={loading}
-											className="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors disabled:opacity-50"
+											className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors disabled:opacity-50"
 										>
 											{loading ? 'Processing...' : 'Unlock & Convert'}
 										</button>
@@ -823,7 +823,7 @@ function HeroSection() {
 										<div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
 											<CheckCircle className="h-6 w-6 text-green-600" />
 										</div>
-										<h3 className="text-2xl font-bold text-gray-900">
+										<h3 className="text-2xl font-bold text-black">
 											Conversion Complete!
 										</h3>
 									</div>
@@ -853,7 +853,7 @@ function HeroSection() {
 														.map((col, i) => (
 															<th
 																key={i}
-																className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs"
+																className="px-4 py-3 text-left font-semibold text-black uppercase tracking-wider text-xs"
 															>
 																{col.length > 15
 																	? col.substring(0, 15) +
@@ -862,7 +862,7 @@ function HeroSection() {
 															</th>
 														))}
 													{tableData.columns.length > 8 && (
-														<th className="px-4 py-3 text-left font-semibold text-gray-900 uppercase tracking-wider text-xs">
+														<th className="px-4 py-3 text-left font-semibold text-black uppercase tracking-wider text-xs">
 															+{tableData.columns.length - 8} more
 														</th>
 													)}
@@ -888,7 +888,7 @@ function HeroSection() {
 																.map((col, j) => (
 																	<td
 																		key={j}
-																		className="px-4 py-3 text-sm text-gray-700"
+																		className="px-4 py-3 text-sm text-black"
 																	>
 																		{(() => {
 																			const value =
@@ -1071,7 +1071,7 @@ function HeroSection() {
 						const summary = generateSummary()
 						return summary ? (
 							<div className="mt-5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 mb-8">
-								<h4 className="text-xl font-bold text-gray-900 mb-4 text-center">
+								<h4 className="text-xl font-bold text-black mb-4 text-center">
 									📊 Financial Summary
 								</h4>
 								<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -1105,8 +1105,8 @@ function HeroSection() {
 											৳{summary.netBalance}
 										</p>
 									</div>
-									<div className="bg-purple-100 p-4 rounded-lg text-center cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-purple-200">
-										<p className="text-purple-700 font-semibold transition-colors duration-200 hover:text-purple-900">
+									<div className="bg-gray-100 p-4 rounded-lg text-center cursor-pointer transform transition-all duration-200 hover:scale-105 hover:shadow-lg hover:bg-purple-200">
+										<p className="text-black font-semibold transition-colors duration-200 hover:text-purple-900">
 											🏆 Top Category
 										</p>
 										<p className="text-lg font-bold text-purple-800 transition-colors duration-200 hover:text-purple-900">
@@ -1191,7 +1191,7 @@ function HeroSection() {
 										>
 											<div className="absolute inset-6 bg-white rounded-full flex items-center justify-center shadow-inner">
 												<div className="text-center">
-													<div className="text-lg font-bold text-gray-700 transition-all duration-300 hover:text-purple-600">
+													<div className="text-lg font-bold text-black transition-all duration-300 hover:text-black">
 														৳{totalAmount.toFixed(0)}
 													</div>
 													<div className="text-xs text-gray-500">
@@ -1212,7 +1212,7 @@ function HeroSection() {
 													'bg-orange-500',
 													'bg-yellow-500',
 													'bg-blue-500',
-													'bg-purple-500',
+													'bg-gray-500',
 													'bg-pink-500',
 													'bg-cyan-500',
 												]
@@ -1253,15 +1253,15 @@ function HeroSection() {
 																		]
 																	}`}
 																></div>
-																<span className="font-medium text-sm transition-colors duration-200 hover:text-gray-900">
+																<span className="font-medium text-sm transition-colors duration-200 hover:text-black">
 																	{category}
 																</span>
 															</div>
 															<div className="text-right">
-																<div className="font-bold text-gray-800 transition-colors duration-200 hover:text-purple-600">
+																<div className="font-bold text-gray-800 transition-colors duration-200 hover:text-black">
 																	৳{amount.toFixed(2)}
 																</div>
-																<div className="text-xs text-gray-500 transition-colors duration-200 hover:text-gray-700">
+																<div className="text-xs text-gray-500 transition-colors duration-200 hover:text-black">
 																	{percentage}%
 																</div>
 															</div>
@@ -1281,3 +1281,6 @@ function HeroSection() {
 }
 
 export default HeroSection
+
+
+

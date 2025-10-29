@@ -83,7 +83,7 @@ function AllPlan() {
     return (
       <div className="max-w-6xl mx-auto p-6">
         <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading plans...</p>
         </div>
       </div>
@@ -308,3 +308,6 @@ function AllPlan() {
 }
 
 export default AllPlan
+
+
+

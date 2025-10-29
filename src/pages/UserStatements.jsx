@@ -339,8 +339,8 @@ function UserStatements() {
 											</td>
 											<td className="px-6 py-4">
 												<div className="flex items-center gap-3">
-													<div className="p-2 bg-purple-100 rounded-lg">
-														<FiFileText className="h-5 w-5 text-purple-600" />
+													<div className="p-2 bg-gray-100 rounded-lg">
+														<FiFileText className="h-5 w-5 text-black" />
 													</div>
 													<div>
 														<p className="font-medium text-slate-900">
@@ -413,3 +413,6 @@ function UserStatements() {
 }
 
 export default UserStatements
+
+
+

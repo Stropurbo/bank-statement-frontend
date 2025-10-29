@@ -6,7 +6,7 @@ import { Outlet } from 'react-router'
 
 function MainLayout() {
   return (
-    <div className='flex flex-col min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative'>
+    <div className='flex flex-col min-h-screen bg-white relative'>
         {/* Premium Animated Background */}
         <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -29,3 +29,6 @@ function MainLayout() {
 }
 
 export default MainLayout
+
+
+

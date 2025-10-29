@@ -82,13 +82,13 @@ function PriceSection() {
 			<div className="container mx-auto px-6">
 				{/* Section Header */}
 				<div className="text-center mb-20">
-					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+					<div className="inline-flex items-center gap-2 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
 						<Sparkles className="h-4 w-4" />
 						Simple Pricing
 					</div>
-					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+					<h2 className="text-5xl md:text-6xl font-bold text-black mb-6">
 						Choose Your
-						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-900">
 							Perfect Plan
 						</span>
 					</h2>
@@ -108,8 +108,8 @@ function PriceSection() {
 						<button
 							className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
 								billing === 'monthly'
-									? 'bg-purple-600 text-white shadow-md'
-									: 'text-gray-600 hover:text-gray-900'
+									? 'bg-black text-white shadow-md'
+									: 'text-gray-600 hover:text-black'
 							}`}
 							onClick={() => setBilling('monthly')}
 						>
@@ -118,8 +118,8 @@ function PriceSection() {
 						<button
 							className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
 								billing === 'annual'
-									? 'bg-purple-600 text-white shadow-md'
-									: 'text-gray-600 hover:text-gray-900'
+									? 'bg-black text-white shadow-md'
+									: 'text-gray-600 hover:text-black'
 							}`}
 							onClick={() => setBilling('annual')}
 						>
@@ -135,7 +135,7 @@ function PriceSection() {
 				{tiersLoading && (
 					<div className="flex justify-center items-center py-20">
 						<div className="text-center">
-							<Loader2 className="h-12 w-12 animate-spin text-purple-600 mx-auto mb-4" />
+							<Loader2 className="h-12 w-12 animate-spin text-black mx-auto mb-4" />
 							<p className="text-gray-600 font-medium">
 								Loading pricing plans...
 							</p>
@@ -158,7 +158,7 @@ function PriceSection() {
 								>
 									{tier.popular && (
 										<div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-											<span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
+											<span className="bg-gradient-to-r from-black to-gray-900 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
 												✨ Most Popular
 											</span>
 										</div>
@@ -166,12 +166,12 @@ function PriceSection() {
 
 									{/* Header */}
 									<div className="text-center pb-8 mb-6 border-b border-gray-100">
-										<h3 className="text-2xl font-bold text-gray-900 mb-4">
+										<h3 className="text-2xl font-bold text-black mb-4">
 											{tier.title?.charAt(0).toUpperCase() +
 												tier.title?.slice(1)}
 										</h3>
 										<div className="mb-4">
-											<span className="text-5xl font-bold text-gray-900">
+											<span className="text-5xl font-bold text-black">
 												{tier.price?.[billing] || tier.price}
 											</span>
 											<span className="text-gray-500 text-lg ml-2">
@@ -222,9 +222,9 @@ function PriceSection() {
 											disabled={loading === (tier.id || tier.plan_id)}
 											className={`group w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed ${
 												tier.popular
-													? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg hover:shadow-xl'
+													? 'bg-gradient-to-r from-black to-gray-900 text-white shadow-lg hover:shadow-xl'
 													: tier.buttonVariant === 'outline'
-													? 'border-2 border-gray-300 text-gray-700 hover:border-purple-600 hover:text-purple-600'
+													? 'border-2 border-gray-300 text-black hover:border-black hover:text-black'
 													: 'bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl'
 											}`}
 										>
@@ -251,3 +251,6 @@ function PriceSection() {
 }
 
 export default PriceSection
+
+
+

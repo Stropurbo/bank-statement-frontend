@@ -46,7 +46,7 @@ function AboveFooter() {
 							<p className="text-white/70 text-sm">Automatic data extraction</p>
 						</div>
 						<div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-							<div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
+							<div className="w-12 h-12 bg-gradient-to-r from-gray-700 to-black rounded-xl flex items-center justify-center mb-4 mx-auto">
 								<Download className="h-6 w-6 text-white" />
 							</div>
 							<h3 className="text-lg font-semibold text-white mb-2">Download Excel</h3>
@@ -73,3 +73,6 @@ function AboveFooter() {
 }
 
 export default AboveFooter
+
+
+

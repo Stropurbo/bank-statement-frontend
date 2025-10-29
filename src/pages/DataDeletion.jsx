@@ -30,7 +30,7 @@ function DataDeletion() {
 			</div>
 
 			<h2 className="text-xl font-semibold mt-6 mb-4 flex items-center gap-2">
-				<UserX className="w-5 h-5 text-purple-600" />
+				<UserX className="w-5 h-5 text-black" />
 				Delete Your Account
 			</h2>
 
@@ -38,15 +38,15 @@ function DataDeletion() {
 
 				<div className="bg-white border border-gray-200 rounded-lg p-4">
 					<h3 className="font-semibold mb-2 flex items-center gap-2">
-						<Mail className="w-4 h-4 text-purple-600" />
+						<Mail className="w-4 h-4 text-black" />
 						Contact Support
 					</h3>
-					<p className="text-gray-700 mb-3">
+					<p className="text-black mb-3">
 						If you cannot access your account or prefer assistance, email us at:
 					</p>
 					<a
 						href="mailto:support@sheetlypro.com"
-						className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+						className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors"
 					>
 						<Mail className="w-4 h-4" />
 						support@sheetlypro.com
@@ -63,10 +63,10 @@ function DataDeletion() {
 			</div>
 
 			<h2 className="text-xl font-semibold mt-8 mb-4 flex items-center gap-2">
-				<Shield className="w-5 h-5 text-purple-600" />
+				<Shield className="w-5 h-5 text-black" />
 				What Data Will Be Deleted?
 			</h2>
-			<ul className="list-disc list-inside mb-6 space-y-2 text-gray-700">
+			<ul className="list-disc list-inside mb-6 space-y-2 text-black">
 				<li>Your account information (name, email, profile data)</li>
 				<li>All uploaded files and processed documents</li>
 				<li>Connected social media account tokens (if applicable)</li>
@@ -76,13 +76,13 @@ function DataDeletion() {
 			</ul>
 
 			<h2 className="text-xl font-semibold mt-8 mb-4">Processing Time</h2>
-			<p className="text-gray-700 mb-6">
+			<p className="text-black mb-6">
 				Account deletion requests are typically processed within <strong>30 days</strong>.
 				You will receive a confirmation email once your data has been permanently deleted.
 			</p>
 
 			<h2 className="text-xl font-semibold mt-8 mb-4">Data Retention for Legal Purposes</h2>
-			<p className="text-gray-700 mb-6">
+			<p className="text-black mb-6">
 				Some data may be retained for legal, tax, or regulatory compliance purposes as required by law,
 				including transaction records and payment information. This data will be securely stored and
 				deleted once the retention period expires.
@@ -90,12 +90,12 @@ function DataDeletion() {
 
 			<div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mt-8">
 				<h3 className="font-semibold mb-3">Need Help?</h3>
-				<p className="text-gray-700 mb-4">
+				<p className="text-black mb-4">
 					If you have questions about data deletion or need assistance, please contact our support team:
 				</p>
 				<a
 					href="mailto:support@sheetlypro.com"
-					className="text-purple-600 underline font-semibold"
+					className="text-black underline font-semibold"
 				>
 					support@sheetlypro.com
 				</a>
@@ -104,7 +104,7 @@ function DataDeletion() {
 			<div className="mt-8 pt-6 border-t border-gray-200">
 				<p className="text-sm text-gray-600">
 					For more information about how we handle your data, please read our{' '}
-					<a href="/privacy-policy" className="text-purple-600 underline">
+					<a href="/privacy-policy" className="text-black underline">
 						Privacy Policy
 					</a>
 					.
@@ -115,3 +115,6 @@ function DataDeletion() {
 }
 
 export default DataDeletion
+
+
+

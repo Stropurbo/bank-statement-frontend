@@ -190,11 +190,11 @@ const Profile = () => {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 py-12">
+		<div className="min-h-screen bg-white py-12">
 			<div className="container mx-auto px-6">
 				{/* Header */}
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Profile Settings</h1>
+					<h1 className="text-4xl font-bold text-black mb-2">Profile Settings</h1>
 					<p className="text-gray-600">
 						Manage your account information and preferences
 					</p>
@@ -223,11 +223,11 @@ const Profile = () => {
 							)}
 
 							<div className="flex items-center space-x-3 mb-8">
-								<div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center">
+								<div className="w-12 h-12 bg-gradient-to-r from-black to-gray-900 rounded-xl flex items-center justify-center">
 									<User className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h2 className="text-2xl font-bold text-gray-900">
+									<h2 className="text-2xl font-bold text-black">
 										Profile Information
 									</h2>
 									<p className="text-gray-600">
@@ -268,7 +268,7 @@ const Profile = () => {
 									<Crown className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h3 className="text-xl font-bold text-gray-900">
+									<h3 className="text-xl font-bold text-black">
 										Subscription
 									</h3>
 									<p className="text-gray-600 text-sm">Current plan status</p>
@@ -276,12 +276,12 @@ const Profile = () => {
 							</div>
 
 							<div className="space-y-4">
-								<div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-4 rounded-lg border border-purple-100">
+								<div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-100">
 									<div className="flex items-center justify-between mb-2">
-										<span className="text-sm font-medium text-gray-700">
+										<span className="text-sm font-medium text-black">
 											Current Plan
 										</span>
-										<span className="px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-semibold rounded-full">
+										<span className="px-3 py-1 bg-gradient-to-r from-black to-gray-900 text-white text-sm font-semibold rounded-full">
 											{subscriptionData?.plan_name ||
 												user?.usersubscription?.plan?.name ||
 												(user?.is_staff ? 'Admin' : 'Free Plan')}
@@ -309,7 +309,7 @@ const Profile = () => {
 								</div>
 
 								<div className="bg-gray-50 p-4 rounded-lg">
-									<h4 className="font-semibold text-gray-900 mb-2">
+									<h4 className="font-semibold text-black mb-2">
 										Account Status
 									</h4>
 									<div className="flex items-center space-x-2">
@@ -338,7 +338,7 @@ const Profile = () => {
 											</p>
 											<Link
 												to="/pricing"
-												className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+												className="inline-flex items-center space-x-2 bg-gradient-to-r from-black to-gray-900 text-white text-sm font-semibold py-2 px-4 rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
 											>
 												<span>Upgrade Now</span>
 												<ArrowRight className="h-4 w-4" />
@@ -359,7 +359,7 @@ const Profile = () => {
 												<button
 													onClick={handleManageSubscription}
 													disabled={portalLoading}
-													className="inline-flex items-center justify-center space-x-2 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200 w-full"
+													className="inline-flex items-center justify-center space-x-2 bg-black hover:bg-gray-900 disabled:opacity-50 text-white text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200 w-full"
 												>
 													{portalLoading ? (
 														<div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" />
@@ -374,7 +374,7 @@ const Profile = () => {
 												</button>
 												<Link
 													to="/pricing"
-													className="inline-flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"
+													className="inline-flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-black text-xs font-medium py-2 px-3 rounded-lg transition-colors duration-200"
 												>
 													<Settings className="h-3 w-3" />
 													<span>Change Plan</span>
@@ -393,7 +393,7 @@ const Profile = () => {
 									<Coins className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h3 className="text-xl font-bold text-gray-900">Tokens</h3>
+									<h3 className="text-xl font-bold text-black">Tokens</h3>
 									<p className="text-gray-600 text-sm">For workspace</p>
 								</div>
 							</div>
@@ -414,13 +414,13 @@ const Profile = () => {
 								<div className="grid grid-cols-2 gap-3 text-xs">
 									<div className="bg-gray-50 p-3 rounded-lg">
 										<p className="text-gray-600 mb-1">Total Purchased</p>
-										<p className="text-lg font-bold text-gray-900">
+										<p className="text-lg font-bold text-black">
 											{tokenData?.total_purchased || 0}
 										</p>
 									</div>
 									<div className="bg-gray-50 p-3 rounded-lg">
 										<p className="text-gray-600 mb-1">Total Used</p>
-										<p className="text-lg font-bold text-gray-900">
+										<p className="text-lg font-bold text-black">
 											{tokenData?.total_used || 0}
 										</p>
 									</div>
@@ -451,7 +451,7 @@ const Profile = () => {
 											}
 											setShowTransactions(!showTransactions)
 										}}
-										className="w-full inline-flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200"
+										className="w-full inline-flex items-center justify-center space-x-2 bg-gray-100 hover:bg-gray-200 text-black text-sm font-medium py-2 px-4 rounded-lg transition-colors duration-200"
 									>
 										<History className="h-4 w-4" />
 										<span>Transaction History</span>
@@ -461,7 +461,7 @@ const Profile = () => {
 								{/* Token Packages */}
 								{showTokenPurchase && (
 									<div className="pt-4 border-t border-gray-200">
-										<h4 className="font-semibold text-gray-900 mb-3 text-sm">
+										<h4 className="font-semibold text-black mb-3 text-sm">
 											Select Package
 										</h4>
 										<div className="space-y-2">
@@ -505,7 +505,7 @@ const Profile = () => {
 												>
 													<div className="flex justify-between items-center">
 														<div>
-															<p className="font-bold text-gray-900">
+															<p className="font-bold text-black">
 																{pkg.name}
 															</p>
 															<p className="text-xs text-gray-600">
@@ -525,7 +525,7 @@ const Profile = () => {
 								{/* Transaction History */}
 								{showTransactions && (
 									<div className="pt-4 border-t border-gray-200">
-										<h4 className="font-semibold text-gray-900 mb-3 text-sm">
+										<h4 className="font-semibold text-black mb-3 text-sm">
 											Recent Transactions
 										</h4>
 										<div className="space-y-2 max-h-60 overflow-y-auto">
@@ -541,7 +541,7 @@ const Profile = () => {
 													>
 														<div className="flex justify-between items-start">
 															<div>
-																<p className="font-semibold text-gray-900">
+																<p className="font-semibold text-black">
 																	{
 																		tx.transaction_type_display
 																	}
@@ -582,3 +582,6 @@ const Profile = () => {
 }
 
 export default Profile
+
+
+

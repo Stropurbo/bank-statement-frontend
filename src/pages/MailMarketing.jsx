@@ -465,7 +465,7 @@ const MailMarketing = () => {
 		<div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8">
 			<div className="container mx-auto px-6 max-w-7xl">
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">
+					<h1 className="text-4xl font-bold text-black mb-2">
 						Mail Marketing Dashboard
 					</h1>
 					<p className="text-gray-600">
@@ -480,11 +480,11 @@ const MailMarketing = () => {
 								<p className="text-sm font-medium text-gray-600">
 									Total Subscribers
 								</p>
-								<p className="text-3xl font-bold text-gray-900">
+								<p className="text-3xl font-bold text-black">
 									{stats.total}
 								</p>
 							</div>
-							<div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+							<div className="w-12 h-12 bg-gradient-to-r from-gray-700 to-gray-900 rounded-xl flex items-center justify-center">
 								<Users className="h-6 w-6 text-white" />
 							</div>
 						</div>
@@ -510,11 +510,11 @@ const MailMarketing = () => {
 								<p className="text-sm font-medium text-gray-600">
 									Total Campaigns
 								</p>
-								<p className="text-3xl font-bold text-purple-600">
+								<p className="text-3xl font-bold text-black">
 									{campaigns.length}
 								</p>
 							</div>
-							<div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+							<div className="w-12 h-12 bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl flex items-center justify-center">
 								<BarChart3 className="h-6 w-6 text-white" />
 							</div>
 						</div>
@@ -529,7 +529,7 @@ const MailMarketing = () => {
 								className={`py-4 px-1 border-b-2 font-medium text-sm ${
 									activeTab === 'overview'
 										? 'border-blue-500 text-blue-600'
-										: 'border-transparent text-gray-500 hover:text-gray-700'
+										: 'border-transparent text-gray-500 hover:text-black'
 								}`}
 							>
 								Overview
@@ -539,7 +539,7 @@ const MailMarketing = () => {
 								className={`py-4 px-1 border-b-2 font-medium text-sm ${
 									activeTab === 'subscribers'
 										? 'border-blue-500 text-blue-600'
-										: 'border-transparent text-gray-500 hover:text-gray-700'
+										: 'border-transparent text-gray-500 hover:text-black'
 								}`}
 							>
 								Subscribers
@@ -549,7 +549,7 @@ const MailMarketing = () => {
 								className={`py-4 px-1 border-b-2 font-medium text-sm ${
 									activeTab === 'campaigns'
 										? 'border-blue-500 text-blue-600'
-										: 'border-transparent text-gray-500 hover:text-gray-700'
+										: 'border-transparent text-gray-500 hover:text-black'
 								}`}
 							>
 								Campaigns
@@ -580,7 +580,7 @@ const MailMarketing = () => {
 						</p>
 						<button
 							onClick={() => setMessage('')}
-							className="ml-2 text-gray-400 hover:text-gray-600"
+							className="ml-2 text-gray-400 hover:text-gray-700"
 						>
 							×
 						</button>
@@ -597,7 +597,7 @@ const MailMarketing = () => {
 								<div className="flex-1">
 									<div className="flex items-center justify-between">
 										<div>
-											<h2 className="text-xl font-bold text-gray-900">
+											<h2 className="text-xl font-bold text-black">
 												Add Subscriber
 											</h2>
 											<p className="text-gray-600 text-sm">
@@ -648,7 +648,7 @@ const MailMarketing = () => {
 								</button>
 
 								<hr className="my-4" />
-								<p className="text-sm font-medium text-gray-700 mb-2">
+								<p className="text-sm font-medium text-black mb-2">
 									Bulk Add Subscribers
 								</p>
 								<textarea
@@ -661,7 +661,7 @@ const MailMarketing = () => {
 								<button
 									onClick={addBulkSubscribers}
 									disabled={loading || getEmailCount(bulkEmails) === 0}
-									className="w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-600 hover:to-indigo-600 disabled:opacity-50 flex items-center justify-center space-x-2 mt-3"
+									className="w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-600 hover:to-gray-900 disabled:opacity-50 flex items-center justify-center space-x-2 mt-3"
 								>
 									<Users className="h-5 w-5" />
 									<span>
@@ -675,11 +675,11 @@ const MailMarketing = () => {
 
 						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
 							<div className="flex items-center space-x-3 mb-6">
-								<div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+								<div className="w-12 h-12 bg-gradient-to-r from-gray-700 to-gray-900 rounded-xl flex items-center justify-center">
 									<Mail className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h2 className="text-xl font-bold text-gray-900">
+									<h2 className="text-xl font-bold text-black">
 										Send Campaign
 									</h2>
 									<p className="text-gray-600 text-sm">
@@ -720,7 +720,7 @@ const MailMarketing = () => {
 										!emailCampaign.subject ||
 										!emailCampaign.content
 									}
-									className="w-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-indigo-600 disabled:opacity-50 flex items-center justify-center space-x-2"
+									className="w-full bg-gradient-to-r from-gray-700 to-gray-900 text-white py-3 px-6 rounded-lg font-semibold hover:from-blue-600 hover:to-gray-900 disabled:opacity-50 flex items-center justify-center space-x-2"
 								>
 									<Send className="h-5 w-5" />
 									<span>{loading ? 'Sending...' : 'Send Campaign'}</span>
@@ -733,7 +733,7 @@ const MailMarketing = () => {
 				{activeTab === 'subscribers' && (
 					<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
 						<div className="flex justify-between items-center mb-6">
-							<h3 className="text-2xl font-bold text-gray-900">
+							<h3 className="text-2xl font-bold text-black">
 								Subscribers ({subscribers.length})
 							</h3>
 							<div className="flex space-x-3">
@@ -797,7 +797,7 @@ const MailMarketing = () => {
 								<table className="w-full">
 									<thead>
 										<tr className="border-b-2 border-gray-200 bg-gray-50">
-											<th className="text-left py-4 px-6 font-semibold text-gray-700">
+											<th className="text-left py-4 px-6 font-semibold text-black">
 												<input
 													type="checkbox"
 													checked={selectAll}
@@ -805,16 +805,16 @@ const MailMarketing = () => {
 													className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 												/>
 											</th>
-											<th className="text-left py-4 px-6 font-semibold text-gray-700">
+											<th className="text-left py-4 px-6 font-semibold text-black">
 												Email
 											</th>
-											<th className="text-left py-4 px-6 font-semibold text-gray-700">
+											<th className="text-left py-4 px-6 font-semibold text-black">
 												Name
 											</th>
-											<th className="text-left py-4 px-6 font-semibold text-gray-700">
+											<th className="text-left py-4 px-6 font-semibold text-black">
 												Status
 											</th>
-											<th className="text-left py-4 px-6 font-semibold text-gray-700">
+											<th className="text-left py-4 px-6 font-semibold text-black">
 												Date
 											</th>
 										</tr>
@@ -839,7 +839,7 @@ const MailMarketing = () => {
 														className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 													/>
 												</td>
-												<td className="py-4 px-6 font-medium text-gray-900">
+												<td className="py-4 px-6 font-medium text-black">
 													{subscriber.email}
 												</td>
 												<td className="py-4 px-6 text-gray-600">
@@ -876,7 +876,7 @@ const MailMarketing = () => {
 				{activeTab === 'campaigns' && (
 					<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
 						<div className="flex justify-between items-center mb-6">
-							<h3 className="text-2xl font-bold text-gray-900">
+							<h3 className="text-2xl font-bold text-black">
 								Campaigns ({campaigns.length})
 							</h3>
 							<div className="flex space-x-3">
@@ -891,7 +891,7 @@ const MailMarketing = () => {
 								)}
 								<button
 									onClick={fetchCampaigns}
-									className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-all"
+									className="bg-gray-500 hover:bg-black text-white px-4 py-2 rounded-lg flex items-center space-x-2 transition-all"
 								>
 									<svg
 										className="w-4 h-4"
@@ -920,7 +920,7 @@ const MailMarketing = () => {
 										onChange={handleSelectAllCampaigns}
 										className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 									/>
-									<span className="text-sm font-medium text-gray-700">
+									<span className="text-sm font-medium text-black">
 										Select All Campaigns
 									</span>
 								</label>
@@ -957,7 +957,7 @@ const MailMarketing = () => {
 													className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 mt-1"
 												/>
 												<div className="flex-1">
-													<h4 className="text-lg font-semibold text-gray-900 mb-2">
+													<h4 className="text-lg font-semibold text-black mb-2">
 														{campaign.name}
 													</h4>
 													<p className="text-gray-600 mb-3">
@@ -970,7 +970,7 @@ const MailMarketing = () => {
 																campaign.created_at,
 															).toLocaleDateString()}
 														</span>
-														<span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+														<span className="text-xs bg-gray-100 text-black px-2 py-1 rounded">
 															{campaign.type || 'Regular'}
 														</span>
 														<span>
@@ -984,7 +984,7 @@ const MailMarketing = () => {
 															<div className="text-gray-500 text-xs">
 																Recipients
 															</div>
-															<div className="font-semibold text-gray-900">
+															<div className="font-semibold text-black">
 																{campaign.stats?.recipients ||
 																	0}
 															</div>
@@ -993,7 +993,7 @@ const MailMarketing = () => {
 															<div className="text-gray-500 text-xs">
 																Opened
 															</div>
-															<div className="font-semibold text-gray-900">
+															<div className="font-semibold text-black">
 																{campaign.stats?.open_rate ||
 																	'0%'}
 															</div>
@@ -1002,7 +1002,7 @@ const MailMarketing = () => {
 															<div className="text-gray-500 text-xs">
 																Clicked
 															</div>
-															<div className="font-semibold text-gray-900">
+															<div className="font-semibold text-black">
 																{campaign.stats?.click_rate ||
 																	'0%'}
 															</div>
@@ -1011,7 +1011,7 @@ const MailMarketing = () => {
 															<div className="text-gray-500 text-xs">
 																CTOR
 															</div>
-															<div className="font-semibold text-gray-900">
+															<div className="font-semibold text-black">
 																{campaign.stats?.ctor || '0%'}
 															</div>
 														</div>
@@ -1042,3 +1042,6 @@ const MailMarketing = () => {
 }
 
 export default MailMarketing
+
+
+

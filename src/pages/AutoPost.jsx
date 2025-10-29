@@ -139,26 +139,26 @@ function AutoPost() {
 			<section className="relative pt-32 pb-40 overflow-hidden">
 				{/* Animated Background Elements */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
-					<div className="absolute top-1/4 -left-48 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+					<div className="absolute top-1/4 -left-48 w-96 h-96 bg-gray-500/10 rounded-full blur-3xl animate-pulse"></div>
 					<div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-					<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500/5 to-indigo-500/5 rounded-full blur-3xl"></div>
+					<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-black/5 to-gray-900/5 rounded-full blur-3xl"></div>
 				</div>
 				<div className="container mx-auto px-6 relative z-10">
 					<div className="max-w-5xl mx-auto text-center">
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-100 border border-purple-200 rounded-full mb-8 shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
+						<div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 border border-gray-200 rounded-full mb-8 shadow-lg hover:scale-105 transition-transform duration-300 cursor-pointer">
 							<div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-							<Sparkles className="w-4 h-4 text-purple-600" />
-							<span className="text-purple-700 font-semibold text-sm tracking-wide">AI-Powered Social Media Automation</span>
+							<Sparkles className="w-4 h-4 text-black" />
+							<span className="text-black font-semibold text-sm tracking-wide">AI-Powered Social Media Automation</span>
 						</div>
 
 						{/* Heading */}
 						<h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-[1.1] tracking-tight">
-							<span className="text-gray-900">
+							<span className="text-black">
 								Automate Your
 							</span>
 							<br />
-							<span className="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent">
+							<span className="bg-gradient-to-r from-black via-gray-800 to-gray-900 bg-clip-text text-transparent">
 								Social Presence
 							</span>
 						</h1>
@@ -166,7 +166,7 @@ function AutoPost() {
 						{/* Subheading */}
 						<p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
 							Schedule content, engage audiences, and track performance across
-							<span className="text-purple-600 font-semibold"> 9 platforms </span>
+							<span className="text-black font-semibold"> 9 platforms </span>
 							from a single, powerful dashboard.
 						</p>
 
@@ -176,15 +176,15 @@ function AutoPost() {
 								<>
 									<Link
 										to="/register"
-										className="group relative px-10 py-5 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3 overflow-hidden"
+										className="group relative px-10 py-5 bg-gradient-to-r from-black via-gray-800 to-gray-900 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-gray-500/50 hover:shadow-gray-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3 overflow-hidden"
 									>
-										<span className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+										<span className="absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
 										<span className="relative z-10">Start Free Trial</span>
 										<ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
 									</Link>
 									<Link
 										to="/pricing"
-										className="group px-10 py-5 bg-white border-2 border-gray-300 rounded-2xl font-bold text-lg text-gray-700 hover:bg-gray-50 hover:border-purple-400 hover:text-purple-600 transition-all duration-300 hover:scale-105 shadow-lg"
+										className="group px-10 py-5 bg-white border-2 border-gray-300 rounded-2xl font-bold text-lg text-black hover:bg-gray-50 hover:border-black hover:text-black transition-all duration-300 hover:scale-105 shadow-lg"
 									>
 										View Pricing
 									</Link>
@@ -192,9 +192,9 @@ function AutoPost() {
 							) : (
 								<Link
 									to="/autopost/dashboard"
-									className="group relative px-10 py-5 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3"
+									className="group relative px-10 py-5 bg-gradient-to-r from-black via-gray-800 to-gray-900 rounded-2xl font-bold text-lg text-white shadow-2xl shadow-gray-500/50 hover:shadow-gray-500/70 transition-all duration-300 hover:scale-105 flex items-center gap-3"
 								>
-									<span className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+									<span className="absolute inset-0 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
 									<span className="relative z-10">Go to Dashboard</span>
 									<ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
 								</Link>
@@ -211,12 +211,12 @@ function AutoPost() {
 										className="group relative cursor-pointer transition-all duration-300 transform hover:scale-125"
 										title={platform.name}
 									>
-										<div className="p-3 bg-white rounded-2xl border border-gray-200 hover:bg-purple-50 hover:border-purple-400 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-purple-500/20">
+										<div className="p-3 bg-white rounded-2xl border border-gray-200 hover:bg-gray-50 hover:border-black transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-gray-500/20">
 											{platform.icon}
 										</div>
 										{/* Tooltip */}
 										<div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-											<span className="text-xs font-bold text-white whitespace-nowrap bg-purple-600 px-3 py-1.5 rounded-lg shadow-xl">
+											<span className="text-xs font-bold text-white whitespace-nowrap bg-black px-3 py-1.5 rounded-lg shadow-xl">
 												{platform.name}
 											</span>
 										</div>
@@ -232,7 +232,7 @@ function AutoPost() {
 			<section className="relative py-32 bg-gradient-to-b from-gray-50 to-white">
 				<div className="container mx-auto px-6">
 					<div className="text-center mb-20">
-						<h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+						<h2 className="text-5xl md:text-6xl font-black text-black mb-6">
 							Everything You Need
 						</h2>
 						<p className="text-xl text-gray-600 max-w-2xl mx-auto font-light">
@@ -244,14 +244,14 @@ function AutoPost() {
 						{features.map((feature, index) => (
 							<div
 								key={index}
-								className="group relative p-8 bg-white rounded-3xl border border-gray-200 hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 transform hover:-translate-y-2"
+								className="group relative p-8 bg-white rounded-3xl border border-gray-200 hover:border-black hover:shadow-2xl hover:shadow-gray-500/10 transition-all duration-500 transform hover:-translate-y-2"
 							>
 								<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 								<div className="relative z-10">
-									<div className="bg-gradient-to-r from-purple-600 to-pink-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-500/30">
+									<div className="bg-gradient-to-r from-purple-600 to-pink-600 w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-gray-500/30">
 										{feature.icon}
 									</div>
-									<h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+									<h3 className="text-2xl font-bold text-black mb-4">{feature.title}</h3>
 									<p className="text-gray-600 leading-relaxed">{feature.description}</p>
 								</div>
 							</div>
@@ -261,7 +261,7 @@ function AutoPost() {
 			</section>
 
 			{/* Benefits Section */}
-			<section className="relative py-32 overflow-hidden bg-gradient-to-br from-purple-600 via-pink-600 to-indigo-600">
+			<section className="relative py-32 overflow-hidden bg-gradient-to-br from-black via-gray-800 to-gray-900">
 				<div className="container mx-auto px-6 relative z-10">
 					<div className="max-w-5xl mx-auto">
 						<div className="text-center mb-16">
@@ -292,7 +292,7 @@ function AutoPost() {
 			<section className="relative py-32 bg-white">
 				<div className="container mx-auto px-6">
 					<div className="max-w-4xl mx-auto text-center">
-						<div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl p-16 shadow-2xl">
+						<div className="bg-gradient-to-r from-black to-gray-900 rounded-3xl p-16 shadow-2xl">
 							<h2 className="text-5xl font-black text-white mb-6">
 								Ready to Transform Your
 								<br />
@@ -304,7 +304,7 @@ function AutoPost() {
 							{!user ? (
 								<Link
 									to="/register"
-									className="inline-flex items-center gap-3 bg-white text-purple-600 px-10 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
+									className="inline-flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
 								>
 									Get Started Free
 									<ArrowRight className="w-6 h-6" />
@@ -312,7 +312,7 @@ function AutoPost() {
 							) : (
 								<Link
 									to="/autopost/dashboard"
-									className="inline-flex items-center gap-3 bg-white text-purple-600 px-10 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
+									className="inline-flex items-center gap-3 bg-white text-black px-10 py-5 rounded-2xl font-black text-xl hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105"
 								>
 									Go to Dashboard
 									<ArrowRight className="w-6 h-6" />
@@ -327,3 +327,6 @@ function AutoPost() {
 }
 
 export default AutoPost
+
+
+

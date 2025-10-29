@@ -309,7 +309,7 @@ function TokenManagement() {
 									) : (
 										<div className="flex justify-between items-center">
 											<div>
-												<p className="font-bold text-gray-900">
+												<p className="font-bold text-black">
 													{pkg.name}
 												</p>
 												<p className="text-sm text-gray-600">
@@ -343,14 +343,14 @@ function TokenManagement() {
 					<div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
 						<div className="flex items-center justify-between mb-6">
 							<div className="flex items-center gap-3">
-								<FiCalendar className="h-6 w-6 text-purple-600" />
+								<FiCalendar className="h-6 w-6 text-black" />
 								<h3 className="text-lg font-semibold text-slate-900">
 									Subscription Plans
 								</h3>
 							</div>
 							<button
 								onClick={() => setCreatingSubscription(true)}
-								className="flex items-center gap-2 bg-purple-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-purple-700"
+								className="flex items-center gap-2 bg-black text-white px-3 py-2 rounded-lg text-sm hover:bg-gray-900"
 							>
 								<FiPlus className="h-4 w-4" /> Add Plan
 							</button>
@@ -409,7 +409,7 @@ function TokenManagement() {
 							{subscriptions.map((sub) => (
 								<div
 									key={sub.id}
-									className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200"
+									className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-gray-200"
 								>
 									{editingSubscription?.id === sub.id ? (
 										<div className="space-y-2">
@@ -458,14 +458,14 @@ function TokenManagement() {
 									) : (
 										<div className="flex justify-between items-center">
 											<div>
-												<p className="font-bold text-gray-900">{sub.name}</p>
+												<p className="font-bold text-black">{sub.name}</p>
 												<p className="text-sm text-gray-600">{sub.tokens} tokens/{sub.duration_days === 30 ? 'month' : 'year'}</p>
 											</div>
 											<div className="flex items-center gap-2">
-												<p className="text-lg font-bold text-purple-600">${sub.price}</p>
+												<p className="text-lg font-bold text-black">${sub.price}</p>
 												<button
 													onClick={() => setEditingSubscription(sub)}
-													className="p-2 hover:bg-purple-100 rounded"
+													className="p-2 hover:bg-gray-100 rounded"
 												>
 													<FiEdit2 className="h-4 w-4 text-gray-600" />
 												</button>
@@ -582,7 +582,7 @@ function TokenManagement() {
 									) : (
 										<div className="flex justify-between items-center">
 											<div>
-												<p className="font-bold text-gray-900">
+												<p className="font-bold text-black">
 													{cost.service_name_display}
 												</p>
 												<p className="text-xs text-gray-500">
@@ -619,3 +619,6 @@ function TokenManagement() {
 }
 
 export default TokenManagement
+
+
+

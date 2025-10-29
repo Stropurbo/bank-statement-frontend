@@ -18,12 +18,12 @@ function About() {
 	}, [])
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50">
+		<div className="min-h-screen bg-white">
 			{/* Hero Section */}
 
-			<div className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 text-white py-20">
+			<div className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-20">
 				<div className="container mx-auto px-6 text-center">
-					<h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">
+					<h1 className="text-5xl md:text-6xl font-bold mb-6 bg-white bg-clip-text text-transparent">
 						About SheetlyPro
 					</h1>
 					<p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto leading-relaxed">
@@ -37,7 +37,7 @@ function About() {
 			<div className="py-20">
 				<div className="container mx-auto px-6">
 					<div className="max-w-4xl mx-auto text-center mb-16">
-						<h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
+						<h2 className="text-4xl font-bold text-black mb-6">Our Mission</h2>
 						<p className="text-xl text-gray-600 leading-relaxed">
 							We empower individuals, freelancers, and businesses by providing
 							powerful tools that automate tedious tasks. From document conversion
@@ -49,10 +49,10 @@ function About() {
 					{/* Features Grid */}
 					<div className="grid md:grid-cols-3 gap-8 mb-20">
 						<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-							<div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+							<div className="w-16 h-16 bg-gradient-to-r from-black to-gray-900 rounded-xl flex items-center justify-center mb-6">
 								<FileText className="h-8 w-8 text-white" />
 							</div>
-							<h3 className="text-xl font-bold text-gray-900 mb-4">
+							<h3 className="text-xl font-bold text-black mb-4">
 								Intelligent Document Processing
 							</h3>
 							<p className="text-gray-600 leading-relaxed">
@@ -62,10 +62,10 @@ function About() {
 						</div>
 
 						<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-							<div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+							<div className="w-16 h-16 bg-gradient-to-r from-black to-gray-900 rounded-xl flex items-center justify-center mb-6">
 								<Sparkles className="h-8 w-8 text-white" />
 							</div>
-							<h3 className="text-xl font-bold text-gray-900 mb-4">
+							<h3 className="text-xl font-bold text-black mb-4">
 								Marketing Automation Suite
 							</h3>
 							<p className="text-gray-600 leading-relaxed">
@@ -75,10 +75,10 @@ function About() {
 						</div>
 
 						<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-							<div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+							<div className="w-16 h-16 bg-gradient-to-r from-black to-gray-900 rounded-xl flex items-center justify-center mb-6">
 								<TrendingUp className="h-8 w-8 text-white" />
 							</div>
-							<h3 className="text-xl font-bold text-gray-900 mb-4">
+							<h3 className="text-xl font-bold text-black mb-4">
 								Enterprise Productivity Tools
 							</h3>
 							<p className="text-gray-600 leading-relaxed">
@@ -91,20 +91,20 @@ function About() {
 			</div>
 
 			{/* Why Choose Us Section */}
-			<div className="bg-gradient-to-r from-purple-50 to-indigo-50 py-20">
+			<div className="bg-gradient-to-r from-gray-50 to-gray-100 py-20">
 				<div className="container mx-auto px-6">
 					<div className="max-w-4xl mx-auto">
-						<h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
+						<h2 className="text-4xl font-bold text-black text-center mb-16">
 							Why Choose SheetlyPro?
 						</h2>
 
 						<div className="grid md:grid-cols-2 gap-8">
 							<div className="flex items-start space-x-4">
-								<div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+								<div className="w-12 h-12 bg-gradient-to-r from-black to-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
 									<Zap className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h3 className="text-xl font-bold text-gray-900 mb-2">
+									<h3 className="text-xl font-bold text-black mb-2">
 										User-Friendly
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
@@ -115,11 +115,11 @@ function About() {
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+								<div className="w-12 h-12 bg-gradient-to-r from-black to-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
 									<Shield className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h3 className="text-xl font-bold text-gray-900 mb-2">
+									<h3 className="text-xl font-bold text-black mb-2">
 										Secure & Private
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
@@ -130,11 +130,11 @@ function About() {
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+								<div className="w-12 h-12 bg-gradient-to-r from-black to-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
 									<Clock className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h3 className="text-xl font-bold text-gray-900 mb-2">
+									<h3 className="text-xl font-bold text-black mb-2">
 										Time-Saving
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
@@ -145,11 +145,11 @@ function About() {
 							</div>
 
 							<div className="flex items-start space-x-4">
-								<div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+								<div className="w-12 h-12 bg-gradient-to-r from-black to-gray-900 rounded-lg flex items-center justify-center flex-shrink-0">
 									<Target className="h-6 w-6 text-white" />
 								</div>
 								<div>
-									<h3 className="text-xl font-bold text-gray-900 mb-2">
+									<h3 className="text-xl font-bold text-black mb-2">
 										All-in-One Platform
 									</h3>
 									<p className="text-gray-600 leading-relaxed">
@@ -167,7 +167,7 @@ function About() {
 			<div className="py-20">
 				<div className="container mx-auto px-6">
 					<div className="max-w-4xl mx-auto text-center">
-						<h2 className="text-4xl font-bold text-gray-900 mb-8">Our Vision</h2>
+						<h2 className="text-4xl font-bold text-black mb-8">Our Vision</h2>
 						<p className="text-xl text-gray-600 leading-relaxed mb-12">
 							We envision a future where managing business tasks is seamless and
 							stress-free. SheetlyPro continues to innovate and evolve, adding
@@ -176,9 +176,9 @@ function About() {
 						</p>
 
 						{/* Business Info */}
-						<div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-8 mb-12">
-							<h3 className="text-2xl font-bold text-gray-900 mb-4">Business Information</h3>
-							<div className="text-gray-700 space-y-2">
+						<div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8 mb-12">
+							<h3 className="text-2xl font-bold text-black mb-4">Business Information</h3>
+							<div className="text-black space-y-2">
 								<p><strong>Legal Business Name:</strong> Md. Sabbir Hasan</p>
 								<p><strong>Owner:</strong> Md. Sabbir Hasan</p>
 								<p><strong>Contact Email:</strong> hasansabbir263@gmail.com</p>
@@ -188,7 +188,7 @@ function About() {
 
 						{/* CTA Section */}
 						<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
-							<h3 className="text-2xl font-bold text-gray-900 mb-4">
+							<h3 className="text-2xl font-bold text-black mb-4">
 								Ready to Get Started?
 							</h3>
 							<p className="text-gray-600 mb-6">
@@ -197,7 +197,7 @@ function About() {
 							</p>
 							<a
 								href="mailto:contact@sheetlypro.com"
-								className="inline-flex items-center bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-8 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+								className="inline-flex items-center bg-gradient-to-r from-black to-gray-900 text-white font-semibold py-3 px-8 rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
 							>
 								Contact Us Today
 							</a>
@@ -212,3 +212,6 @@ function About() {
 }
 
 export default About
+
+
+

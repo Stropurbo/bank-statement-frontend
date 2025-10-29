@@ -278,14 +278,14 @@ function UniversalToolPage({ config }) {
 	}
 
 	return (
-		<section className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-purple-50">
+		<section className="min-h-screen bg-white">
 			<div className="container mx-auto px-6 py-24">
 				{/* Header */}
 				<div className="text-center mb-16">
-					<div className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium mb-6">
+					<div className="inline-block px-4 py-2 bg-gray-100 text-black rounded-full text-sm font-medium mb-6">
 						{config.category || 'PDF Tools'}
 					</div>
-					<h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+					<h1 className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight">
 						{config.title}
 					</h1>
 					<p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -303,20 +303,20 @@ function UniversalToolPage({ config }) {
 							onDrop={handleDrop}
 							className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
 								isDragging
-									? 'border-purple-500 bg-purple-50'
-									: 'border-gray-300 hover:border-purple-400 hover:bg-gray-50'
+									? 'border-purple-500 bg-gray-50'
+									: 'border-gray-300 hover:border-black hover:bg-gray-50'
 							}`}
 						>
 							<Upload
 								className={`h-16 w-16 mx-auto mb-4 ${
-									isDragging ? 'text-purple-500' : 'text-gray-400'
+									isDragging ? 'text-black' : 'text-gray-400'
 								}`}
 							/>
-							<h3 className="text-xl font-semibold text-gray-900 mb-2">
+							<h3 className="text-xl font-semibold text-black mb-2">
 								Drop {config.fileTypeLabel || 'files'} here
 							</h3>
 							<p className="text-gray-600 mb-6">or click to browse your files</p>
-							<label className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer transform hover:scale-105">
+							<label className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-black to-gray-900 text-white font-semibold rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer transform hover:scale-105">
 								<Upload className="h-5 w-5 mr-2" />
 								Select {config.fileTypeLabel || 'Files'}
 								<input
@@ -339,7 +339,7 @@ function UniversalToolPage({ config }) {
 								{isSubscriptionError && (
 									<button
 										onClick={() => navigate('/pricing')}
-										className="mt-4 w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center space-x-2"
+										className="mt-4 w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-black to-gray-900 text-white font-semibold rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center space-x-2"
 									>
 										<CreditCard className="h-5 w-5" />
 										<span>Upgrade Plan</span>
@@ -352,7 +352,7 @@ function UniversalToolPage({ config }) {
 						{files.length > 0 && (
 							<div className="mt-8">
 								<div className="flex items-center justify-between mb-4">
-									<h3 className="text-lg font-semibold text-gray-900">
+									<h3 className="text-lg font-semibold text-black">
 										Selected File{config.allowMultiple ? 's' : ''} (
 										{files.length})
 									</h3>
@@ -385,7 +385,7 @@ function UniversalToolPage({ config }) {
 											onDragEnd={() =>
 												config.allowReorder && handleDragEnd()
 											}
-											className={`flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-purple-300 transition-all duration-200 ${
+											className={`flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-200 hover:border-black transition-all duration-200 ${
 												config.allowReorder ? 'cursor-move' : ''
 											} ${draggedIndex === index ? 'opacity-50' : ''}`}
 										>
@@ -393,9 +393,9 @@ function UniversalToolPage({ config }) {
 												{config.allowReorder && (
 													<GripVertical className="h-5 w-5 text-gray-400 flex-shrink-0" />
 												)}
-												<FileText className="h-8 w-8 text-purple-600 flex-shrink-0" />
+												<FileText className="h-8 w-8 text-black flex-shrink-0" />
 												<div className="flex-1 min-w-0">
-													<p className="text-sm font-medium text-gray-900 truncate">
+													<p className="text-sm font-medium text-black truncate">
 														{file.name}
 													</p>
 													<p className="text-xs text-gray-500">
@@ -403,7 +403,7 @@ function UniversalToolPage({ config }) {
 													</p>
 													{config.requiresPassword && (
 														<div className="mt-2 flex items-center space-x-2">
-															<Lock className="h-4 w-4 text-purple-600" />
+															<Lock className="h-4 w-4 text-black" />
 															<input
 																type={
 																	showPasswords[index]
@@ -420,7 +420,7 @@ function UniversalToolPage({ config }) {
 																		e.target.value
 																	setPasswords(newPasswords)
 																}}
-																className="flex-1 px-3 py-2 text-sm border-2 border-purple-300 bg-purple-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 placeholder-gray-500"
+																className="flex-1 px-3 py-2 text-sm border-2 border-purple-300 bg-gray-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-purple-500 placeholder-gray-500"
 															/>
 															<button
 																type="button"
@@ -435,12 +435,12 @@ function UniversalToolPage({ config }) {
 																		newShowPasswords,
 																	)
 																}}
-																className="p-1.5 hover:bg-purple-100 rounded-lg transition-colors"
+																className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
 															>
 																{showPasswords[index] ? (
-																	<EyeOff className="h-4 w-4 text-purple-600" />
+																	<EyeOff className="h-4 w-4 text-black" />
 																) : (
-																	<Eye className="h-4 w-4 text-purple-600" />
+																	<Eye className="h-4 w-4 text-black" />
 																)}
 															</button>
 														</div>
@@ -460,7 +460,7 @@ function UniversalToolPage({ config }) {
 								{/* Quality Selector */}
 								{config.hasQualitySelector && (
 									<div className="mt-6">
-										<h4 className="text-sm font-semibold text-gray-900 mb-3">
+										<h4 className="text-sm font-semibold text-black mb-3">
 											Select Compression Quality:
 										</h4>
 										<div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -471,16 +471,16 @@ function UniversalToolPage({ config }) {
 													onClick={() => setQuality(option.value)}
 													className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
 														quality === option.value
-															? 'border-purple-500 bg-purple-50'
-															: 'border-gray-200 hover:border-purple-300 bg-white'
+															? 'border-purple-500 bg-gray-50'
+															: 'border-gray-200 hover:border-black bg-white'
 													}`}
 												>
 													<div className="flex items-center justify-between mb-1">
-														<span className="font-semibold text-gray-900">
+														<span className="font-semibold text-black">
 															{option.label}
 														</span>
 														{quality === option.value && (
-															<div className="w-5 h-5 bg-purple-500 rounded-full flex items-center justify-center">
+															<div className="w-5 h-5 bg-gray-500 rounded-full flex items-center justify-center">
 																<svg
 																	className="w-3 h-3 text-white"
 																	fill="none"
@@ -509,13 +509,13 @@ function UniversalToolPage({ config }) {
 								{/* Custom Fields */}
 								{config.hasCustomFields && config.customFields && (
 									<div className="mt-6">
-										<h4 className="text-sm font-semibold text-gray-900 mb-3">
+										<h4 className="text-sm font-semibold text-black mb-3">
 											Options:
 										</h4>
 										<div className="space-y-4">
 											{config.customFields.map((field) => (
 												<div key={field.name}>
-													<label className="block text-sm font-medium text-gray-700 mb-2">
+													<label className="block text-sm font-medium text-black mb-2">
 														{field.label}
 													</label>
 													{field.type === 'select' ? (
@@ -527,7 +527,7 @@ function UniversalToolPage({ config }) {
 																	[field.name]: e.target.value,
 																})
 															}
-															className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+															className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-purple-500"
 														>
 															{field.options?.map((option) => (
 																<option key={option.value} value={option.value}>
@@ -547,7 +547,7 @@ function UniversalToolPage({ config }) {
 															}
 															placeholder={field.placeholder}
 															required={field.required}
-															className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+															className="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-purple-500"
 														/>
 													)}
 												</div>
@@ -564,7 +564,7 @@ function UniversalToolPage({ config }) {
 										files.length <
 											(config.allowMultiple ? config.minFiles || 2 : 1)
 									}
-									className="w-full mt-6 py-4 px-6 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold text-lg rounded-xl hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none transform hover:scale-[1.02] flex items-center justify-center space-x-2"
+									className="w-full mt-6 py-4 px-6 bg-gradient-to-r from-black to-gray-900 text-white font-bold text-lg rounded-xl hover:from-gray-900 hover:to-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none transform hover:scale-[1.02] flex items-center justify-center space-x-2"
 								>
 									{processing ? (
 										<>
@@ -591,17 +591,17 @@ function UniversalToolPage({ config }) {
 
 						{/* Instructions */}
 						{files.length === 0 && config.instructions && (
-							<div className="mt-8 bg-gradient-to-br from-green-50 to-indigo-50 rounded-2xl p-6 border border-purple-100">
-								<h4 className="font-semibold text-gray-900 mb-3">
+							<div className="mt-8 bg-gradient-to-br from-green-50 to-indigo-50 rounded-2xl p-6 border border-gray-100">
+								<h4 className="font-semibold text-black mb-3">
 									How to {config.actionLabel || 'use this tool'}:
 								</h4>
-								<ol className="space-y-2 text-gray-700">
+								<ol className="space-y-2 text-black">
 									{config.instructions.map((instruction, index) => (
 										<li
 											key={index}
 											className="flex items-start"
 										>
-											<span className="font-bold text-purple-600 mr-2">
+											<span className="font-bold text-black mr-2">
 												{index + 1}.
 											</span>
 											<span>{instruction}</span>
@@ -621,10 +621,10 @@ function UniversalToolPage({ config }) {
 								key={index}
 								className="text-center"
 							>
-								<div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-									<feature.icon className="h-8 w-8 text-purple-600" />
+								<div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+									<feature.icon className="h-8 w-8 text-black" />
 								</div>
-								<h3 className="font-semibold text-gray-900 mb-2">
+								<h3 className="font-semibold text-black mb-2">
 									{feature.title}
 								</h3>
 								<p className="text-gray-600 text-sm">{feature.description}</p>
@@ -638,3 +638,6 @@ function UniversalToolPage({ config }) {
 }
 
 export default UniversalToolPage
+
+
+

@@ -27,7 +27,7 @@ const PaymentFail = () => {
 				<div className="space-x-4">
 					<Link
 						to="/pricing"
-						className="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition"
+						className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-black transition"
 					>
 						Try Again
 					</Link>
@@ -44,3 +44,6 @@ const PaymentFail = () => {
 };
 
 export default PaymentFail;
+
+
+

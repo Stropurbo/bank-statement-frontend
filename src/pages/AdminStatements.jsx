@@ -236,8 +236,8 @@ function AdminStatements() {
 								<p className="text-sm font-medium text-slate-600 mb-1">Selected</p>
 								<p className="text-2xl sm:text-3xl font-bold text-slate-900">{selectedItems.length}</p>
 							</div>
-							<div className="p-3 bg-purple-100 rounded-lg">
-								<FiUser className="h-6 w-6 text-purple-600" />
+							<div className="p-3 bg-gray-100 rounded-lg">
+								<FiUser className="h-6 w-6 text-black" />
 							</div>
 						</div>
 					</div>
@@ -433,8 +433,8 @@ function AdminStatements() {
 												</td>
 												<td className="px-6 py-4">
 													<div className="flex items-center gap-3">
-														<div className="p-2 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg">
-															<FiFileText className="h-5 w-5 text-purple-600" />
+														<div className="p-2 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg">
+															<FiFileText className="h-5 w-5 text-black" />
 														</div>
 														<div>
 															<p className="font-medium text-slate-900 truncate max-w-xs">
@@ -527,8 +527,8 @@ function AdminStatements() {
 											<div className="flex-1 min-w-0">
 												{/* File Info */}
 												<div className="flex items-start gap-3 mb-3">
-													<div className="p-2 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex-shrink-0">
-														<FiFileText className="h-5 w-5 text-purple-600" />
+													<div className="p-2 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex-shrink-0">
+														<FiFileText className="h-5 w-5 text-black" />
 													</div>
 													<div className="flex-1 min-w-0">
 														<p className="font-semibold text-slate-900 truncate mb-1">
@@ -598,3 +598,6 @@ function AdminStatements() {
 }
 
 export default AdminStatements
+
+
+

@@ -86,12 +86,12 @@ function Register() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
+		<div className="min-h-screen bg-white flex items-center justify-center px-6 py-12">
 
 			<div className="w-full max-w-lg">
 				{/* Header */}
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Create Account</h1>
+					<h1 className="text-4xl font-bold text-black mb-2">Create Account</h1>
 					<p className="text-gray-600">
 						Join SheetlyPro and start converting your bank statements
 					</p>
@@ -132,7 +132,7 @@ function Register() {
 						{/* Name Fields */}
 						<div className="grid md:grid-cols-2 gap-4">
 							<div>
-								<label className="block text-sm font-semibold text-gray-700 mb-2">
+								<label className="block text-sm font-semibold text-black mb-2">
 									First Name
 								</label>
 								<div className="relative">
@@ -143,7 +143,7 @@ function Register() {
 										id="first_name"
 										type="text"
 										placeholder="Enter first name"
-										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 											errors.first_name
 												? 'border-red-300 bg-red-50'
 												: 'border-gray-300 hover:border-gray-400'
@@ -161,7 +161,7 @@ function Register() {
 							</div>
 
 							<div>
-								<label className="block text-sm font-semibold text-gray-700 mb-2">
+								<label className="block text-sm font-semibold text-black mb-2">
 									Last Name
 								</label>
 								<div className="relative">
@@ -172,7 +172,7 @@ function Register() {
 										id="last_name"
 										type="text"
 										placeholder="Enter last name"
-										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+										className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 											errors.last_name
 												? 'border-red-300 bg-red-50'
 												: 'border-gray-300 hover:border-gray-400'
@@ -192,7 +192,7 @@ function Register() {
 
 						{/* Email Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Email Address
 							</label>
 							<div className="relative">
@@ -203,7 +203,7 @@ function Register() {
 									id="email"
 									type="email"
 									placeholder="Enter your email address"
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 										errors.email
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
@@ -223,7 +223,7 @@ function Register() {
 
 						{/* Address Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Address (Optional)
 							</label>
 							<div className="relative">
@@ -234,7 +234,7 @@ function Register() {
 									id="address"
 									type="text"
 									placeholder="Enter your address"
-									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
+									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
 									{...register('address')}
 								/>
 							</div>
@@ -242,7 +242,7 @@ function Register() {
 
 						{/* Phone Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Phone Number (Optional)
 							</label>
 							<div className="relative">
@@ -253,7 +253,7 @@ function Register() {
 									id="phone_number"
 									type="text"
 									placeholder="Enter your phone number"
-									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
+									className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 hover:border-gray-400"
 									{...register('phone_number')}
 								/>
 							</div>
@@ -261,7 +261,7 @@ function Register() {
 
 						{/* Password Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Password
 							</label>
 							<div className="relative">
@@ -272,7 +272,7 @@ function Register() {
 									id="password"
 									type={showPassword ? 'text' : 'password'}
 									placeholder="Create a strong password"
-									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 										errors.password
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
@@ -288,7 +288,7 @@ function Register() {
 								<button
 									type="button"
 									onClick={() => setShowPassword(!showPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-700"
 								>
 									{showPassword ? (
 										<EyeOff className="h-5 w-5" />
@@ -306,7 +306,7 @@ function Register() {
 
 						{/* Confirm Password Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Confirm Password
 							</label>
 							<div className="relative">
@@ -317,7 +317,7 @@ function Register() {
 									id="confirmPassword"
 									type={showConfirmPassword ? 'text' : 'password'}
 									placeholder="Confirm your password"
-									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 										errors.confirm_password
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
@@ -332,7 +332,7 @@ function Register() {
 								<button
 									type="button"
 									onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-700"
 								>
 									{showConfirmPassword ? (
 										<EyeOff className="h-5 w-5" />
@@ -352,7 +352,7 @@ function Register() {
 						<button
 							type="submit"
 							disabled={loading}
-							className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+							className="w-full bg-gradient-to-r from-black to-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-gray-900 hover:to-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
 						>
 							{loading ? (
 								<>
@@ -393,7 +393,7 @@ function Register() {
 							Already have an account?{' '}
 							<Link
 								to="/login"
-								className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+								className="text-black hover:text-black font-semibold transition-colors"
 							>
 								Sign In
 							</Link>
@@ -406,3 +406,6 @@ function Register() {
 }
 
 export default Register
+
+
+

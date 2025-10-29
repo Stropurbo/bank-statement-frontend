@@ -7,7 +7,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 			{/* Profile Image Section */}
 			<div className="flex flex-col items-center space-y-4">
 				<div className="relative">
-					<div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-r from-purple-100 to-indigo-100 flex items-center justify-center border-4 border-white shadow-lg">
+					<div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-r from-gray-100 to-gray-200 flex items-center justify-center border-4 border-white shadow-lg">
 						{profilePreview ? (
 							<img
 								src={profilePreview}
@@ -23,7 +23,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 					</div>
 					{isEditing && (
 						<div className="absolute -bottom-2 -right-2">
-							<label className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center cursor-pointer hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg">
+							<label className="w-8 h-8 bg-gradient-to-r from-black to-gray-900 rounded-full flex items-center justify-center cursor-pointer hover:from-gray-900 hover:to-black transition-all duration-200 shadow-lg">
 								<Camera className="h-4 w-4 text-white" />
 								<input
 									type="file"
@@ -38,7 +38,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 					)}
 				</div>
 				<div className="text-center">
-					<p className="text-sm font-medium text-gray-700">Profile Picture</p>
+					<p className="text-sm font-medium text-black">Profile Picture</p>
 					{isEditing && (
 						<p className="text-xs text-gray-500">Click the camera icon to upload</p>
 					)}
@@ -49,7 +49,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 			<div className="grid md:grid-cols-2 gap-6">
 				{/* First Name */}
 				<div>
-					<label className="block text-sm font-semibold text-gray-700 mb-2">
+					<label className="block text-sm font-semibold text-black mb-2">
 						First Name
 					</label>
 					<div className="relative">
@@ -59,7 +59,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 						<input
 							type="text"
 							placeholder="Enter first name"
-							className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+							className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 								!isEditing
 									? 'bg-gray-50 text-gray-500 cursor-not-allowed'
 									: errors.first_name
@@ -77,7 +77,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 
 				{/* Last Name */}
 				<div>
-					<label className="block text-sm font-semibold text-gray-700 mb-2">
+					<label className="block text-sm font-semibold text-black mb-2">
 						Last Name
 					</label>
 					<div className="relative">
@@ -87,7 +87,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 						<input
 							type="text"
 							placeholder="Enter last name"
-							className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+							className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 								!isEditing
 									? 'bg-gray-50 text-gray-500 cursor-not-allowed'
 									: errors.last_name
@@ -106,7 +106,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 
 			{/* Email Address */}
 			<div>
-				<label className="block text-sm font-semibold text-gray-700 mb-2">
+				<label className="block text-sm font-semibold text-black mb-2">
 					Email Address
 				</label>
 				<div className="relative">
@@ -126,7 +126,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 
 			{/* Address */}
 			<div>
-				<label className="block text-sm font-semibold text-gray-700 mb-2">
+				<label className="block text-sm font-semibold text-black mb-2">
 					Address
 				</label>
 				<div className="relative">
@@ -136,7 +136,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 					<input
 						type="text"
 						placeholder="Enter your address"
-						className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+						className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 							!isEditing
 								? 'bg-gray-50 text-gray-500 cursor-not-allowed'
 								: errors.address
@@ -154,7 +154,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 
 			{/* Phone Number */}
 			<div>
-				<label className="block text-sm font-semibold text-gray-700 mb-2">
+				<label className="block text-sm font-semibold text-black mb-2">
 					Phone Number
 				</label>
 				<div className="relative">
@@ -164,7 +164,7 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 					<input
 						type="tel"
 						placeholder="Enter your phone number"
-						className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+						className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 							!isEditing
 								? 'bg-gray-50 text-gray-500 cursor-not-allowed'
 								: errors.phone_number
@@ -184,3 +184,6 @@ const ProfileForm = ({ register, errors, isEditing, profilePreview, handleProfil
 }
 
 export default ProfileForm
+
+
+

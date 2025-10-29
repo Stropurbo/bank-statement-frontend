@@ -51,9 +51,19 @@ function AutoPostDashboard() {
 		fetchData()
 		// Check for OAuth callback success/error
 		const params = new URLSearchParams(window.location.search)
+		const code = params.get('code')
+		const state = params.get('state')
 		const success = params.get('success')
 		const error = params.get('error')
 		const platform = params.get('platform')
+
+		// Handle TikTok OAuth callback
+		if (code && state) {
+			const backendUrl = import.meta.env.VITE_API_URL || 'https://bank-statement-converter-backend-ofyc.onrender.com'
+			window.location.href = `${backendUrl}/api/autopost/accounts/callback/tiktok/${window.location.search}`
+			return
+		}
+
 
 		if (success === 'connected' && platform) {
 			setNotification({ type: 'success', message: `${platform.charAt(0).toUpperCase() + platform.slice(1)} connected successfully!` })
@@ -243,11 +253,9 @@ function AutoPostDashboard() {
 				social_account_ids: connectedAccounts.filter(acc => selectedPlatforms.includes(acc.platform)).map(acc => acc.id),
 				post_immediately: postNow,
 				scheduled_for: postNow ? null : `${scheduledDate}T${scheduledTime}`,
-				...(hasVideo && (hasTikTok || hasYouTube) && {
-					video_title: videoTitle,
-					video_description: videoDescription,
-					video_tags: videoTags
-				})
+				video_title: videoTitle || '',
+				video_description: videoDescription || '',
+				video_tags: videoTags || ''
 			}
 			console.log('Payload:', payload)
 			await apiClient.post('/autopost/posts/', payload)
@@ -296,7 +304,7 @@ function AutoPostDashboard() {
 	if (loading) {
 		return (
 			<div className="min-h-screen flex items-center justify-center">
-				<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+				<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
 			</div>
 		)
 	}
@@ -309,7 +317,7 @@ function AutoPostDashboard() {
 					{notification.message}
 				</div>
 			)}
-			<div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 pt-20 pb-12">
+			<div className="min-h-screen bg-white pt-20 pb-12">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="mb-8">
 					<h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
@@ -324,9 +332,9 @@ function AutoPostDashboard() {
 						<div className="flex items-center justify-between">
 							<div>
 								<p className="text-gray-500 text-sm mb-1">Total Posts</p>
-								<p className="text-3xl font-bold text-purple-600">{stats.totalPosts}</p>
+								<p className="text-3xl font-bold text-black">{stats.totalPosts}</p>
 							</div>
-							<FaChartLine className="text-4xl text-purple-500" />
+							<FaChartLine className="text-4xl text-black" />
 						</div>
 					</div>
 					<div className="bg-white rounded-2xl shadow-lg p-6 border-l-4 border-blue-500">
@@ -363,12 +371,12 @@ function AutoPostDashboard() {
 					<div className="lg:col-span-2 space-y-6">
 						<div className="bg-white rounded-2xl shadow-xl p-8">
 							<h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-								<FaPlus className="text-purple-600" />
+								<FaPlus className="text-black" />
 								Create New Post
 							</h2>
 
 							<div className="mb-6">
-								<label className="block text-gray-700 font-semibold mb-2">Post Content</label>
+								<label className="block text-black font-semibold mb-2">Post Content</label>
 								<textarea
 									value={postContent}
 									onChange={(e) => setPostContent(e.target.value)}
@@ -384,7 +392,7 @@ function AutoPostDashboard() {
 									<h3 className="text-sm font-bold text-blue-900 mb-3">📹 Video Details (for YouTube/TikTok)</h3>
 									<div className="space-y-3">
 										<div>
-											<label className="block text-sm text-gray-700 mb-1">Video Title</label>
+											<label className="block text-sm text-black mb-1">Video Title</label>
 											<input
 												type="text"
 												value={videoTitle}
@@ -394,7 +402,7 @@ function AutoPostDashboard() {
 											/>
 										</div>
 										<div>
-											<label className="block text-sm text-gray-700 mb-1">Video Description</label>
+											<label className="block text-sm text-black mb-1">Video Description</label>
 											<textarea
 												value={videoDescription}
 												onChange={(e) => setVideoDescription(e.target.value)}
@@ -404,7 +412,7 @@ function AutoPostDashboard() {
 											/>
 										</div>
 										<div>
-											<label className="block text-sm text-gray-700 mb-1">Tags (comma separated)</label>
+											<label className="block text-sm text-black mb-1">Tags (comma separated)</label>
 											<input
 												type="text"
 												value={videoTags}
@@ -418,13 +426,13 @@ function AutoPostDashboard() {
 							)}
 
 							<div className="mb-6">
-								<label className="block text-gray-700 font-semibold mb-2">Media Files</label>
+								<label className="block text-black font-semibold mb-2">Media Files</label>
 								<label
 									onDragOver={handleDragOver}
 									onDragLeave={handleDragLeave}
 									onDrop={handleDrop}
 									className={`flex items-center justify-center gap-3 w-full px-4 py-6 border-2 border-dashed rounded-xl cursor-pointer transition-all ${
-										isDragging ? 'border-purple-500 bg-purple-50' : 'border-gray-300 hover:border-purple-500'
+										isDragging ? 'border-purple-500 bg-gray-50' : 'border-gray-300 hover:border-purple-500'
 									}`}
 								>
 									<FaImage className="text-2xl text-gray-400" />
@@ -457,7 +465,7 @@ function AutoPostDashboard() {
 							</div>
 
 							<div className="mb-6">
-								<label className="block text-gray-700 font-semibold mb-3">Select Platforms</label>
+								<label className="block text-black font-semibold mb-3">Select Platforms</label>
 								<div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
 									{platforms.map(platform => {
 										const Icon = platform.icon
@@ -469,13 +477,13 @@ function AutoPostDashboard() {
 												onClick={() => !platform.disabled && isConnected && togglePlatform(platform.id)}
 												disabled={!isConnected || platform.disabled}
 												className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
-													isSelected ? 'border-purple-500 bg-purple-50 scale-105' : 'border-gray-200'
+													isSelected ? 'border-purple-500 bg-gray-50 scale-105' : 'border-gray-200'
 												} ${(!isConnected || platform.disabled) && 'opacity-50 cursor-not-allowed'}`}
 											>
 												<Icon className="text-2xl" style={{ color: platform.color }} />
 												<span className="text-xs font-semibold">{platform.name}</span>
 												{platform.videoOnly && <span className="text-xs text-blue-500">Video Only</span>}
-												{platform.mediaRequired && <span className="text-xs text-purple-500">Media Required</span>}
+												{platform.mediaRequired && <span className="text-xs text-black">Media Required</span>}
 												{platform.comingSoon && <span className="text-xs text-orange-500 font-bold">Coming Soon</span>}
 												{!platform.comingSoon && !platform.videoOnly && !platform.mediaRequired && !isConnected && <span className="text-xs text-red-500">Not connected</span>}
 											</button>
@@ -485,11 +493,11 @@ function AutoPostDashboard() {
 							</div>
 
 							<div className="mb-6">
-								<label className="block text-gray-700 font-semibold mb-3">Schedule Time</label>
+								<label className="block text-black font-semibold mb-3">Schedule Time</label>
 								<div className="flex items-center gap-4 mb-4">
 									<label className="flex items-center gap-2 cursor-pointer">
-										<input type="checkbox" checked={postNow} onChange={(e) => setPostNow(e.target.checked)} className="w-4 h-4 text-purple-600 rounded" />
-										<span className="text-gray-700">Post Now</span>
+										<input type="checkbox" checked={postNow} onChange={(e) => setPostNow(e.target.checked)} className="w-4 h-4 text-black rounded" />
+										<span className="text-black">Post Now</span>
 									</label>
 								</div>
 								{!postNow && (
@@ -536,7 +544,7 @@ function AutoPostDashboard() {
 							) : (
 								<div className="space-y-4 max-h-[600px] overflow-y-auto pr-2">
 									{scheduledPosts.map(post => (
-										<div key={post.id} className="border-2 border-gray-200 rounded-xl p-6 hover:border-purple-300 transition-all">
+										<div key={post.id} className="border-2 border-gray-200 rounded-xl p-6 hover:border-black transition-all">
 											<div className="flex justify-between items-start mb-3">
 												<p className="text-gray-800 flex-1">{post.content}</p>
 												<button onClick={() => deletePost(post.id)} className="text-red-500 hover:text-red-700 ml-4">
@@ -634,7 +642,7 @@ function AutoPostDashboard() {
 
 						<div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl shadow-xl p-6">
 							<h3 className="text-lg font-bold mb-4 text-purple-900">💡 Quick Tips</h3>
-							<ul className="space-y-3 text-sm text-gray-700">
+							<ul className="space-y-3 text-sm text-black">
 								<li className="flex gap-2"><span>✅</span><span>Connect accounts first</span></li>
 								<li className="flex gap-2"><span>📅</span><span>Schedule up to 30 days ahead</span></li>
 								<li className="flex gap-2"><span>🖼️</span><span>Upload up to 10 images</span></li>
@@ -650,3 +658,6 @@ function AutoPostDashboard() {
 }
 
 export default AutoPostDashboard
+
+
+

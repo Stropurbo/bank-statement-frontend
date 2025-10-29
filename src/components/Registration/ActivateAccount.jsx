@@ -28,13 +28,13 @@ function ActivateAccount() {
 	}, [uid, token, navigate])
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6">
+		<div className="min-h-screen bg-white flex items-center justify-center px-6">
 			<div className="w-full max-w-md">
 				<div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
 					{loading && (
 						<div className="flex flex-col items-center space-y-4">
-							<Loader className="h-12 w-12 text-purple-600 animate-spin" />
-							<h2 className="text-2xl font-bold text-gray-900">Activating Account</h2>
+							<Loader className="h-12 w-12 text-black animate-spin" />
+							<h2 className="text-2xl font-bold text-black">Activating Account</h2>
 							<p className="text-gray-600">Please wait while we activate your account...</p>
 						</div>
 					)}
@@ -42,11 +42,11 @@ function ActivateAccount() {
 					{message && (
 						<div className="flex flex-col items-center space-y-4">
 							<CheckCircle className="h-16 w-16 text-green-600" />
-							<h2 className="text-2xl font-bold text-gray-900">Success!</h2>
+							<h2 className="text-2xl font-bold text-black">Success!</h2>
 							<p className="text-green-700 font-medium">{message}</p>
 							<Link
 								to="/login"
-								className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200"
+								className="bg-gradient-to-r from-black to-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200"
 							>
 								Go to Login
 							</Link>
@@ -56,18 +56,18 @@ function ActivateAccount() {
 					{error && (
 						<div className="flex flex-col items-center space-y-4">
 							<AlertCircle className="h-16 w-16 text-red-600" />
-							<h2 className="text-2xl font-bold text-gray-900">Activation Failed</h2>
+							<h2 className="text-2xl font-bold text-black">Activation Failed</h2>
 							<p className="text-red-700 font-medium">{error}</p>
 							<div className="flex space-x-4">
 								<Link
 									to="/register"
-									className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200"
+									className="bg-gradient-to-r from-black to-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200"
 								>
 									Register Again
 								</Link>
 								<Link
 									to="/login"
-									className="border border-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg hover:bg-gray-50 transition-all duration-200"
+									className="border border-gray-300 text-black font-semibold py-3 px-6 rounded-lg hover:bg-gray-50 transition-all duration-200"
 								>
 									Try Login
 								</Link>
@@ -81,3 +81,6 @@ function ActivateAccount() {
 }
 
 export default ActivateAccount
+
+
+

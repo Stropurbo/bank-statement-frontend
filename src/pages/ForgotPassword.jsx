@@ -36,12 +36,12 @@ const ForgotPassword = () => {
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
+		<div className="min-h-screen bg-white flex items-center justify-center px-6 py-12">
 			<title>Forgot Password</title>
 			<div className="w-full max-w-md">
 				{/* Header */}
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Forgot Password?</h1>
+					<h1 className="text-4xl font-bold text-black mb-2">Forgot Password?</h1>
 					<p className="text-gray-600">Enter your email to reset your password</p>
 				</div>
 
@@ -64,7 +64,7 @@ const ForgotPassword = () => {
 					<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 						{/* Email Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Email Address
 							</label>
 							<div className="relative">
@@ -75,7 +75,7 @@ const ForgotPassword = () => {
 									id="email"
 									type="email"
 									placeholder="Enter your email address"
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 										errors.email
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
@@ -94,7 +94,7 @@ const ForgotPassword = () => {
 						<button
 							type="submit"
 							disabled={loading}
-							className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+							className="w-full bg-gradient-to-r from-black to-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-gray-900 hover:to-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
 						>
 							{loading ? (
 								<>
@@ -111,7 +111,7 @@ const ForgotPassword = () => {
 					<div className="text-center mt-6 pt-6 border-t border-gray-200">
 						<Link
 							to="/login"
-							className="inline-flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-medium transition-colors"
+							className="inline-flex items-center space-x-2 text-black hover:text-black font-medium transition-colors"
 						>
 							<ArrowLeft className="h-4 w-4" />
 							<span>Back to Login</span>
@@ -124,3 +124,6 @@ const ForgotPassword = () => {
 }
 
 export default ForgotPassword
+
+
+

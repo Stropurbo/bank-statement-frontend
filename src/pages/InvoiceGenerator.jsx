@@ -252,7 +252,7 @@ function InvoiceGenerator() {
 				{/* Header */}
 				<div className="flex justify-between items-center mb-12">
 					<div>
-						<h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
+						<h1 className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-900 mb-2">
 							Invoice Generator
 						</h1>
 						<p className="text-gray-600 text-lg">
@@ -267,10 +267,10 @@ function InvoiceGenerator() {
 					<div className="lg:col-span-2 space-y-6">
 						{/* Invoice Details */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Invoice Details</h2>
+							<h2 className="text-2xl font-bold text-black mb-6">Invoice Details</h2>
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 								<div>
-									<label className="block text-sm font-semibold text-gray-700 mb-2">
+									<label className="block text-sm font-semibold text-black mb-2">
 										Invoice Number
 									</label>
 									<input
@@ -283,7 +283,7 @@ function InvoiceGenerator() {
 									/>
 								</div>
 								<div>
-									<label className="block text-sm font-semibold text-gray-700 mb-2">
+									<label className="block text-sm font-semibold text-black mb-2">
 										Date
 									</label>
 									<input
@@ -294,7 +294,7 @@ function InvoiceGenerator() {
 									/>
 								</div>
 								<div>
-									<label className="block text-sm font-semibold text-gray-700 mb-2">
+									<label className="block text-sm font-semibold text-black mb-2">
 										Due Date
 									</label>
 									<input
@@ -311,7 +311,7 @@ function InvoiceGenerator() {
 
 						{/* Template Selector */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Choose Template</h2>
+							<h2 className="text-2xl font-bold text-black mb-6">Choose Template</h2>
 							<div className="grid grid-cols-2 md:grid-cols-4 gap-3">
 								{templates.map((template) => (
 									<div key={template.id} className="relative">
@@ -325,7 +325,7 @@ function InvoiceGenerator() {
 										>
 											{template.badge && (
 												<span className={`absolute -top-2 -right-2 px-2 py-0.5 text-xs font-bold rounded-full ${
-													template.badge === 'Premium' ? 'bg-purple-500 text-white' :
+													template.badge === 'Premium' ? 'bg-gray-500 text-white' :
 													template.badge === 'New' ? 'bg-green-500 text-white' :
 													'bg-blue-500 text-white'
 												}`}>
@@ -339,7 +339,7 @@ function InvoiceGenerator() {
 													<div className="h-1.5 bg-gray-300 rounded w-1/2"></div>
 												</div>
 											</div>
-											<span className="text-xs font-medium text-gray-700 block text-center">{template.name}</span>
+											<span className="text-xs font-medium text-black block text-center">{template.name}</span>
 										</button>
 										<button
 											onClick={() => {
@@ -357,10 +357,10 @@ function InvoiceGenerator() {
 
 						{/* Company Info */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Your Company</h2>
+							<h2 className="text-2xl font-bold text-black mb-6">Your Company</h2>
 							<div className="space-y-4">
 								<div>
-									<label className="block text-sm font-semibold text-gray-700 mb-2">
+									<label className="block text-sm font-semibold text-black mb-2">
 										Company Logo
 									</label>
 									<div className="flex items-center gap-4">
@@ -417,7 +417,7 @@ function InvoiceGenerator() {
 
 						{/* Client Info */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Bill To</h2>
+							<h2 className="text-2xl font-bold text-black mb-6">Bill To</h2>
 							<div className="space-y-4">
 								<input
 									type="text"
@@ -463,7 +463,7 @@ function InvoiceGenerator() {
 						{/* Items */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
 							<div className="flex items-center justify-between mb-6">
-								<h2 className="text-2xl font-bold text-gray-900">Items</h2>
+								<h2 className="text-2xl font-bold text-black">Items</h2>
 								<button
 									onClick={addItem}
 									className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -513,7 +513,7 @@ function InvoiceGenerator() {
 											/>
 										</div>
 										<div className="col-span-3 md:col-span-2 flex items-center justify-end">
-											<span className="font-semibold text-gray-900">
+											<span className="font-semibold text-black">
 												${(item.quantity * item.rate).toFixed(2)}
 											</span>
 										</div>
@@ -534,7 +534,7 @@ function InvoiceGenerator() {
 
 						{/* Notes */}
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200">
-							<h2 className="text-2xl font-bold text-gray-900 mb-4">Notes</h2>
+							<h2 className="text-2xl font-bold text-black mb-4">Notes</h2>
 							<textarea
 								placeholder="Additional notes or payment terms..."
 								value={invoice.notes}
@@ -548,11 +548,11 @@ function InvoiceGenerator() {
 					{/* Summary Section */}
 					<div className="lg:col-span-1">
 						<div className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200 sticky top-6">
-							<h2 className="text-2xl font-bold text-gray-900 mb-6">Summary</h2>
+							<h2 className="text-2xl font-bold text-black mb-6">Summary</h2>
 
 							<div className="space-y-4 mb-6">
 								<div>
-									<label className="block text-sm font-semibold text-gray-700 mb-2">
+									<label className="block text-sm font-semibold text-black mb-2">
 										Tax Rate (%)
 									</label>
 									<input
@@ -565,7 +565,7 @@ function InvoiceGenerator() {
 									/>
 								</div>
 								<div>
-									<label className="block text-sm font-semibold text-gray-700 mb-2">
+									<label className="block text-sm font-semibold text-black mb-2">
 										Discount ($)
 									</label>
 									<input
@@ -580,19 +580,19 @@ function InvoiceGenerator() {
 							</div>
 
 							<div className="space-y-3 py-4 border-t border-gray-200">
-								<div className="flex justify-between text-gray-700">
+								<div className="flex justify-between text-black">
 									<span>Subtotal:</span>
 									<span className="font-semibold">${calculateSubtotal().toFixed(2)}</span>
 								</div>
-								<div className="flex justify-between text-gray-700">
+								<div className="flex justify-between text-black">
 									<span>Tax ({invoice.taxRate}%):</span>
 									<span className="font-semibold">${calculateTax().toFixed(2)}</span>
 								</div>
-								<div className="flex justify-between text-gray-700">
+								<div className="flex justify-between text-black">
 									<span>Discount:</span>
 									<span className="font-semibold">-${invoice.discount.toFixed(2)}</span>
 								</div>
-								<div className="flex justify-between text-2xl font-bold text-gray-900 pt-3 border-t border-gray-200">
+								<div className="flex justify-between text-2xl font-bold text-black pt-3 border-t border-gray-200">
 									<span>Total:</span>
 									<span className="text-blue-600">${calculateTotal().toFixed(2)}</span>
 								</div>
@@ -601,7 +601,7 @@ function InvoiceGenerator() {
 							<div className="space-y-3 mt-6">
 								<button
 									onClick={() => setShowPreview(true)}
-									className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg"
+									className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-black to-gray-900 text-white rounded-lg hover:from-gray-900 hover:to-black transition-all shadow-lg"
 								>
 									<Eye className="h-5 w-5" />
 									Preview Invoice
@@ -642,7 +642,7 @@ function InvoiceGenerator() {
 										>
 											{loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
 										</button>
-										<button onClick={() => setShowPreview(false)} className="text-gray-500 hover:text-gray-700 text-2xl">
+										<button onClick={() => setShowPreview(false)} className="text-gray-500 hover:text-black text-2xl">
 											✕
 										</button>
 										</div>
@@ -739,7 +739,7 @@ function InvoiceGenerator() {
 										{logo && <img src={logo} alt="Logo" className="h-16 w-16 object-contain" />}
 										<h2 className="text-3xl font-bold" style={{ color: previewTemplate.color }}>INVOICE</h2>
 									</div>
-									<button onClick={() => setShowTemplatePreview(false)} className="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
+									<button onClick={() => setShowTemplatePreview(false)} className="text-gray-500 hover:text-black text-2xl">✕</button>
 								</div>
 								<div className="grid grid-cols-2 gap-8 mb-8">
 									<div>
@@ -823,7 +823,7 @@ function InvoiceGenerator() {
 									</button>
 									<button
 										onClick={() => setShowTemplatePreview(false)}
-										className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-all"
+										className="px-6 py-3 border-2 border-gray-300 text-black rounded-lg font-medium hover:bg-gray-50 transition-all"
 									>
 										Cancel
 									</button>
@@ -838,3 +838,6 @@ function InvoiceGenerator() {
 }
 
 export default InvoiceGenerator
+
+
+

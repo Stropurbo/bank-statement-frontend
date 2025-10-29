@@ -19,7 +19,7 @@ function Footer() {
 						<div className="flex space-x-4">
 							<a
 								href="https://x.com/Sheetlypro"
-								className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors"
+								className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-black transition-colors"
 								target="_blank"
 							>
 								<X className="h-5 w-5" />
@@ -27,7 +27,7 @@ function Footer() {
 
 							<a
 								href="https://linkedin.com/company/sheetlypro"
-								className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-colors"
+								className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-black transition-colors"
 								target="_blank"
 							>
 								<svg
@@ -172,3 +172,6 @@ function Footer() {
 }
 
 export default Footer
+
+
+

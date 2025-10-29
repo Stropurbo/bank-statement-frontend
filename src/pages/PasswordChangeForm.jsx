@@ -11,7 +11,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 		<div className="mt-8 pt-8 border-t border-gray-200">
 			<button
 				type="button"
-				className="flex items-center space-x-2 text-purple-600 hover:text-purple-700 font-semibold transition-colors duration-200"
+				className="flex items-center space-x-2 text-black hover:text-black font-semibold transition-colors duration-200"
 				onClick={() => setIsPasswordSectionOpen(!isPasswordSectionOpen)}
 			>
 				{isPasswordSectionOpen ? (
@@ -24,10 +24,10 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 			</button>
 
 			{isPasswordSectionOpen && (
-				<div className="mt-6 space-y-6 pl-6 border-l-2 border-purple-100">
+				<div className="mt-6 space-y-6 pl-6 border-l-2 border-gray-100">
 					{/* Current Password */}
 					<div>
-						<label className="block text-sm font-semibold text-gray-700 mb-2">
+						<label className="block text-sm font-semibold text-black mb-2">
 							Current Password
 						</label>
 						<div className="relative">
@@ -37,7 +37,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 							<input
 								type={showCurrentPassword ? 'text' : 'password'}
 								placeholder="Enter current password"
-								className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+								className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 									!isEditing 
 										? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
 										: errors.current_password 
@@ -53,7 +53,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 								<button
 									type="button"
 									onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-700"
 								>
 									{showCurrentPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
 								</button>
@@ -66,7 +66,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 
 					{/* New Password */}
 					<div>
-						<label className="block text-sm font-semibold text-gray-700 mb-2">
+						<label className="block text-sm font-semibold text-black mb-2">
 							New Password
 						</label>
 						<div className="relative">
@@ -76,7 +76,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 							<input
 								type={showNewPassword ? 'text' : 'password'}
 								placeholder="Enter new password"
-								className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+								className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 									!isEditing 
 										? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
 										: errors.new_password 
@@ -96,7 +96,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 								<button
 									type="button"
 									onClick={() => setShowNewPassword(!showNewPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-700"
 								>
 									{showNewPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
 								</button>
@@ -109,7 +109,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 
 					{/* Confirm New Password */}
 					<div>
-						<label className="block text-sm font-semibold text-gray-700 mb-2">
+						<label className="block text-sm font-semibold text-black mb-2">
 							Confirm New Password
 						</label>
 						<div className="relative">
@@ -119,7 +119,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 							<input
 								type={showConfirmPassword ? 'text' : 'password'}
 								placeholder="Confirm new password"
-								className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+								className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 									!isEditing 
 										? 'bg-gray-50 text-gray-500 cursor-not-allowed' 
 										: errors.confirm_new_password 
@@ -137,7 +137,7 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 								<button
 									type="button"
 									onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-700"
 								>
 									{showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
 								</button>
@@ -166,3 +166,5 @@ const PasswordChangeForm = ({ register, errors, watch, isEditing }) => {
 }
 
 export default PasswordChangeForm
+
+

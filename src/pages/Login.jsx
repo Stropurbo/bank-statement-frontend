@@ -85,12 +85,12 @@ const Login = () => {
 	const [showPassword, setShowPassword] = useState(false)
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-indigo-50 flex items-center justify-center px-6 py-12">
+		<div className="min-h-screen bg-white flex items-center justify-center px-6 py-12">
 			
 			<div className="w-full max-w-md">
 				{/* Header */}
 				<div className="text-center mb-8">
-					<h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
+					<h1 className="text-4xl font-bold text-black mb-2">Welcome Back</h1>
 					<p className="text-gray-600">Sign in to your SheetlyPro account</p>
 				</div>
 
@@ -116,7 +116,7 @@ const Login = () => {
 					>
 						{/* Email Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Email Address
 							</label>
 							<div className="relative">
@@ -127,7 +127,7 @@ const Login = () => {
 									id="email"
 									type="email"
 									placeholder="Enter your email address"
-									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+									className={`w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 										errors.email
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
@@ -144,7 +144,7 @@ const Login = () => {
 
 						{/* Password Field */}
 						<div>
-							<label className="block text-sm font-semibold text-gray-700 mb-2">
+							<label className="block text-sm font-semibold text-black mb-2">
 								Password
 							</label>
 							<div className="relative">
@@ -155,7 +155,7 @@ const Login = () => {
 									id="password"
 									type={showPassword ? 'text' : 'password'}
 									placeholder="Enter your password"
-									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 ${
+									className={`w-full pl-10 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition-all duration-200 ${
 										errors.password
 											? 'border-red-300 bg-red-50'
 											: 'border-gray-300 hover:border-gray-400'
@@ -167,7 +167,7 @@ const Login = () => {
 								<button
 									type="button"
 									onClick={() => setShowPassword(!showPassword)}
-									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+									className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-700"
 								>
 									{showPassword ? (
 										<EyeOff className="h-5 w-5" />
@@ -184,7 +184,7 @@ const Login = () => {
 							<div className="text-right mt-2">
 								<Link
 									to="/forgot-password"
-									className="text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors"
+									className="text-sm text-black hover:text-black font-medium transition-colors"
 								>
 									Forgot Password?
 								</Link>
@@ -195,7 +195,7 @@ const Login = () => {
 						<button
 							type="submit"
 							disabled={loading}
-							className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-purple-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+							className="w-full bg-gradient-to-r from-black to-gray-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-gray-900 hover:to-black focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
 						>
 							{loading ? (
 								<>
@@ -237,7 +237,7 @@ const Login = () => {
 							Don't have an account?{' '}
 							<Link
 								to="/register"
-								className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+								className="text-black hover:text-black font-semibold transition-colors"
 							>
 								Create Account
 							</Link>
@@ -250,3 +250,6 @@ const Login = () => {
 }
 
 export default Login
+
+
+

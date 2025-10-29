@@ -5,14 +5,14 @@ const ProfileEdit = ({ isEditing, setIsEditing, isSubmitting }) => {
 				<div>
 					<button
 						type="submit"
-						className="btn bg-purple-500 text-white px-8"
+						className="btn bg-gray-500 text-white px-8"
 						disabled={isSubmitting}
 					>
 						{isSubmitting ? 'Saving' : 'Save Changes'}
 					</button>
 					<button
 						type="button"
-						className="btn bg-purple-500 text-white mx-5"
+						className="btn bg-gray-500 text-white mx-5"
 						onClick={() => setIsEditing(false)}
 					>
 						Cancel
@@ -21,7 +21,7 @@ const ProfileEdit = ({ isEditing, setIsEditing, isSubmitting }) => {
 			) : (
 				<button
 					type="button"
-					className="btn bg-purple-500 text-white px-8"
+					className="btn bg-gray-500 text-white px-8"
 					onClick={() => setIsEditing((prev) => !prev)}
 				>
 					Edit Profile
@@ -32,3 +32,6 @@ const ProfileEdit = ({ isEditing, setIsEditing, isSubmitting }) => {
 }
 
 export default ProfileEdit
+
+
+

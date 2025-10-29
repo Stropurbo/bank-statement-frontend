@@ -47,13 +47,13 @@ function Faq() {
 			<div className="container mx-auto px-6">
 				{/* Section Header */}
 				<div className="text-center mb-20">
-					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+					<div className="inline-flex items-center gap-2 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
 						<HelpCircle className="h-4 w-4" />
 						FAQ
 					</div>
-					<h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+					<h2 className="text-5xl md:text-6xl font-bold text-black mb-6">
 						Got Questions?
-						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-900">
 							We Have Answers
 						</span>
 					</h2>
@@ -71,21 +71,21 @@ function Faq() {
 								key={index}
 								className={`bg-white rounded-2xl shadow-lg border transition-all duration-300 overflow-hidden ${
 									openIndex === index
-										? 'border-purple-200 shadow-xl shadow-purple-100'
-										: 'border-gray-200 hover:border-purple-200 hover:shadow-xl'
+										? 'border-gray-200 shadow-xl shadow-purple-100'
+										: 'border-gray-200 hover:border-gray-200 hover:shadow-xl'
 								}`}
 							>
 								<button
 									onClick={() => toggleFAQ(index)}
 									className="w-full flex justify-between items-center px-8 py-6 text-left focus:outline-none group"
 								>
-									<h3 className="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors pr-4">
+									<h3 className="text-lg font-bold text-black group-hover:text-black transition-colors pr-4">
 										{faq.question}
 									</h3>
 									<div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
 										openIndex === index
-											? 'bg-purple-600 text-white'
-											: 'bg-gray-100 text-gray-600 group-hover:bg-purple-100 group-hover:text-purple-600'
+											? 'bg-black text-white'
+											: 'bg-gray-100 text-gray-600 group-hover:bg-gray-100 group-hover:text-black'
 									}`}>
 										{openIndex === index ? (
 											<ChevronUp className="w-5 h-5" />
@@ -117,12 +117,12 @@ function Faq() {
 
 					{/* Bottom CTA */}
 					<div className="text-center mt-16">
-						<div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl p-8 text-white">
+						<div className="bg-gradient-to-r from-black to-gray-900 rounded-2xl p-8 text-white">
 							<h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
 							<p className="text-purple-100 mb-6 text-lg">Our support team is here to help you 24/7</p>
 							<a
 								href="/contact"
-								className="inline-flex items-center px-6 py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+								className="inline-flex items-center px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-colors"
 							>
 								Contact Support
 							</a>
@@ -135,3 +135,6 @@ function Faq() {
 }
 
 export default Faq
+
+
+

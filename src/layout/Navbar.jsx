@@ -34,7 +34,7 @@ function Navbar() {
 								className="w-6 h-6"
 							/>
 						</div>
-						<span className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">
+						<span className="text-xl font-bold text-black group-hover:text-black transition-colors">
 							SheetlyPro
 						</span>
 					</a>
@@ -43,20 +43,20 @@ function Navbar() {
 					<div className="hidden md:flex items-center space-x-8">
 						<Link
 							to="/pricing"
-							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+							className="text-black hover:text-gray-700 font-medium transition-colors"
 						>
 							Pricing
 						</Link>
 						<Link
 							to="/autopost"
-							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+							className="text-black hover:text-gray-700 font-medium transition-colors"
 						>
 							AutoPost
 						</Link>
 
 						<Link
 							to="/tools"
-							className="text-gray-700 hover:text-purple-600 font-medium transition-colors"
+							className="text-black hover:text-gray-700 font-medium transition-colors"
 						>
 							Tools
 						</Link>
@@ -64,7 +64,7 @@ function Navbar() {
 						{(user?.role === 'Admin' || user?.is_staff) && (
 							<Link
 								to="/dashboard"
-								className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg"
+								className="bg-black text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-200 shadow-lg"
 							>
 								Admin Panel
 							</Link>
@@ -74,13 +74,13 @@ function Navbar() {
 							<div className="flex items-center space-x-4">
 								<Link
 									to="/login"
-									className="text-gray-700 hover:text-purple-600 font-semibold transition-colors"
+									className="text-black hover:text-gray-700 font-semibold transition-colors"
 								>
 									Login
 								</Link>
 								<Link
 									to="/register"
-									className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+									className="bg-black text-white px-6 py-2 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
 								>
 									Get Started
 								</Link>
@@ -92,7 +92,7 @@ function Navbar() {
 										onClick={() => setIsMenuOpen(!isMenuOpen)}
 										className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg px-3 py-2 transition-colors"
 									>
-										<div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+										<div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
 											{user?.profile_image ? (
 												<img
 													src={getImageUrl(user.profile_image)}
@@ -103,7 +103,7 @@ function Navbar() {
 												<User className="h-4 w-4 text-white" />
 											)}
 										</div>
-										<span className="text-sm font-medium text-gray-700">
+										<span className="text-sm font-medium text-black">
 											{user?.first_name || user?.email?.split('@')[0]}
 										</span>
 									</button>
@@ -112,7 +112,7 @@ function Navbar() {
 										<div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
 											<Link
 												to="/profile"
-												className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+												className="flex items-center px-4 py-2 text-black hover:bg-gray-50 transition-colors"
 												onClick={() => setIsMenuOpen(false)}
 											>
 												<Settings className="h-4 w-4 mr-3" />
@@ -121,7 +121,7 @@ function Navbar() {
 
 											<Link
 												to="/autopost/dashboard"
-												className="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+												className="flex items-center px-4 py-2 text-black hover:bg-gray-50 transition-colors"
 												onClick={() => setIsMenuOpen(false)}
 											>
 												<Settings className="h-4 w-4 mr-3" />
@@ -133,7 +133,7 @@ function Navbar() {
 													await logoutUser()
 													setIsMenuOpen(false)
 												}}
-												className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors"
+												className="flex items-center w-full px-4 py-2 text-black hover:bg-gray-50 transition-colors"
 											>
 												<LogOut className="h-4 w-4 mr-3" />
 												Logout
@@ -151,9 +151,9 @@ function Navbar() {
 						className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
 					>
 						{isMenuOpen ? (
-							<X className="h-6 w-6 text-gray-700" />
+							<X className="h-6 w-6 text-black" />
 						) : (
-							<Menu className="h-6 w-6 text-gray-700" />
+							<Menu className="h-6 w-6 text-black" />
 						)}
 					</button>
 				</div>
@@ -164,7 +164,7 @@ function Navbar() {
 						<div className="px-6 py-4 space-y-4">
 							<Link
 								to="/pricing"
-								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								className="block text-black hover:text-gray-700 font-medium transition-colors"
 								onClick={() => setIsMenuOpen(false)}
 							>
 								Pricing
@@ -172,14 +172,14 @@ function Navbar() {
 
 							<Link
 								to="/autopost"
-								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								className="block text-black hover:text-gray-700 font-medium transition-colors"
 								onClick={() => setIsMenuOpen(false)}
 							>
 								AutoPost
 							</Link>
 							<Link
 								to="/tools"
-								className="block text-gray-700 hover:text-purple-600 font-medium transition-colors"
+								className="block text-black hover:text-gray-700 font-medium transition-colors"
 								onClick={() => setIsMenuOpen(false)}
 							>
 								Tools
@@ -188,7 +188,7 @@ function Navbar() {
 							{(user?.role === 'Admin' || user?.is_staff) && (
 								<Link
 									to="/dashboard"
-									className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold text-center"
+									className="block bg-black text-white px-4 py-2 rounded-lg font-semibold text-center"
 									onClick={() => setIsMenuOpen(false)}
 								>
 									Admin Panel
@@ -199,14 +199,14 @@ function Navbar() {
 								<div className="space-y-3 pt-4 border-t border-gray-200">
 									<Link
 										to="/login"
-										className="block text-center text-gray-700 hover:text-purple-600 font-semibold transition-colors"
+										className="block text-center text-black hover:text-gray-700 font-semibold transition-colors"
 										onClick={() => setIsMenuOpen(false)}
 									>
 										Login
 									</Link>
 									<Link
 										to="/register"
-										className="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold text-center"
+										className="block bg-black text-white px-6 py-3 rounded-lg font-semibold text-center"
 										onClick={() => setIsMenuOpen(false)}
 									>
 										Get Started
@@ -215,7 +215,7 @@ function Navbar() {
 							) : (
 								<div className="space-y-3 pt-4 border-t border-gray-200">
 									<div className="flex items-center space-x-3 px-3 py-2 bg-gray-50 rounded-lg">
-										<div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+										<div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
 											{user?.profile_image ? (
 												<img
 													src={getImageUrl(user.profile_image)}
@@ -226,13 +226,13 @@ function Navbar() {
 												<User className="h-4 w-4 text-white" />
 											)}
 										</div>
-										<span className="text-sm font-medium text-gray-700">
+										<span className="text-sm font-medium text-black">
 											{user?.email}
 										</span>
 									</div>
 									<Link
 										to="/profile"
-										className="flex items-center space-x-3 text-gray-700 hover:text-purple-600 transition-colors"
+										className="flex items-center space-x-3 text-black hover:text-gray-700 transition-colors"
 										onClick={() => setIsMenuOpen(false)}
 									>
 										<Settings className="h-4 w-4" />
@@ -240,7 +240,7 @@ function Navbar() {
 									</Link>
 									<Link
 										to="/autopost/dashboard"
-										className="flex items-center space-x-3 text-gray-700 hover:text-purple-600 transition-colors"
+										className="flex items-center space-x-3 text-black hover:text-gray-700 transition-colors"
 										onClick={() => setIsMenuOpen(false)}
 									>
 										<Settings className="h-4 w-4" />
@@ -252,7 +252,7 @@ function Navbar() {
 											await logoutUser()
 											setIsMenuOpen(false)
 										}}
-										className="flex items-center space-x-3 text-gray-700 hover:text-red-600 transition-colors w-full"
+										className="flex items-center space-x-3 text-black hover:text-red-600 transition-colors w-full"
 									>
 										<LogOut className="h-4 w-4" />
 										<span>Logout</span>
@@ -268,3 +268,6 @@ function Navbar() {
 }
 
 export default Navbar
+
+
+

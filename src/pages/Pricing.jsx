@@ -138,7 +138,7 @@ function Pricing() {
 	}
 
 	return (
-		<section className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
+		<section className="min-h-screen bg-white relative overflow-hidden">
 			{/* Animated Background */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
@@ -147,11 +147,11 @@ function Pricing() {
 			</div>
 			<div className="container mx-auto px-6 py-24 relative z-10">
 				<div className="text-center mb-16">
-					<div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600/10 to-indigo-600/10 backdrop-blur-sm border border-purple-200/50 text-purple-700 rounded-full text-sm font-semibold mb-8 shadow-lg shadow-purple-500/10">
-						<span className="w-2 h-2 bg-purple-600 rounded-full animate-pulse"></span>
+					<div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-purple-600/10 to-gray-900/10 backdrop-blur-sm border border-gray-200/50 text-black rounded-full text-sm font-semibold mb-8 shadow-lg shadow-gray-500/10">
+						<span className="w-2 h-2 bg-black rounded-full animate-pulse"></span>
 						Pricing Plans
 					</div>
-					<h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-purple-900 to-indigo-900 mb-6 leading-tight">
+					<h1 className="text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-900 to-black mb-6 leading-tight">
 						Choose Your Perfect Plan
 					</h1>
 					<p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -163,8 +163,8 @@ function Pricing() {
 						<button
 							className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
 								billing === 'monthly'
-									? 'bg-purple-600 text-white shadow-md'
-									: 'text-gray-600 hover:text-gray-900'
+									? 'bg-black text-white shadow-md'
+									: 'text-gray-600 hover:text-black'
 							}`}
 							onClick={() => setBilling('monthly')}
 						>
@@ -173,8 +173,8 @@ function Pricing() {
 						<button
 							className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
 								billing === 'annual'
-									? 'bg-purple-600 text-white shadow-md'
-									: 'text-gray-600 hover:text-gray-900'
+									? 'bg-black text-white shadow-md'
+									: 'text-gray-600 hover:text-black'
 							}`}
 							onClick={() => setBilling('annual')}
 						>
@@ -196,7 +196,7 @@ function Pricing() {
 
 				{tiersLoading ? (
 					<div className="text-center py-20">
-						<div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mx-auto"></div>
+						<div className="animate-spin rounded-full h-16 w-16 border-4 border-gray-200 border-t-black mx-auto"></div>
 						<p className="mt-6 text-gray-600 text-lg">Loading pricing plans...</p>
 					</div>
 				) : (
@@ -214,7 +214,7 @@ function Pricing() {
 							>
 								{tier.popular && (
 									<div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-										<span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
+										<span className="bg-gradient-to-r from-black to-gray-900 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg whitespace-nowrap">
 											✨ Most Popular
 										</span>
 									</div>
@@ -222,19 +222,19 @@ function Pricing() {
 
 								{/* Header */}
 								<div className="text-center pb-8 mb-6 border-b border-gray-100">
-									<h3 className="text-2xl font-bold text-gray-900 mb-4">
+									<h3 className="text-2xl font-bold text-black mb-4">
 										{tier.title.charAt(0).toUpperCase() +
 											tier.title.slice(1)}
 									</h3>
 									<div className="mb-2">
-										<span className="text-5xl font-bold text-gray-900">
+										<span className="text-5xl font-bold text-black">
 											{tier.price[billing]}
 										</span>
 										<span className="text-gray-500 text-lg ml-2">
 											/{billing}
 										</span>
 									</div>
-									<div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-4">
+									<div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-semibold mb-4">
 										<span>🪙</span>
 										{tier.pages[billing]}
 									</div>
@@ -267,7 +267,7 @@ function Pricing() {
 										disabled={loading === tier.id}
 										className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 transform hover:scale-105 ${
 											tier.popular
-												? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white shadow-lg hover:shadow-xl'
+												? 'bg-gradient-to-r from-black to-gray-900 text-white shadow-lg hover:shadow-xl'
 												: 'bg-gray-900 text-white hover:bg-gray-800 shadow-lg hover:shadow-xl'
 										} ${
 											loading === tier.id
@@ -292,13 +292,13 @@ function Pricing() {
 
 				<div className="text-center mt-20">
 					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 max-w-md mx-auto">
-						<h3 className="text-xl font-bold text-gray-900 mb-2">
+						<h3 className="text-xl font-bold text-black mb-2">
 							Enterprise Plan Required?
 						</h3>
 						<p className="text-gray-600 mb-4">Contact us for enterprise plan</p>
 						<Link
 							to="/contact"
-							className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors"
+							className="inline-flex items-center px-6 py-3 bg-black text-white font-semibold rounded-lg hover:bg-gray-900 transition-colors"
 						>
 							Contact
 						</Link>
@@ -312,3 +312,6 @@ function Pricing() {
 }
 
 export default Pricing
+
+
+

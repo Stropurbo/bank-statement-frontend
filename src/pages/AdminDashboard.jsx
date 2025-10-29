@@ -326,7 +326,7 @@ function AdminDashboard() {
 						const colorClasses = {
 							blue: 'bg-blue-500 text-blue-600 bg-blue-50',
 							green: 'bg-green-500 text-green-600 bg-green-50',
-							purple: 'bg-purple-500 text-purple-600 bg-purple-50',
+							purple: 'bg-gray-500 text-black bg-gray-50',
 							orange: 'bg-orange-500 text-orange-600 bg-orange-50',
 						}
 						return (
@@ -402,7 +402,7 @@ function AdminDashboard() {
 									<div key={index} className="flex items-center justify-between">
 										<div className="flex items-center gap-3">
 											<div className={`w-3 h-3 rounded-full ${
-												index === 0 ? 'bg-green-500' : index === 1 ? 'bg-blue-500' : 'bg-purple-500'
+												index === 0 ? 'bg-green-500' : index === 1 ? 'bg-blue-500' : 'bg-gray-500'
 											}`}></div>
 											<span className="font-medium text-slate-900">{plan.name}</span>
 										</div>
@@ -463,7 +463,7 @@ function AdminDashboard() {
 									) : (
 										<div className="flex justify-between items-center">
 											<div>
-												<p className="font-bold text-gray-900">{pkg.name}</p>
+												<p className="font-bold text-black">{pkg.name}</p>
 												<p className="text-sm text-gray-600">{pkg.tokens} tokens</p>
 											</div>
 											<div className="flex items-center gap-3">
@@ -508,7 +508,7 @@ function AdminDashboard() {
 									) : (
 										<div className="flex justify-between items-center">
 											<div>
-												<p className="font-bold text-gray-900">{cost.service_name_display}</p>
+												<p className="font-bold text-black">{cost.service_name_display}</p>
 												<p className="text-xs text-gray-500">{cost.service_name}</p>
 											</div>
 											<div className="flex items-center gap-3">
@@ -540,7 +540,7 @@ function AdminDashboard() {
 								const colorClasses = {
 									blue: 'bg-blue-100 text-blue-600',
 									green: 'bg-green-100 text-green-600',
-									purple: 'bg-purple-100 text-purple-600',
+									purple: 'bg-gray-100 text-black',
 									orange: 'bg-orange-100 text-orange-600',
 								}
 								return (
@@ -575,3 +575,6 @@ function AdminDashboard() {
 }
 
 export default AdminDashboard
+
+
+

@@ -26,7 +26,7 @@ const PaymentSuccess = () => {
 				</p>
 				<Link
 					to="/"
-					className="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition"
+					className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-black transition"
 				>
 					Return to Home
 				</Link>
@@ -36,3 +36,6 @@ const PaymentSuccess = () => {
 };
 
 export default PaymentSuccess;
+
+
+

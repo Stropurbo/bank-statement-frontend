@@ -21,8 +21,8 @@ function Features() {
 			icon: CheckCircle,
 			title: '99.9% Accuracy',
 			description: 'Advanced OCR technology delivers precise data extraction every time.',
-			gradient: 'from-purple-500 to-indigo-500',
-			bg: 'from-purple-50 to-indigo-50',
+			gradient: 'from-gray-800 to-gray-900',
+			bg: 'from-gray-50 to-gray-100',
 		},
 		{
 			icon: Globe,
@@ -38,13 +38,13 @@ function Features() {
 			<div className="container mx-auto px-6">
 				{/* Section Header */}
 				<div className="text-center mb-20">
-					<div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+					<div className="inline-flex items-center gap-2 bg-gray-100 text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
 						<Sparkles className="h-4 w-4" />
 						Why Choose SheetlyPro
 					</div>
-					<h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+					<h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
 						Powerful Features for
-						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">
+						<span className="block text-transparent bg-clip-text bg-gradient-to-r from-black to-gray-900">
 							Seamless Conversion
 						</span>
 					</h2>
@@ -75,10 +75,10 @@ function Features() {
 										<feature.icon className="h-8 w-8 text-white" />
 									</div>
 								</div>
-								<h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-gray-800">
+								<h3 className="text-xl font-bold text-black mb-4 group-hover:text-gray-800">
 									{feature.title}
 								</h3>
-								<p className="text-gray-600 leading-relaxed group-hover:text-gray-700">
+								<p className="text-gray-600 leading-relaxed group-hover:text-black">
 									{feature.description}
 								</p>
 							</div>
@@ -89,15 +89,15 @@ function Features() {
 				{/* Bottom Stats */}
 				<div className="grid md:grid-cols-3 gap-8 mt-20 text-center">
 					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-						<div className="text-3xl font-bold text-purple-600 mb-2">1000+</div>
+						<div className="text-3xl font-bold text-black mb-2">1000+</div>
 						<p className="text-gray-600">Documents Processed</p>
 					</div>
 					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-						<div className="text-3xl font-bold text-purple-600 mb-2">200+</div>
+						<div className="text-3xl font-bold text-black mb-2">200+</div>
 						<p className="text-gray-600">Happy Customers</p>
 					</div>
 					<div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-						<div className="text-3xl font-bold text-purple-600 mb-2">99%</div>
+						<div className="text-3xl font-bold text-black mb-2">99%</div>
 						<p className="text-gray-600">Accuracy Rate</p>
 					</div>
 				</div>
@@ -107,3 +107,6 @@ function Features() {
 }
 
 export default Features
+
+
+

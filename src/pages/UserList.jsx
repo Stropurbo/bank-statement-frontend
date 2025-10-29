@@ -251,7 +251,7 @@ const UserList = () => {
 			<title>Users List</title>
 			<div className="max-w-7xl mx-auto">
 				{/* Header */}
-				<div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-xl p-6 md:p-8 mb-6 text-white">
+				<div className="bg-gradient-to-r from-blue-600 to-gray-900 rounded-2xl shadow-xl p-6 md:p-8 mb-6 text-white">
 					<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 						<div>
 							<h1 className="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
@@ -309,31 +309,31 @@ const UserList = () => {
 						<table className="w-full">
 							<thead className="bg-gradient-to-r from-gray-50 to-gray-100">
 								<tr>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										#
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										User
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										Status
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										Role
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										Subscription
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										Plan
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										Payment Type
 									</th>
-									<th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-left text-xs font-bold text-black uppercase tracking-wider">
 										End Date
 									</th>
-									<th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase tracking-wider">
+									<th className="px-6 py-4 text-right text-xs font-bold text-black uppercase tracking-wider">
 										Actions
 									</th>
 								</tr>
@@ -362,13 +362,13 @@ const UserList = () => {
 											key={user.id}
 											className="hover:bg-blue-50/50 transition-all duration-200 border-b border-gray-100 last:border-0 group"
 										>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-black">
 												{indexOfFirstUser + index + 1}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap">
 												<div className="flex items-center">
 													<div className="flex-shrink-0 h-12 w-12">
-														<div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg ring-2 ring-blue-100 group-hover:ring-4 transition-all duration-300">
+														<div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-gray-900 flex items-center justify-center shadow-lg ring-2 ring-blue-100 group-hover:ring-4 transition-all duration-300">
 															<span className="text-lg font-bold text-white">
 																{(
 																	user.email ||
@@ -381,7 +381,7 @@ const UserList = () => {
 														</div>
 													</div>
 													<div className="ml-4">
-														<div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+														<div className="text-sm font-semibold text-black group-hover:text-blue-600 transition-colors">
 															{user.email || user.username}
 														</div>
 														{user.first_name && user.last_name && (
@@ -413,11 +413,11 @@ const UserList = () => {
 														: 'Inactive'}
 												</span>
 											</td>
-											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+											<td className="px-6 py-4 whitespace-nowrap text-sm text-black">
 												<span
 													className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg shadow-sm ${
 														user.is_staff
-															? 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white'
+															? 'bg-gradient-to-r from-purple-500 to-gray-900 text-white'
 															: 'bg-gradient-to-r from-gray-400 to-gray-500 text-white'
 													}`}
 												>
@@ -436,7 +436,7 @@ const UserList = () => {
 												</span>
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-												<span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg shadow-sm bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+												<span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg shadow-sm bg-gradient-to-r from-gray-800 to-black text-white">
 													{user.usersubscription?.plan?.name ||
 														user.subscription?.plan?.name ||
 														user.plan_name ||
@@ -448,7 +448,7 @@ const UserList = () => {
 													user.usersubscription?.manual_payment_type === 'monthly'
 														? 'bg-gradient-to-r from-green-500 to-teal-500 text-white'
 														: user.usersubscription?.manual_payment_type === 'annual'
-														? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
+														? 'bg-gradient-to-r from-blue-500 to-gray-900 text-white'
 														: 'bg-gray-200 text-gray-600'
 												}`}>
 													{user.usersubscription?.manual_payment_type === 'monthly'
@@ -518,7 +518,7 @@ const UserList = () => {
 								</div>
 								<div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
 									<div>
-										<p className="text-sm font-medium text-gray-700 bg-white px-4 py-2 rounded-lg shadow-sm">
+										<p className="text-sm font-medium text-black bg-white px-4 py-2 rounded-lg shadow-sm">
 											Showing{' '}
 											<span className="font-bold text-blue-600">
 												{indexOfFirstUser + 1}
@@ -542,7 +542,7 @@ const UserList = () => {
 											<button
 												onClick={() => paginate(currentPage - 1)}
 												disabled={currentPage === 1}
-												className="relative inline-flex items-center px-4 py-2 rounded-lg bg-white text-sm font-semibold text-gray-700 hover:bg-blue-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-gray-200"
+												className="relative inline-flex items-center px-4 py-2 rounded-lg bg-white text-sm font-semibold text-black hover:bg-blue-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-gray-200"
 											>
 												Previous
 											</button>
@@ -552,8 +552,8 @@ const UserList = () => {
 													onClick={() => paginate(index + 1)}
 													className={`relative inline-flex items-center px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300 ${
 														currentPage === index + 1
-															? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg scale-110'
-															: 'bg-white text-gray-700 hover:bg-blue-100 border-2 border-gray-200'
+															? 'bg-gradient-to-r from-blue-500 to-gray-900 text-white shadow-lg scale-110'
+															: 'bg-white text-black hover:bg-blue-100 border-2 border-gray-200'
 													}`}
 												>
 													{index + 1}
@@ -562,7 +562,7 @@ const UserList = () => {
 											<button
 												onClick={() => paginate(currentPage + 1)}
 												disabled={currentPage === totalPages}
-												className="relative inline-flex items-center px-4 py-2 rounded-lg bg-white text-sm font-semibold text-gray-700 hover:bg-blue-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-gray-200"
+												className="relative inline-flex items-center px-4 py-2 rounded-lg bg-white text-sm font-semibold text-black hover:bg-blue-500 hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-gray-200"
 											>
 												Next
 											</button>
@@ -577,7 +577,7 @@ const UserList = () => {
 					{editingUser && (
 						<div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 overflow-y-auto animate-fadeIn p-4">
 							<div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8 mx-4 transform transition-all duration-300 animate-slideUp">
-								<div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-t-2xl p-6 text-white">
+								<div className="bg-gradient-to-r from-blue-600 to-gray-900 rounded-t-2xl p-6 text-white">
 									<div className="flex justify-between items-center">
 										<h3 className="text-2xl font-bold flex items-center gap-3">
 											<div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
@@ -595,7 +595,7 @@ const UserList = () => {
 								</div>
 								<div className="p-6 space-y-5">
 									<div>
-										<label className="block text-sm font-bold text-gray-700 mb-2">
+										<label className="block text-sm font-bold text-black mb-2">
 											📧 Email
 										</label>
 										<input
@@ -612,7 +612,7 @@ const UserList = () => {
 									</div>
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 										<div>
-											<label className="block text-sm font-bold text-gray-700 mb-2">
+											<label className="block text-sm font-bold text-black mb-2">
 												👤 First Name
 											</label>
 											<input
@@ -628,7 +628,7 @@ const UserList = () => {
 											/>
 										</div>
 										<div>
-											<label className="block text-sm font-bold text-gray-700 mb-2">
+											<label className="block text-sm font-bold text-black mb-2">
 												👤 Last Name
 											</label>
 											<input
@@ -645,7 +645,7 @@ const UserList = () => {
 										</div>
 									</div>
 									<div>
-										<label className="block text-sm font-bold text-gray-700 mb-2">
+										<label className="block text-sm font-bold text-black mb-2">
 											💎 Subscription Plan
 										</label>
 										<select
@@ -670,7 +670,7 @@ const UserList = () => {
 										</select>
 									</div>
 									<div>
-										<label className="block text-sm font-bold text-gray-700 mb-2">
+										<label className="block text-sm font-bold text-black mb-2">
 											📅 Subscription End Date
 										</label>
 										<input
@@ -686,7 +686,7 @@ const UserList = () => {
 										/>
 									</div>
 									<div>
-										<label className="block text-sm font-bold text-gray-700 mb-2">
+										<label className="block text-sm font-bold text-black mb-2">
 											💳 Payment Type
 										</label>
 										<select
@@ -705,7 +705,7 @@ const UserList = () => {
 										</select>
 									</div>
 									<div className="bg-gradient-to-r from-gray-50 to-blue-50 p-4 rounded-xl space-y-3 border-2 border-blue-100">
-										<p className="text-sm font-bold text-gray-700 mb-3">⚙️ User Settings</p>
+										<p className="text-sm font-bold text-black mb-3">⚙️ User Settings</p>
 										<label className="flex items-center gap-3 cursor-pointer group">
 											<input
 												type="checkbox"
@@ -718,7 +718,7 @@ const UserList = () => {
 												}
 												className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500 cursor-pointer"
 											/>
-											<span className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 transition-colors">
+											<span className="text-sm font-semibold text-black group-hover:text-blue-600 transition-colors">
 												✅ Active User
 											</span>
 										</label>
@@ -732,9 +732,9 @@ const UserList = () => {
 														is_staff: e.target.checked,
 													})
 												}
-												className="w-5 h-5 text-purple-600 rounded focus:ring-2 focus:ring-purple-500 cursor-pointer"
+												className="w-5 h-5 text-black rounded focus:ring-2 focus:ring-gray-500 cursor-pointer"
 											/>
-											<span className="text-sm font-semibold text-gray-700 group-hover:text-purple-600 transition-colors">
+											<span className="text-sm font-semibold text-black group-hover:text-black transition-colors">
 												👑 Admin User
 											</span>
 										</label>
@@ -748,9 +748,9 @@ const UserList = () => {
 														has_subscription: e.target.checked,
 													})
 												}
-												className="w-5 h-5 text-indigo-600 rounded focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+												className="w-5 h-5 text-black rounded focus:ring-2 focus:ring-indigo-500 cursor-pointer"
 											/>
-											<span className="text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">
+											<span className="text-sm font-semibold text-black group-hover:text-black transition-colors">
 												💎 Has Subscription
 											</span>
 										</label>
@@ -759,13 +759,13 @@ const UserList = () => {
 								<div className="flex justify-end gap-3 p-6 bg-gray-50 rounded-b-2xl border-t-2 border-gray-100">
 									<button
 										onClick={closeEditModal}
-										className="px-6 py-3 text-gray-700 font-semibold bg-white border-2 border-gray-300 rounded-xl hover:bg-gray-100 transition-all duration-300 hover:shadow-lg"
+										className="px-6 py-3 text-black font-semibold bg-white border-2 border-gray-300 rounded-xl hover:bg-gray-100 transition-all duration-300 hover:shadow-lg"
 									>
 										Cancel
 									</button>
 									<button
 										onClick={updateUser}
-										className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+										className="px-6 py-3 bg-gradient-to-r from-blue-600 to-gray-900 text-white font-bold rounded-xl hover:from-gray-900 hover:to-black transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
 									>
 										Update User
 									</button>
@@ -780,3 +780,6 @@ const UserList = () => {
 }
 
 export default UserList
+
+
+

@@ -188,7 +188,7 @@ const UserDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 pt-20 pb-12">
+    <div className="min-h-screen bg-white pt-20 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
@@ -205,9 +205,9 @@ const UserDashboard = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-500 text-sm mb-1">Total Posts</p>
-                <p className="text-3xl font-bold text-purple-600">{stats.totalPosts}</p>
+                <p className="text-3xl font-bold text-black">{stats.totalPosts}</p>
               </div>
-              <FaChartLine className="text-4xl text-purple-500" />
+              <FaChartLine className="text-4xl text-black" />
             </div>
           </div>
 
@@ -250,13 +250,13 @@ const UserDashboard = () => {
             {/* Post Creation Card */}
             <div className="bg-white rounded-2xl shadow-xl p-8">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <FaPlus className="text-purple-600" />
+                <FaPlus className="text-black" />
                 Create New Post
               </h2>
 
               {/* Post Content */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-2">Post Content</label>
+                <label className="block text-black font-semibold mb-2">Post Content</label>
                 <textarea
                   value={postContent}
                   onChange={(e) => setPostContent(e.target.value)}
@@ -269,7 +269,7 @@ const UserDashboard = () => {
 
               {/* Media Upload */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-2">Media Files</label>
+                <label className="block text-black font-semibold mb-2">Media Files</label>
                 <label className="flex items-center justify-center gap-3 w-full px-4 py-6 border-2 border-dashed border-gray-300 rounded-xl hover:border-purple-500 cursor-pointer transition-all">
                   <FaImage className="text-2xl text-gray-400" />
                   <span className="text-gray-600">Click to upload images or videos</span>
@@ -306,7 +306,7 @@ const UserDashboard = () => {
 
               {/* Platform Selection */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-3">Select Platforms</label>
+                <label className="block text-black font-semibold mb-3">Select Platforms</label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   {platforms.map(platform => {
                     const Icon = platform.icon;
@@ -320,7 +320,7 @@ const UserDashboard = () => {
                         disabled={!isConnected}
                         className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
                           isSelected
-                            ? 'border-purple-500 bg-purple-50 scale-105'
+                            ? 'border-purple-500 bg-gray-50 scale-105'
                             : 'border-gray-200 hover:border-gray-300'
                         } ${!isConnected && 'opacity-50 cursor-not-allowed'}`}
                       >
@@ -337,7 +337,7 @@ const UserDashboard = () => {
 
               {/* Schedule Time */}
               <div className="mb-6">
-                <label className="block text-gray-700 font-semibold mb-3">Schedule Time</label>
+                <label className="block text-black font-semibold mb-3">Schedule Time</label>
 
                 <div className="flex items-center gap-4 mb-4">
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -345,9 +345,9 @@ const UserDashboard = () => {
                       type="checkbox"
                       checked={postNow}
                       onChange={(e) => setPostNow(e.target.checked)}
-                      className="w-4 h-4 text-purple-600 rounded focus:ring-purple-500"
+                      className="w-4 h-4 text-black rounded focus:ring-gray-500"
                     />
-                    <span className="text-gray-700">Post Now</span>
+                    <span className="text-black">Post Now</span>
                   </label>
                 </div>
 
@@ -400,7 +400,7 @@ const UserDashboard = () => {
               ) : (
                 <div className="space-y-4">
                   {scheduledPosts.map(post => (
-                    <div key={post.id} className="border-2 border-gray-200 rounded-xl p-6 hover:border-purple-300 transition-all">
+                    <div key={post.id} className="border-2 border-gray-200 rounded-xl p-6 hover:border-black transition-all">
                       <div className="flex justify-between items-start mb-3">
                         <p className="text-gray-800 flex-1">{post.content}</p>
                         <button
@@ -500,7 +500,7 @@ const UserDashboard = () => {
             {/* Quick Tips */}
             <div className="bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl shadow-xl p-6">
               <h3 className="text-lg font-bold mb-4 text-purple-900">💡 Quick Tips</h3>
-              <ul className="space-y-3 text-sm text-gray-700">
+              <ul className="space-y-3 text-sm text-black">
                 <li className="flex gap-2">
                   <span>✅</span>
                   <span>Connect your accounts first before scheduling posts</span>
@@ -527,3 +527,6 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
+
+
+
