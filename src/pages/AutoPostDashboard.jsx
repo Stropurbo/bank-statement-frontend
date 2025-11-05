@@ -245,12 +245,22 @@ function AutoPostDashboard() {
 			// Get Cloudinary URLs
 			const mediaUrls = mediaFiles.filter(m => m.url).map(m => m.url)
 
+			// Get selected accounts
+			const selectedAccounts = connectedAccounts.filter(acc => selectedPlatforms.includes(acc.platform))
+			
+			// Get Facebook page_id if Facebook is selected
+			const facebookAccount = selectedAccounts.find(acc => acc.platform === 'facebook')
+			console.log('Facebook Account:', facebookAccount)
+			const pageId = facebookAccount?.page_id || facebookAccount?.account_id
+			console.log('Page ID:', pageId)
+
 			const payload = {
 				content: postContent,
 				post_type: postType,
 				media_urls: mediaUrls,
 				platforms: selectedPlatforms,
-				social_account_ids: connectedAccounts.filter(acc => selectedPlatforms.includes(acc.platform)).map(acc => acc.id),
+				social_account_ids: selectedAccounts.map(acc => acc.id),
+				...(pageId && { page_id: pageId }),
 				post_immediately: postNow,
 				scheduled_for: postNow ? null : `${scheduledDate}T${scheduledTime}`,
 				video_title: videoTitle || '',
