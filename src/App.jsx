@@ -12,7 +12,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-neutral-900 flex flex-col">
       <Header />
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4">
+      <main className="flex-1 w-full max-w-4xl lg:max-w-6xl mx-auto px-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/topic/:slug" element={<Topic />} />

@@ -192,10 +192,10 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
   );
 }
 
-/** Compact card for the "Trending today" horizontal row. */
+/** Compact card for the "Trending today" row/grid. */
 export function TrendingCard({ item }) {
   return (
-    <div className="shrink-0 w-64 border border-neutral-200 rounded-xl p-4 bg-neutral-100 hover:border-neutral-400 transition-colors flex flex-col">
+    <div className="shrink-0 w-64 sm:w-72 lg:w-auto border border-neutral-200 rounded-xl p-4 bg-neutral-100 hover:border-neutral-400 transition-colors flex flex-col">
       <a href={`#uc-${item.id}`} className="font-semibold text-sm leading-snug text-black mb-1.5 line-clamp-2 hover:underline">
         {item.title}
       </a>

@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <header className="border-b border-neutral-200 bg-white sticky top-0 z-10">
-      <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div className="max-w-4xl lg:max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-black">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
