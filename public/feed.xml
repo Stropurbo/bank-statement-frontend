@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>SheetlyPro — AI Agent Use Cases</title>
+    <link>https://sheetlypro.com</link>
+    <description>Real things people are doing with AI agents, collected every day.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Oct 2026 06:27:14 GMT</lastBuildDate>
+    <item>
+      <title>Plan a multi-city trip within a budget</title>
+      <link>https://sheetlypro.com/use-case/budget-trip-plan</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/budget-trip-plan</guid>
+      <pubDate>Tue, 13 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A traveler gave an agent a budget and dates; it compared routes and stays across cities and built a day-by-day itinerary. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Chase unpaid invoices politely</title>
+      <link>https://sheetlypro.com/use-case/invoice-chasing</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/invoice-chasing</guid>
+      <pubDate>Mon, 12 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A freelancer set an agent to send escalating payment reminders, log every response, and flag accounts that go quiet for human follow-up. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Track subscriptions and cancel the unused ones</title>
+      <link>https://sheetlypro.com/use-case/subscription-cleanup</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/subscription-cleanup</guid>
+      <pubDate>Sun, 11 Oct 2026 12:00:00 GMT</pubDate>
+      <description>An agent scanned email receipts for recurring charges, built a list with renewal dates, and drafted cancellation messages for the ones the poster never used. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Monitor competitors' pricing pages for changes</title>
+      <link>https://sheetlypro.com/use-case/competitor-price-watch</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/competitor-price-watch</guid>
+      <pubDate>Sat, 10 Oct 2026 12:00:00 GMT</pubDate>
+      <description>An agent checks competitor pricing pages daily, diffs the content, and alerts the team only when something actually changed. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Generate integration tests from a bug report</title>
+      <link>https://sheetlypro.com/use-case/tests-from-bug-report</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/tests-from-bug-report</guid>
+      <pubDate>Fri, 09 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A developer had an agent reproduce a reported bug in a sandbox, then write regression tests covering the fix before the code change. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Negotiate a billing credit with an agent</title>
+      <link>https://sheetlypro.com/use-case/negotiate-billing-credit</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/negotiate-billing-credit</guid>
+      <pubDate>Thu, 08 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A poster had an AI agent handle a billing dispute with their internet provider. The agent drafted replies, tracked the support thread, and kept the tone polite until a credit was offered. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Onboard new hires with an agent buddy</title>
+      <link>https://sheetlypro.com/use-case/agent-onboarding-buddy</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/agent-onboarding-buddy</guid>
+      <pubDate>Wed, 07 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A startup gave new hires an agent that answers policy questions, schedules intro meetings, and tracks onboarding checklists. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Review pull requests overnight</title>
+      <link>https://sheetlypro.com/use-case/overnight-pr-review</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/overnight-pr-review</guid>
+      <pubDate>Tue, 06 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A small team set an agent to review incoming PRs after hours and leave comments by morning standup, with humans making final calls. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Turn a messy inbox into a morning brief</title>
+      <link>https://sheetlypro.com/use-case/morning-email-brief</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/morning-email-brief</guid>
+      <pubDate>Mon, 05 Oct 2026 12:00:00 GMT</pubDate>
+      <description>An agent triages overnight email into a short brief: what needs a reply, what is FYI, and draft responses for the routine ones. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Draft outreach emails from a prospect list</title>
+      <link>https://sheetlypro.com/use-case/personalized-outreach</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/personalized-outreach</guid>
+      <pubDate>Sun, 04 Oct 2026 12:00:00 GMT</pubDate>
+      <description>An agent researched each company on a prospect list and wrote personalized opening lines, leaving the core pitch for the human to approve. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Learn a language through daily agent conversations</title>
+      <link>https://sheetlypro.com/use-case/language-practice-agent</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/language-practice-agent</guid>
+      <pubDate>Sat, 03 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A poster practiced daily conversations with an agent that corrected mistakes and adjusted difficulty as they improved. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Plan a week of meals from what's in the fridge</title>
+      <link>https://sheetlypro.com/use-case/meal-plan-from-fridge</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/meal-plan-from-fridge</guid>
+      <pubDate>Fri, 02 Oct 2026 12:00:00 GMT</pubDate>
+      <description>From photos of the fridge and pantry, an agent generated a week of meal ideas plus a short grocery list for the gaps. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Storyboard a short film from a one-line idea</title>
+      <link>https://sheetlypro.com/use-case/film-storyboard</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/film-storyboard</guid>
+      <pubDate>Thu, 01 Oct 2026 12:00:00 GMT</pubDate>
+      <description>A filmmaker gave an agent a one-line premise and got back scene breakdowns and a shot list to refine with a human crew. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Troubleshoot home appliances from a photo</title>
+      <link>https://sheetlypro.com/use-case/appliance-troubleshoot</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/appliance-troubleshoot</guid>
+      <pubDate>Tue, 29 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A poster photographed a misbehaving appliance; the agent identified the model and walked through diagnostic steps before calling a technician. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Build a personal CRM from scattered contacts</title>
+      <link>https://sheetlypro.com/use-case/personal-crm-build</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/personal-crm-build</guid>
+      <pubDate>Mon, 28 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A poster had an agent merge contacts from email signatures, calendar invites, and exports into one clean list with context on each person. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Move recurring team skills to an agent workforce</title>
+      <link>https://sheetlypro.com/use-case/agent-workforce-skills</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/agent-workforce-skills</guid>
+      <pubDate>Sun, 27 Sep 2026 12:00:00 GMT</pubDate>
+      <description>The poster transferred recurring responsibilities to agents using a mix of cloud and local-machine work, keeping humans on exceptions. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Generate podcast show notes and chapters</title>
+      <link>https://sheetlypro.com/use-case/podcast-show-notes</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/podcast-show-notes</guid>
+      <pubDate>Sat, 26 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A podcaster has an agent transcribe each episode, then write summaries, chapter markers, and quote highlights for the show notes. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Point a computer-using bot at any repo</title>
+      <link>https://sheetlypro.com/use-case/computer-use-any-repo</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/computer-use-any-repo</guid>
+      <pubDate>Fri, 25 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A commenter says a computer-using agent can be told to work on any given repo through the browser, unlike repo-specific cloud agents. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Sell unused items online with an agent</title>
+      <link>https://sheetlypro.com/use-case/sell-unused-items</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/sell-unused-items</guid>
+      <pubDate>Wed, 23 Sep 2026 12:00:00 GMT</pubDate>
+      <description>The poster tested agent mode handling an online sale over about ten days, including message handling and price nudges, with little hands-on work. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Find unclaimed funds and start the claim</title>
+      <link>https://sheetlypro.com/use-case/unclaimed-funds-claim</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/unclaimed-funds-claim</guid>
+      <pubDate>Tue, 22 Sep 2026 12:00:00 GMT</pubDate>
+      <description>An agent searched state unclaimed-property databases for the poster's name, matched likely records, and pre-filled the claim paperwork for review. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Turn documentation into practice quizzes</title>
+      <link>https://sheetlypro.com/use-case/docs-to-quizzes</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/docs-to-quizzes</guid>
+      <pubDate>Mon, 21 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A team lead had an agent convert internal docs into quizzes so new engineers could test themselves during onboarding. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Find web design prospects with sales agents</title>
+      <link>https://sheetlypro.com/use-case/sales-prospect-agents</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/sales-prospect-agents</guid>
+      <pubDate>Sun, 20 Sep 2026 12:00:00 GMT</pubDate>
+      <description>The poster set up multiple agents that sell web services, including one that searches maps listings for businesses, checks for websites, and ranks them by priority. (Agents: Custom agent · Source: Reddit)</description>
+    </item>
+    <item>
+      <title>Auto-file receipts for expense reports</title>
+      <link>https://sheetlypro.com/use-case/receipt-auto-file</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/receipt-auto-file</guid>
+      <pubDate>Sat, 19 Sep 2026 12:00:00 GMT</pubDate>
+      <description>An agent watches a dedicated inbox folder, extracts vendor, date, and total from each receipt, and files them for month-end reports. (Agents: Custom agent · Source: X)</description>
+    </item>
+    <item>
+      <title>Summarize a textbook chapter into flashcards</title>
+      <link>https://sheetlypro.com/use-case/textbook-flashcards</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/textbook-flashcards</guid>
+      <pubDate>Fri, 18 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A student fed chapters to an agent that extracted key terms and definitions into flashcards for exam prep. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Repurpose one webinar into a month of posts</title>
+      <link>https://sheetlypro.com/use-case/webinar-repurpose</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/webinar-repurpose</guid>
+      <pubDate>Thu, 17 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A marketer had an agent cut a webinar recording into clips, write captions for each, and queue them across social channels. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Compare insurance quotes line by line</title>
+      <link>https://sheetlypro.com/use-case/insurance-quote-compare</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/insurance-quote-compare</guid>
+      <pubDate>Wed, 16 Sep 2026 12:00:00 GMT</pubDate>
+      <description>An agent extracted coverage terms from several quote PDFs into a comparison table so the poster could see real differences, not just prices. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Review last year's tax return for missed deductions</title>
+      <link>https://sheetlypro.com/use-case/tax-return-review</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/tax-return-review</guid>
+      <pubDate>Tue, 15 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A poster fed prior-year return PDFs to an agent, which flagged deduction categories worth asking a CPA about. The poster stressed a human still files. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Summarize every meeting into decisions and owners</title>
+      <link>https://sheetlypro.com/use-case/meeting-recaps</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/meeting-recaps</guid>
+      <pubDate>Mon, 14 Sep 2026 12:00:00 GMT</pubDate>
+      <description>An agent joins calls, then posts a recap with decisions made, owners assigned, and open questions nobody answered. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Migrate a codebase to a new framework version</title>
+      <link>https://sheetlypro.com/use-case/framework-migration</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/framework-migration</guid>
+      <pubDate>Sat, 12 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A poster ran agents module-by-module for a major version migration, with human review gates between each batch of changes. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+    <item>
+      <title>Design a brand kit from three adjectives</title>
+      <link>https://sheetlypro.com/use-case/brand-kit-iteration</link>
+      <guid isPermaLink="true">https://sheetlypro.com/use-case/brand-kit-iteration</guid>
+      <pubDate>Fri, 11 Sep 2026 12:00:00 GMT</pubDate>
+      <description>A founder iterated with an agent on color palettes and type pairings starting from three brand adjectives, then handed the direction to a designer. (Agents: Custom agent · Source: Substack)</description>
+    </item>
+  </channel>
+</rss>

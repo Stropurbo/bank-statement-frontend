@@ -48,7 +48,7 @@ function isNew(iso, maxDate) {
 function shareUrl(id) {
   const origin =
     typeof window !== "undefined" ? window.location.origin : "https://sheetlypro.com";
-  return `${origin}/#uc-${id}`;
+  return `${origin}/use-case/${id}`;
 }
 
 function Upvote({ count, active, onToggle, small, inline }) {
@@ -124,25 +124,45 @@ function ShareButton({ id }) {
 /** Full feed card for the "New use cases" list. */
 export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved }) {
   const [showPrompt, setShowPrompt] = useState(false);
+  const [shared, setShared] = useState(false);
   const isSaved = saved.includes(item.id);
+  const voted = !!votes[item.id];
   const agents = item.agents && item.agents.length ? item.agents : ["Custom agent"];
   const isNewItem = isNew(item.date, maxDate);
+
+  const share = async () => {
+    const url = shareUrl(item.id);
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = url;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setShared(true);
+    setTimeout(() => setShared(false), 1500);
+  };
 
   return (
     <article
       id={`uc-${item.id}`}
-      className="border border-neutral-200 rounded-xl p-5 bg-white hover:border-neutral-400 transition-colors scroll-mt-24"
+      className="border border-neutral-200 dark:border-neutral-800 rounded-xl p-5 bg-white dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors scroll-mt-24"
     >
       <div className="flex gap-3">
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-2.5 mb-1.5">
             <AgentBadge name={agents[0]} />
-            <h3 className="font-bold text-lg leading-snug text-black">
-              {item.title}
-            </h3>
+            <a href={`/use-case/${item.id}`}>
+              <h3 className="font-bold text-lg leading-snug text-black dark:text-white hover:underline">
+                {item.title}
+              </h3>
+            </a>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-neutral-500 mb-2 flex-wrap">
+          <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 mb-2 flex-wrap">
             {agents.map((a) => (
               <span key={a} className="inline-flex items-center gap-1.5">
                 <span
@@ -152,35 +172,62 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
               </span>
             ))}
             {isNewItem && (
-              <span className="text-blue-600 font-semibold">New</span>
+              <span className="text-blue-600 dark:text-blue-400 font-semibold">New</span>
             )}
             <span>·</span>
             <span>{item.source}</span>
             <span>·</span>
             <span>{fmtMonthYear(item.date)}</span>
+            {item.submittedBy && (
+              <>
+                <span>·</span>
+                <span>Submitted by {item.submittedBy}</span>
+              </>
+            )}
           </div>
 
-          <p className="text-neutral-600 text-sm leading-relaxed">{item.summary}</p>
+          <p className="text-neutral-600 dark:text-neutral-300 text-sm leading-relaxed">{item.summary}</p>
 
           {showPrompt && item.prompt && (
-            <div className="mt-3 bg-neutral-100 rounded-lg p-3 text-sm text-neutral-800">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-neutral-500 mb-1">
+            <div className="mt-3 bg-neutral-100 dark:bg-neutral-800 rounded-lg p-3 text-sm text-neutral-800 dark:text-neutral-200">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-neutral-500 dark:text-neutral-400 mb-1">
                 Try it
               </p>
               <p className="leading-relaxed">“{item.prompt}”</p>
             </div>
           )}
 
-          <div className="mt-3 flex items-center gap-2">
+          <div className="mt-3 flex items-center gap-2 flex-wrap">
+            <a
+              href={`/use-case/${item.id}`}
+              className="text-xs font-medium border border-neutral-200 dark:border-neutral-700 rounded-full px-3 py-1.5 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 transition-colors"
+            >
+              View details
+            </a>
             {item.prompt && (
               <button
                 onClick={() => setShowPrompt((s) => !s)}
-                className="text-xs font-medium border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 hover:text-black hover:border-neutral-400 transition-colors"
+                className="text-xs font-medium border border-neutral-200 dark:border-neutral-700 rounded-full px-3 py-1.5 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 transition-colors"
               >
                 {showPrompt ? "Hide prompt" : "View prompt"}
               </button>
             )}
-            <ShareButton id={item.id} />
+            <button
+              onClick={share}
+              className="text-xs font-medium border border-neutral-200 dark:border-neutral-700 rounded-full px-3 py-1.5 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 transition-colors"
+            >
+              {shared ? "Copied!" : "Share"}
+            </button>
+            <button
+              onClick={() => toggleVote(item.id)}
+              className={`text-xs font-medium rounded-full px-3 py-1.5 border transition-colors ${
+                voted
+                  ? "bg-black dark:bg-white text-white dark:text-black border-black dark:border-white"
+                  : "border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400"
+              }`}
+            >
+              ▲ I want this{voted ? " ✓" : ""}
+            </button>
           </div>
         </div>
 
@@ -195,11 +242,11 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
 /** Compact card for the "Trending today" row/grid. */
 export function TrendingCard({ item }) {
   return (
-    <div className="shrink-0 w-64 sm:w-72 lg:w-auto border border-neutral-200 rounded-xl p-4 bg-neutral-100 hover:border-neutral-400 transition-colors flex flex-col">
-      <a href={`#uc-${item.id}`} className="font-semibold text-sm leading-snug text-black mb-1.5 line-clamp-2 hover:underline">
+    <div className="shrink-0 w-64 sm:w-72 lg:w-auto border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 bg-neutral-100 dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors flex flex-col">
+      <a href={`/use-case/${item.id}`} className="font-semibold text-sm leading-snug text-black dark:text-white mb-1.5 line-clamp-2 hover:underline">
         {item.title}
       </a>
-      <p className="text-neutral-600 text-xs leading-relaxed line-clamp-3 mb-3 flex-1">
+      <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed line-clamp-3 mb-3 flex-1">
         {item.summary}
       </p>
       <div>

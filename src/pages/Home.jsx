@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import usecases from "../data/usecases.json";
 import { topics } from "../data/topics";
@@ -54,7 +54,19 @@ export default function Home() {
   const [selTopics, setSelTopics] = useState([]);
   const [sortMode, setSortMode] = useState("new");
   const [submitOpen, setSubmitOpen] = useState(false);
+  const searchRef = useRef(null);
   const { votes, saved, toggleVote, toggleSaved } = useEngagement();
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const sorted = useMemo(
     () => [...usecases].sort((a, b) => b.date.localeCompare(a.date)),
@@ -322,6 +334,7 @@ export default function Home() {
                 <path d="M21 21l-4.3-4.3" strokeLinecap="round" />
               </svg>
               <input
+                ref={searchRef}
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
