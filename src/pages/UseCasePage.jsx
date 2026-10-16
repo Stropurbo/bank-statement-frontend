@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import {
-  getUseCase,
-  relatedUseCases,
-  topicName,
-  agentSlug,
-  agentsOf,
-  fmtDate,
-} from "../lib/usecases";
+import { getUseCase, relatedUseCases, topicName, agentSlug, agentsOf, fmtDate } from "../lib/usecases";
+import { UseCaseLink } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
 import NotFound from "./NotFound";
 
@@ -173,16 +167,16 @@ export default function UseCasePage() {
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {related.map((r) => (
-              <Link
+              <UseCaseLink
                 key={r.id}
-                to={`/use-case/${r.id}`}
-                className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors"
+                id={r.id}
+                className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors block"
               >
                 <p className="font-semibold text-sm text-black leading-snug mb-1">
                   {r.title}
                 </p>
                 <p className="text-xs text-neutral-500 line-clamp-2">{r.summary}</p>
-              </Link>
+              </UseCaseLink>
             ))}
           </div>
         </section>

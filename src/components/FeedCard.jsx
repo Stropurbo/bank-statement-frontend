@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const AGENT_COLORS = [
   { bg: "bg-purple-500", dot: "bg-purple-500" },
@@ -43,6 +44,24 @@ function isNew(iso, maxDate) {
   const d = new Date(iso + "T00:00:00");
   const m = new Date(maxDate + "T00:00:00");
   return m - d <= 7 * 24 * 60 * 60 * 1000;
+}
+
+/** Link that opens a use case in a modal over the current page. */
+export function UseCaseLink({ id, className, children }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  return (
+    <a
+      href={`/use-case/${id}`}
+      className={className}
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(`/use-case/${id}`, { state: { background: location } });
+      }}
+    >
+      {children}
+    </a>
+  );
 }
 
 function shareUrl(id) {
@@ -155,11 +174,12 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
         <div className="flex-1 min-w-0">
           <div className="flex items-start gap-2.5 mb-1.5">
             <AgentBadge name={agents[0]} />
-            <a href={`/use-case/${item.id}`}>
-              <h3 className="font-bold text-lg leading-snug text-black dark:text-white hover:underline">
-                {item.title}
-              </h3>
-            </a>
+            <UseCaseLink
+              id={item.id}
+              className="font-bold text-lg leading-snug text-black dark:text-white hover:underline"
+            >
+              {item.title}
+            </UseCaseLink>
           </div>
 
           <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 mb-2 flex-wrap">
@@ -198,12 +218,12 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
           )}
 
           <div className="mt-3 flex items-center gap-2 flex-wrap">
-            <a
-              href={`/use-case/${item.id}`}
+            <UseCaseLink
+              id={item.id}
               className="text-xs font-medium border border-neutral-200 dark:border-neutral-700 rounded-full px-3 py-1.5 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:border-neutral-400 transition-colors"
             >
               View details
-            </a>
+            </UseCaseLink>
             {item.prompt && (
               <button
                 onClick={() => setShowPrompt((s) => !s)}
@@ -243,9 +263,9 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
 export function TrendingCard({ item }) {
   return (
     <div className="shrink-0 w-64 sm:w-72 lg:w-auto border border-neutral-200 dark:border-neutral-800 rounded-xl p-4 bg-neutral-100 dark:bg-neutral-900 hover:border-neutral-400 dark:hover:border-neutral-600 transition-colors flex flex-col">
-      <a href={`/use-case/${item.id}`} className="font-semibold text-sm leading-snug text-black dark:text-white mb-1.5 line-clamp-2 hover:underline">
+      <UseCaseLink id={item.id} className="font-semibold text-sm leading-snug text-black dark:text-white mb-1.5 line-clamp-2 hover:underline">
         {item.title}
-      </a>
+      </UseCaseLink>
       <p className="text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed line-clamp-3 mb-3 flex-1">
         {item.summary}
       </p>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { allUseCases, groupByDate, dayLabel, agentsOf, fmtDate } from "../lib/usecases";
+import { UseCaseLink } from "../components/FeedCard";
 import NewsletterSignup from "../components/NewsletterSignup";
 
 export default function NewPage() {
@@ -31,10 +32,10 @@ export default function NewPage() {
           </div>
           <div className="grid gap-3">
             {items.map((u) => (
-              <Link
+              <UseCaseLink
                 key={u.id}
-                to={`/use-case/${u.id}`}
-                className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors bg-white"
+                id={u.id}
+                className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors bg-white block"
               >
                 <div className="flex items-start gap-3">
                   <span className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-100 text-neutral-600 text-xs font-bold shrink-0">
@@ -60,7 +61,7 @@ export default function NewPage() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </UseCaseLink>
             ))}
           </div>
         </section>

@@ -5,6 +5,7 @@ import {
   topicName,
   fmtDate,
 } from "../lib/usecases";
+import { UseCaseLink } from "../components/FeedCard";
 import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
 
@@ -62,17 +63,17 @@ export default function AgentPage() {
 
       <div className="grid gap-3 mb-10">
         {items.map((u) => (
-          <Link
+          <UseCaseLink
             key={u.id}
-            to={`/use-case/${u.id}`}
-            className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors bg-white"
+            id={u.id}
+            className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors bg-white block"
           >
             <p className="font-semibold text-black leading-snug mb-1">{u.title}</p>
             <p className="text-sm text-neutral-600 line-clamp-2 mb-2">{u.summary}</p>
             <p className="text-xs text-neutral-500">
               {topicName(u.topic)} · {u.source} · {fmtDate(u.date)}
             </p>
-          </Link>
+          </UseCaseLink>
         ))}
       </div>
 
