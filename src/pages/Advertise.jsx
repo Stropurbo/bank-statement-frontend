@@ -39,10 +39,10 @@ export default function Advertise() {
         <p className="text-sm text-neutral-600">
           Email{" "}
           <a
-            href="mailto:sabbirdesk19c@gmail.com"
+            href="mailto:contact@sheetlypro.com"
             className="underline text-black"
           >
-            sabbirdesk19c@gmail.com
+            contact@sheetlypro.com
           </a>{" "}
           with your product link and preferred week. We reply within 48 hours.
         </p>

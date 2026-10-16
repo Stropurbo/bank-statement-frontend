@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-neutral-200 mt-16">
       <div className="max-w-4xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-neutral-500">
         <div>
-          <span className="font-semibold text-black">Agent Use Cases</span>
+          <span className="font-semibold text-black">SheetlyPro</span>
           <span className="mx-2">·</span>
           <span>What people actually do with AI agents.</span>
         </div>

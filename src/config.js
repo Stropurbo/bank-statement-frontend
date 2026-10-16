@@ -5,4 +5,4 @@ export const NEWSLETTER_ENDPOINT =
   "https://buttondown.com/api/emails/embed-subscribe/sheetlypro";
 
 export const SITE_URL = "https://sheetlypro.com";
-export const CONTACT_EMAIL = "sabbirdesk19c@gmail.com";
+export const CONTACT_EMAIL = "contact@sheetlypro.com";

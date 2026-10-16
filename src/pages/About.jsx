@@ -4,7 +4,7 @@ export default function About() {
       <h1 className="text-3xl font-bold tracking-tight text-black mb-4">About</h1>
       <div className="text-neutral-600 space-y-4 leading-relaxed">
         <p>
-          <strong className="text-black">Agent Use Cases</strong> is a curated
+          <strong className="text-black">SheetlyPro</strong> is a curated
           directory of what people actually do with AI agents — not demos, not
           hype, but real workflows people describe using in public posts.
         </p>
@@ -23,10 +23,10 @@ export default function About() {
         <p>
           Found a great use case we missed, or want something corrected? Email{" "}
           <a
-            href="mailto:sabbir.hasan.ca@gmail.com"
+            href="mailto:contact@sheetlypro.com"
             className="underline text-black"
           >
-            sabbir.hasan.ca@gmail.com
+            contact@sheetlypro.com
           </a>
           .
         </p>

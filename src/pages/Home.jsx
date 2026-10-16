@@ -64,7 +64,7 @@ export default function Home() {
             Get the daily 5
           </a>
           <a
-            href="mailto:sabbirdesk19c@gmail.com?subject=Use%20case%20submission"
+            href="mailto:contact@sheetlypro.com?subject=Use%20case%20submission"
             className="border border-neutral-300 text-black font-medium rounded-lg px-6 py-3 text-center text-sm hover:border-black transition-colors"
           >
             Submit a use case
