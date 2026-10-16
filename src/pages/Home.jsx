@@ -109,14 +109,10 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="pt-8 pb-5">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-black mb-3">
-          What people actually do with AI agents
+      <section className="pt-6 pb-5">
+        <h1 className="text-lg text-neutral-600 font-normal mb-5">
+          Real things people are doing with AI agents.
         </h1>
-        <p className="text-neutral-600 max-w-2xl mb-6">
-          A curated feed of real-world AI agent use cases — collected from
-          posts across the web, organized by topic, updated daily.
-        </p>
         <div className="grid grid-cols-2 gap-3">
           <a
             href="#newsletter"
