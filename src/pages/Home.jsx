@@ -424,7 +424,7 @@ export default function Home() {
             </p>
           )}
           <div className={`grid gap-4 ${filtering ? "" : "mt-4"}`}>
-            {feed.map((u) => (
+            {(searching || filtering ? feed : feed.slice(0, 5)).map((u) => (
               <FeedCard
                 key={u.id}
                 item={u}
@@ -441,6 +441,14 @@ export default function Home() {
               </p>
             )}
           </div>
+          {!searching && !filtering && feed.length > 5 && (
+            <Link
+              to="/new"
+              className="inline-block mt-4 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
+            >
+              See all, day by day ↗
+            </Link>
+          )}
         </section>
 
         {/* Numbered category sections (reference-style) */}
