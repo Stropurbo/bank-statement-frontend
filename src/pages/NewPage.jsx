@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { allUseCases, groupByDate, dayLabel, agentsOf, fmtDate } from "../lib/usecases";
 import { UseCaseLink } from "../components/FeedCard";
 import NewsletterSignup from "../components/NewsletterSignup";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function NewPage() {
+  usePageTitle("New");
   const todayIso = new Date().toISOString().slice(0, 10);
   const groups = groupByDate(allUseCases);
   const totalNew = allUseCases.length;

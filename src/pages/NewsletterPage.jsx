@@ -1,6 +1,8 @@
 import NewsletterSignup from "../components/NewsletterSignup";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function NewsletterPage() {
+  usePageTitle("Newsletter");
   return (
     <div className="py-10 max-w-2xl">
       <h1 className="text-3xl font-bold tracking-tight text-black mb-3 dark:text-white">

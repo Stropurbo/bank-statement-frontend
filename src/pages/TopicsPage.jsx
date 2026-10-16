@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import { topics } from "../data/topics";
 import { useCasesByTopic } from "../lib/usecases";
 import NewsletterSignup from "../components/NewsletterSignup";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function TopicsPage() {
+  usePageTitle("Topics");
   return (
     <div className="py-8 max-w-2xl">
       <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2 dark:text-neutral-400">

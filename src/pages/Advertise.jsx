@@ -1,6 +1,7 @@
 import { useState } from "react";
 import usecases from "../data/usecases.json";
 import Logo from "../components/Logo";
+import { usePageTitle } from "../lib/usePageTitle";
 
 const SPONSOR_BAR_URL = "https://bookloverreview.gumroad.com/l/xmshou";
 const BANNER_URL = "https://bookloverreview.gumroad.com/l/uulffc";
@@ -69,6 +70,7 @@ function EmailMockup() {
 }
 
 export default function Advertise() {
+  usePageTitle("Advertise");
   const count = usecases.length;
   const [selected, setSelected] = useState("banner");
 

@@ -5,10 +5,12 @@ import UseCaseCard from "../components/UseCaseCard";
 import TopicNav from "../components/TopicNav";
 import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function Topic() {
   const { slug } = useParams();
   const topic = topicBySlug(slug);
+  usePageTitle(topic ? topic.name : "Topic");
   if (!topic) return <NotFound />;
 
   const items = usecases

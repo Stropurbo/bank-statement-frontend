@@ -3,8 +3,10 @@ import { agentCounts, useCasesByAgent, topicName } from "../lib/usecases";
 import { agentDescription } from "../data/agentDescriptions";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { topics } from "../data/topics";
+import { usePageTitle } from "../lib/usePageTitle";
 
 export default function AgentsPage() {
+  usePageTitle("Agents");
   const agents = agentCounts();
 
   return (

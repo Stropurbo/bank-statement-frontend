@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getUseCase, relatedUseCases, topicName, agentSlug, agentsOf, fmtDate } from "../lib/usecases";
 import { UseCaseLink } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
+import { usePageTitle } from "../lib/usePageTitle";
 import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
 
@@ -37,6 +38,7 @@ export default function UseCasePage() {
   const item = getUseCase(id);
   const { votes, saved, toggleVote, toggleSaved } = useEngagement();
   const [shared, setShared] = useState(false);
+  usePageTitle(item ? item.title : null);
 
   if (!item) return <NotFound />;
 
