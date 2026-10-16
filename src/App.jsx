@@ -1,21 +1,28 @@
-import React from 'react'
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Topic from "./pages/Topic";
+import Advertise from "./pages/Advertise";
+import About from "./pages/About";
+import NewsletterPage from "./pages/NewsletterPage";
+import NotFound from "./pages/NotFound";
 
-function App() {
-
-
-
-	return (
-		<div className="min-h-screen bg-gray-100 flex flex-col items-center p-8">
-
-			<p className="text-gray-600 mb-6 text-center max-w-2xl">
-				SheetlyPro
-			</p>
-
-		</div>
-	)
+export default function App() {
+  return (
+    <div className="min-h-screen bg-white text-neutral-900 flex flex-col">
+      <Header />
+      <main className="flex-1 w-full max-w-4xl mx-auto px-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/topic/:slug" element={<Topic />} />
+          <Route path="/advertise" element={<Advertise />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/newsletter" element={<NewsletterPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
 }
-
-export default App
-
-
-
