@@ -11,19 +11,30 @@ const ITEMS = [
     name: "CalyFit",
     text: "AI calorie tracker — 4.6★ on Google Play.",
     url: "https://play.google.com/store/apps/details?id=com.sabbir.myboguraa",
+    icon: "🎃",
   },
   {
     name: "TV Cast",
     text: "Mirror your phone to any TV.",
     url: "https://play.google.com/store/apps/details?id=com.sabbir.tvcastscreenmirroring",
+    icon: "📺",
   },
   {
     name: "Your brand",
     text: "Reach AI-curious readers. Sponsor us →",
     url: "/advertise",
     internal: true,
+    icon: "✦",
   },
 ];
+
+function ItemIcon({ icon }) {
+  return (
+    <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[13px] leading-none shrink-0">
+      {icon}
+    </span>
+  );
+}
 
 export default function SponsorBar() {
   const [visible, setVisible] = useState(false);
@@ -65,12 +76,15 @@ export default function SponsorBar() {
                 <Link
                   key={i}
                   to={s.url}
-                  className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                  className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white inline-flex items-center gap-1.5"
                 >
-                  <span className="font-semibold text-black dark:text-white">
-                    {s.name}:
-                  </span>{" "}
-                  {s.text}
+                  <ItemIcon icon={s.icon} />
+                  <span>
+                    <span className="font-semibold text-black dark:text-white">
+                      {s.name}:
+                    </span>{" "}
+                    {s.text}
+                  </span>
                 </Link>
               ) : (
                 <a
@@ -78,12 +92,15 @@ export default function SponsorBar() {
                   href={s.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                  className="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white inline-flex items-center gap-1.5"
                 >
-                  <span className="font-semibold text-black dark:text-white">
-                    {s.name}:
-                  </span>{" "}
-                  {s.text}
+                  <ItemIcon icon={s.icon} />
+                  <span>
+                    <span className="font-semibold text-black dark:text-white">
+                      {s.name}:
+                    </span>{" "}
+                    {s.text}
+                  </span>
                 </a>
               )
             )}
