@@ -14,11 +14,12 @@ export default function NewsletterSignup({ compact = false }) {
       return;
     }
     try {
-      await fetch(NEWSLETTER_ENDPOINT, {
+      const res = await fetch(NEWSLETTER_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ email }),
       });
+      if (!res.ok) throw new Error("subscribe failed");
       setDone(true);
     } catch {
       setError("Something went wrong. Please try again.");
