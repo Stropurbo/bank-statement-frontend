@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import usecases from "../data/usecases.json";
 import { topics } from "../data/topics";
 import NewsletterSignup from "../components/NewsletterSignup";
+import SubmitModal from "../components/SubmitModal";
 import { FeedCard, TrendingCard } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
 
@@ -52,6 +53,7 @@ export default function Home() {
   const [selAgents, setSelAgents] = useState([]);
   const [selTopics, setSelTopics] = useState([]);
   const [sortMode, setSortMode] = useState("new");
+  const [submitOpen, setSubmitOpen] = useState(false);
   const { votes, saved, toggleVote, toggleSaved } = useEngagement();
 
   const sorted = useMemo(
@@ -141,12 +143,12 @@ export default function Home() {
               >
                 Get 5 use cases every morning
               </a>
-              <a
-                href="mailto:contact@sheetlypro.com?subject=Use%20case%20submission"
-                className="block border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors"
+              <button
+                onClick={() => setSubmitOpen(true)}
+                className="block w-full border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors"
               >
                 Submit a use case
-              </a>
+              </button>
             </div>
           </div>
 
@@ -249,12 +251,12 @@ export default function Home() {
             >
               Get the daily 5
             </a>
-            <a
-              href="mailto:contact@sheetlypro.com?subject=Use%20case%20submission"
+            <button
+              onClick={() => setSubmitOpen(true)}
               className="border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors"
             >
               Submit a use case
-            </a>
+            </button>
           </div>
         </section>
 
@@ -449,6 +451,8 @@ export default function Home() {
           </Link>
         </section>
       </div>
+
+      <SubmitModal open={submitOpen} onClose={() => setSubmitOpen(false)} />
     </div>
   );
 }
