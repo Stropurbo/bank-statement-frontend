@@ -26,7 +26,7 @@ export default function NewsletterSignup({ compact = false }) {
   }, []);
 
   return (
-    <div className={`bg-neutral-100 rounded-xl ${compact ? "p-5" : "p-6"}`}>
+    <div className={`bg-neutral-100 dark:bg-neutral-900 rounded-xl ${compact ? "p-5" : "p-6"}`}>
       <p className="font-semibold text-black mb-1 dark:text-white">
         5 agent use cases every morning
       </p>
