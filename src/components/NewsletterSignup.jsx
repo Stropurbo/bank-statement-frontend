@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { NEWSLETTER_ENDPOINT } from "../config";
+import { NEWSLETTER_ENDPOINT, NEWSLETTER_EMAIL_FIELD } from "../config";
 
 export default function NewsletterSignup({ compact = false }) {
   const [done, setDone] = useState(false);
 
   const submit = () => {
     // Plain HTML form POST (no fetch): avoids CORS issues with the
-    // Buttondown embed endpoint. Response goes to a hidden iframe.
+    // Kit subscribe endpoint. Response goes to a hidden iframe.
     if (!NEWSLETTER_ENDPOINT) {
       setDone(true);
       return;
@@ -37,13 +37,13 @@ export default function NewsletterSignup({ compact = false }) {
       <form
         action={NEWSLETTER_ENDPOINT || undefined}
         method="post"
-        target="bd-hidden-frame"
+        target="kit-hidden-frame"
         onSubmit={submit}
         className="flex flex-col sm:flex-row gap-2"
       >
         <input
           type="email"
-          name="email"
+          name={NEWSLETTER_EMAIL_FIELD || "email_address"}
           required
           placeholder="you@example.com"
           className="flex-1 border border-neutral-300 rounded-lg px-3 py-2 text-sm bg-white text-black focus:outline-none focus:border-black"
@@ -55,7 +55,7 @@ export default function NewsletterSignup({ compact = false }) {
           Subscribe
         </button>
         <iframe
-          name="bd-hidden-frame"
+          name="kit-hidden-frame"
           title="newsletter signup"
           style={{ display: "none" }}
         />
