@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import usecases from "../data/usecases.json";
 import { topics } from "../data/topics";
-import TopicNav from "../components/TopicNav";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { FeedCard, TrendingCard } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
@@ -34,6 +33,7 @@ export default function Home() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [selAgents, setSelAgents] = useState([]);
   const [selTopics, setSelTopics] = useState([]);
+  const [sortMode, setSortMode] = useState("new");
   const { votes, saved, toggleVote, toggleSaved } = useEngagement();
 
   const sorted = useMemo(
@@ -89,8 +89,13 @@ export default function Home() {
     if (selTopics.length) {
       items = items.filter((u) => selTopics.includes(u.topic));
     }
+    if (sortMode === "top") {
+      items = [...items].sort(
+        (a, b) => (saved.includes(b.id) ? 1 : 0) - (saved.includes(a.id) ? 1 : 0)
+      );
+    }
     return items;
-  }, [pill, newThisWeek, sorted, query, selAgents, selTopics]);
+  }, [pill, newThisWeek, sorted, query, selAgents, selTopics, sortMode, saved]);
 
   const searching = query.trim().length > 0;
   const activeFilters = selAgents.length + selTopics.length;
@@ -127,8 +132,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-
-      <TopicNav />
 
       {/* Filter */}
       <section className="mt-8">
@@ -177,7 +180,8 @@ export default function Home() {
 
       {/* Search + pills */}
       <section className="mt-8">
-        <div className="relative">
+        <div className="flex gap-2">
+          <div className="relative flex-1">
           <svg
             className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
             width="16"
@@ -200,6 +204,20 @@ export default function Home() {
           <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400 border border-neutral-200 rounded px-1.5 py-0.5 bg-white">
             ⌘K
           </kbd>
+          </div>
+          <div className="flex border border-neutral-200 rounded-lg p-0.5 bg-white shrink-0">
+            {["top", "new"].map((m) => (
+              <button
+                key={m}
+                onClick={() => setSortMode(m)}
+                className={`text-xs font-medium rounded-md px-3 py-2 capitalize transition-colors ${
+                  sortMode === m ? "bg-neutral-100 text-black" : "text-neutral-500 hover:text-black"
+                }`}
+              >
+                {m === "top" ? "Top" : "New"}
+              </button>
+            ))}
+          </div>
         </div>
         <div className="flex items-center gap-2 mt-3">
           <button
@@ -240,17 +258,20 @@ export default function Home() {
       )}
 
       {/* New use cases feed */}
-      <section className="mt-10">
+      <section className="mt-10 bg-indigo-50/60 rounded-2xl p-4 sm:p-6">
         <div className="flex items-baseline justify-between mb-1">
           <h2 className="text-xl font-bold text-black">
             {searching || filtering
               ? `${feed.length} result${feed.length === 1 ? "" : "s"}`
               : `${feed.length} new use case${feed.length === 1 ? "" : "s"}`}
           </h2>
-          <span className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400">
+          <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-600 font-mono">
             Latest finds
           </span>
         </div>
+        {!searching && !filtering && (
+          <p className="text-sm text-neutral-500 mb-4">Today · a few of them below</p>
+        )}
         {filtering && (
           <p className="text-xs text-neutral-500 mb-4">
             {activeFilters} filter{activeFilters === 1 ? "" : "s"} active —{" "}
