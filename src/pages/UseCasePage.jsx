@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getUseCase, relatedUseCases, topicName, agentSlug, agentsOf, fmtDate } from "../lib/usecases";
 import { UseCaseLink } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
+import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
 
 function CopyPrompt({ prompt }) {
@@ -181,6 +182,10 @@ export default function UseCasePage() {
           </div>
         </section>
       )}
+
+      <section className="mt-8">
+        <NewsletterSignup compact />
+      </section>
     </div>
   );
 }

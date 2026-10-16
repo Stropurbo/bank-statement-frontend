@@ -205,6 +205,17 @@ export default function Advertise() {
         Launch rates — honest note: traffic is growing from zero, priced
         accordingly. No fake stats, ever.
       </p>
+
+      <div className="mt-6 border border-neutral-200 dark:border-neutral-800 rounded-xl p-5 bg-neutral-50 dark:bg-neutral-900">
+        <p className="text-sm font-semibold text-black dark:text-white mb-1">
+          🚀 Launch pricing — locks forever
+        </p>
+        <p className="text-sm text-neutral-600 dark:text-neutral-300">
+          <span className="font-bold text-black dark:text-white">0 sold</span>{" "}
+          so far. The price goes up <strong>$25 after every sale</strong> — book
+          now and your rate never increases on renewal.
+        </p>
+      </div>
     </div>
   );
 }
