@@ -388,5 +388,70 @@
     "agents": [
       "Custom agent"
     ]
+  },
+  {
+    "date": "2026-10-15",
+    "id": "agents-run-x-account",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A team of AI agents ran Matthew Busel's X account for four days (Oct 10-14), posting 59 times and sending 329 replies. X's own analytics showed about 1.09 million impressions but only ~60 net new followers - reach was easy to rent with good replies, but giving people a reason to follow was the hard part.",
+    "title": "Let a team of agents run a social account for four days",
+    "topic": "marketing-sales",
+    "prompt": "Take over this X account for a week: find the biggest live conversations and reply with one new fact per reply, post one long-form original daily, and report impressions and follower counts from X analytics each morning.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-14",
+    "id": "red-team-agent-regression-tests",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A developer describes automated red-teaming for AI agents: run attacks many times, then judge the tool-call trace rather than the agent's reply text - a politely 'refusing' agent can still have executed a refund in the same turn. Every failure is saved as a regression test and replayed on every model, prompt, or tool change.",
+    "title": "Red-team agents with tool-call regression tests",
+    "topic": "coding-dev",
+    "prompt": "Attack this refund agent 20 times with social-engineering prompts, then assert on every tool call in the trace - refund amount and order ownership - not on what the agent said.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-14",
+    "id": "tender-portal-monitor",
+    "source": "Instagram",
+    "sourceUrl": "https://instagram.com",
+    "summary": "A creator built an n8n workflow that watches a tender portal, fetches new tenders, reads each tender page, downloads the documents, scores eligibility, then sends an email alert and logs matches to a Google Sheet. The demo showed it working end-to-end on a real tender listing.",
+    "title": "Monitor a tender portal with n8n",
+    "topic": "business-ops",
+    "prompt": "Check this tender portal for new tenders every day, read each tender page and its documents, judge whether we are eligible, and email me a shortlist with deadlines and fees plus a row in my tracking sheet.",
+    "agents": [
+      "n8n"
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "id": "notion-button-ai-tldr",
+    "source": "Threads",
+    "sourceUrl": "https://threads.com",
+    "summary": "Notion's demo shows database buttons that trigger AI agents: clicking a 'TLDR' button on a feature-request row asks Notion AI to summarize the linked page, and the answer appears right beside the row in the table view.",
+    "title": "Trigger an AI agent from a database button",
+    "topic": "productivity",
+    "prompt": "Give me a TLDR of this page: what is being requested, why it matters, and what decision is needed.",
+    "agents": [
+      "Notion AI"
+    ]
+  },
+  {
+    "date": "2026-10-11",
+    "id": "morning-market-digest",
+    "source": "Instagram",
+    "sourceUrl": "https://instagram.com",
+    "summary": "A creator demonstrated a scheduled-task agent pattern using a stock market example: the agent tracks Egyptian stocks, sector news, and specific sectors, then sends a summary email every morning at 9 AM before trading starts - framed as a 'digital employee' running on a schedule instead of one-off chats.",
+    "title": "Get a pre-market stock digest every morning",
+    "topic": "money-bills",
+    "prompt": "Track these stocks and sectors overnight and email me a one-page summary every morning at 9 AM before the market opens.",
+    "agents": [
+      "Custom agent"
+    ]
   }
 ]
