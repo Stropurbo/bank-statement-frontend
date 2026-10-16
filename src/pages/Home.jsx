@@ -218,6 +218,14 @@ export default function Home() {
                 />
               ))}
             </div>
+            {agentCounts.length > 10 && (
+              <Link
+                to="/agents"
+                className="block text-xs text-neutral-500 hover:text-black mt-1.5 dark:text-neutral-400 dark:hover:text-white"
+              >
+                Show all {agentCounts.length}
+              </Link>
+            )}
           </div>
 
           <div>
@@ -225,14 +233,22 @@ export default function Home() {
               <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                 Categories
               </p>
-              {selTopics.length > 0 && (
-                <button
-                  onClick={() => setSelTopics([])}
+              <div className="flex items-center gap-2">
+                {selTopics.length > 0 && (
+                  <button
+                    onClick={() => setSelTopics([])}
+                    className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
+                  >
+                    clear
+                  </button>
+                )}
+                <Link
+                  to="/agents"
                   className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
                 >
-                  clear
-                </button>
-              )}
+                  Topic pages
+                </Link>
+              </div>
             </div>
             <div className="flex flex-wrap gap-1.5">
               {topicCounts.map((t) => (
@@ -245,6 +261,27 @@ export default function Home() {
                 />
               ))}
             </div>
+          </div>
+
+          <div className="pt-2 text-xs text-neutral-500 leading-relaxed dark:text-neutral-400">
+            <p className="font-semibold text-neutral-700 dark:text-neutral-300">
+              {usecases.length} use cases
+            </p>
+            <p>Updated {new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</p>
+            <p className="mt-1">Sources: the open web, X, Reddit, Hacker News</p>
+            <p className="mt-2">
+              <Link to="/agents" className="hover:underline">Agents</Link>
+              {" · "}
+              <Link to="/agents" className="hover:underline">Topics</Link>
+              {" · "}
+              <Link to="/about" className="hover:underline">About</Link>
+              {" · "}
+              <a href="/feed.xml" className="hover:underline">RSS feed</a>
+              {" · "}
+              <Link to="/advertise" className="hover:underline">Sponsor</Link>
+              {" · "}
+              <Link to="/privacy" className="hover:underline">Privacy</Link>
+            </p>
           </div>
         </div>
       </aside>
