@@ -142,7 +142,7 @@ export default function Home() {
     <div className="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-10">
       {/* ============ Desktop sidebar ============ */}
       <aside className="hidden lg:block">
-        <div className="sticky top-24 space-y-7 pb-10">
+        <div className="sticky top-24 h-[calc(100vh-7rem)] overflow-y-auto space-y-7 pb-10 pr-2 [scrollbar-width:thin]">
           <div>
             <p className="text-sm text-neutral-600 leading-relaxed mb-5 dark:text-neutral-300">
               Real things people are doing with AI agents, collected every
