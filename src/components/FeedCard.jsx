@@ -21,26 +21,28 @@ function shareUrl(id) {
   return `${origin}/#uc-${id}`;
 }
 
-function Upvote({ count, active, onToggle, small }) {
+function Upvote({ count, active, onToggle, small, inline }) {
   return (
     <button
       onClick={onToggle}
       aria-label={active ? "Remove upvote" : "Upvote"}
-      className={`flex flex-col items-center gap-0.5 rounded-lg px-2 py-1 transition-colors ${
-        active ? "text-black" : "text-neutral-400 hover:text-black"
+      className={`${
+        inline ? "flex items-center gap-1.5" : "flex flex-col items-center gap-0.5"
+      } rounded-lg px-2 py-1 transition-colors ${
+        active ? "text-black" : "text-neutral-500 hover:text-black"
       }`}
     >
       <svg
-        width={small ? 14 : 18}
-        height={small ? 14 : 18}
+        width={small ? 16 : 22}
+        height={small ? 16 : 22}
         viewBox="0 0 24 24"
         fill={active ? "currentColor" : "none"}
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth={active ? 0 : 2}
       >
-        <path d="M12 19V5M5 12l7-7 7 7" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M12 5l9 14H3z" strokeLinejoin="round" />
       </svg>
-      <span className={`${small ? "text-[11px]" : "text-xs"} font-semibold`}>{count}</span>
+      <span className={`${small ? "text-sm" : "text-sm"} font-semibold`}>{count}</span>
     </button>
   );
 }
@@ -51,13 +53,14 @@ function Bookmark({ active, onToggle }) {
       onClick={onToggle}
       aria-label={active ? "Remove bookmark" : "Save"}
       title="Save"
-      className={`p-1.5 rounded-lg transition-colors ${
+      className={`flex flex-col items-center gap-0.5 p-1.5 rounded-lg transition-colors ${
         active ? "text-black" : "text-neutral-400 hover:text-black"
       }`}
     >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill={active ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill={active ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2">
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" strokeLinejoin="round" />
       </svg>
+      <span className="text-[10px] font-medium">Save</span>
     </button>
   );
 }
@@ -169,12 +172,13 @@ export function TrendingCard({ item, votes, toggleVote }) {
   const voted = !!votes[item.id];
   return (
     <div className="shrink-0 w-64 border border-neutral-200 rounded-xl p-4 bg-white hover:border-neutral-400 transition-colors flex flex-col">
-      <div className="flex items-center gap-1.5 text-xs text-neutral-500 mb-2">
+      <div className="mb-2 -ml-2">
         <Upvote
           count={voted ? 1 : 0}
           active={voted}
           onToggle={() => toggleVote(item.id)}
           small
+          inline
         />
       </div>
       <a href={`#uc-${item.id}`} className="font-semibold text-sm leading-snug text-black mb-1.5 line-clamp-2 hover:underline">
