@@ -1,247 +1,293 @@
 [
   {
-    "date": "2026-10-08",
-    "id": "negotiate-billing-credit",
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "flight-delay-compensation",
+    "prompt": "Here are my flight details and the airline's delay policy. Draft a compensation claim citing the applicable passenger-rights regulation.",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "A poster had an AI agent handle a billing dispute with their internet provider. The agent drafted replies, tracked the support thread, and kept the tone polite until a credit was offered.",
-    "title": "Negotiate a billing credit with an agent",
+    "summary": "A traveler fed an agent their delayed flight details and the airline's policy page; the agent drafted a compensation claim citing the right regulation and they received a $200 voucher.",
+    "title": "Claim airline compensation for a delayed flight",
     "topic": "money-bills",
-    "prompt": "Review my last three internet bills and these support chat logs, then draft a polite message asking for a credit on the disputed charge.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-09-22",
-    "id": "unclaimed-funds-claim",
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "rent-renewal-negotiation",
+    "prompt": "Find comparable rental listings in my neighborhood and draft a polite counter-offer to this proposed rent increase, citing the data.",
     "source": "X",
     "sourceUrl": "https://x.com",
-    "summary": "An agent searched state unclaimed-property databases for the poster's name, matched likely records, and pre-filled the claim paperwork for review.",
-    "title": "Find unclaimed funds and start the claim",
+    "summary": "A renter had an agent pull comparable listings in their neighborhood, then draft a counter-offer email when the landlord proposed a 12% increase. They settled at 4%.",
+    "title": "Negotiate a rent increase down with comparable listings",
     "topic": "money-bills",
-    "prompt": "Search my state's unclaimed property database for my name and list any records that look like a match, with links to the claim forms.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-09-15",
-    "id": "tax-return-review",
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "medical-bill-error-dispute",
+    "prompt": "Review this itemized medical bill for duplicate or incorrect charges, and draft a dispute letter referencing the exact line items.",
     "source": "Substack",
     "sourceUrl": "https://substack.com",
-    "summary": "A poster fed prior-year return PDFs to an agent, which flagged deduction categories worth asking a CPA about. The poster stressed a human still files.",
-    "title": "Review last year's tax return for missed deductions",
+    "summary": "A poster uploaded an itemized hospital bill; the agent spotted a duplicate lab charge and drafted a dispute letter with the exact line items referenced. The charge was removed.",
+    "title": "Spot errors on an itemized medical bill",
     "topic": "money-bills",
-    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only — don't file anything.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-10-11",
-    "id": "subscription-cleanup",
+    "agents": [
+      "Claude"
+    ],
+    "date": "2026-10-16",
+    "id": "talk-outline-from-notes",
+    "prompt": "Turn these scattered notes into a 20-minute talk outline with a clear narrative arc and bullet points for each slide.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A speaker dumped scattered notes and half-formed ideas into an agent, which returned a talk outline with a narrative arc and first-draft slides for each section.",
+    "title": "Turn scattered notes into a conference talk outline",
+    "topic": "productivity",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "drive-declutter-agent",
+    "prompt": "Scan this drive folder, propose a clean folder structure by project, and list duplicates I can safely delete.",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "An agent scanned email receipts for recurring charges, built a list with renewal dates, and drafted cancellation messages for the ones the poster never used.",
-    "title": "Track subscriptions and cancel the unused ones",
-    "topic": "money-bills",
-    "prompt": "Scan my email receipts from the last 12 months, list every recurring subscription with its renewal date, and flag the ones I never use.",
-    "agents": [
-      "Custom agent"
-    ]
+    "summary": "A poster pointed an agent at a chaotic shared drive; it proposed a folder structure, moved files by project, and flagged duplicates for deletion.",
+    "title": "Reorganize a chaotic cloud drive by project",
+    "topic": "productivity",
+    "votes": 0
   },
   {
-    "date": "2026-10-05",
-    "id": "morning-email-brief",
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "slack-standup-digest",
+    "prompt": "Read yesterday's team chat threads and write a morning digest: what shipped, what's blocked, and who asked for help.",
     "source": "X",
     "sourceUrl": "https://x.com",
-    "summary": "An agent triages overnight email into a short brief: what needs a reply, what is FYI, and draft responses for the routine ones.",
-    "title": "Turn a messy inbox into a morning brief",
+    "summary": "A manager set an agent to read the team's Slack threads each evening and post a morning digest: what shipped, what's blocked, and who needs help.",
+    "title": "Get a morning digest from team chat threads",
     "topic": "productivity",
-    "prompt": "Summarize my overnight emails into a short brief: what needs a reply, what's FYI, and draft responses for the routine ones.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-09-28",
-    "id": "personal-crm-build",
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "figma-to-react-components",
+    "prompt": "Convert this Figma design into React components with props, responsive layout, and the design tokens extracted into a theme file.",
+    "source": "Hacker News",
+    "sourceUrl": "https://news.ycombinator.com",
+    "summary": "A developer gave an agent a Figma file link and got back working React components with props, responsive behavior, and the design tokens extracted.",
+    "title": "Convert a Figma design into React components",
+    "topic": "coding-dev",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "dependency-vulnerability-audit",
+    "prompt": "Audit this package.json for known vulnerabilities and unmaintained packages, then suggest replacements with brief migration notes.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A poster had an agent audit their package.json, flag dependencies with known vulnerabilities, and suggest maintained replacements with migration notes.",
+    "title": "Audit dependencies for vulnerabilities and replacements",
+    "topic": "coding-dev",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Claude"
+    ],
+    "date": "2026-10-16",
+    "id": "api-docs-from-source",
+    "prompt": "Read this API source code and generate documentation for every endpoint with request and response examples.",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "A poster had an agent merge contacts from email signatures, calendar invites, and exports into one clean list with context on each person.",
-    "title": "Build a personal CRM from scattered contacts",
-    "topic": "productivity",
-    "prompt": "Merge these contact exports, calendar invites, and email signatures into one clean list with a one-line context note for each person.",
-    "agents": [
-      "Custom agent"
-    ]
+    "summary": "A backend developer pointed an agent at their API source code; it generated endpoint documentation with request/response examples that actually matched the code.",
+    "title": "Generate API docs straight from source code",
+    "topic": "coding-dev",
+    "votes": 0
   },
   {
-    "date": "2026-10-02",
-    "id": "meal-plan-from-fridge",
-    "source": "Substack",
-    "sourceUrl": "https://substack.com",
-    "summary": "From photos of the fridge and pantry, an agent generated a week of meal ideas plus a short grocery list for the gaps.",
-    "title": "Plan a week of meals from what's in the fridge",
-    "topic": "productivity",
-    "prompt": "Look at these fridge and pantry photos and suggest five dinners I can make this week, plus a short grocery list for what's missing.",
     "agents": [
       "Custom agent"
-    ]
+    ],
+    "date": "2026-10-16",
+    "id": "overnight-lead-scoring",
+    "prompt": "Score these new form submissions against my ideal-customer profile and return a ranked list with one-line reasons for each.",
+    "source": "Indie Hackers",
+    "sourceUrl": "https://www.indiehackers.com",
+    "summary": "A founder set an agent to score overnight form submissions against their ideal-customer profile, so mornings start with a ranked lead list instead of a raw inbox.",
+    "title": "Score inbound leads overnight against your ICP",
+    "topic": "marketing-sales",
+    "votes": 0
   },
   {
-    "date": "2026-09-19",
-    "id": "receipt-auto-file",
+    "agents": [
+      "ChatGPT"
+    ],
+    "date": "2026-10-16",
+    "id": "reviews-to-ad-copy",
+    "prompt": "Extract the most repeated phrases from these customer reviews and turn them into five ad copy variations in the customers' own words.",
     "source": "X",
     "sourceUrl": "https://x.com",
-    "summary": "An agent watches a dedicated inbox folder, extracts vendor, date, and total from each receipt, and files them for month-end reports.",
-    "title": "Auto-file receipts for expense reports",
-    "topic": "productivity",
-    "prompt": "For every receipt in this folder, extract the vendor, date, and total into a month-end expense table.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-09-25",
-    "id": "computer-use-any-repo",
-    "source": "Reddit",
-    "sourceUrl": "https://www.reddit.com",
-    "summary": "A commenter says a computer-using agent can be told to work on any given repo through the browser, unlike repo-specific cloud agents.",
-    "title": "Point a computer-using bot at any repo",
-    "topic": "coding-dev",
-    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives — before changing anything.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-10-09",
-    "id": "tests-from-bug-report",
-    "source": "X",
-    "sourceUrl": "https://x.com",
-    "summary": "A developer had an agent reproduce a reported bug in a sandbox, then write regression tests covering the fix before the code change.",
-    "title": "Generate integration tests from a bug report",
-    "topic": "coding-dev",
-    "prompt": "Reproduce the bug in this report inside a sandbox, then write regression tests covering the fix before you touch any code.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-09-12",
-    "id": "framework-migration",
-    "source": "Substack",
-    "sourceUrl": "https://substack.com",
-    "summary": "A poster ran agents module-by-module for a major version migration, with human review gates between each batch of changes.",
-    "title": "Migrate a codebase to a new framework version",
-    "topic": "coding-dev",
-    "prompt": "Migrate this module to the new framework version, then stop after each batch so I can review before you continue.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-10-06",
-    "id": "overnight-pr-review",
-    "source": "Reddit",
-    "sourceUrl": "https://www.reddit.com",
-    "summary": "A small team set an agent to review incoming PRs after hours and leave comments by morning standup, with humans making final calls.",
-    "title": "Review pull requests overnight",
-    "topic": "coding-dev",
-    "prompt": "Review the open pull requests in this repo and leave comments on each by morning. Flag issues, but don't merge anything.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-09-20",
-    "id": "sales-prospect-agents",
-    "source": "Reddit",
-    "sourceUrl": "https://www.reddit.com",
-    "summary": "The poster set up multiple agents that sell web services, including one that searches maps listings for businesses, checks for websites, and ranks them by priority.",
-    "title": "Find web design prospects with sales agents",
+    "summary": "A marketer fed an agent 200 customer reviews; it extracted the most repeated phrases and turned them into ad copy variations in the customers' own words.",
+    "title": "Turn customer reviews into ad copy variations",
     "topic": "marketing-sales",
-    "prompt": "Find local businesses in this category, check which ones lack a website, and rank them as web-design prospects.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-10-04",
-    "id": "personalized-outreach",
-    "source": "X",
-    "sourceUrl": "https://x.com",
-    "summary": "An agent researched each company on a prospect list and wrote personalized opening lines, leaving the core pitch for the human to approve.",
-    "title": "Draft outreach emails from a prospect list",
-    "topic": "marketing-sales",
-    "prompt": "Research each company on this list and write a personalized opening line for my outreach email. Keep my core pitch unchanged.",
     "agents": [
       "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-09-17",
-    "id": "webinar-repurpose",
-    "source": "Substack",
-    "sourceUrl": "https://substack.com",
-    "summary": "A marketer had an agent cut a webinar recording into clips, write captions for each, and queue them across social channels.",
-    "title": "Repurpose one webinar into a month of posts",
-    "topic": "marketing-sales",
-    "prompt": "Take this webinar recording and cut it into short clips with captions, one per key point, ready to post.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-10-10",
-    "id": "competitor-price-watch",
+    ],
+    "date": "2026-10-16",
+    "id": "handbook-from-policy-docs",
+    "prompt": "Combine these policy documents and announcements into a structured employee handbook draft I can send for legal review.",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "An agent checks competitor pricing pages daily, diffs the content, and alerts the team only when something actually changed.",
-    "title": "Monitor competitors' pricing pages for changes",
-    "topic": "marketing-sales",
-    "prompt": "Check these competitor pricing pages and alert me only when something actually changed since yesterday.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-09-27",
-    "id": "agent-workforce-skills",
-    "source": "Reddit",
-    "sourceUrl": "https://www.reddit.com",
-    "summary": "The poster transferred recurring responsibilities to agents using a mix of cloud and local-machine work, keeping humans on exceptions.",
-    "title": "Move recurring team skills to an agent workforce",
+    "summary": "A small-company founder dumped scattered policy docs and Slack announcements into an agent, which drafted a structured employee handbook for legal review.",
+    "title": "Draft an employee handbook from scattered policy docs",
     "topic": "business-ops",
-    "prompt": "Document this recurring task as a step-by-step checklist an agent could run weekly, with clear escalation rules for exceptions.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-10-07",
-    "id": "agent-onboarding-buddy",
-    "source": "X",
-    "sourceUrl": "https://x.com",
-    "summary": "A startup gave new hires an agent that answers policy questions, schedules intro meetings, and tracks onboarding checklists.",
-    "title": "Onboard new hires with an agent buddy",
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "applicant-rubric-screening",
+    "prompt": "Score these resumes against my hiring rubric and return a shortlist with scores and a supporting quote from each resume.",
+    "source": "Hacker News",
+    "sourceUrl": "https://news.ycombinator.com",
+    "summary": "A hiring manager gave an agent a scoring rubric and 80 resumes; it returned a shortlist with scores and evidence quotes, cutting first-pass screening to minutes.",
+    "title": "Screen resumes against a scoring rubric",
     "topic": "business-ops",
-    "prompt": "Act as my onboarding buddy: answer policy questions from this handbook and track my first-week checklist.",
-    "agents": [
-      "Custom agent"
-    ]
+    "votes": 0
   },
   {
-    "date": "2026-09-14",
-    "id": "meeting-recaps",
+    "agents": [
+      "ChatGPT"
+    ],
+    "date": "2026-10-16",
+    "id": "mock-interview-feedback",
+    "prompt": "Run a mock interview for this role: ask me one question at a time, then give feedback on my answer structure before the next question.",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "A job seeker ran mock interviews with an agent that asked role-specific questions, then gave feedback on answer structure and flagged weak spots to practice.",
+    "title": "Practice job interviews with instant feedback",
+    "topic": "learning",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Claude"
+    ],
+    "date": "2026-10-16",
+    "id": "research-paper-plain-brief",
+    "prompt": "Summarize this research paper in plain language: what was studied, what was found, and why it matters to a non-expert.",
     "source": "Substack",
     "sourceUrl": "https://substack.com",
-    "summary": "An agent joins calls, then posts a recap with decisions made, owners assigned, and open questions nobody answered.",
-    "title": "Summarize every meeting into decisions and owners",
-    "topic": "business-ops",
-    "prompt": "Read this meeting transcript and post a recap: decisions made, owners assigned, and open questions nobody answered.",
+    "summary": "A non-academic reader fed dense research papers to an agent, which returned plain-language briefs: what was studied, what was found, and why it matters.",
+    "title": "Get a plain-language brief of a research paper",
+    "topic": "learning",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "ChatGPT"
+    ],
+    "date": "2026-10-16",
+    "id": "bedtime-story-series",
+    "prompt": "Write a bedtime story about these two characters, keeping their names, personalities, and world consistent with the previous episodes.",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "A parent had an agent write a series of bedtime stories with the same two characters, keeping names, traits, and the world consistent across every episode.",
+    "title": "Write a bedtime story series with consistent characters",
+    "topic": "creative",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "startup-name-domain-hunt",
+    "prompt": "Brainstorm 30 names for this product, check .com domain availability for the best ten, and rank them by memorability.",
+    "source": "Indie Hackers",
+    "sourceUrl": "https://www.indiehackers.com",
+    "summary": "A founder gave an agent their product description; it brainstormed 50 names, checked domain availability for the shortlist, and ranked them by memorability.",
+    "title": "Brainstorm startup names and check domains",
+    "topic": "creative",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "lost-package-tracker",
+    "prompt": "This package shows as delivered but never arrived. Track it across carriers and draft an inquiry to the carrier and seller.",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "When a package showed as delivered but never arrived, a poster had an agent track it across carriers, draft the carrier inquiry, and escalate with the seller — the package was found at a neighbor's.",
+    "title": "Track down a lost package across carriers",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-16",
+    "id": "grocery-price-comparison",
+    "prompt": "Compare prices for this grocery list across these three stores and split the list to minimize my total bill.",
+    "source": "Threads",
+    "sourceUrl": "https://www.threads.com",
+    "summary": "A poster gave an agent their weekly grocery list; it compared prices across three nearby stores and split the list to minimize the total bill.",
+    "title": "Split your grocery list across the cheapest stores",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "ChatGPT"
+    ],
+    "date": "2026-10-16",
+    "id": "birthday-party-planner",
+    "prompt": "Plan a birthday party for 12 kids with this theme and budget: venue options, shopping list, and a day-of timeline.",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "A parent gave an agent a budget, headcount, and theme; it returned a full party plan with venue options, a shopping list, and a day-of timeline.",
+    "title": "Plan a kid's birthday party within a budget",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "date": "2026-10-13",
+    "id": "budget-trip-plan",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "A traveler gave an agent a budget and dates; it compared routes and stays across cities and built a day-by-day itinerary.",
+    "title": "Plan a multi-city trip within a budget",
+    "topic": "everyday-life",
+    "prompt": "Plan a five-day trip across these cities within my budget, comparing routes and stays, as a day-by-day itinerary.",
     "agents": [
       "Custom agent"
     ]
@@ -260,14 +306,105 @@
     ]
   },
   {
-    "date": "2026-09-21",
-    "id": "docs-to-quizzes",
+    "date": "2026-10-11",
+    "id": "subscription-cleanup",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "An agent scanned email receipts for recurring charges, built a list with renewal dates, and drafted cancellation messages for the ones the poster never used.",
+    "title": "Track subscriptions and cancel the unused ones",
+    "topic": "money-bills",
+    "prompt": "Scan my email receipts from the last 12 months, list every recurring subscription with its renewal date, and flag the ones I never use.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-10",
+    "id": "competitor-price-watch",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "An agent checks competitor pricing pages daily, diffs the content, and alerts the team only when something actually changed.",
+    "title": "Monitor competitors' pricing pages for changes",
+    "topic": "marketing-sales",
+    "prompt": "Check these competitor pricing pages and alert me only when something actually changed since yesterday.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-09",
+    "id": "tests-from-bug-report",
     "source": "X",
     "sourceUrl": "https://x.com",
-    "summary": "A team lead had an agent convert internal docs into quizzes so new engineers could test themselves during onboarding.",
-    "title": "Turn documentation into practice quizzes",
-    "topic": "learning",
-    "prompt": "Turn this documentation page into a 10-question quiz so I can test my understanding before moving on.",
+    "summary": "A developer had an agent reproduce a reported bug in a sandbox, then write regression tests covering the fix before the code change.",
+    "title": "Generate integration tests from a bug report",
+    "topic": "coding-dev",
+    "prompt": "Reproduce the bug in this report inside a sandbox, then write regression tests covering the fix before you touch any code.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-08",
+    "id": "negotiate-billing-credit",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "A poster had an AI agent handle a billing dispute with their internet provider. The agent drafted replies, tracked the support thread, and kept the tone polite until a credit was offered.",
+    "title": "Negotiate a billing credit with an agent",
+    "topic": "money-bills",
+    "prompt": "Review my last three internet bills and these support chat logs, then draft a polite message asking for a credit on the disputed charge.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-07",
+    "id": "agent-onboarding-buddy",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "A startup gave new hires an agent that answers policy questions, schedules intro meetings, and tracks onboarding checklists.",
+    "title": "Onboard new hires with an agent buddy",
+    "topic": "business-ops",
+    "prompt": "Act as my onboarding buddy: answer policy questions from this handbook and track my first-week checklist.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "id": "overnight-pr-review",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "A small team set an agent to review incoming PRs after hours and leave comments by morning standup, with humans making final calls.",
+    "title": "Review pull requests overnight",
+    "topic": "coding-dev",
+    "prompt": "Review the open pull requests in this repo and leave comments on each by morning. Flag issues, but don't merge anything.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-05",
+    "id": "morning-email-brief",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "An agent triages overnight email into a short brief: what needs a reply, what is FYI, and draft responses for the routine ones.",
+    "title": "Turn a messy inbox into a morning brief",
+    "topic": "productivity",
+    "prompt": "Summarize my overnight emails into a short brief: what needs a reply, what's FYI, and draft responses for the routine ones.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-10-04",
+    "id": "personalized-outreach",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "An agent researched each company on a prospect list and wrote personalized opening lines, leaving the core pitch for the human to approve.",
+    "title": "Draft outreach emails from a prospect list",
+    "topic": "marketing-sales",
+    "prompt": "Research each company on this list and write a personalized opening line for my outreach email. Keep my core pitch unchanged.",
     "agents": [
       "Custom agent"
     ]
@@ -286,14 +423,14 @@
     ]
   },
   {
-    "date": "2026-09-18",
-    "id": "textbook-flashcards",
+    "date": "2026-10-02",
+    "id": "meal-plan-from-fridge",
     "source": "Substack",
     "sourceUrl": "https://substack.com",
-    "summary": "A student fed chapters to an agent that extracted key terms and definitions into flashcards for exam prep.",
-    "title": "Summarize a textbook chapter into flashcards",
-    "topic": "learning",
-    "prompt": "Extract the key terms and definitions from this chapter into flashcards I can use for exam review.",
+    "summary": "From photos of the fridge and pantry, an agent generated a week of meal ideas plus a short grocery list for the gaps.",
+    "title": "Plan a week of meals from what's in the fridge",
+    "topic": "productivity",
+    "prompt": "Look at these fridge and pantry photos and suggest five dinners I can make this week, plus a short grocery list for what's missing.",
     "agents": [
       "Custom agent"
     ]
@@ -312,6 +449,45 @@
     ]
   },
   {
+    "date": "2026-09-29",
+    "id": "appliance-troubleshoot",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "A poster photographed a misbehaving appliance; the agent identified the model and walked through diagnostic steps before calling a technician.",
+    "title": "Troubleshoot home appliances from a photo",
+    "topic": "everyday-life",
+    "prompt": "Identify this appliance from the photo and walk me through basic diagnostic steps before I call a technician.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-28",
+    "id": "personal-crm-build",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "A poster had an agent merge contacts from email signatures, calendar invites, and exports into one clean list with context on each person.",
+    "title": "Build a personal CRM from scattered contacts",
+    "topic": "productivity",
+    "prompt": "Merge these contact exports, calendar invites, and email signatures into one clean list with a one-line context note for each person.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-27",
+    "id": "agent-workforce-skills",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "The poster transferred recurring responsibilities to agents using a mix of cloud and local-machine work, keeping humans on exceptions.",
+    "title": "Move recurring team skills to an agent workforce",
+    "topic": "business-ops",
+    "prompt": "Document this recurring task as a step-by-step checklist an agent could run weekly, with clear escalation rules for exceptions.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
     "date": "2026-09-26",
     "id": "podcast-show-notes",
     "source": "Reddit",
@@ -325,14 +501,14 @@
     ]
   },
   {
-    "date": "2026-09-11",
-    "id": "brand-kit-iteration",
-    "source": "Substack",
-    "sourceUrl": "https://substack.com",
-    "summary": "A founder iterated with an agent on color palettes and type pairings starting from three brand adjectives, then handed the direction to a designer.",
-    "title": "Design a brand kit from three adjectives",
-    "topic": "creative",
-    "prompt": "Given these three brand adjectives, suggest three color palettes and font pairings I can review with a designer.",
+    "date": "2026-09-25",
+    "id": "computer-use-any-repo",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "summary": "A commenter says a computer-using agent can be told to work on any given repo through the browser, unlike repo-specific cloud agents.",
+    "title": "Point a computer-using bot at any repo",
+    "topic": "coding-dev",
+    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives — before changing anything.",
     "agents": [
       "Custom agent"
     ]
@@ -351,27 +527,79 @@
     ]
   },
   {
-    "date": "2026-10-13",
-    "id": "budget-trip-plan",
+    "date": "2026-09-22",
+    "id": "unclaimed-funds-claim",
     "source": "X",
     "sourceUrl": "https://x.com",
-    "summary": "A traveler gave an agent a budget and dates; it compared routes and stays across cities and built a day-by-day itinerary.",
-    "title": "Plan a multi-city trip within a budget",
-    "topic": "everyday-life",
-    "prompt": "Plan a five-day trip across these cities within my budget, comparing routes and stays, as a day-by-day itinerary.",
+    "summary": "An agent searched state unclaimed-property databases for the poster's name, matched likely records, and pre-filled the claim paperwork for review.",
+    "title": "Find unclaimed funds and start the claim",
+    "topic": "money-bills",
+    "prompt": "Search my state's unclaimed property database for my name and list any records that look like a match, with links to the claim forms.",
     "agents": [
       "Custom agent"
     ]
   },
   {
-    "date": "2026-09-29",
-    "id": "appliance-troubleshoot",
+    "date": "2026-09-21",
+    "id": "docs-to-quizzes",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "A team lead had an agent convert internal docs into quizzes so new engineers could test themselves during onboarding.",
+    "title": "Turn documentation into practice quizzes",
+    "topic": "learning",
+    "prompt": "Turn this documentation page into a 10-question quiz so I can test my understanding before moving on.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-20",
+    "id": "sales-prospect-agents",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "A poster photographed a misbehaving appliance; the agent identified the model and walked through diagnostic steps before calling a technician.",
-    "title": "Troubleshoot home appliances from a photo",
-    "topic": "everyday-life",
-    "prompt": "Identify this appliance from the photo and walk me through basic diagnostic steps before I call a technician.",
+    "summary": "The poster set up multiple agents that sell web services, including one that searches maps listings for businesses, checks for websites, and ranks them by priority.",
+    "title": "Find web design prospects with sales agents",
+    "topic": "marketing-sales",
+    "prompt": "Find local businesses in this category, check which ones lack a website, and rank them as web-design prospects.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-19",
+    "id": "receipt-auto-file",
+    "source": "X",
+    "sourceUrl": "https://x.com",
+    "summary": "An agent watches a dedicated inbox folder, extracts vendor, date, and total from each receipt, and files them for month-end reports.",
+    "title": "Auto-file receipts for expense reports",
+    "topic": "productivity",
+    "prompt": "For every receipt in this folder, extract the vendor, date, and total into a month-end expense table.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-18",
+    "id": "textbook-flashcards",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "summary": "A student fed chapters to an agent that extracted key terms and definitions into flashcards for exam prep.",
+    "title": "Summarize a textbook chapter into flashcards",
+    "topic": "learning",
+    "prompt": "Extract the key terms and definitions from this chapter into flashcards I can use for exam review.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-17",
+    "id": "webinar-repurpose",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "summary": "A marketer had an agent cut a webinar recording into clips, write captions for each, and queue them across social channels.",
+    "title": "Repurpose one webinar into a month of posts",
+    "topic": "marketing-sales",
+    "prompt": "Take this webinar recording and cut it into short clips with captions, one per key point, ready to post.",
     "agents": [
       "Custom agent"
     ]
@@ -390,66 +618,53 @@
     ]
   },
   {
-    "date": "2026-10-15",
-    "id": "agents-run-x-account",
-    "source": "dev.to",
-    "sourceUrl": "https://dev.to",
-    "summary": "A team of AI agents ran Matthew Busel's X account for four days (Oct 10-14), posting 59 times and sending 329 replies. X's own analytics showed about 1.09 million impressions but only ~60 net new followers - reach was easy to rent with good replies, but giving people a reason to follow was the hard part.",
-    "title": "Let a team of agents run a social account for four days",
-    "topic": "marketing-sales",
-    "prompt": "Take over this X account for a week: find the biggest live conversations and reply with one new fact per reply, post one long-form original daily, and report impressions and follower counts from X analytics each morning.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-10-14",
-    "id": "red-team-agent-regression-tests",
-    "source": "dev.to",
-    "sourceUrl": "https://dev.to",
-    "summary": "A developer describes automated red-teaming for AI agents: run attacks many times, then judge the tool-call trace rather than the agent's reply text - a politely 'refusing' agent can still have executed a refund in the same turn. Every failure is saved as a regression test and replayed on every model, prompt, or tool change.",
-    "title": "Red-team agents with tool-call regression tests",
-    "topic": "coding-dev",
-    "prompt": "Attack this refund agent 20 times with social-engineering prompts, then assert on every tool call in the trace - refund amount and order ownership - not on what the agent said.",
-    "agents": [
-      "Custom agent"
-    ]
-  },
-  {
-    "date": "2026-10-14",
-    "id": "tender-portal-monitor",
-    "source": "Instagram",
-    "sourceUrl": "https://instagram.com",
-    "summary": "A creator built an n8n workflow that watches a tender portal, fetches new tenders, reads each tender page, downloads the documents, scores eligibility, then sends an email alert and logs matches to a Google Sheet. The demo showed it working end-to-end on a real tender listing.",
-    "title": "Monitor a tender portal with n8n",
-    "topic": "business-ops",
-    "prompt": "Check this tender portal for new tenders every day, read each tender page and its documents, judge whether we are eligible, and email me a shortlist with deadlines and fees plus a row in my tracking sheet.",
-    "agents": [
-      "n8n"
-    ]
-  },
-  {
-    "date": "2026-10-15",
-    "id": "notion-button-ai-tldr",
-    "source": "Threads",
-    "sourceUrl": "https://threads.com",
-    "summary": "Notion's demo shows database buttons that trigger AI agents: clicking a 'TLDR' button on a feature-request row asks Notion AI to summarize the linked page, and the answer appears right beside the row in the table view.",
-    "title": "Trigger an AI agent from a database button",
-    "topic": "productivity",
-    "prompt": "Give me a TLDR of this page: what is being requested, why it matters, and what decision is needed.",
-    "agents": [
-      "Notion AI"
-    ]
-  },
-  {
-    "date": "2026-10-11",
-    "id": "morning-market-digest",
-    "source": "Instagram",
-    "sourceUrl": "https://instagram.com",
-    "summary": "A creator demonstrated a scheduled-task agent pattern using a stock market example: the agent tracks Egyptian stocks, sector news, and specific sectors, then sends a summary email every morning at 9 AM before trading starts - framed as a 'digital employee' running on a schedule instead of one-off chats.",
-    "title": "Get a pre-market stock digest every morning",
+    "date": "2026-09-15",
+    "id": "tax-return-review",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "summary": "A poster fed prior-year return PDFs to an agent, which flagged deduction categories worth asking a CPA about. The poster stressed a human still files.",
+    "title": "Review last year's tax return for missed deductions",
     "topic": "money-bills",
-    "prompt": "Track these stocks and sectors overnight and email me a one-page summary every morning at 9 AM before the market opens.",
+    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only — don't file anything.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-14",
+    "id": "meeting-recaps",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "summary": "An agent joins calls, then posts a recap with decisions made, owners assigned, and open questions nobody answered.",
+    "title": "Summarize every meeting into decisions and owners",
+    "topic": "business-ops",
+    "prompt": "Read this meeting transcript and post a recap: decisions made, owners assigned, and open questions nobody answered.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-12",
+    "id": "framework-migration",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "summary": "A poster ran agents module-by-module for a major version migration, with human review gates between each batch of changes.",
+    "title": "Migrate a codebase to a new framework version",
+    "topic": "coding-dev",
+    "prompt": "Migrate this module to the new framework version, then stop after each batch so I can review before you continue.",
+    "agents": [
+      "Custom agent"
+    ]
+  },
+  {
+    "date": "2026-09-11",
+    "id": "brand-kit-iteration",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "summary": "A founder iterated with an agent on color palettes and type pairings starting from three brand adjectives, then handed the direction to a designer.",
+    "title": "Design a brand kit from three adjectives",
+    "topic": "creative",
+    "prompt": "Given these three brand adjectives, suggest three color palettes and font pairings I can review with a designer.",
     "agents": [
       "Custom agent"
     ]
