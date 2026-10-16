@@ -1,5 +1,6 @@
 import { useState } from "react";
 import usecases from "../data/usecases.json";
+import Logo from "../components/Logo";
 
 const SPONSOR_BAR_URL = "https://bookloverreview.gumroad.com/l/xmshou";
 const BANNER_URL = "https://bookloverreview.gumroad.com/l/uulffc";
@@ -14,14 +15,14 @@ function BarMockup() {
           </span>
           <div className="flex-1 overflow-hidden">
             <div className="flex gap-6 whitespace-nowrap py-2 px-3">
-              <span className="text-xs text-neutral-600 dark:text-neutral-400">
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-md bg-neutral-100 dark:bg-neutral-800 text-[13px] mr-1.5 align-middle">
-                  ✦
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 inline-flex items-center gap-1.5">
+                <Logo size={20} />
+                <span>
+                  <span className="font-semibold text-black dark:text-white">
+                    Your brand:
+                  </span>{" "}
+                  your pitch, about 40 characters
                 </span>
-                <span className="font-semibold text-black dark:text-white">
-                  Your brand:
-                </span>{" "}
-                your pitch, about 40 characters
               </span>
             </div>
           </div>
@@ -45,11 +46,14 @@ function EmailMockup() {
           <p className="text-[11px] uppercase tracking-widest text-neutral-400 mb-1">
             Sponsored by
           </p>
-          <p className="text-sm text-neutral-700 dark:text-neutral-300">
-            <span className="font-semibold text-black dark:text-white">
-              Your brand:
-            </span>{" "}
-            your pitch, about 40 characters →
+          <p className="text-sm text-neutral-700 dark:text-neutral-300 inline-flex items-center gap-1.5">
+            <Logo size={20} />
+            <span>
+              <span className="font-semibold text-black dark:text-white">
+                Your brand:
+              </span>{" "}
+              your pitch, about 40 characters →
+            </span>
           </p>
         </div>
         <p className="text-xs text-neutral-400">
