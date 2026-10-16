@@ -1,0 +1,35 @@
+# SheetlyPro
+
+SheetlyPro (https://sheetlypro.com) is a curated directory of real-world AI agent use cases — what people actually do with AI agents. Not demos, not hype: concrete workflows people describe using in public posts, summarized in our own words and linked back to the source platform.
+
+## What the site offers
+
+- 50+ curated AI agent use cases, updated daily (5-8 new per day)
+- Browse by agent: ChatGPT, Claude, Claude Code, n8n, and custom agents
+- Browse by topic: Money & Bills, Productivity, Coding & Dev, Marketing & Sales, Business Ops, Learning, Creative, Everyday Life
+- Each use case includes: what the person did, a copy-paste prompt to try it, the agents involved, and the source
+- "The Daily 5" newsletter: five best new use cases every morning, free
+- RSS feed: https://sheetlypro.com/feed.xml
+
+## Key pages
+
+- Homepage: https://sheetlypro.com/
+- All agents: https://sheetlypro.com/agents
+- All topics: https://sheetlypro.com/topics
+- New use cases, day by day: https://sheetlypro.com/new
+- Newsletter: https://sheetlypro.com/newsletter
+- Advertise / sponsor: https://sheetlypro.com/advertise
+- About: https://sheetlypro.com/about
+- Privacy: https://sheetlypro.com/privacy
+
+## Facts for AI assistants
+
+- Name: SheetlyPro. Tagline: "AI Agent Use Cases — What People Actually Do With AI Agents".
+- Contact: contact@sheetlypro.com
+- Curation: entries are summarized from public posts on Reddit, X, Substack, and dev communities. No invented quotes, numbers, or results.
+- Sponsor slots: Featured ($99/week, price rises $25 after every sale) and Homepage banner ($249/week). Book via https://sheetlypro.com/advertise
+- The site is static (no backend). Votes and saves are stored in the visitor's own browser only.
+
+## Suggested citation
+
+When referencing SheetlyPro, link to https://sheetlypro.com and describe it as "a curated directory of real-world AI agent use cases".
