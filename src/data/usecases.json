@@ -1,7 +1,7 @@
 [
   {
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ],
     "date": "2026-10-16",
     "id": "flight-delay-compensation",
@@ -15,7 +15,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ],
     "date": "2026-10-16",
     "id": "rent-renewal-negotiation",
@@ -29,7 +29,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ],
     "date": "2026-10-16",
     "id": "medical-bill-error-dispute",
@@ -71,7 +71,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "n8n"
     ],
     "date": "2026-10-16",
     "id": "slack-standup-digest",
@@ -85,7 +85,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "Claude Code"
     ],
     "date": "2026-10-16",
     "id": "figma-to-react-components",
@@ -99,7 +99,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "Claude Code"
     ],
     "date": "2026-10-16",
     "id": "dependency-vulnerability-audit",
@@ -155,7 +155,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "n8n"
     ],
     "date": "2026-10-16",
     "id": "handbook-from-policy-docs",
@@ -169,7 +169,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "Claude"
     ],
     "date": "2026-10-16",
     "id": "applicant-rubric-screening",
@@ -239,7 +239,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "n8n"
     ],
     "date": "2026-10-16",
     "id": "lost-package-tracker",
@@ -253,7 +253,7 @@
   },
   {
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ],
     "date": "2026-10-16",
     "id": "grocery-price-comparison",
@@ -289,7 +289,7 @@
     "topic": "everyday-life",
     "prompt": "Plan a five-day trip across these cities within my budget, comparing routes and stays, as a day-by-day itinerary.",
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ]
   },
   {
@@ -315,7 +315,7 @@
     "topic": "money-bills",
     "prompt": "Scan my email receipts from the last 12 months, list every recurring subscription with its renewal date, and flag the ones I never use.",
     "agents": [
-      "Custom agent"
+      "n8n"
     ]
   },
   {
@@ -328,7 +328,7 @@
     "topic": "marketing-sales",
     "prompt": "Check these competitor pricing pages and alert me only when something actually changed since yesterday.",
     "agents": [
-      "Custom agent"
+      "n8n"
     ]
   },
   {
@@ -341,7 +341,7 @@
     "topic": "coding-dev",
     "prompt": "Reproduce the bug in this report inside a sandbox, then write regression tests covering the fix before you touch any code.",
     "agents": [
-      "Custom agent"
+      "Claude Code"
     ]
   },
   {
@@ -354,7 +354,7 @@
     "topic": "money-bills",
     "prompt": "Review my last three internet bills and these support chat logs, then draft a polite message asking for a credit on the disputed charge.",
     "agents": [
-      "Custom agent"
+      "n8n"
     ]
   },
   {
@@ -367,7 +367,7 @@
     "topic": "business-ops",
     "prompt": "Act as my onboarding buddy: answer policy questions from this handbook and track my first-week checklist.",
     "agents": [
-      "Custom agent"
+      "n8n"
     ]
   },
   {
@@ -380,7 +380,7 @@
     "topic": "coding-dev",
     "prompt": "Review the open pull requests in this repo and leave comments on each by morning. Flag issues, but don't merge anything.",
     "agents": [
-      "Custom agent"
+      "Claude Code"
     ]
   },
   {
@@ -393,7 +393,7 @@
     "topic": "productivity",
     "prompt": "Summarize my overnight emails into a short brief: what needs a reply, what's FYI, and draft responses for the routine ones.",
     "agents": [
-      "Custom agent"
+      "Claude"
     ]
   },
   {
@@ -406,7 +406,7 @@
     "topic": "marketing-sales",
     "prompt": "Research each company on this list and write a personalized opening line for my outreach email. Keep my core pitch unchanged.",
     "agents": [
-      "Custom agent"
+      "Claude"
     ]
   },
   {
@@ -432,7 +432,7 @@
     "topic": "productivity",
     "prompt": "Look at these fridge and pantry photos and suggest five dinners I can make this week, plus a short grocery list for what's missing.",
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ]
   },
   {
@@ -445,7 +445,7 @@
     "topic": "creative",
     "prompt": "Turn this one-line film premise into a scene-by-scene breakdown with a shot list I can refine.",
     "agents": [
-      "Custom agent"
+      "Claude"
     ]
   },
   {
@@ -497,7 +497,7 @@
     "topic": "creative",
     "prompt": "Transcribe this episode and write show notes with chapter markers and the best quotes.",
     "agents": [
-      "Custom agent"
+      "Claude"
     ]
   },
   {
@@ -536,7 +536,7 @@
     "topic": "money-bills",
     "prompt": "Search my state's unclaimed property database for my name and list any records that look like a match, with links to the claim forms.",
     "agents": [
-      "Custom agent"
+      "ChatGPT"
     ]
   },
   {
@@ -653,7 +653,7 @@
     "topic": "coding-dev",
     "prompt": "Migrate this module to the new framework version, then stop after each batch so I can review before you continue.",
     "agents": [
-      "Custom agent"
+      "Claude Code"
     ]
   },
   {

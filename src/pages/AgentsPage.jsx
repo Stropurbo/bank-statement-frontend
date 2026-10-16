@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import { agentCounts, useCasesByAgent, topicName } from "../lib/usecases";
+import { agentDescription } from "../data/agentDescriptions";
+import NewsletterSignup from "../components/NewsletterSignup";
+import { topics } from "../data/topics";
 
 export default function AgentsPage() {
   const agents = agentCounts();
@@ -23,6 +26,7 @@ export default function AgentsPage() {
           const topTopics = [
             ...new Set(items.map((u) => u.topic)),
           ].slice(0, 3);
+          const desc = agentDescription(slug);
           return (
             <Link
               key={slug}
@@ -40,6 +44,11 @@ export default function AgentsPage() {
                   </p>
                 </div>
               </div>
+              {desc && (
+                <p className="text-sm text-neutral-600 mb-2 dark:text-neutral-300">
+                  {desc}
+                </p>
+              )}
               {topTopics.length > 0 && (
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">
                   Most often: {topTopics.map(topicName).join(" · ")}
@@ -49,6 +58,30 @@ export default function AgentsPage() {
           );
         })}
       </div>
+
+      <section className="mt-12">
+        <h2 className="text-xl font-bold text-black mb-4 dark:text-white">
+          Or browse by kind of job
+        </h2>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {topics.map((t) => (
+            <Link
+              key={t.slug}
+              to={`/topic/${t.slug}`}
+              className="border border-neutral-200 rounded-xl p-5 hover:border-neutral-400 transition-colors bg-white dark:bg-neutral-950 dark:border-neutral-800"
+            >
+              <p className="font-bold text-black dark:text-white">{t.name}</p>
+              <p className="text-sm text-neutral-600 mt-1 dark:text-neutral-300">
+                {t.blurb}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-12">
+        <NewsletterSignup />
+      </section>
     </div>
   );
 }
