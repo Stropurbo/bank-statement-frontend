@@ -124,7 +124,6 @@ function ShareButton({ id }) {
 /** Full feed card for the "New use cases" list. */
 export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved }) {
   const [showPrompt, setShowPrompt] = useState(false);
-  const voted = !!votes[item.id];
   const isSaved = saved.includes(item.id);
   const agents = item.agents && item.agents.length ? item.agents : ["Custom agent"];
   const isNewItem = isNew(item.date, maxDate);
@@ -186,11 +185,6 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
         </div>
 
         <div className="flex flex-col items-center gap-1 shrink-0">
-          <Upvote
-            count={voted ? 1 : 0}
-            active={voted}
-            onToggle={() => toggleVote(item.id)}
-          />
           <Bookmark active={isSaved} onToggle={() => toggleSaved(item.id)} />
         </div>
       </div>
@@ -199,19 +193,9 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
 }
 
 /** Compact card for the "Trending today" horizontal row. */
-export function TrendingCard({ item, votes, toggleVote }) {
-  const voted = !!votes[item.id];
+export function TrendingCard({ item }) {
   return (
     <div className="shrink-0 w-64 border border-neutral-200 rounded-xl p-4 bg-white hover:border-neutral-400 transition-colors flex flex-col">
-      <div className="mb-2 -ml-2">
-        <Upvote
-          count={voted ? 1 : 0}
-          active={voted}
-          onToggle={() => toggleVote(item.id)}
-          small
-          inline
-        />
-      </div>
       <a href={`#uc-${item.id}`} className="font-semibold text-sm leading-snug text-black mb-1.5 line-clamp-2 hover:underline">
         {item.title}
       </a>
