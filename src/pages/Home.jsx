@@ -179,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* Search + pills */}
-      <section className="mt-8">
+      <section className="mt-4 border-t border-dashed border-neutral-200 pt-4">
         <div className="flex gap-2">
           <div className="relative flex-1">
           <svg
