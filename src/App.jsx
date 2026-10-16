@@ -1,4 +1,3 @@
-// deploy trigger 2
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
@@ -13,6 +12,7 @@ import NewsletterPage from "./pages/NewsletterPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import NewPage from "./pages/NewPage";
 import AgentsPage from "./pages/AgentsPage";
+import TopicsPage from "./pages/TopicsPage";
 import AgentPage from "./pages/AgentPage";
 import UseCasePage from "./pages/UseCasePage";
 import NotFound from "./pages/NotFound";
@@ -31,6 +31,7 @@ function AppRoutes() {
         <Route path="/use-case/:id" element={<UseCasePage />} />
         <Route path="/new" element={<NewPage />} />
         <Route path="/agents" element={<AgentsPage />} />
+        <Route path="/topics" element={<TopicsPage />} />
         <Route path="/agents/:slug" element={<AgentPage />} />
         <Route path="/advertise" element={<Advertise />} />
         <Route path="/about" element={<About />} />

@@ -198,14 +198,22 @@ export default function Home() {
               <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                 Agents
               </p>
-              {selAgents.length > 0 && (
-                <button
-                  onClick={() => setSelAgents([])}
+              <div className="flex items-center gap-2">
+                {selAgents.length > 0 && (
+                  <button
+                    onClick={() => setSelAgents([])}
+                    className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
+                  >
+                    clear
+                  </button>
+                )}
+                <Link
+                  to="/agents"
                   className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
                 >
-                  clear
-                </button>
-              )}
+                  Show all {agentCounts.length}
+                </Link>
+              </div>
             </div>
             <div className="space-y-0.5">
               {agentCounts.slice(0, 10).map(([name, count]) => (
@@ -218,14 +226,6 @@ export default function Home() {
                 />
               ))}
             </div>
-            {agentCounts.length > 10 && (
-              <Link
-                to="/agents"
-                className="block text-xs text-neutral-500 hover:text-black mt-1.5 dark:text-neutral-400 dark:hover:text-white"
-              >
-                Show all {agentCounts.length}
-              </Link>
-            )}
           </div>
 
           <div>
@@ -243,7 +243,7 @@ export default function Home() {
                   </button>
                 )}
                 <Link
-                  to="/agents"
+                  to="/topics"
                   className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
                 >
                   Topic pages
