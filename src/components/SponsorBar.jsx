@@ -9,7 +9,7 @@ const KEY = "sheetlypro_sponsorbar_dismissed";
 const ITEMS = [
   {
     name: "CalyFit",
-    text: "AI calorie tracker — 4.6★ on Google Play.",
+    text: "AI calorie tracker — 4.3★ on Google Play.",
     url: "https://play.google.com/store/apps/details?id=com.sabbir.myboguraa",
     icon: "🎃",
   },
