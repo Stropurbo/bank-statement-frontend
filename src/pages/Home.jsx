@@ -443,6 +443,56 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Numbered category sections (reference-style) */}
+        {!searching && !filtering && (
+          <div className="mt-10 lg:mt-12 space-y-10">
+            {topics.map((t, i) => {
+              const items = sorted.filter((u) => u.topic === t.slug).slice(0, 3);
+              if (!items.length) return null;
+              return (
+                <section key={t.slug}>
+                  <div className="flex items-baseline gap-3 mb-1">
+                    <span className="text-sm font-mono text-neutral-400">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h2 className="text-xl font-bold text-black dark:text-white">
+                      {t.name}
+                    </h2>
+                    <Link
+                      to={`/topic/${t.slug}`}
+                      className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white font-mono"
+                    >
+                      Topic
+                    </Link>
+                  </div>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
+                    {t.blurb}
+                  </p>
+                  <div className="grid gap-4">
+                    {items.map((u) => (
+                      <FeedCard
+                        key={u.id}
+                        item={u}
+                        maxDate={maxDate}
+                        votes={votes}
+                        saved={saved}
+                        toggleVote={toggleVote}
+                        toggleSaved={toggleSaved}
+                      />
+                    ))}
+                  </div>
+                  <Link
+                    to={`/topic/${t.slug}`}
+                    className="inline-block mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    Show more in {t.name} →
+                  </Link>
+                </section>
+              );
+            })}
+          </div>
+        )}
+
         {/* Newsletter */}
         <section id="newsletter" className="mt-10 lg:mt-12 scroll-mt-24">
           <NewsletterSignup />
