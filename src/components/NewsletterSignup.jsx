@@ -2,28 +2,16 @@ import { useState } from "react";
 import { NEWSLETTER_ENDPOINT } from "../config";
 
 export default function NewsletterSignup({ compact = false }) {
-  const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
-  const [error, setError] = useState("");
 
-  const submit = async (e) => {
-    e.preventDefault();
-    setError("");
+  const submit = () => {
+    // Plain HTML form POST (no fetch): avoids CORS issues with the
+    // Buttondown embed endpoint. Response goes to a hidden iframe.
     if (!NEWSLETTER_ENDPOINT) {
       setDone(true);
       return;
     }
-    try {
-      const res = await fetch(NEWSLETTER_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({ email }),
-      });
-      if (!res.ok) throw new Error("subscribe failed");
-      setDone(true);
-    } catch {
-      setError("Something went wrong. Please try again.");
-    }
+    setDone(true);
   };
 
   if (done) {
@@ -46,12 +34,17 @@ export default function NewsletterSignup({ compact = false }) {
       <p className="text-sm text-neutral-600 mb-4">
         Real examples of what people do with AI agents. One email, 6:30am PT.
       </p>
-      <form onSubmit={submit} className="flex flex-col sm:flex-row gap-2">
+      <form
+        action={NEWSLETTER_ENDPOINT || undefined}
+        method="post"
+        target="bd-hidden-frame"
+        onSubmit={submit}
+        className="flex flex-col sm:flex-row gap-2"
+      >
         <input
           type="email"
+          name="email"
           required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
           className="flex-1 border border-neutral-300 rounded-lg px-3 py-2 text-sm bg-white text-black focus:outline-none focus:border-black"
         />
@@ -61,8 +54,12 @@ export default function NewsletterSignup({ compact = false }) {
         >
           Subscribe
         </button>
+        <iframe
+          name="bd-hidden-frame"
+          title="newsletter signup"
+          style={{ display: "none" }}
+        />
       </form>
-      {error && <p className="text-red-600 text-xs mt-2">{error}</p>}
     </div>
   );
 }
