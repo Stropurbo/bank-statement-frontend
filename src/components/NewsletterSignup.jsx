@@ -1,17 +1,30 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { NEWSLETTER_ENDPOINT, NEWSLETTER_EMAIL_FIELD } from "../config";
 
 export default function NewsletterSignup({ compact = false }) {
   const [done, setDone] = useState(false);
+  const submittedRef = useRef(false);
 
   const submit = () => {
     // Plain HTML form POST (no fetch): avoids CORS issues with the
     // Kit subscribe endpoint. Response goes to a hidden iframe.
+    // NOTE: do NOT hide the form here — removing the iframe from the DOM
+    // cancels the in-flight POST. We show success only after the iframe
+    // confirms the POST landed (onLoad), with a timed fallback.
     if (!NEWSLETTER_ENDPOINT) {
       setDone(true);
       return;
     }
-    setDone(true);
+    submittedRef.current = true;
+    setTimeout(() => setDone(true), 5000);
+  };
+
+  const handleFrameLoad = () => {
+    // Ignore the iframe's initial mount load; only the post-submit
+    // navigation means the signup POST reached Kit.
+    if (submittedRef.current) {
+      setDone(true);
+    }
   };
 
   if (done) {
@@ -58,6 +71,7 @@ export default function NewsletterSignup({ compact = false }) {
           name="kit-hidden-frame"
           title="newsletter signup"
           style={{ display: "none" }}
+          onLoad={handleFrameLoad}
         />
       </form>
     </div>
