@@ -1,8 +1,13 @@
+import NewsletterSignup from "../components/NewsletterSignup";
+
 export default function PrivacyPage() {
   return (
     <div className="py-10 max-w-2xl">
-      <h1 className="text-3xl font-bold tracking-tight text-black mb-4 dark:text-white">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2 dark:text-neutral-400">
         Privacy
+      </p>
+      <h1 className="text-3xl font-bold tracking-tight text-black mb-4 dark:text-white">
+        What we collect, and what we don't.
       </h1>
       <div className="text-neutral-600 space-y-4 leading-relaxed text-[15px] dark:text-neutral-300">
         <p>
@@ -33,6 +38,11 @@ export default function PrivacyPage() {
           advertising trackers, no cross-site cookies.
         </p>
         <p>
+          <strong className="text-black dark:text-white">Cookies.</strong> We use a single
+          functional cookie to remember your dark-mode preference and dismissed
+          sponsor bar. Nothing else.
+        </p>
+        <p>
           <strong className="text-black dark:text-white">Contact.</strong> Questions about your
           data? Email{" "}
           <a
@@ -46,6 +56,10 @@ export default function PrivacyPage() {
         <p className="text-sm text-neutral-500 dark:text-neutral-400">
           Last updated October 16, 2026.
         </p>
+      </div>
+
+      <div className="mt-10">
+        <NewsletterSignup />
       </div>
     </div>
   );
