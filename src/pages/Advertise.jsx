@@ -39,10 +39,10 @@ export default function Advertise() {
         <p className="text-sm text-neutral-600">
           Email{" "}
           <a
-            href="mailto:sabbir.hasan.ca@gmail.com"
+            href="mailto:sabbirdesk19c@gmail.com"
             className="underline text-black"
           >
-            sabbir.hasan.ca@gmail.com
+            sabbirdesk19c@gmail.com
           </a>{" "}
           with your product link and preferred week. We reply within 48 hours.
         </p>
@@ -55,3 +55,4 @@ export default function Advertise() {
     </div>
   );
 }
+
