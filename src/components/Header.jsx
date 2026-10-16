@@ -5,7 +5,7 @@ export default function Header() {
     <header className="border-b border-neutral-200 bg-white sticky top-0 z-10">
       <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="font-bold text-xl tracking-tight text-black">
-          Agent Use Cases
+          SheetlyPro
         </Link>
         <nav className="flex items-center gap-5 text-sm">
           <NavLink to="/newsletter" className="text-neutral-600 hover:text-black">
