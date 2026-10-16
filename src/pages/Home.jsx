@@ -117,16 +117,16 @@ export default function Home() {
           A curated feed of real-world AI agent use cases — collected from
           posts across the web, organized by topic, updated daily.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="grid grid-cols-2 gap-3">
           <a
             href="#newsletter"
-            className="bg-black text-white font-medium rounded-lg px-6 py-3 text-center text-sm hover:bg-neutral-800 transition-colors"
+            className="bg-black text-white font-medium rounded-lg px-4 py-3 text-center text-sm hover:bg-neutral-800 transition-colors"
           >
             Get the daily 5
           </a>
           <a
             href="mailto:contact@sheetlypro.com?subject=Use%20case%20submission"
-            className="border border-neutral-300 text-black font-medium rounded-lg px-6 py-3 text-center text-sm hover:border-black transition-colors"
+            className="border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors"
           >
             Submit a use case
           </a>
