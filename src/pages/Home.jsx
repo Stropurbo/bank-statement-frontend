@@ -440,7 +440,7 @@ export default function Home() {
             <h2 className="text-xl font-bold text-black dark:text-white">
               {searching || filtering
                 ? `${feed.length} result${feed.length === 1 ? "" : "s"}`
-                : `${feed.length} new use case${feed.length === 1 ? "" : "s"}`}
+                : `${Math.min(feed.length, 5)} new use case${Math.min(feed.length, 5) === 1 ? "" : "s"}`}
             </h2>
             <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-600 font-mono shrink-0 dark:text-blue-400">
               Latest finds
