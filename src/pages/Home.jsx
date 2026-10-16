@@ -109,7 +109,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="py-10">
+      <section className="pt-8 pb-5">
         <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-black mb-3">
           What people actually do with AI agents
         </h1>
@@ -134,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* Filter */}
-      <section className="mt-8">
+      <section className="mt-2">
         <button
           onClick={() => setFilterOpen((o) => !o)}
           className="w-full border border-neutral-200 rounded-lg px-4 py-3 flex items-center justify-between text-sm hover:border-neutral-400 transition-colors bg-white"
