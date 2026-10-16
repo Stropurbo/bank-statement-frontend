@@ -64,11 +64,11 @@ export default function SubmitModal({ open, onClose }) {
         className="absolute inset-0 bg-black/60"
         onClick={onClose}
       />
-      <div className="relative bg-white rounded-2xl w-full max-w-lg p-6 sm:p-8 shadow-xl max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-white rounded-2xl w-full max-w-lg p-6 sm:p-8 shadow-xl max-h-[90vh] overflow-y-auto dark:bg-neutral-950">
         <button
           onClick={onClose}
           aria-label="Close"
-          className="absolute top-4 right-4 text-neutral-400 hover:text-black text-xl leading-none"
+          className="absolute top-4 right-4 text-neutral-400 hover:text-black text-xl leading-none dark:hover:text-white"
         >
           ×
         </button>
@@ -76,29 +76,29 @@ export default function SubmitModal({ open, onClose }) {
         {status === "done" ? (
           <div className="text-center py-8">
             <p className="text-2xl mb-3">✓</p>
-            <p className="font-bold text-black text-lg mb-2">Thanks!</p>
-            <p className="text-sm text-neutral-600">
+            <p className="font-bold text-black text-lg mb-2 dark:text-white">Thanks!</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-300">
               Your submission is in. We review everything before publishing —
               you'll be credited on the entry.
             </p>
             <button
               onClick={onClose}
-              className="mt-6 bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-800"
+              className="mt-6 bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
             >
               Close
             </button>
           </div>
         ) : (
           <>
-            <h2 className="font-bold text-black text-xl mb-2">Submit a use case</h2>
-            <p className="text-sm text-neutral-600 mb-6 leading-relaxed">
+            <h2 className="font-bold text-black text-xl mb-2 dark:text-white">Submit a use case</h2>
+            <p className="text-sm text-neutral-600 mb-6 leading-relaxed dark:text-neutral-300">
               Got an agent to do something useful, or seen someone who did?
               Send the link and you'll be credited on the entry. Submissions
               are reviewed before they're published.
             </p>
             <form onSubmit={submit} className="space-y-4">
               <div>
-                <label className="block text-sm font-semibold text-black mb-1.5">
+                <label className="block text-sm font-semibold text-black mb-1.5 dark:text-white">
                   Link
                 </label>
                 <input
@@ -107,11 +107,11 @@ export default function SubmitModal({ open, onClose }) {
                   value={link}
                   onChange={(e) => setLink(e.target.value)}
                   placeholder="https://"
-                  className="w-full border border-neutral-200 rounded-lg px-3 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black"
+                  className="w-full border border-neutral-200 rounded-lg px-3 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black dark:text-white dark:bg-neutral-900 dark:border-neutral-800"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-black mb-1.5">
+                <label className="block text-sm font-semibold text-black mb-1.5 dark:text-white">
                   What did the agent do?
                 </label>
                 <textarea
@@ -120,13 +120,13 @@ export default function SubmitModal({ open, onClose }) {
                   onChange={(e) => setWhat(e.target.value)}
                   placeholder="Which agent, what job, and how it went."
                   rows={4}
-                  className="w-full border border-neutral-200 rounded-lg px-3 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black resize-y"
+                  className="w-full border border-neutral-200 rounded-lg px-3 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black resize-y dark:text-white dark:bg-neutral-900 dark:border-neutral-800"
                 />
               </div>
               <div>
-                <label className="block text-sm font-semibold text-black mb-1.5">
+                <label className="block text-sm font-semibold text-black mb-1.5 dark:text-white">
                   Name or handle{" "}
-                  <span className="font-normal text-neutral-500">
+                  <span className="font-normal text-neutral-500 dark:text-neutral-400">
                     (optional, for credit)
                   </span>
                 </label>
@@ -134,7 +134,7 @@ export default function SubmitModal({ open, onClose }) {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-neutral-200 rounded-lg px-3 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black"
+                  className="w-full border border-neutral-200 rounded-lg px-3 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black dark:text-white dark:bg-neutral-900 dark:border-neutral-800"
                 />
               </div>
               {status === "error" && (
@@ -145,7 +145,7 @@ export default function SubmitModal({ open, onClose }) {
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-800 disabled:opacity-50"
+                className="bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-800 disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-neutral-200"
               >
                 {status === "sending" ? "Sending…" : "Submit"}
               </button>

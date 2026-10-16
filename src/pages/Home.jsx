@@ -37,7 +37,7 @@ function AgentRow({ name, count, active, onClick }) {
         active ? "bg-neutral-100 text-black font-medium" : "text-neutral-600 hover:bg-neutral-50 hover:text-black"
       }`}
     >
-      <span className="w-5 h-5 rounded-md bg-neutral-200 inline-flex items-center justify-center text-[10px] font-bold text-neutral-600 shrink-0">
+      <span className="w-5 h-5 rounded-md bg-neutral-200 inline-flex items-center justify-center text-[10px] font-bold text-neutral-600 shrink-0 dark:text-neutral-300 dark:bg-neutral-700">
         {name.slice(0, 2).toUpperCase()}
       </span>
       <span className="flex-1 text-left truncate">{name}</span>
@@ -144,20 +144,20 @@ export default function Home() {
       <aside className="hidden lg:block">
         <div className="sticky top-24 space-y-7 pb-10">
           <div>
-            <p className="text-sm text-neutral-600 leading-relaxed mb-5">
+            <p className="text-sm text-neutral-600 leading-relaxed mb-5 dark:text-neutral-300">
               Real things people are doing with AI agents, collected every
               day. Steal an idea.
             </p>
             <div className="space-y-2.5">
               <a
                 href="#newsletter"
-                className="block bg-black text-white font-medium rounded-lg px-4 py-3 text-center text-sm hover:bg-neutral-800 transition-colors"
+                className="block bg-black text-white font-medium rounded-lg px-4 py-3 text-center text-sm hover:bg-neutral-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-neutral-200"
               >
                 Get 5 use cases every morning
               </a>
               <button
                 onClick={() => setSubmitOpen(true)}
-                className="block w-full border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors"
+                className="block w-full border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors dark:text-white dark:border-neutral-700"
               >
                 Submit a use case
               </button>
@@ -179,29 +179,29 @@ export default function Home() {
 
           <a
             href="/advertise"
-            className="block border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors"
+            className="block border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors dark:border-neutral-800"
           >
             <p className="text-[10px] font-semibold uppercase tracking-widest text-neutral-400 mb-1.5">
               Sponsor
             </p>
-            <p className="font-semibold text-black text-sm">Your brand here</p>
-            <p className="text-xs text-neutral-500 mt-1 leading-relaxed">
+            <p className="font-semibold text-black text-sm dark:text-white">Your brand here</p>
+            <p className="text-xs text-neutral-500 mt-1 leading-relaxed dark:text-neutral-400">
               Reach readers who build with AI agents.
             </p>
-            <p className="text-xs text-blue-600 mt-2 font-medium">
+            <p className="text-xs text-blue-600 mt-2 font-medium dark:text-blue-400">
               Advertise →
             </p>
           </a>
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                 Agents
               </p>
               {selAgents.length > 0 && (
                 <button
                   onClick={() => setSelAgents([])}
-                  className="text-[11px] text-neutral-400 hover:text-black underline"
+                  className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
                 >
                   clear
                 </button>
@@ -222,13 +222,13 @@ export default function Home() {
 
           <div>
             <div className="flex items-center justify-between mb-2">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
                 Categories
               </p>
               {selTopics.length > 0 && (
                 <button
                   onClick={() => setSelTopics([])}
-                  className="text-[11px] text-neutral-400 hover:text-black underline"
+                  className="text-[11px] text-neutral-400 hover:text-black underline dark:hover:text-white"
                 >
                   clear
                 </button>
@@ -253,19 +253,19 @@ export default function Home() {
       <div className="min-w-0">
         {/* Mobile hero */}
         <section className="pt-6 pb-5 lg:hidden">
-          <h1 className="text-lg text-neutral-600 font-normal mb-5">
+          <h1 className="text-lg text-neutral-600 font-normal mb-5 dark:text-neutral-300">
             What people actually do with AI agents.
           </h1>
           <div className="grid grid-cols-2 gap-3">
             <a
               href="#newsletter"
-              className="bg-black text-white font-medium rounded-lg px-4 py-3 text-center text-sm hover:bg-neutral-800 transition-colors"
+              className="bg-black text-white font-medium rounded-lg px-4 py-3 text-center text-sm hover:bg-neutral-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-neutral-200"
             >
               Get the daily 5
             </a>
             <button
               onClick={() => setSubmitOpen(true)}
-              className="border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors"
+              className="border border-neutral-300 text-black font-medium rounded-lg px-4 py-3 text-center text-sm hover:border-black transition-colors dark:text-white dark:border-neutral-700"
             >
               Submit a use case
             </button>
@@ -276,16 +276,16 @@ export default function Home() {
         <section className="mt-2 lg:hidden">
           <button
             onClick={() => setFilterOpen((o) => !o)}
-            className="w-full border border-neutral-200 rounded-lg px-4 py-3 flex items-center justify-between text-sm hover:border-neutral-400 transition-colors bg-white"
+            className="w-full border border-neutral-200 rounded-lg px-4 py-3 flex items-center justify-between text-sm hover:border-neutral-400 transition-colors bg-white dark:bg-neutral-950 dark:border-neutral-800"
           >
-            <span className="font-medium text-black">Filter</span>
-            <span className="text-neutral-500">
+            <span className="font-medium text-black dark:text-white">Filter</span>
+            <span className="text-neutral-500 dark:text-neutral-400">
               {filterOpen ? "Close" : filtering ? `${activeFilters} active` : "All"}
             </span>
           </button>
           {filterOpen && (
-            <div className="mt-4 border-t border-dashed border-neutral-200 pt-5">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+            <div className="mt-4 border-t border-dashed border-neutral-200 pt-5 dark:border-neutral-800">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3 dark:text-neutral-400">
                 Agents
               </p>
               <div className="flex flex-wrap gap-2 mb-7">
@@ -299,7 +299,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3 dark:text-neutral-400">
                 Categories
               </p>
               <div className="flex flex-wrap gap-2">
@@ -318,7 +318,7 @@ export default function Home() {
         </section>
 
         {/* Search + pills */}
-        <section className="mt-4 lg:mt-8 border-t border-dashed border-neutral-200 pt-4 lg:border-0 lg:pt-0">
+        <section className="mt-4 lg:mt-8 border-t border-dashed border-neutral-200 pt-4 lg:border-0 lg:pt-0 dark:border-neutral-800">
           <div className="flex gap-2">
             <div className="relative flex-1">
               <svg
@@ -339,13 +339,13 @@ export default function Home() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search use cases"
-                className="w-full border border-neutral-200 rounded-lg pl-9 pr-10 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black"
+                className="w-full border border-neutral-200 rounded-lg pl-9 pr-10 py-2.5 text-sm bg-neutral-50 text-black placeholder:text-neutral-400 focus:outline-none focus:border-black dark:text-white dark:bg-neutral-900 dark:border-neutral-800"
               />
-              <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400 border border-neutral-200 rounded px-1.5 py-0.5 bg-white hidden sm:block">
+              <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-neutral-400 border border-neutral-200 rounded px-1.5 py-0.5 bg-white hidden sm:block dark:bg-neutral-950 dark:border-neutral-800">
                 ⌘K
               </kbd>
             </div>
-            <div className="flex border border-neutral-200 rounded-lg p-0.5 bg-white shrink-0">
+            <div className="flex border border-neutral-200 rounded-lg p-0.5 bg-white shrink-0 dark:bg-neutral-950 dark:border-neutral-800">
               {["top", "new"].map((m) => (
                 <button
                   key={m}
@@ -386,7 +386,7 @@ export default function Home() {
         {/* Trending today */}
         {!searching && !filtering && (
           <section className="mt-8">
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3 dark:text-neutral-400">
               Trending today
             </p>
             <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-3 lg:overflow-visible">
@@ -398,26 +398,26 @@ export default function Home() {
         )}
 
         {/* New use cases feed */}
-        <section className="mt-8 lg:mt-10 bg-indigo-50/60 rounded-2xl p-4 sm:p-6">
+        <section className="mt-8 lg:mt-10 bg-indigo-50/60 rounded-2xl p-4 sm:p-6 dark:bg-indigo-950/40">
           <div className="flex items-baseline justify-between mb-1 gap-2">
-            <h2 className="text-xl font-bold text-black">
+            <h2 className="text-xl font-bold text-black dark:text-white">
               {searching || filtering
                 ? `${feed.length} result${feed.length === 1 ? "" : "s"}`
                 : `${feed.length} new use case${feed.length === 1 ? "" : "s"}`}
             </h2>
-            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-600 font-mono shrink-0">
+            <span className="text-[11px] font-semibold uppercase tracking-widest text-blue-600 font-mono shrink-0 dark:text-blue-400">
               Latest finds
             </span>
           </div>
           {!searching && !filtering && (
-            <p className="text-sm text-neutral-500 mb-4">Today · a few of them below</p>
+            <p className="text-sm text-neutral-500 mb-4 dark:text-neutral-400">Today · a few of them below</p>
           )}
           {filtering && (
-            <p className="text-xs text-neutral-500 mb-4">
+            <p className="text-xs text-neutral-500 mb-4 dark:text-neutral-400">
               {activeFilters} filter{activeFilters === 1 ? "" : "s"} active —{" "}
               <button
                 onClick={clearFilters}
-                className="underline hover:text-black"
+                className="underline hover:text-black dark:hover:text-white"
               >
                 clear
               </button>
@@ -436,7 +436,7 @@ export default function Home() {
               />
             ))}
             {feed.length === 0 && (
-              <p className="text-neutral-500 text-sm">
+              <p className="text-neutral-500 text-sm dark:text-neutral-400">
                 No use cases match — try a different search or clear the filters.
               </p>
             )}
@@ -507,16 +507,16 @@ export default function Home() {
         </section>
 
         {/* Sponsors */}
-        <section className="mt-10 lg:mt-12 border-t border-neutral-200 pt-6">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+        <section className="mt-10 lg:mt-12 border-t border-neutral-200 pt-6 dark:border-neutral-800">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3 dark:text-neutral-400">
             Sponsors
           </p>
           <Link
             to="/advertise"
-            className="block border border-dashed border-neutral-300 rounded-xl p-6 text-center hover:border-black transition-colors"
+            className="block border border-dashed border-neutral-300 rounded-xl p-6 text-center hover:border-black transition-colors dark:border-neutral-700"
           >
-            <p className="font-semibold text-black">Your brand here</p>
-            <p className="text-sm text-neutral-500 mt-1">
+            <p className="font-semibold text-black dark:text-white">Your brand here</p>
+            <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
               Reach AI-curious readers — sheetlypro.com/advertise
             </p>
           </Link>

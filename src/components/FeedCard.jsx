@@ -133,7 +133,7 @@ function ShareButton({ id }) {
   return (
     <button
       onClick={share}
-      className="text-xs font-medium border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 hover:text-black hover:border-neutral-400 transition-colors"
+      className="text-xs font-medium border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 hover:text-black hover:border-neutral-400 transition-colors dark:text-neutral-300 dark:border-neutral-800 dark:hover:text-white"
     >
       {copied ? "Copied!" : "Share"}
     </button>

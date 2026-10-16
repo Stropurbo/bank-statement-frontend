@@ -18,20 +18,20 @@ export default function Topic() {
   return (
     <div>
       <section className="py-10">
-        <Link to="/" className="text-sm text-neutral-500 hover:text-black">
+        <Link to="/" className="text-sm text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white">
           ← All use cases
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight text-black mt-2 mb-2">
+        <h1 className="text-3xl font-bold tracking-tight text-black mt-2 mb-2 dark:text-white">
           {topic.name}
         </h1>
-        <p className="text-neutral-600">{topic.blurb}</p>
+        <p className="text-neutral-600 dark:text-neutral-300">{topic.blurb}</p>
       </section>
 
       <TopicNav active={slug} />
 
       <section className="mt-8 grid gap-4">
         {items.length === 0 && (
-          <p className="text-neutral-500">No use cases here yet — check back soon.</p>
+          <p className="text-neutral-500 dark:text-neutral-400">No use cases here yet — check back soon.</p>
         )}
         {items.map((u) => (
           <UseCaseCard key={u.id} item={u} />

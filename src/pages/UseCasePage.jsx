@@ -24,7 +24,7 @@ function CopyPrompt({ prompt }) {
   return (
     <button
       onClick={copy}
-      className="text-xs font-medium bg-black text-white rounded-full px-4 py-2 hover:bg-neutral-800 transition-colors"
+      className="text-xs font-medium bg-black text-white rounded-full px-4 py-2 hover:bg-neutral-800 transition-colors dark:bg-white dark:text-black dark:hover:bg-neutral-200"
     >
       {copied ? "Copied!" : "Copy prompt"}
     </button>
@@ -64,21 +64,21 @@ export default function UseCasePage() {
     <div className="py-8 max-w-2xl mx-auto">
       <Link
         to="/"
-        className="text-sm text-neutral-500 hover:text-black mb-6 inline-block"
+        className="text-sm text-neutral-500 hover:text-black mb-6 inline-block dark:text-neutral-400 dark:hover:text-white"
       >
         ← All use cases
       </Link>
 
-      <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2">
-        <Link to={`/topic/${item.topic}`} className="hover:text-black hover:underline">
+      <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2 dark:text-neutral-400">
+        <Link to={`/topic/${item.topic}`} className="hover:text-black hover:underline dark:hover:text-white">
           {topicName(item.topic)}
         </Link>
       </p>
-      <h1 className="text-3xl font-bold tracking-tight text-black mb-4">
+      <h1 className="text-3xl font-bold tracking-tight text-black mb-4 dark:text-white">
         {item.title}
       </h1>
 
-      <div className="flex items-center gap-2 text-xs text-neutral-500 mb-6 flex-wrap">
+      <div className="flex items-center gap-2 text-xs text-neutral-500 mb-6 flex-wrap dark:text-neutral-400">
         <span>{item.source}</span>
         <span>·</span>
         <span>{fmtDate(item.date)}</span>
@@ -95,7 +95,7 @@ export default function UseCasePage() {
           <Link
             key={a}
             to={`/agents/${agentSlug(a)}`}
-            className="text-xs font-medium border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 hover:text-black hover:border-neutral-400 transition-colors"
+            className="text-xs font-medium border border-neutral-200 rounded-full px-3 py-1.5 text-neutral-600 hover:text-black hover:border-neutral-400 transition-colors dark:text-neutral-300 dark:border-neutral-800 dark:hover:text-white"
           >
             {a}
           </Link>
@@ -103,21 +103,21 @@ export default function UseCasePage() {
       </div>
 
       <section className="mb-8">
-        <h2 className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2">
+        <h2 className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2 dark:text-neutral-400">
           What they did
         </h2>
-        <p className="text-neutral-800 leading-relaxed">{item.summary}</p>
+        <p className="text-neutral-800 leading-relaxed dark:text-neutral-200">{item.summary}</p>
       </section>
 
       {item.prompt && (
-        <section className="mb-8 bg-neutral-100 rounded-xl p-5">
+        <section className="mb-8 bg-neutral-100 rounded-xl p-5 dark:bg-neutral-800">
           <div className="flex items-center justify-between mb-2">
-            <h2 className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500">
+            <h2 className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 dark:text-neutral-400">
               Try it yourself
             </h2>
             <CopyPrompt prompt={item.prompt} />
           </div>
-          <p className="text-sm text-neutral-800 leading-relaxed font-mono">
+          <p className="text-sm text-neutral-800 leading-relaxed font-mono dark:text-neutral-200">
             “{item.prompt}”
           </p>
         </section>
@@ -146,7 +146,7 @@ export default function UseCasePage() {
         </button>
         <button
           onClick={share}
-          className="text-sm font-medium rounded-full px-4 py-2 border border-neutral-300 text-black hover:border-black transition-colors"
+          className="text-sm font-medium rounded-full px-4 py-2 border border-neutral-300 text-black hover:border-black transition-colors dark:text-white dark:border-neutral-700"
         >
           {shared ? "Link copied!" : "Share"}
         </button>
@@ -154,15 +154,15 @@ export default function UseCasePage() {
           href={item.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm text-blue-600 hover:underline ml-1"
+          className="text-sm text-blue-600 hover:underline ml-1 dark:text-blue-400"
         >
           Read the original ↗
         </a>
       </div>
 
       {related.length > 0 && (
-        <section className="border-t border-neutral-200 pt-8">
-          <h2 className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-4">
+        <section className="border-t border-neutral-200 pt-8 dark:border-neutral-800">
+          <h2 className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-4 dark:text-neutral-400">
             Related use cases
           </h2>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -170,12 +170,12 @@ export default function UseCasePage() {
               <UseCaseLink
                 key={r.id}
                 id={r.id}
-                className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors block"
+                className="border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 transition-colors block dark:border-neutral-800"
               >
-                <p className="font-semibold text-sm text-black leading-snug mb-1">
+                <p className="font-semibold text-sm text-black leading-snug mb-1 dark:text-white">
                   {r.title}
                 </p>
-                <p className="text-xs text-neutral-500 line-clamp-2">{r.summary}</p>
+                <p className="text-xs text-neutral-500 line-clamp-2 dark:text-neutral-400">{r.summary}</p>
               </UseCaseLink>
             ))}
           </div>

@@ -1,22 +1,22 @@
 export default function About() {
   return (
     <div className="py-10 max-w-2xl">
-      <h1 className="text-3xl font-bold tracking-tight text-black mb-4">About</h1>
-      <div className="text-neutral-600 space-y-4 leading-relaxed">
+      <h1 className="text-3xl font-bold tracking-tight text-black mb-4 dark:text-white">About</h1>
+      <div className="text-neutral-600 space-y-4 leading-relaxed dark:text-neutral-300">
         <p>
-          <strong className="text-black">SheetlyPro</strong> is a curated
+          <strong className="text-black dark:text-white">SheetlyPro</strong> is a curated
           directory of what people actually do with AI agents — not demos, not
           hype, but real workflows people describe using in public posts.
         </p>
         <p>
-          <strong className="text-black">How curation works:</strong> every day
+          <strong className="text-black dark:text-white">How curation works:</strong> every day
           we scan public posts across Reddit, X, Substack, and dev communities
           for concrete agent workflows. Each entry is summarized in our own
           words and linked back to its source platform. We never invent quotes,
           numbers, or results.
         </p>
         <p>
-          <strong className="text-black">Why it exists:</strong> agent tooling
+          <strong className="text-black dark:text-white">Why it exists:</strong> agent tooling
           moves fast and marketing moves faster. A single place to see grounded,
           practical patterns helps builders skip the noise.
         </p>
@@ -24,7 +24,7 @@ export default function About() {
           Found a great use case we missed, or want something corrected? Email{" "}
           <a
             href="mailto:contact@sheetlypro.com"
-            className="underline text-black"
+            className="underline text-black dark:text-white"
           >
             contact@sheetlypro.com
           </a>

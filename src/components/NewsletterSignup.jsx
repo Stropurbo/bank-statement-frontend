@@ -27,10 +27,10 @@ export default function NewsletterSignup({ compact = false }) {
 
   return (
     <div className={`bg-neutral-100 rounded-xl ${compact ? "p-5" : "p-6"}`}>
-      <p className="font-semibold text-black mb-1">
+      <p className="font-semibold text-black mb-1 dark:text-white">
         5 agent use cases every morning
       </p>
-      <p className="text-sm text-neutral-600 mb-4">
+      <p className="text-sm text-neutral-600 mb-4 dark:text-neutral-300">
         Real examples of what people do with AI agents. One email, 6:30am PT.
       </p>
       <div ref={mountRef} className="kit-embed" />
