@@ -7,7 +7,10 @@
     "summary": "A poster had an AI agent handle a billing dispute with their internet provider. The agent drafted replies, tracked the support thread, and kept the tone polite until a credit was offered.",
     "title": "Negotiate a billing credit with an agent",
     "topic": "money-bills",
-    "prompt": "Review my last three internet bills and these support chat logs, then draft a polite message asking for a credit on the disputed charge."
+    "prompt": "Review my last three internet bills and these support chat logs, then draft a polite message asking for a credit on the disputed charge.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-22",
@@ -17,7 +20,10 @@
     "summary": "An agent searched state unclaimed-property databases for the poster's name, matched likely records, and pre-filled the claim paperwork for review.",
     "title": "Find unclaimed funds and start the claim",
     "topic": "money-bills",
-    "prompt": "Search my state's unclaimed property database for my name and list any records that look like a match, with links to the claim forms."
+    "prompt": "Search my state's unclaimed property database for my name and list any records that look like a match, with links to the claim forms.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-15",
@@ -27,7 +33,10 @@
     "summary": "A poster fed prior-year return PDFs to an agent, which flagged deduction categories worth asking a CPA about. The poster stressed a human still files.",
     "title": "Review last year's tax return for missed deductions",
     "topic": "money-bills",
-    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only — don't file anything."
+    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only — don't file anything.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-11",
@@ -37,7 +46,10 @@
     "summary": "An agent scanned email receipts for recurring charges, built a list with renewal dates, and drafted cancellation messages for the ones the poster never used.",
     "title": "Track subscriptions and cancel the unused ones",
     "topic": "money-bills",
-    "prompt": "Scan my email receipts from the last 12 months, list every recurring subscription with its renewal date, and flag the ones I never use."
+    "prompt": "Scan my email receipts from the last 12 months, list every recurring subscription with its renewal date, and flag the ones I never use.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-05",
@@ -47,7 +59,10 @@
     "summary": "An agent triages overnight email into a short brief: what needs a reply, what is FYI, and draft responses for the routine ones.",
     "title": "Turn a messy inbox into a morning brief",
     "topic": "productivity",
-    "prompt": "Summarize my overnight emails into a short brief: what needs a reply, what's FYI, and draft responses for the routine ones."
+    "prompt": "Summarize my overnight emails into a short brief: what needs a reply, what's FYI, and draft responses for the routine ones.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-28",
@@ -57,7 +72,10 @@
     "summary": "A poster had an agent merge contacts from email signatures, calendar invites, and exports into one clean list with context on each person.",
     "title": "Build a personal CRM from scattered contacts",
     "topic": "productivity",
-    "prompt": "Merge these contact exports, calendar invites, and email signatures into one clean list with a one-line context note for each person."
+    "prompt": "Merge these contact exports, calendar invites, and email signatures into one clean list with a one-line context note for each person.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-02",
@@ -67,7 +85,10 @@
     "summary": "From photos of the fridge and pantry, an agent generated a week of meal ideas plus a short grocery list for the gaps.",
     "title": "Plan a week of meals from what's in the fridge",
     "topic": "productivity",
-    "prompt": "Look at these fridge and pantry photos and suggest five dinners I can make this week, plus a short grocery list for what's missing."
+    "prompt": "Look at these fridge and pantry photos and suggest five dinners I can make this week, plus a short grocery list for what's missing.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-19",
@@ -77,7 +98,10 @@
     "summary": "An agent watches a dedicated inbox folder, extracts vendor, date, and total from each receipt, and files them for month-end reports.",
     "title": "Auto-file receipts for expense reports",
     "topic": "productivity",
-    "prompt": "For every receipt in this folder, extract the vendor, date, and total into a month-end expense table."
+    "prompt": "For every receipt in this folder, extract the vendor, date, and total into a month-end expense table.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-25",
@@ -87,7 +111,10 @@
     "summary": "A commenter says a computer-using agent can be told to work on any given repo through the browser, unlike repo-specific cloud agents.",
     "title": "Point a computer-using bot at any repo",
     "topic": "coding-dev",
-    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives — before changing anything."
+    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives — before changing anything.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-09",
@@ -97,7 +124,10 @@
     "summary": "A developer had an agent reproduce a reported bug in a sandbox, then write regression tests covering the fix before the code change.",
     "title": "Generate integration tests from a bug report",
     "topic": "coding-dev",
-    "prompt": "Reproduce the bug in this report inside a sandbox, then write regression tests covering the fix before you touch any code."
+    "prompt": "Reproduce the bug in this report inside a sandbox, then write regression tests covering the fix before you touch any code.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-12",
@@ -107,7 +137,10 @@
     "summary": "A poster ran agents module-by-module for a major version migration, with human review gates between each batch of changes.",
     "title": "Migrate a codebase to a new framework version",
     "topic": "coding-dev",
-    "prompt": "Migrate this module to the new framework version, then stop after each batch so I can review before you continue."
+    "prompt": "Migrate this module to the new framework version, then stop after each batch so I can review before you continue.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-06",
@@ -117,7 +150,10 @@
     "summary": "A small team set an agent to review incoming PRs after hours and leave comments by morning standup, with humans making final calls.",
     "title": "Review pull requests overnight",
     "topic": "coding-dev",
-    "prompt": "Review the open pull requests in this repo and leave comments on each by morning. Flag issues, but don't merge anything."
+    "prompt": "Review the open pull requests in this repo and leave comments on each by morning. Flag issues, but don't merge anything.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-20",
@@ -127,7 +163,10 @@
     "summary": "The poster set up multiple agents that sell web services, including one that searches maps listings for businesses, checks for websites, and ranks them by priority.",
     "title": "Find web design prospects with sales agents",
     "topic": "marketing-sales",
-    "prompt": "Find local businesses in this category, check which ones lack a website, and rank them as web-design prospects."
+    "prompt": "Find local businesses in this category, check which ones lack a website, and rank them as web-design prospects.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-04",
@@ -137,7 +176,10 @@
     "summary": "An agent researched each company on a prospect list and wrote personalized opening lines, leaving the core pitch for the human to approve.",
     "title": "Draft outreach emails from a prospect list",
     "topic": "marketing-sales",
-    "prompt": "Research each company on this list and write a personalized opening line for my outreach email. Keep my core pitch unchanged."
+    "prompt": "Research each company on this list and write a personalized opening line for my outreach email. Keep my core pitch unchanged.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-17",
@@ -147,7 +189,10 @@
     "summary": "A marketer had an agent cut a webinar recording into clips, write captions for each, and queue them across social channels.",
     "title": "Repurpose one webinar into a month of posts",
     "topic": "marketing-sales",
-    "prompt": "Take this webinar recording and cut it into short clips with captions, one per key point, ready to post."
+    "prompt": "Take this webinar recording and cut it into short clips with captions, one per key point, ready to post.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-10",
@@ -157,7 +202,10 @@
     "summary": "An agent checks competitor pricing pages daily, diffs the content, and alerts the team only when something actually changed.",
     "title": "Monitor competitors' pricing pages for changes",
     "topic": "marketing-sales",
-    "prompt": "Check these competitor pricing pages and alert me only when something actually changed since yesterday."
+    "prompt": "Check these competitor pricing pages and alert me only when something actually changed since yesterday.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-27",
@@ -167,7 +215,10 @@
     "summary": "The poster transferred recurring responsibilities to agents using a mix of cloud and local-machine work, keeping humans on exceptions.",
     "title": "Move recurring team skills to an agent workforce",
     "topic": "business-ops",
-    "prompt": "Document this recurring task as a step-by-step checklist an agent could run weekly, with clear escalation rules for exceptions."
+    "prompt": "Document this recurring task as a step-by-step checklist an agent could run weekly, with clear escalation rules for exceptions.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-07",
@@ -177,7 +228,10 @@
     "summary": "A startup gave new hires an agent that answers policy questions, schedules intro meetings, and tracks onboarding checklists.",
     "title": "Onboard new hires with an agent buddy",
     "topic": "business-ops",
-    "prompt": "Act as my onboarding buddy: answer policy questions from this handbook and track my first-week checklist."
+    "prompt": "Act as my onboarding buddy: answer policy questions from this handbook and track my first-week checklist.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-14",
@@ -187,7 +241,10 @@
     "summary": "An agent joins calls, then posts a recap with decisions made, owners assigned, and open questions nobody answered.",
     "title": "Summarize every meeting into decisions and owners",
     "topic": "business-ops",
-    "prompt": "Read this meeting transcript and post a recap: decisions made, owners assigned, and open questions nobody answered."
+    "prompt": "Read this meeting transcript and post a recap: decisions made, owners assigned, and open questions nobody answered.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-12",
@@ -197,7 +254,10 @@
     "summary": "A freelancer set an agent to send escalating payment reminders, log every response, and flag accounts that go quiet for human follow-up.",
     "title": "Chase unpaid invoices politely",
     "topic": "business-ops",
-    "prompt": "Send a polite payment reminder for this overdue invoice, log the response, and flag it if there's no reply in five days."
+    "prompt": "Send a polite payment reminder for this overdue invoice, log the response, and flag it if there's no reply in five days.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-21",
@@ -207,7 +267,10 @@
     "summary": "A team lead had an agent convert internal docs into quizzes so new engineers could test themselves during onboarding.",
     "title": "Turn documentation into practice quizzes",
     "topic": "learning",
-    "prompt": "Turn this documentation page into a 10-question quiz so I can test my understanding before moving on."
+    "prompt": "Turn this documentation page into a 10-question quiz so I can test my understanding before moving on.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-03",
@@ -217,7 +280,10 @@
     "summary": "A poster practiced daily conversations with an agent that corrected mistakes and adjusted difficulty as they improved.",
     "title": "Learn a language through daily agent conversations",
     "topic": "learning",
-    "prompt": "Have a five-minute beginner conversation with me in Spanish and correct my mistakes as we go."
+    "prompt": "Have a five-minute beginner conversation with me in Spanish and correct my mistakes as we go.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-18",
@@ -227,7 +293,10 @@
     "summary": "A student fed chapters to an agent that extracted key terms and definitions into flashcards for exam prep.",
     "title": "Summarize a textbook chapter into flashcards",
     "topic": "learning",
-    "prompt": "Extract the key terms and definitions from this chapter into flashcards I can use for exam review."
+    "prompt": "Extract the key terms and definitions from this chapter into flashcards I can use for exam review.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-01",
@@ -237,7 +306,10 @@
     "summary": "A filmmaker gave an agent a one-line premise and got back scene breakdowns and a shot list to refine with a human crew.",
     "title": "Storyboard a short film from a one-line idea",
     "topic": "creative",
-    "prompt": "Turn this one-line film premise into a scene-by-scene breakdown with a shot list I can refine."
+    "prompt": "Turn this one-line film premise into a scene-by-scene breakdown with a shot list I can refine.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-26",
@@ -247,7 +319,10 @@
     "summary": "A podcaster has an agent transcribe each episode, then write summaries, chapter markers, and quote highlights for the show notes.",
     "title": "Generate podcast show notes and chapters",
     "topic": "creative",
-    "prompt": "Transcribe this episode and write show notes with chapter markers and the best quotes."
+    "prompt": "Transcribe this episode and write show notes with chapter markers and the best quotes.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-11",
@@ -257,7 +332,10 @@
     "summary": "A founder iterated with an agent on color palettes and type pairings starting from three brand adjectives, then handed the direction to a designer.",
     "title": "Design a brand kit from three adjectives",
     "topic": "creative",
-    "prompt": "Given these three brand adjectives, suggest three color palettes and font pairings I can review with a designer."
+    "prompt": "Given these three brand adjectives, suggest three color palettes and font pairings I can review with a designer.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-23",
@@ -267,7 +345,10 @@
     "summary": "The poster tested agent mode handling an online sale over about ten days, including message handling and price nudges, with little hands-on work.",
     "title": "Sell unused items online with an agent",
     "topic": "everyday-life",
-    "prompt": "Draft a listing for this item from these photos, suggest a fair price, and help me reply to buyer messages politely."
+    "prompt": "Draft a listing for this item from these photos, suggest a fair price, and help me reply to buyer messages politely.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-10-13",
@@ -277,7 +358,10 @@
     "summary": "A traveler gave an agent a budget and dates; it compared routes and stays across cities and built a day-by-day itinerary.",
     "title": "Plan a multi-city trip within a budget",
     "topic": "everyday-life",
-    "prompt": "Plan a five-day trip across these cities within my budget, comparing routes and stays, as a day-by-day itinerary."
+    "prompt": "Plan a five-day trip across these cities within my budget, comparing routes and stays, as a day-by-day itinerary.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-29",
@@ -287,7 +371,10 @@
     "summary": "A poster photographed a misbehaving appliance; the agent identified the model and walked through diagnostic steps before calling a technician.",
     "title": "Troubleshoot home appliances from a photo",
     "topic": "everyday-life",
-    "prompt": "Identify this appliance from the photo and walk me through basic diagnostic steps before I call a technician."
+    "prompt": "Identify this appliance from the photo and walk me through basic diagnostic steps before I call a technician.",
+    "agents": [
+      "Custom agent"
+    ]
   },
   {
     "date": "2026-09-16",
@@ -297,6 +384,9 @@
     "summary": "An agent extracted coverage terms from several quote PDFs into a comparison table so the poster could see real differences, not just prices.",
     "title": "Compare insurance quotes line by line",
     "topic": "everyday-life",
-    "prompt": "Extract the coverage terms from these insurance quote PDFs into a comparison table so I can see the real differences, not just prices."
+    "prompt": "Extract the coverage terms from these insurance quote PDFs into a comparison table so I can see the real differences, not just prices.",
+    "agents": [
+      "Custom agent"
+    ]
   }
 ]

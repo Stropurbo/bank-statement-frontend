@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import usecases from "../data/usecases.json";
+import { topics } from "../data/topics";
 import TopicNav from "../components/TopicNav";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { FeedCard, TrendingCard } from "../components/FeedCard";
@@ -7,9 +8,32 @@ import { useEngagement } from "../lib/engagement";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
+const agentsOf = (u) => u.agents && u.agents.length ? u.agents : ["Custom agent"];
+
+const toggleIn = (list, v) =>
+  list.includes(v) ? list.filter((x) => x !== v) : [...list, v];
+
+function FilterPill({ label, count, active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`text-xs font-medium rounded-full px-3 py-1.5 transition-colors ${
+        active
+          ? "bg-black text-white"
+          : "border border-neutral-200 text-neutral-700 hover:border-neutral-400"
+      }`}
+    >
+      {label} <span className={active ? "opacity-70" : "opacity-50"}>{count}</span>
+    </button>
+  );
+}
+
 export default function Home() {
   const [query, setQuery] = useState("");
   const [pill, setPill] = useState("all");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [selAgents, setSelAgents] = useState([]);
+  const [selTopics, setSelTopics] = useState([]);
   const { votes, saved, toggleVote, toggleSaved } = useEngagement();
 
   const sorted = useMemo(
@@ -28,6 +52,25 @@ export default function Home() {
     [sorted, maxDate]
   );
 
+  const agentCounts = useMemo(() => {
+    const m = {};
+    sorted.forEach((u) =>
+      agentsOf(u).forEach((a) => {
+        m[a] = (m[a] || 0) + 1;
+      })
+    );
+    return Object.entries(m).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  }, [sorted]);
+
+  const topicCounts = useMemo(
+    () =>
+      topics.map((t) => ({
+        ...t,
+        count: sorted.filter((u) => u.topic === t.slug).length,
+      })),
+    [sorted]
+  );
+
   const trending = useMemo(() => sorted.slice(0, 4), [sorted]);
 
   const feed = useMemo(() => {
@@ -40,10 +83,23 @@ export default function Home() {
           u.summary.toLowerCase().includes(q)
       );
     }
+    if (selAgents.length) {
+      items = items.filter((u) => agentsOf(u).some((a) => selAgents.includes(a)));
+    }
+    if (selTopics.length) {
+      items = items.filter((u) => selTopics.includes(u.topic));
+    }
     return items;
-  }, [pill, newThisWeek, sorted, query]);
+  }, [pill, newThisWeek, sorted, query, selAgents, selTopics]);
 
   const searching = query.trim().length > 0;
+  const activeFilters = selAgents.length + selTopics.length;
+  const filtering = activeFilters > 0;
+
+  const clearFilters = () => {
+    setSelAgents([]);
+    setSelTopics([]);
+  };
 
   return (
     <div>
@@ -73,6 +129,51 @@ export default function Home() {
       </section>
 
       <TopicNav />
+
+      {/* Filter */}
+      <section className="mt-8">
+        <button
+          onClick={() => setFilterOpen((o) => !o)}
+          className="w-full border border-neutral-200 rounded-lg px-4 py-3 flex items-center justify-between text-sm hover:border-neutral-400 transition-colors bg-white"
+        >
+          <span className="font-medium text-black">Filter</span>
+          <span className="text-neutral-500">
+            {filterOpen ? "Close" : filtering ? `${activeFilters} active` : "All"}
+          </span>
+        </button>
+        {filterOpen && (
+          <div className="mt-4 border-t border-dashed border-neutral-200 pt-5">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+              Agents
+            </p>
+            <div className="flex flex-wrap gap-2 mb-7">
+              {agentCounts.map(([name, count]) => (
+                <FilterPill
+                  key={name}
+                  label={name}
+                  count={count}
+                  active={selAgents.includes(name)}
+                  onClick={() => setSelAgents((l) => toggleIn(l, name))}
+                />
+              ))}
+            </div>
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
+              Categories
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {topicCounts.map((t) => (
+                <FilterPill
+                  key={t.slug}
+                  label={t.name}
+                  count={t.count}
+                  active={selTopics.includes(t.slug)}
+                  onClick={() => setSelTopics((l) => toggleIn(l, t.slug))}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
 
       {/* Search + pills */}
       <section className="mt-8">
@@ -125,7 +226,7 @@ export default function Home() {
       </section>
 
       {/* Trending today */}
-      {!searching && (
+      {!searching && !filtering && (
         <section className="mt-8">
           <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3">
             Trending today
@@ -140,9 +241,9 @@ export default function Home() {
 
       {/* New use cases feed */}
       <section className="mt-10">
-        <div className="flex items-baseline justify-between mb-4">
+        <div className="flex items-baseline justify-between mb-1">
           <h2 className="text-xl font-bold text-black">
-            {searching
+            {searching || filtering
               ? `${feed.length} result${feed.length === 1 ? "" : "s"}`
               : `${feed.length} new use case${feed.length === 1 ? "" : "s"}`}
           </h2>
@@ -150,7 +251,18 @@ export default function Home() {
             Latest finds
           </span>
         </div>
-        <div className="grid gap-4">
+        {filtering && (
+          <p className="text-xs text-neutral-500 mb-4">
+            {activeFilters} filter{activeFilters === 1 ? "" : "s"} active —{" "}
+            <button
+              onClick={clearFilters}
+              className="underline hover:text-black"
+            >
+              clear
+            </button>
+          </p>
+        )}
+        <div className={`grid gap-4 ${filtering ? "" : "mt-4"}`}>
           {feed.map((u) => (
             <FeedCard
               key={u.id}
@@ -164,7 +276,7 @@ export default function Home() {
           ))}
           {feed.length === 0 && (
             <p className="text-neutral-500 text-sm">
-              No use cases match — try a different search.
+              No use cases match — try a different search or clear the filters.
             </p>
           )}
         </div>

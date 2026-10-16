@@ -1,12 +1,42 @@
 import { useState } from "react";
-import { topicBySlug } from "../data/topics";
 
-function fmtDate(iso) {
+const AGENT_COLORS = [
+  { bg: "bg-purple-500", dot: "bg-purple-500" },
+  { bg: "bg-green-500", dot: "bg-green-500" },
+  { bg: "bg-red-500", dot: "bg-red-500" },
+  { bg: "bg-blue-500", dot: "bg-blue-500" },
+  { bg: "bg-orange-500", dot: "bg-orange-500" },
+  { bg: "bg-teal-500", dot: "bg-teal-500" },
+];
+
+function agentColor(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  return AGENT_COLORS[h % AGENT_COLORS.length];
+}
+
+function agentInitials(name) {
+  const words = name.split(/\s+/).filter(Boolean);
+  if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+  return name.slice(0, 2).toUpperCase();
+}
+
+function fmtMonthYear(iso) {
   return new Date(iso + "T00:00:00").toLocaleDateString("en-US", {
     month: "short",
-    day: "numeric",
     year: "numeric",
   });
+}
+
+function AgentBadge({ name }) {
+  const color = agentColor(name);
+  return (
+    <span
+      className={`inline-flex items-center justify-center w-7 h-7 rounded-md ${color.bg} text-white text-[11px] font-bold shrink-0`}
+    >
+      {agentInitials(name)}
+    </span>
+  );
 }
 
 function isNew(iso, maxDate) {
@@ -94,9 +124,10 @@ function ShareButton({ id }) {
 /** Full feed card for the "New use cases" list. */
 export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved }) {
   const [showPrompt, setShowPrompt] = useState(false);
-  const topic = topicBySlug(item.topic);
   const voted = !!votes[item.id];
   const isSaved = saved.includes(item.id);
+  const agents = item.agents && item.agents.length ? item.agents : ["Custom agent"];
+  const isNewItem = isNew(item.date, maxDate);
 
   return (
     <article
@@ -105,31 +136,31 @@ export function FeedCard({ item, maxDate, votes, saved, toggleVote, toggleSaved 
     >
       <div className="flex gap-3">
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 text-xs text-neutral-500 mb-2 flex-wrap">
-            <span className="inline-flex items-center justify-center w-5 h-5 rounded bg-black">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="white">
-                <path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z" />
-              </svg>
-            </span>
-            {topic && (
-              <a
-                href={`/topic/${topic.slug}`}
-                className="bg-neutral-100 text-neutral-700 px-2 py-0.5 rounded-full font-medium hover:bg-neutral-200"
-              >
-                {topic.name}
-              </a>
-            )}
-            {isNew(item.date, maxDate) && (
-              <span className="text-black font-semibold">New</span>
-            )}
-            <span>{item.source}</span>
-            <span>·</span>
-            <span>{fmtDate(item.date)}</span>
+          <div className="flex items-start gap-2.5 mb-1.5">
+            <AgentBadge name={agents[0]} />
+            <h3 className="font-bold text-lg leading-snug text-black">
+              {item.title}
+            </h3>
           </div>
 
-          <h3 className="font-bold text-lg leading-snug text-black mb-1.5">
-            {item.title}
-          </h3>
+          <div className="flex items-center gap-2 text-xs text-neutral-500 mb-2 flex-wrap">
+            {agents.map((a) => (
+              <span key={a} className="inline-flex items-center gap-1.5">
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${agentColor(a).dot}`}
+                />
+                <span>{a}</span>
+              </span>
+            ))}
+            {isNewItem && (
+              <span className="text-blue-600 font-semibold">New</span>
+            )}
+            <span>·</span>
+            <span>{item.source}</span>
+            <span>·</span>
+            <span>{fmtMonthYear(item.date)}</span>
+          </div>
+
           <p className="text-neutral-600 text-sm leading-relaxed">{item.summary}</p>
 
           {showPrompt && item.prompt && (
