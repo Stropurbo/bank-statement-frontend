@@ -111,7 +111,7 @@ export default function Home() {
       {/* Hero */}
       <section className="pt-6 pb-5">
         <h1 className="text-lg text-neutral-600 font-normal mb-5">
-          Real things people are doing with AI agents.
+          What people actually do with AI agents.
         </h1>
         <div className="grid grid-cols-2 gap-3">
           <a
