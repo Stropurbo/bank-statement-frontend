@@ -1,3 +1,4 @@
+import { useState } from "react";
 import usecases from "../data/usecases.json";
 
 const SPONSOR_BAR_URL = "https://bookloverreview.gumroad.com/l/xmshou";
@@ -65,6 +66,12 @@ function EmailMockup() {
 
 export default function Advertise() {
   const count = usecases.length;
+  const [selected, setSelected] = useState("banner");
+
+  const cardClass = (id) =>
+    selected === id
+      ? "border-2 border-black dark:border-white rounded-xl p-6 bg-white dark:bg-neutral-950 cursor-pointer"
+      : "border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 bg-white dark:bg-neutral-950 cursor-pointer hover:border-neutral-400 dark:hover:border-neutral-600";
 
   return (
     <div className="py-10 max-w-2xl">
@@ -122,7 +129,7 @@ export default function Advertise() {
         What you get
       </h2>
       <div className="grid gap-4 sm:grid-cols-2 mb-10">
-        <div className="border border-neutral-200 dark:border-neutral-800 rounded-xl p-6 bg-white dark:bg-neutral-950">
+        <div className={cardClass("featured")} onClick={() => setSelected("featured")}>
           <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-1">
             Featured slot
           </p>
@@ -147,7 +154,7 @@ export default function Advertise() {
             Sponsor for $99/week
           </a>
         </div>
-        <div className="border-2 border-black dark:border-white rounded-xl p-6 bg-white dark:bg-neutral-950">
+        <div className={cardClass("banner")} onClick={() => setSelected("banner")}>
           <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-1">
             Homepage banner
           </p>
