@@ -103,7 +103,7 @@ export default function Home() {
     [sorted]
   );
 
-  const trending = useMemo(() => sorted.slice(0, 6), [sorted]);
+  const trending = useMemo(() => sorted.slice(0, 12), [sorted]);
 
   const feed = useMemo(() => {
     let items = pill === "new" ? newThisWeek : sorted;
