@@ -1,8 +1,1 @@
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
-}
+{"rewrites":[{"destination":"/llms.txt","source":"/llms.txt"},{"destination":"/feed.xml","source":"/feed.xml"},{"destination":"/sitemap.xml","source":"/sitemap.xml"},{"destination":"/robots.txt","source":"/robots.txt"},{"destination":"/index.html","source":"/(.*)"}]}
