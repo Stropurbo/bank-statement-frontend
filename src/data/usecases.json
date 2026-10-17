@@ -246,7 +246,7 @@
     "prompt": "This package shows as delivered but never arrived. Track it across carriers and draft an inquiry to the carrier and seller.",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "When a package showed as delivered but never arrived, a poster had an agent track it across carriers, draft the carrier inquiry, and escalate with the seller — the package was found at a neighbor's.",
+    "summary": "When a package showed as delivered but never arrived, a poster had an agent track it across carriers, draft the carrier inquiry, and escalate with the seller \u2014 the package was found at a neighbor's.",
     "title": "Track down a lost package across carriers",
     "topic": "everyday-life",
     "votes": 0
@@ -508,7 +508,7 @@
     "summary": "A commenter says a computer-using agent can be told to work on any given repo through the browser, unlike repo-specific cloud agents.",
     "title": "Point a computer-using bot at any repo",
     "topic": "coding-dev",
-    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives — before changing anything.",
+    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives \u2014 before changing anything.",
     "agents": [
       "Custom agent"
     ]
@@ -625,7 +625,7 @@
     "summary": "A poster fed prior-year return PDFs to an agent, which flagged deduction categories worth asking a CPA about. The poster stressed a human still files.",
     "title": "Review last year's tax return for missed deductions",
     "topic": "money-bills",
-    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only — don't file anything.",
+    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only \u2014 don't file anything.",
     "agents": [
       "Custom agent"
     ]
@@ -668,5 +668,89 @@
     "agents": [
       "Custom agent"
     ]
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-17",
+    "id": "hotel-concierge-agent",
+    "prompt": "Answer guest questions using only the hotel's FAQ. If a question isn't covered, say so and offer to connect them with reception.",
+    "source": "Newsletter",
+    "sourceUrl": "https://newsletter.aiengineer.co",
+    "summary": "A freelancer built an AI concierge for a hotel website to handle the questions guests ask over and over: Wi-Fi password, address, which villa suits families. The agent answers from the hotel's own FAQ so reception doesn't field routine questions around the clock, and it was deployed on Google Cloud for the client.",
+    "title": "Answer repeat hotel guest questions with a concierge agent",
+    "topic": "business-ops",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-17",
+    "id": "fiverr-inbox-scam-filter",
+    "prompt": "Classify this marketplace message as LEGITIMATE or SCAM with one sentence of reasoning. Scam indicators: requests to move off-platform, generic greetings with urgent project offers, poor grammar with pressure tactics.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A Fiverr seller was losing twenty minutes a day to inbox spam and scam messages. They built a small watcher \u2014 a headless browser plus cron plus a local LLM \u2014 that reads new messages hourly, classifies each as legitimate or scam, and sends a Telegram alert only for real inquiries. Scams get logged silently; the seller reports roughly ten hours a month saved and faster replies to genuine customers.",
+    "title": "Filter freelance inbox scams with a local LLM watchdog",
+    "topic": "productivity",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-17",
+    "id": "marketing-agency-ai-employees",
+    "prompt": "Draft this week's client performance report from the attached data. Flag anything that looks stale or inconsistent instead of guessing.",
+    "source": "LinkedIn",
+    "sourceUrl": "https://www.linkedin.com",
+    "summary": "A marketing agency set up a small team of AI employees to handle routine internal work: weekly reports, lead follow-up flags, and invoice alerts run with no human in the loop. Anything that touched a client, a budget, or a price still waits for a person \u2014 a rule shaped by one stale-data failure that taught them where the line goes.",
+    "title": "Give a marketing agency AI employees for reports and invoice alerts",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "ChatGPT"
+    ],
+    "date": "2026-10-17",
+    "id": "content-knowledge-graph-agent",
+    "prompt": "Watch this week's new reels and propose topic tags from my existing taxonomy. Only add a tag if you're confident it fits; list anything uncertain for my review.",
+    "source": "Instagram",
+    "sourceUrl": "https://www.instagram.com",
+    "summary": "A creator maps her videos into a topic knowledge graph to see how her themes connect instead of forcing herself into one niche. Updating it by hand \u2014 transcribing reels, tagging themes \u2014 was tedious, so she set up a weekly ChatGPT agent that watches new reels, proposes tags, verifies them, and pushes updates to her GitHub repository.",
+    "title": "Maintain a content knowledge graph with a weekly agent",
+    "topic": "creative",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-17",
+    "id": "family-assistant-bot",
+    "prompt": "We're a family with school runs, appointments, and chores. Help us coordinate this week's schedule and draft a shared shopping list.",
+    "source": "News",
+    "sourceUrl": "https://cncbnews.com",
+    "summary": "A working parent built well over a hundred personal AI agents to reclaim time from family logistics \u2014 and the one everyone actually uses is a shared family assistant bot the whole household talks to. Even family members who were skeptical of AI ended up using it once it started saving real time.",
+    "title": "Run the family on a shared AI assistant bot",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "ChatGPT"
+    ],
+    "date": "2026-10-17",
+    "id": "sold-out-ticket-booking-agent",
+    "prompt": "Book the tickets for my event on the release date at release time. If the page fails to load, retry through alternate entry paths \u2014 but stop before entering any payment details without my approval.",
+    "source": "Facebook",
+    "sourceUrl": "https://www.facebook.com",
+    "summary": "During a chaotic high-demand ticket release, a theme-park fan stopped fighting loading screens and handed the job to an AI agent, which tried multiple entry paths and completed the reservation in seconds. The lesson: automation avoids the hesitation and errors humans make when inventory is limited and every second counts.",
+    "title": "Grab sold-out tickets with an agent during a high-traffic release",
+    "topic": "everyday-life",
+    "votes": 0
   }
 ]
