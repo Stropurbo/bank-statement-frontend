@@ -1,5 +1,17 @@
 import { topicBySlug } from "../data/topics";
 
+// Returns true for bare domain-root URLs (e.g. https://reddit.com) that are
+// not real links to the original post — these render as plain "Via <source>"
+// text instead of a misleading hyperlink.
+function isGenericSourceUrl(url) {
+  try {
+    const u = new URL(url);
+    return u.pathname === "/" && !u.search && !u.hash;
+  } catch {
+    return true;
+  }
+}
+
 export default function UseCaseCard({ item }) {
   const topic = topicBySlug(item.topic);
   const date = new Date(item.date + "T00:00:00").toLocaleDateString("en-US", {
@@ -26,14 +38,20 @@ export default function UseCaseCard({ item }) {
         {item.title}
       </h3>
       <p className="text-neutral-600 text-sm leading-relaxed dark:text-neutral-300">{item.summary}</p>
-      <a
-        href={item.sourceUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-3 text-xs text-neutral-500 underline hover:text-black dark:text-neutral-400 dark:hover:text-white"
-      >
-        Source: {item.source} ↗
-      </a>
+      {isGenericSourceUrl(item.sourceUrl) ? (
+        <span className="inline-block mt-3 text-xs text-neutral-500 dark:text-neutral-400">
+          Via {item.source}
+        </span>
+      ) : (
+        <a
+          href={item.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-3 text-xs text-neutral-500 underline hover:text-black dark:text-neutral-400 dark:hover:text-white"
+        >
+          Source: {item.source} ↗
+        </a>
+      )}
     </article>
   );
 }

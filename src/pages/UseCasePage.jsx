@@ -7,6 +7,18 @@ import { usePageTitle } from "../lib/usePageTitle";
 import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
 
+// Returns true for bare domain-root URLs (e.g. https://reddit.com) that are
+// not real links to the original post — the "Read the original" button is
+// hidden for those and plain "Via <source>" text is shown instead.
+function isGenericSourceUrl(url) {
+  try {
+    const u = new URL(url);
+    return u.pathname === "/" && !u.search && !u.hash;
+  } catch {
+    return true;
+  }
+}
+
 function CopyPrompt({ prompt }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
@@ -153,14 +165,20 @@ export default function UseCasePage() {
         >
           {shared ? "Link copied!" : "Share"}
         </button>
-        <a
-          href={item.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-blue-600 hover:underline ml-1 dark:text-blue-400"
-        >
-          Read the original ↗
-        </a>
+        {isGenericSourceUrl(item.sourceUrl) ? (
+          <span className="text-sm text-neutral-500 dark:text-neutral-400 ml-1">
+            Via {item.source}
+          </span>
+        ) : (
+          <a
+            href={item.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-blue-600 hover:underline ml-1 dark:text-blue-400"
+          >
+            Read the original ↗
+          </a>
+        )}
       </div>
 
       {related.length > 0 && (

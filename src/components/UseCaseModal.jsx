@@ -10,6 +10,18 @@ import {
 } from "../lib/usecases";
 import { useEngagement } from "../lib/engagement";
 
+// Returns true for bare domain-root URLs (e.g. https://reddit.com) that are
+// not real links to the original post — the "Read the original" button is
+// hidden for those and plain "Via <source>" text is shown instead.
+function isGenericSourceUrl(url) {
+  try {
+    const u = new URL(url);
+    return u.pathname === "/" && !u.search && !u.hash;
+  } catch {
+    return true;
+  }
+}
+
 function CopyPrompt({ prompt, agent }) {
   const [copied, setCopied] = useState(false);
   const copy = async () => {
@@ -158,14 +170,20 @@ export default function UseCaseModal() {
           )}
 
           <div className="flex items-center gap-2 mb-6 flex-wrap">
-            <a
-              href={item.sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-full px-4 py-2 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
-            >
-              Read the original ↗
-            </a>
+            {isGenericSourceUrl(item.sourceUrl) ? (
+              <span className="text-sm text-neutral-500 dark:text-neutral-400">
+                Via {item.source}
+              </span>
+            ) : (
+              <a
+                href={item.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-full px-4 py-2 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
+              >
+                Read the original ↗
+              </a>
+            )}
             <button
               onClick={() => toggleVote(item.id)}
               className={`text-sm font-medium rounded-full px-4 py-2 border transition-colors ${
