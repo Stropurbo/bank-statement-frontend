@@ -246,7 +246,7 @@
     "prompt": "This package shows as delivered but never arrived. Track it across carriers and draft an inquiry to the carrier and seller.",
     "source": "Reddit",
     "sourceUrl": "https://www.reddit.com",
-    "summary": "When a package showed as delivered but never arrived, a poster had an agent track it across carriers, draft the carrier inquiry, and escalate with the seller \u2014 the package was found at a neighbor's.",
+    "summary": "When a package showed as delivered but never arrived, a poster had an agent track it across carriers, draft the carrier inquiry, and escalate with the seller — the package was found at a neighbor's.",
     "title": "Track down a lost package across carriers",
     "topic": "everyday-life",
     "votes": 0
@@ -508,7 +508,7 @@
     "summary": "A commenter says a computer-using agent can be told to work on any given repo through the browser, unlike repo-specific cloud agents.",
     "title": "Point a computer-using bot at any repo",
     "topic": "coding-dev",
-    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives \u2014 before changing anything.",
+    "prompt": "Clone this repo, explore its structure, and tell me where the authentication logic lives — before changing anything.",
     "agents": [
       "Custom agent"
     ]
@@ -625,7 +625,7 @@
     "summary": "A poster fed prior-year return PDFs to an agent, which flagged deduction categories worth asking a CPA about. The poster stressed a human still files.",
     "title": "Review last year's tax return for missed deductions",
     "topic": "money-bills",
-    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only \u2014 don't file anything.",
+    "prompt": "Read last year's tax return PDF and list deduction categories I should ask my CPA about. Flag only — don't file anything.",
     "agents": [
       "Custom agent"
     ]
@@ -692,7 +692,7 @@
     "prompt": "Classify this marketplace message as LEGITIMATE or SCAM with one sentence of reasoning. Scam indicators: requests to move off-platform, generic greetings with urgent project offers, poor grammar with pressure tactics.",
     "source": "dev.to",
     "sourceUrl": "https://dev.to",
-    "summary": "A Fiverr seller was losing twenty minutes a day to inbox spam and scam messages. They built a small watcher \u2014 a headless browser plus cron plus a local LLM \u2014 that reads new messages hourly, classifies each as legitimate or scam, and sends a Telegram alert only for real inquiries. Scams get logged silently; the seller reports roughly ten hours a month saved and faster replies to genuine customers.",
+    "summary": "A Fiverr seller was losing twenty minutes a day to inbox spam and scam messages. They built a small watcher — a headless browser plus cron plus a local LLM — that reads new messages hourly, classifies each as legitimate or scam, and sends a Telegram alert only for real inquiries. Scams get logged silently; the seller reports roughly ten hours a month saved and faster replies to genuine customers.",
     "title": "Filter freelance inbox scams with a local LLM watchdog",
     "topic": "productivity",
     "votes": 0
@@ -706,7 +706,7 @@
     "prompt": "Draft this week's client performance report from the attached data. Flag anything that looks stale or inconsistent instead of guessing.",
     "source": "LinkedIn",
     "sourceUrl": "https://www.linkedin.com",
-    "summary": "A marketing agency set up a small team of AI employees to handle routine internal work: weekly reports, lead follow-up flags, and invoice alerts run with no human in the loop. Anything that touched a client, a budget, or a price still waits for a person \u2014 a rule shaped by one stale-data failure that taught them where the line goes.",
+    "summary": "A marketing agency set up a small team of AI employees to handle routine internal work: weekly reports, lead follow-up flags, and invoice alerts run with no human in the loop. Anything that touched a client, a budget, or a price still waits for a person — a rule shaped by one stale-data failure that taught them where the line goes.",
     "title": "Give a marketing agency AI employees for reports and invoice alerts",
     "topic": "marketing-sales",
     "votes": 0
@@ -720,7 +720,7 @@
     "prompt": "Watch this week's new reels and propose topic tags from my existing taxonomy. Only add a tag if you're confident it fits; list anything uncertain for my review.",
     "source": "Instagram",
     "sourceUrl": "https://www.instagram.com",
-    "summary": "A creator maps her videos into a topic knowledge graph to see how her themes connect instead of forcing herself into one niche. Updating it by hand \u2014 transcribing reels, tagging themes \u2014 was tedious, so she set up a weekly ChatGPT agent that watches new reels, proposes tags, verifies them, and pushes updates to her GitHub repository.",
+    "summary": "A creator maps her videos into a topic knowledge graph to see how her themes connect instead of forcing herself into one niche. Updating it by hand — transcribing reels, tagging themes — was tedious, so she set up a weekly ChatGPT agent that watches new reels, proposes tags, verifies them, and pushes updates to her GitHub repository.",
     "title": "Maintain a content knowledge graph with a weekly agent",
     "topic": "creative",
     "votes": 0
@@ -734,7 +734,7 @@
     "prompt": "We're a family with school runs, appointments, and chores. Help us coordinate this week's schedule and draft a shared shopping list.",
     "source": "News",
     "sourceUrl": "https://cncbnews.com",
-    "summary": "A working parent built well over a hundred personal AI agents to reclaim time from family logistics \u2014 and the one everyone actually uses is a shared family assistant bot the whole household talks to. Even family members who were skeptical of AI ended up using it once it started saving real time.",
+    "summary": "A working parent built well over a hundred personal AI agents to reclaim time from family logistics — and the one everyone actually uses is a shared family assistant bot the whole household talks to. Even family members who were skeptical of AI ended up using it once it started saving real time.",
     "title": "Run the family on a shared AI assistant bot",
     "topic": "everyday-life",
     "votes": 0
@@ -745,12 +745,125 @@
     ],
     "date": "2026-10-17",
     "id": "sold-out-ticket-booking-agent",
-    "prompt": "Book the tickets for my event on the release date at release time. If the page fails to load, retry through alternate entry paths \u2014 but stop before entering any payment details without my approval.",
+    "prompt": "Book the tickets for my event on the release date at release time. If the page fails to load, retry through alternate entry paths — but stop before entering any payment details without my approval.",
     "source": "Facebook",
     "sourceUrl": "https://www.facebook.com",
     "summary": "During a chaotic high-demand ticket release, a theme-park fan stopped fighting loading screens and handed the job to an AI agent, which tried multiple entry paths and completed the reservation in seconds. The lesson: automation avoids the hesitation and errors humans make when inventory is limited and every second counts.",
     "title": "Grab sold-out tickets with an agent during a high-traffic release",
     "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "id": "claude-code-pair-programmer-playwright",
+    "title": "Claude Code as a pair programmer for Playwright E2E tests",
+    "summary": "A QA director at a Japanese IT company spent a month having Claude Code write production Playwright E2E test suites. With a strict conventions file (semantic selectors only, no hard waits, tests isolated and parallel-safe), AI-generated suites caught real bug classes like double-submission under slow network. Their rule: AI writes, human stabilizes — every generated test runs 5x locally and once in CI before it counts as done.",
+    "topic": "coding-dev",
+    "agents": [
+      "Claude Code"
+    ],
+    "prompt": "Here are my Playwright test conventions: semantic selectors only, no hard waits, every test isolated and parallel-safe. Write tests for the contact form: success, server error, and pending state. Never hit the real API — stub network calls.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "debugging-production-agent-13786-requests",
+    "title": "Debug a production agent that sent 13,786 API requests in one day",
+    "summary": "A developer ran a self-hosted repo-watching agent that once sent 13,786 requests to OpenAI in a single day while achieving nothing. From their own billing data and git history they documented five agent-loop types — alarm-clock, echo (self-triggering webhooks), busy-signal retries, goldfish re-reading, and overthinker loops — and the fixes that cut the bot from 123,932 requests to 451 over the same span.",
+    "topic": "coding-dev",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Review my agent's request logs for the last 7 days. Flag any pattern where it re-runs the same checks or re-reads unchanged files, and propose a cooldown or change-detection rule for each.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "local-first-receipt-sorter-ai-agent",
+    "title": "Build a local-first receipt sorter with an AI coding agent",
+    "summary": "A developer used Google Antigravity AI agent workflows to build FreelancerAI, a 100% local-first receipt and invoice sorter: Tesseract.js OCR and a heuristic parser run entirely in the browser, with a spending dashboard and CSV export for taxes — no accounts, no uploads, no API bills. They tested it with a freelance designer who ran 14 real receipts (cafe meetings, software tools, hardware) through it.",
+    "topic": "coding-dev",
+    "agents": [
+      "Google Antigravity"
+    ],
+    "prompt": "Build a browser-only app that takes a receipt photo, extracts vendor, date, amount and category using local OCR, and exports the results to CSV. No backend, no network calls, no API keys.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "verification-gates-coding-agent-done",
+    "title": "Verification gates so a coding agent's 'done' means done",
+    "summary": "After their coding agent kept reporting 'done' on broken builds and phantom test passes, a developer built an open-source harness that puts two gates between the agent and the word 'done': mechanical gates (does it build, do tests pass, is the linter quiet) and semantic gates (does the change actually do what was asked, judged against the task definition). A failed gate is a valid outcome — the work doesn't ship.",
+    "topic": "coding-dev",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Before marking this task complete, run the build, the test suite, and the linter. Then compare the diff against my original task description and report whether each requirement was actually met. If anything fails, do not call it done.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "job-hunt-agent-reads-every-advert",
+    "title": "Job-hunt agent that reads every advert before applying",
+    "summary": "A developer built JobAgent, a semi-autonomous job-application pipeline that runs inside Claude Cowork: it collects vacancies from job boards, applies hard filters (salary, location, freshness), reads every remaining advert in full, scores each role against the applicant's master profile, writes a tailored CV and cover letter, then waits for human approval — nothing is ever submitted on its own. In a 13-week test run it read thousands of adverts, hand-approved 258 applications, and produced 8 interviews and 3 offers.",
+    "topic": "productivity",
+    "agents": [
+      "Claude"
+    ],
+    "prompt": "Search this week's job listings for product design roles in Europe. Read each advert in full, score it against my CV, and draft a tailored cover letter only for the strong matches. Do not submit anything — show me each application first.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "n8n-agent-first-draft-newsletter",
+    "title": "n8n agent writes the first draft of a weekly newsletter",
+    "summary": "A YouTube creator's n8n agent writes the first draft of their weekly AI newsletter: it watches the same AI news their research agent collects, picks the one story worth the inbox, and writes a full issue in the creator's voice — a hook, the build, and a copyable prompt — delivering it to Beehiiv drafts. The creator keeps a voice-check gate and edits before anything goes out.",
+    "topic": "marketing-sales",
+    "agents": [
+      "n8n"
+    ],
+    "prompt": "Read this week's collected AI news, pick the single most useful story for a builder audience, and draft a newsletter issue: a hook, a short how-to build section, and one exact prompt readers can copy. Match my past issues' voice; save it as a draft for me to review.",
+    "source": "YouTube",
+    "sourceUrl": "https://youtube.com",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "latticenet-substack-ai-agents-authors",
+    "title": "A Substack-like network where AI agents are the authors",
+    "summary": "A developer built LatticeNet, a Substack-like network where AI agents are the users: agents register via a one-line SKILL.md onboarding, then publish long-form articles and notes, follow each other, comment, and DM over API or MCP, running on heartbeat loops. Humans can only read — the founder can't post either. It includes agent-specific design: a 'reverse captcha' (math and LLM-knowledge challenges no human would enjoy) that verified posts must solve within 40 seconds.",
+    "topic": "creative",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Read the SKILL.md onboarding doc at the publishing network's URL, register an agent profile, then read your home feed before deciding whether you have anything worth writing about this cycle.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
+    "votes": 0
+  },
+  {
+    "id": "blog-writing-assistant-local-model",
+    "title": "Blog writing assistant powered by a local open-weight model",
+    "summary": "A developer built Blog-OS, an open-source blog system whose AI writing assistant suggests excerpts, tags, and titles — but runs entirely on the author's own machine via Ollama with Google's Gemma 3 4B, so no drafts leave the laptop and there are no per-token API bills. The whole system (including 63 backend tests and prompt tuning) was designed and built in agent sessions with an AI assistant.",
+    "topic": "creative",
+    "agents": [
+      "Gemma 3",
+      "Ollama"
+    ],
+    "prompt": "From this blog draft, suggest a 2-sentence excerpt, 3-5 tags, and three title options. Keep the tone of the draft; don't rewrite the article itself.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-18",
     "votes": 0
   }
 ]
