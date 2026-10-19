@@ -15,6 +15,7 @@ export default function Footer() {
           <Link to="/advertise" className="hover:text-black dark:hover:text-white">Advertise</Link>
           <Link to="/newsletter" className="hover:text-black dark:hover:text-white">Newsletter</Link>
           <Link to="/about" className="hover:text-black dark:hover:text-white">About</Link>
+          <Link to="/apps" className="hover:text-black dark:hover:text-white">App Blog</Link>
           <Link to="/privacy" className="hover:text-black dark:hover:text-white">Privacy</Link>
           <a href="/feed.xml" className="hover:text-black dark:hover:text-white">RSS</a>
         </div>

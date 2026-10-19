@@ -15,6 +15,8 @@ import AgentsPage from "./pages/AgentsPage";
 import TopicsPage from "./pages/TopicsPage";
 import AgentPage from "./pages/AgentPage";
 import UseCasePage from "./pages/UseCasePage";
+import AppsPage from "./pages/AppsPage";
+import AppPostPage from "./pages/AppPostPage";
 import NotFound from "./pages/NotFound";
 
 function AppRoutes() {
@@ -37,6 +39,8 @@ function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/newsletter" element={<NewsletterPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/apps" element={<AppsPage />} />
+        <Route path="/apps/:slug" element={<AppPostPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {background && (
