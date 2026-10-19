@@ -865,5 +865,105 @@
     "sourceUrl": "https://dev.to",
     "date": "2026-10-18",
     "votes": 0
+  },
+  {
+    "id": "stock-screen-hypothesis-to-code",
+    "title": "Turn a stock-screening hypothesis into working code",
+    "summary": "A Redditor had a stock-screening hypothesis that would have taken a helper 7-10 days of manual checking across hundreds of listings. He spent about 3 hours with Claude refining the logic and got the whole task automated instead.",
+    "topic": "money-bills",
+    "agents": [
+      "Claude"
+    ],
+    "prompt": "Here is my screening hypothesis and a sample dataset. Turn it into a script that applies the logic exactly as described, and explain each assumption.",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "date": "2026-10-19",
+    "votes": 0
+  },
+  {
+    "id": "faster-plex-client-claude-code",
+    "title": "Rebuild a sluggish smart-TV app with Claude Code",
+    "summary": "A Redditor's 2022 Samsung TV Plex app took about a minute to open, with search lagging around 10 seconds. He used Claude Code to build an open-source web-app client that opens in about a second, searches as you type, and plays almost his entire library in hardware.",
+    "topic": "coding-dev",
+    "agents": [
+      "Claude Code"
+    ],
+    "prompt": "Rebuild this slow TV app as a lightweight web client that opens fast, searches as I type, and plays media files directly where possible.",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "date": "2026-10-19",
+    "votes": 0
+  },
+  {
+    "id": "retro-game-franchise-mod-claude-code",
+    "title": "Add a franchise mode to a 1994 SNES game",
+    "summary": "Over about two weeks, a fan worked with Claude Code to turn the 1994 SNES title Ken Griffey Jr. Presents Major League Baseball into a free patch with all 30 modern clubs, current rosters, and season and franchise modes that fit the cartridge's original 8 KB save format, plus browser play.",
+    "topic": "creative",
+    "agents": [
+      "Claude Code"
+    ],
+    "prompt": "Here is this retro game and its save format. Add a season and franchise mode with player aging and retirements that fits the original save size.",
+    "source": "Reddit",
+    "sourceUrl": "https://www.reddit.com",
+    "date": "2026-10-19",
+    "votes": 0
+  },
+  {
+    "id": "support-ticket-triage-tags",
+    "title": "Triage support tickets with an AI classification step",
+    "summary": "A dev.to walkthrough shows a no-code pattern: on every new helpdesk ticket, an AI step classifies category, urgency, and language, writes the tags back to the ticket, and routes urgent ones to the on-call group. The AI only sorts the pile - a human still answers.",
+    "topic": "business-ops",
+    "agents": [
+      "Zapier",
+      "ChatGPT"
+    ],
+    "prompt": "Classify this support ticket by category, urgency, and language, write the tags back, and route anything urgent to the on-call group.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-19",
+    "votes": 0
+  },
+  {
+    "id": "grounded-sales-openers-from-enrichment",
+    "title": "Write sales openers grounded in real enrichment data",
+    "summary": "A no-code workflow exports a prospect list, enriches each row with company and website data, then adds an AI column that writes a one-line opener based only on that enrichment - never invented facts. A human reviews a sample before anything goes out.",
+    "topic": "marketing-sales",
+    "agents": [
+      "Clay",
+      "Custom agent"
+    ],
+    "prompt": "Using only the enriched facts in this row, write a one-line sales opener. Do not invent anything that is not in the data.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-19",
+    "votes": 0
+  },
+  {
+    "id": "whatsapp-cake-shop-order-agent",
+    "title": "Run a bakery's orders through a WhatsApp agent",
+    "summary": "A builder shipped a WhatsApp agent for a real cake shop - 98 workflow nodes handling menus, orders, payments (a vision model reads payment screenshots), and business rules like holiday closures. Enforcement lives in code rather than prompts, and only the owner can mark an order paid.",
+    "topic": "business-ops",
+    "agents": [
+      "n8n"
+    ],
+    "prompt": "Take this customer's WhatsApp order, confirm the item and date, reply with the price, and save the order once they confirm.",
+    "source": "Instagram",
+    "sourceUrl": "https://www.instagram.com",
+    "date": "2026-10-19",
+    "votes": 0
+  },
+  {
+    "id": "voice-trip-planner-personal-agent",
+    "title": "Plan a trip hands-free with a voice personal agent",
+    "summary": "A creator demonstrated Meta's personal AI agent handling a weekend trip to Portland entirely by voice - a day-by-day itinerary, categorized packing lists, and a draft email to her housekeeper, all while multitasking at home and the gym.",
+    "topic": "everyday-life",
+    "agents": [
+      "Muse"
+    ],
+    "prompt": "Plan a weekend itinerary for my trip, make a categorized packing list, and draft an email to my housekeeper with the dates I am away.",
+    "source": "Instagram",
+    "sourceUrl": "https://www.instagram.com",
+    "date": "2026-10-19",
+    "votes": 0
   }
 ]
