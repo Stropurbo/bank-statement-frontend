@@ -84,7 +84,7 @@ export default function AppPostPage() {
     <div className="py-10 max-w-2xl">
       <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2 dark:text-neutral-400">
         <Link to="/apps" className="hover:underline">
-          Our Apps
+          App Blog
         </Link>{" "}
         · {app.name}
       </p>
