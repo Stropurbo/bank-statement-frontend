@@ -48,6 +48,49 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "gemini-4-argon-smarter-desk-setup",
+    title:
+      "Google's Gemini 4 Argon Is Here — 5 Ways to Make Your Desk Setup Smarter Too",
+    date: "2026-10-19",
+    description:
+      "Google just launched Gemini 4 Argon, now powering AI Mode in Search. Here's what the new AI model changes — and how to build a smarter, more comfortable PC setup around it, including a free phone-as-mouse trick.",
+    appId: "wireless-mouse",
+    body: [
+      {
+        p: "On October 13, Google released its new flagship AI model, <strong>Gemini 4 Argon</strong>, to developers and businesses worldwide (via Reuters). If you're on Google's AI Pro or Ultra plan, it's also powering your Gemini app and <strong>AI Mode in Search</strong> — meaning paying users' AI answers now run on a different, more capable model than the free tier.",
+      },
+      { h2: "What Gemini 4 Argon actually changes" },
+      {
+        p: "According to Google, Argon is built for \"deep work\" — complex, multi-step tasks in coding, finance, law, cybersecurity and science. Early results look strong: teams using it in Google's Antigravity coding tool submitted more than 35% more agentic code while cutting rollbacks by nearly a third, the company says. It's available via the Gemini platform API at $2 per million input tokens and $10 per million output tokens — an introductory rate that doubles after November 30.",
+      },
+      {
+        ul: [
+          "<strong>AI Mode in Search gets smarter</strong> — subscribers now get Argon-powered answers in Google's AI search.",
+          "<strong>Better at long, multi-step work</strong> — drafting, debugging, research and analysis in fewer passes.",
+          "<strong>A sharper divide between free and paid AI</strong> — paying users and free users may now get noticeably different answers.",
+        ],
+      },
+      { h2: "Your AI got an upgrade — your desk deserves one too" },
+      {
+        p: "Here's the thing: as AI takes over more of the thinking, the way you <em>work</em> with your computer matters more, not less. You'll spend more time reviewing AI-drafted documents, running long research sessions, presenting results to colleagues — and less time typing. A smarter desk setup means less friction between you and the screen, whether that screen is a laptop or the TV on your wall.",
+      },
+      { h2: "5 ways to make your desk setup smarter" },
+      {
+        ol: [
+          "<strong>Control your PC from anywhere in the room.</strong> This is the single biggest upgrade most people skip — see the last section.",
+          "<strong>Put your screen at eye level.</strong> A laptop stand or a mirrored display on your TV saves your neck during long sessions.",
+          "<strong>Mirror to your TV for presentations.</strong> Reviewing AI-generated slides with a colleague? <a href=\"/apps/mirror-android-to-tv-without-chromecast\">Mirror your phone or PC to the big screen</a> instead of crowding around a laptop.",
+          "<strong>Learn five keyboard shortcuts.</strong> Alt+Tab, Ctrl+Shift+T, Win+D — tiny habits that compound daily.",
+          "<strong>Keep one tool, not five.</strong> Your phone can already be your mouse, keyboard and trackpad (see below) — no dongles, no batteries.",
+        ],
+      },
+      { h2: "Try this: control your PC from the couch with your phone" },
+      {
+        p: "The easiest desk upgrade costs nothing: install <strong>Wireless Mouse: Remote Mouse</strong>, a free Android app that turns your phone into a wireless mouse, keyboard and trackpad for your PC. Connect phone and computer to the same Wi-Fi, pair once — and your phone screen is a trackpad. Ask AI Mode a research question from your desk, then scroll through the answer from the couch. Run a full presentation without standing next to the laptop. It's the kind of small, practical upgrade that matches the AI era: let the software do the thinking, and remove every bit of friction in between.",
+      },
+    ],
+  },
+  {
     slug: "use-phone-as-wireless-mouse-pc",
     title: "How to Use Your Phone as a Wireless Mouse for PC (Free)",
     date: "2026-10-19",
