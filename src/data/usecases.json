@@ -965,5 +965,103 @@
     "sourceUrl": "https://www.instagram.com",
     "date": "2026-10-19",
     "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-20",
+    "id": "ai-agent-runs-own-product-business",
+    "prompt": "Given my product idea and target customer, list the highest-fit free launch directories and draft a launch announcement tailored to each.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A builder set an AI agent loose to run its own micro-business: it built 6 products aimed at German small businesses, where regulation deadlines drive demand, and submitted them to about 25 launch directories. So far it reports 0 visitors — a public experiment in agent-led distribution.",
+    "title": "Let an AI agent run its own product business",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-20",
+    "id": "offline-agent-boring-file-chores",
+    "prompt": "Audit this folder of downloaded files: rename what you can, group by type, and list the rest for me to review.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A developer built an offline AI agent that handles tedious file chores, shipped 8 versions, and offered the first chore free in a dev community. A stranger reviewed the code and found a real bug (a restart-mid-operation hole), but no outside users have run it yet.",
+    "title": "Offer an offline AI agent for boring file chores",
+    "topic": "productivity",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-20",
+    "id": "esp32-iphone-agent-hands",
+    "prompt": "Set up the ESP32 iPhone agent on a test device, then have it open the photos app and describe the most recent screenshot.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "An open-source project uses a $7 ESP32 board to let an AI agent operate a real iPhone — no jailbreaking, no Xcode — giving phone agents actual hands on physical devices. It was covered by hardware and tech press in mid-October.",
+    "title": "Give an AI agent control of a physical iPhone with a $7 board",
+    "topic": "coding-dev",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "SAP Joule"
+    ],
+    "date": "2026-10-20",
+    "id": "sap-joule-custom-code-migration",
+    "prompt": "Analyze this custom ABAP codebase and list which objects block our move to clean core, with remediation priority.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "SAP's TechEd 2026 agenda features agent-led custom code migration: a Custom Code Migration Agent in SAP Joule for Developers plans and mass-remediates legacy ABAP code as firms move from ECC to SAP Cloud ERP.",
+    "title": "Migrate SAP custom code with Joule agents",
+    "topic": "coding-dev",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Gemini"
+    ],
+    "date": "2026-10-20",
+    "id": "gemini-in-app-phone-tasks",
+    "prompt": "Build a grocery cart in Instacart for this week's meal list, then show it to me before I pay.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "Gemini's in-app tasks can run multi-step jobs inside DoorDash, Uber, Lyft and Instacart on recent Pixel and Galaxy phones — ordering food, booking rides, building grocery carts — stopping at the buy button so a human taps to pay.",
+    "title": "Let Gemini run errands inside your phone apps",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Zapier"
+    ],
+    "date": "2026-10-20",
+    "id": "content-marketing-role-as-agents",
+    "prompt": "Read this week's context inbox and propose three story briefs with the best format for each: LinkedIn post, newsletter, or short video.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A Zapier solutions partner mapped a content marketing manager job onto six agent parts: a context inbox, a story finder, story briefs, format agents for LinkedIn, newsletters and video scripts, one weekly human review, and a distribution agent that schedules per platform.",
+    "title": "Map a content marketing role onto a team of agents",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-20",
+    "id": "personal-agent-cloudflare-free-tier",
+    "prompt": "Set up a personal agent on Cloudflare Workers with per-chat memory, then connect it to Telegram as a daily briefing buddy.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A developer published a complete build for a personal AI agent on Cloudflare's free tier: Workers for hosting, Durable Objects for per-chat memory, and Workers AI for inference — roughly 70 Telegram conversations a day at zero cost, deployable in about 15 minutes.",
+    "title": "Run a personal Telegram agent on the free tier",
+    "topic": "productivity",
+    "votes": 0
   }
 ]
