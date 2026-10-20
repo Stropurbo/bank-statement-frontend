@@ -48,6 +48,49 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "gta-vi-launch-trailer-big-screen-guide",
+    title:
+      "GTA VI's Launch Trailer Is Out — One Month to Go: Make It a Big-Screen Event",
+    date: "2026-10-20",
+    description:
+      "Rockstar dropped the GTA VI launch trailer on October 15 — 90 seconds of Jason and Lucia, Vice City and Leonida. With the November 19 launch one month away, here's what the trailer tells us and how to enjoy the hype on the biggest screen in your home.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "After years of waiting and two delays, the biggest game of the decade finally has a launch trailer. On October 15, 2026, <strong>Rockstar Games released the official launch trailer for Grand Theft Auto VI</strong> — roughly 90 seconds of story-focused footage, captured in-game on PlayStation 5, and it pulled 13.8 million views and 1.1 million likes in its first eight hours (per EGamers.io). With launch confirmed for <strong>November 19, 2026</strong> on PlayStation 5 and Xbox Series X|S, the countdown is officially down to one month.",
+      },
+      { h2: "What the launch trailer shows" },
+      {
+        p: "The trailer puts protagonists <strong>Jason Duval and Lucia Caminos</strong> front and center — a criminal partnership in the style of Bonnie and Clyde. An easy score goes wrong, and the pair get pulled into a criminal conspiracy that stretches across the fictional state of Leonida, with Vice City looming throughout. Shootouts, police pursuits, piles of cash — and the pair's relationship holding it all together.",
+      },
+      {
+        ul: [
+          "<strong>Captured on PS5</strong> — Rockstar says all footage was captured in-game on PlayStation 5, carrying the \"Plays Best On PS5\" marketing tag.",
+          "<strong>New music debut</strong> — the trailer premieres <em>Flower in a Hurricane</em>, a new track from French electronic duo <strong>Justice</strong> featuring Tame Impala, SZA and King Gizzard & The Lizard Wizard. Justice also composed the game's full original score.",
+          "<strong>Only the third trailer</strong> — the first was rushed out in December 2023 after a major leak, the second arrived in May 2025, and this one closes the teaser chapter.",
+          "<strong>Pre-orders live</strong> — Standard Edition at $79.99, Ultimate Edition at $99.99; no PC version announced yet.",
+        ],
+      },
+      { h2: "Why the big screen matters for this one" },
+      {
+        p: "A trailer like this deserves more than a phone screen. The whole point of GTA VI's launch window is that it's a shared cultural moment — friends dissecting every frame, comparing reactions, replaying that Justice track at volume. A phone can't do that justice (pun intended). But you don't need to buy anything new to make your TV the stage.",
+      },
+      { h2: "4 ways to enjoy the GTA VI hype on the big screen" },
+      {
+        ol: [
+          "<strong>Watch the trailer on your TV tonight.</strong> Pull up the 90-second launch trailer on your TV and watch it properly — the Vice City skyline shots were built for a big panel, not a 6-inch screen.",
+          "<strong>Mirror your phone for frame-by-frame debates.</strong> Gaming forums and video essays are exploding with trailer breakdowns. <a href=\"/apps/mirror-android-to-tv-without-chromecast\">Mirror your Android phone to the TV</a> and scrub through reaction videos and analysis clips together instead of huddling around a phone.",
+          "<strong>Play mobile games on the big screen.</strong> While you wait for November 19, run your favorite mobile games on the TV — same game, cinema-scale.",
+          "<strong>Host a launch-night countdown.</strong> When the 19th rolls around, your TV becomes the hub: trailer marathons, soundtrack listening party (Justice's score deserves speakers), and the wait together.",
+        ],
+      },
+      { h2: "Try this: mirror your phone to the TV in seconds" },
+      {
+        p: "<strong>TV Cast — Screen Mirroring</strong> is a paid Android app built for one job: put your phone on the big screen in seconds, with no Chromecast, no cables and no dongles. Connect phone and TV (or PC) to the same Wi-Fi, pick your TV from the list, tap to connect — and your trailer breakdown, mobile game or photo gallery is suddenly cinematic. It's a paid app ($1.99): no subscription, no ad spam — it just works.",
+      },
+    ],
+  },
+  {
     slug: "gemini-4-argon-smarter-desk-setup",
     title:
       "Google's Gemini 4 Argon Is Here — 5 Ways to Make Your Desk Setup Smarter Too",
