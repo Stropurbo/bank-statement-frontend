@@ -1063,5 +1063,107 @@
     "title": "Run a personal Telegram agent on the free tier",
     "topic": "productivity",
     "votes": 0
+  },
+  {
+    "id": "invoice-data-extraction-agent",
+    "title": "Extract invoice data automatically with an n8n agent",
+    "summary": "A developer built an invoice-extraction agent in n8n: a webhook receives an invoice PDF, text is extracted and chunked, an Information Extractor powered by Claude pulls vendor, invoice number, dates, line items and totals from each chunk, results are merged and validated, and structured JSON goes back through the webhook. He says the hard part wasn't the AI - it was chunking and looping so long multi-page invoices don't break the workflow.",
+    "topic": "business-ops",
+    "agents": [
+      "n8n",
+      "Claude"
+    ],
+    "prompt": "Here is an invoice PDF. Extract the vendor name, invoice number, dates, line items and totals, then return them as clean JSON.",
+    "source": "Contra",
+    "sourceUrl": "https://contra.com",
+    "date": "2026-10-21",
+    "votes": 0
+  },
+  {
+    "id": "weekly-video-production-system",
+    "title": "Automate weekly video production from blog posts to finished edit",
+    "summary": "Each month Claude proposes which of his blog posts become videos and drafts scripts, which he approves. He records everything in one sitting, then Claude Code on his Mac transcribes the footage, finds each take, cuts false starts and dead air, and adds captions and graphics in his site's colours. The agent self-checks against a written spec - size, format, loudness, graphics not covering his face - and stops at a draft; he uploads the files himself.",
+    "topic": "creative",
+    "agents": [
+      "Claude",
+      "Claude Code"
+    ],
+    "prompt": "From these approved blog posts, propose which three would make the best short videos and draft a script for each, one clear point per video.",
+    "source": "Blog",
+    "sourceUrl": "https://parthans.com",
+    "date": "2026-10-21",
+    "votes": 0
+  },
+  {
+    "id": "fake-linear-agent-test-harness",
+    "title": "Test AI agents against a fake issue tracker so they fail in private",
+    "summary": "A developer built Finear, a fake Linear clone with issues, projects, OAuth consent, signed webhooks and agent delegation sessions, so he could test his AI agents locally without bots commenting on real issues. A virtual clock fast-forwards webhook retries from minutes to hours so he can watch retry behavior instantly, and a reset button clears everything. It binds to localhost and is explicitly a test harness, not a Linear replacement.",
+    "topic": "coding-dev",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Build a local test harness for my agent with fake issues, signed webhooks and a virtual clock, so I can watch its retry behavior without touching production.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-21",
+    "votes": 0
+  },
+  {
+    "id": "agent-checker-slack-verdicts",
+    "title": "Build a checker that verifies your AI agents' daily work",
+    "summary": "He runs scheduled Claude agent sessions and built a verification checker that posts a STOP or VERIFIED verdict to Slack. He reports real failure modes: once a run died before the checker ran, producing silence that looked like a good day; another time the failure alert itself went through the same agent tooling and never arrived. His redesign: separate verdicts for 'could not check' versus 'checked, not there' versus 'agent never ran', a dead-man's switch on silent runs, and alerts that do not share the watched thing's failure mode.",
+    "topic": "coding-dev",
+    "agents": [
+      "Claude Code"
+    ],
+    "prompt": "After each agent run, verify the expected output exists and post a short verdict to Slack: VERIFIED if the deliverable is there, STOP if something is missing.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-21",
+    "votes": 0
+  },
+  {
+    "id": "scheduled-daily-claude-agent",
+    "title": "Run a scheduled daily agent with a file-based handover log",
+    "summary": "He has run a scheduled Claude task every evening for a week: each run starts a fresh session, reads its own notes, does the work, writes tomorrow's plan and stops - no memory except files. His lessons: keep standing rules at the top of the task prompt since that is the only thing guaranteed to be read first; a dated LOG.md handover file beats clever prompting; re-check live state instead of trusting yesterday's log, which twice turned out stale; and let the agent own its schedule with a daily cap. He published the six files he uses as a free template.",
+    "topic": "productivity",
+    "agents": [
+      "Claude"
+    ],
+    "prompt": "This is your evening task: read LOG.md for context, do today's checklist, then append what you did and tomorrow's plan to the log.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-21",
+    "votes": 0
+  },
+  {
+    "id": "marketer-weekly-content-sourcing-agent",
+    "title": "Source your content library with a weekly agent",
+    "summary": "A non-technical marketer scoped an agent in a Claude chat, then set it up in Claude Code: every Monday it pulls from her inbox, websites and communities, populates a Notion staging database with 100+ categorized assets, captures screenshots and uploads header images - no prompting needed. She says it saves her at least three hours of manual tracking a day.",
+    "topic": "marketing-sales",
+    "agents": [
+      "Claude",
+      "Claude Code"
+    ],
+    "prompt": "Scan my inbox, my saved sites and my community feeds for marketing examples, then add the best ones to my Notion staging database with a category, a screenshot and a one-line note.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-21",
+    "votes": 0
+  },
+  {
+    "id": "daily-tech-tip-video-pipeline",
+    "title": "Produce a daily tech-tip video with an automated pipeline",
+    "summary": "He built an n8n workflow that runs at 7 am daily: it searches the past week's tech news, has Google Gemini pick one practical tip and write a five-scene script with caption and hashtags, then a video tool generates per-line images, a voiceover and burned-in subtitles, saves the MP4 to Google Drive, logs the draft in a spreadsheet and pings him on Telegram. Nothing posts automatically - every video lands as a draft he reviews first.",
+    "topic": "creative",
+    "agents": [
+      "n8n",
+      "Google Gemini"
+    ],
+    "prompt": "Find the most practical tech tip from this week's news and write a 5-scene short-video script about it, with a caption and hashtags.",
+    "source": "LinkedIn",
+    "sourceUrl": "https://www.linkedin.com",
+    "date": "2026-10-21",
+    "votes": 0
   }
 ]
