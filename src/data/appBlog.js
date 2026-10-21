@@ -48,6 +48,52 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "calorie-tracking-mistakes-stall-weight-loss",
+    title:
+      "7 Calorie Tracking Mistakes That Stall Your Weight Loss (and How to Fix Them)",
+    date: "2026-10-21",
+    description:
+      "Logging your food but not losing weight? These 7 common calorie tracking mistakes — forgotten cooking oils, unlogged drinks, skipped bad days — quietly add hundreds of calories. Here's how to fix each one.",
+    appId: "calyfit",
+    body: [
+      {
+        p: "You log your meals, stay under your calorie target, and the scale still won't move. Frustrating — and far more common than you think. The problem usually isn't your willpower. It's small logging mistakes that quietly add hundreds of calories a day. Here are the seven most common ones, and the simple fix for each.",
+      },
+      { h2: "1. Forgetting cooking oils and butter" },
+      {
+        p: "A tablespoon of olive oil is around 120 calories, and most people pour two or three into the pan without thinking — then log the vegetables as if they were steamed. Butter, ghee, and cooking sprays add up the same way. Fix: log your cooking fat first, before you log anything else. Measure it once with a spoon so you know what your usual pour looks like.",
+      },
+      { h2: "2. Eyeballing portions" },
+      {
+        p: 'Studies on food journaling consistently find that people underestimate how much they eat — especially with calorie-dense foods like rice, pasta, peanut butter, and cheese. A "tablespoon" of peanut butter from the jar is often two. Fix: weigh or measure your food for two weeks. You don\'t have to do it forever — two weeks is enough to recalibrate your eye.',
+      },
+      { h2: "3. Not logging drinks" },
+      {
+        p: 'That morning latte with whole milk and syrup, the "healthy" orange juice, the two beers on Friday — drinks are the easiest calories to forget because they don\'t feel like food. A single sugary coffee can carry 200+ calories. Fix: log every drink like a meal. Black coffee, tea, and water are free; everything else counts.',
+      },
+      { h2: "4. Skipping the bites, tastes, and finishes" },
+      {
+        p: "The spoonful of curry you taste while cooking. The crusts you finish off your kid's plate. The handful of nuts while waiting for dinner. None of them feel like eating, so none get logged — but together they can be a full snack. Fix: if it goes in your mouth, it goes in the log. No exceptions for the first month.",
+      },
+      { h2: "5. Only tracking on good days" },
+      {
+        p: 'This is the big one. People log diligently Monday to Friday, then "take the weekend off" — and the weekend erases the week\'s deficit. An untracked Saturday can undo five tracked days. Fix: log every day, especially the bad ones. The log is data, not a report card. You can\'t fix what you can\'t see.',
+      },
+      { h2: "6. Picking the generic entry instead of your actual food" },
+      {
+        p: '"Chicken salad" in a tracking app can range from 300 to 900 calories depending on the dressing, cheese, and portion. When you pick the first generic result, you\'re guessing — and guesses skew low. Fix: build your own saved meals for foods you eat often, with the real ingredients and amounts. It takes ten minutes once and pays off daily.',
+      },
+      { h2: "7. Judging one day instead of the weekly average" },
+      {
+        p: "Weight fluctuates daily with water, salt, and digestion — a single day's number means almost nothing. People who panic over Tuesday's spike often slash calories recklessly or quit entirely. Fix: compare weekly averages, not daily readings. Seven days of honest logging tells the true story; one day never does.",
+      },
+      { h2: "Make logging effortless" },
+      {
+        p: 'Here\'s the thing about all seven mistakes: they\'re not discipline problems, they\'re friction problems. The easier logging is, the more honest it becomes. That\'s why a <a href="/apps/calyfit-free-calorie-macro-tracker">free calorie tracker</a> that lets you snap your meal, scan a barcode, or just speak your food out loud beats a spreadsheet every time. <strong>CalyFit</strong> is free on Android: log calories and macros in seconds, track water, steps and sleep in the same place, and get personalized targets based on your body and goal. Fix the mistakes, keep the habit, and let the weekly average do the talking.',
+      },
+    ],
+  },
+  {
     slug: "gta-vi-launch-trailer-big-screen-guide",
     title:
       "GTA VI's Launch Trailer Is Out — One Month to Go: Make It a Big-Screen Event",
