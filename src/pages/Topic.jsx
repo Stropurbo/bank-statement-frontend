@@ -4,6 +4,7 @@ import { topicBySlug } from "../data/topics";
 import UseCaseCard from "../components/UseCaseCard";
 import TopicNav from "../components/TopicNav";
 import NewsletterSignup from "../components/NewsletterSignup";
+import { useCanonical } from "../lib/useCanonical";
 import NotFound from "./NotFound";
 import { usePageTitle } from "../lib/usePageTitle";
 
@@ -11,6 +12,7 @@ export default function Topic() {
   const { slug } = useParams();
   const topic = topicBySlug(slug);
   usePageTitle(topic ? topic.name : "Topic");
+  useCanonical(slug ? `/topic/${slug}` : "/topics");
   if (!topic) return <NotFound />;
 
   const items = usecases

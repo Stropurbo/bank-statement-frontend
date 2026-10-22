@@ -3,9 +3,11 @@ import { allUseCases, groupByDate, dayLabel, agentsOf, fmtDate } from "../lib/us
 import { UseCaseLink } from "../components/FeedCard";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { usePageTitle } from "../lib/usePageTitle";
+import { useCanonical } from "../lib/useCanonical";
 
 export default function NewPage() {
   usePageTitle("New");
+  useCanonical("/new");
   const todayIso = new Date().toISOString().slice(0, 10);
   const groups = groupByDate(allUseCases);
   const totalNew = allUseCases.length;

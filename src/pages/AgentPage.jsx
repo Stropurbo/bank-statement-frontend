@@ -7,11 +7,13 @@ import {
 } from "../lib/usecases";
 import { UseCaseLink } from "../components/FeedCard";
 import NewsletterSignup from "../components/NewsletterSignup";
+import { useCanonical } from "../lib/useCanonical";
 import NotFound from "./NotFound";
 
 export default function AgentPage() {
   const { slug } = useParams();
   const agent = agentBySlug(slug);
+  useCanonical(slug ? `/agents/${slug}` : "/agents");
 
   if (!agent) return <NotFound />;
 

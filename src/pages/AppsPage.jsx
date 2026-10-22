@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { APP_POSTS } from "../data/appBlog";
 import { usePageTitle } from "../lib/usePageTitle";
+import { useCanonical } from "../lib/useCanonical";
 import NewsletterSignup from "../components/NewsletterSignup";
 
 export default function AppsPage() {
   usePageTitle("App Blog");
+  useCanonical("/apps");
 
   return (
     <div className="py-10 max-w-4xl">

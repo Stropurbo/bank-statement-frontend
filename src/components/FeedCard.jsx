@@ -66,7 +66,7 @@ export function UseCaseLink({ id, className, children }) {
 
 function shareUrl(id) {
   const origin =
-    typeof window !== "undefined" ? window.location.origin : "https://sheetlypro.com";
+    typeof window !== "undefined" ? window.location.origin : "https://www.sheetlypro.com";
   return `${origin}/use-case/${id}`;
 }
 

@@ -4,6 +4,7 @@ import { getUseCase, relatedUseCases, topicName, agentSlug, agentsOf, fmtDate } 
 import { UseCaseLink } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
 import { usePageTitle } from "../lib/usePageTitle";
+import { useCanonical } from "../lib/useCanonical";
 import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
 
@@ -51,6 +52,7 @@ export default function UseCasePage() {
   const { votes, saved, toggleVote, toggleSaved } = useEngagement();
   const [shared, setShared] = useState(false);
   usePageTitle(item ? item.title : null);
+  useCanonical(item ? `/use-case/${item.id}` : "/");
 
   if (!item) return <NotFound />;
 

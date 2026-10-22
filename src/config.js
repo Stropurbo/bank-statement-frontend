@@ -7,5 +7,5 @@ export const NEWSLETTER_ENDPOINT =
 // Kit expects the email field under this name.
 export const NEWSLETTER_EMAIL_FIELD = "email_address";
 
-export const SITE_URL = "https://sheetlypro.com";
+export const SITE_URL = "https://www.sheetlypro.com";
 export const CONTACT_EMAIL = "contact@sheetlypro.com";

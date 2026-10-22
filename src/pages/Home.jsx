@@ -4,6 +4,7 @@ import usecases from "../data/usecases.json";
 import { topics } from "../data/topics";
 import NewsletterSignup from "../components/NewsletterSignup";
 import SubmitModal from "../components/SubmitModal";
+import { useCanonical } from "../lib/useCanonical";
 import { FeedCard, TrendingCard } from "../components/FeedCard";
 import { useEngagement } from "../lib/engagement";
 
@@ -47,6 +48,7 @@ function AgentRow({ name, count, active, onClick }) {
 }
 
 export default function Home() {
+  useCanonical("/");
   const [query, setQuery] = useState("");
   const [pill, setPill] = useState("all");
   const [filterOpen, setFilterOpen] = useState(false);

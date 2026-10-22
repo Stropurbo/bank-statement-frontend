@@ -20,7 +20,7 @@ const items = [...usecases]
   .sort((a, b) => b.date.localeCompare(a.date))
   .slice(0, 50)
   .map((u) => {
-    const link = `https://sheetlypro.com/use-case/${u.id}`;
+    const link = `https://www.sheetlypro.com/use-case/${u.id}`;
     const pubDate = new Date(u.date + "T12:00:00Z").toUTCString();
     const agents = (u.agents && u.agents.length ? u.agents : ["Custom agent"]).join(", ");
     return `    <item>
@@ -37,7 +37,7 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
     <title>SheetlyPro — AI Agent Use Cases</title>
-    <link>https://sheetlypro.com</link>
+    <link>https://www.sheetlypro.com</link>
     <description>Real things people are doing with AI agents, collected every day.</description>
     <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

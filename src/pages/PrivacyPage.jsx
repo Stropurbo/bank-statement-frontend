@@ -1,6 +1,8 @@
 import NewsletterSignup from "../components/NewsletterSignup";
+import { useCanonical } from "../lib/useCanonical";
 
 export default function PrivacyPage() {
+  useCanonical("/privacy-policy");
   return (
     <div className="py-10 max-w-2xl">
       <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-2 dark:text-neutral-400">

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getPost, getApp, APP_POSTS } from "../data/appBlog";
 import { usePageTitle } from "../lib/usePageTitle";
+import { useCanonical } from "../lib/useCanonical";
 import NewsletterSignup from "../components/NewsletterSignup";
 import NotFound from "./NotFound";
 
@@ -55,6 +56,7 @@ export default function AppPostPage() {
   const { slug } = useParams();
   const post = getPost(slug);
   usePageTitle(post ? post.title : "Not found");
+  useCanonical(post ? `/apps/${slug}` : "/apps");
 
   // Inject JSON-LD BlogPosting for SEO (SPA: no SSR, so add it dynamically)
   useEffect(() => {

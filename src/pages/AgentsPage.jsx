@@ -4,9 +4,11 @@ import { agentDescription } from "../data/agentDescriptions";
 import NewsletterSignup from "../components/NewsletterSignup";
 import { topics } from "../data/topics";
 import { usePageTitle } from "../lib/usePageTitle";
+import { useCanonical } from "../lib/useCanonical";
 
 export default function AgentsPage() {
   usePageTitle("Agents");
+  useCanonical("/agents");
   const agents = agentCounts();
 
   return (
