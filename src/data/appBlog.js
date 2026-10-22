@@ -48,6 +48,44 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "perplexity-local-ai-agent-mac-pc-control",
+    title:
+      "Perplexity Just Taught Your Mac to Click Its Own Mouse — Here's What That Means for You",
+    date: "2026-10-22",
+    description:
+      "Perplexity's AI agent can now run fully on your Mac — clicking, typing, and organizing files without the cloud. Here's what local AI agents mean for how we control our computers, and simple ways to stay in the driver's seat without a subscription.",
+    appId: "wireless-mouse",
+    body: [
+      {
+        p: "On October 20, 2026, Perplexity announced something that would have sounded like science fiction five years ago: its Computer agent — an AI that can click, type, and work inside your apps for you — can now run entirely on your Mac. The model, the planning, and the task execution all happen on-device, so your private files never leave the machine unless you say so. It is the clearest sign yet that we are entering the age of AI agents that drive our computers for us.",
+      },
+      { h2: "What Perplexity's local AI agent actually does" },
+      {
+        p: "Perplexity Computer is an AI agent built into the Perplexity Mac app. You give it a task, and it takes over: opening apps, reading your emails and messages, spotting deadlines, and writing up an action list in Notes. It uses the computer the way you do — clicking buttons, typing into fields, moving between windows. Until now, that kind of power ran in the cloud. With the new local mode, the AI model and the agent that directs each task both live on your Mac. Perplexity offers two on-device models to choose from: Qwen 3.6, and PPLX Pro, a version of Qwen that Perplexity trained further itself. Sensitive code and tool actions run in isolated sandboxes — sealed-off spaces with controlled access to your files and apps — and anything that needs the web or an online service only goes to the cloud with your approval.",
+      },
+      { h2: "The catches nobody leads with" },
+      {
+        ul: [
+          "<strong>You need serious hardware.</strong> Perplexity recommends 36GB of unified memory — more than most MacBook Air and iMac models can even be configured with.",
+          "<strong>It is not for free users.</strong> Fully local mode is open to Pro, Max, and Enterprise subscribers only.",
+          "<strong>It is Mac-only.</strong> If you live on a Windows PC or a Chromebook, this particular future is not for you.",
+          "<strong>&quot;Fully local&quot; has fine print.</strong> Web research and connected services still need a cloud step, and the agent can call on more than 15 larger cloud models for harder problems.",
+        ],
+      },
+      { h2: "AI agents are learning to drive — most of us just need a better remote" },
+      {
+        p: "Here is the part the announcements skip: most of us do not need an AI to take over our computer. We just want to be comfortably in control of it. When you are presenting slides, running a movie night, or working from the couch, the bottleneck is not intelligence. It is reach. Your computer sits on a desk. You sit somewhere else.",
+      },
+      {
+        p: "That is the gap simple tools still fill better than any agent. A few low-tech wins that work on the computer you already own: turn your phone into a wireless mouse and keyboard so you can present, browse, and control media from anywhere in the room; learn ten keyboard shortcuts for the apps you use most; and dictate instead of typing when you are leaning back. No subscription, no 36GB of RAM, no waiting for the cloud.",
+      },
+      { h2: "Try this: your phone as a wireless mouse" },
+      {
+        p: 'If the Perplexity news has you thinking about computer control, start with the free, instant version. Turn your phone into a wireless mouse, keyboard, and trackpad for your PC — run presentations, browse the web, and control music and video from anywhere in the room. Our guide <a href="/apps/use-phone-as-wireless-mouse-pc">explains how to set it up in minutes</a>. <strong>Wireless Mouse: Remote Mouse</strong> is free on Android, and the Play Store card below takes you straight to it.',
+      },
+    ],
+  },
+  {
     slug: "calorie-tracking-mistakes-stall-weight-loss",
     title:
       "7 Calorie Tracking Mistakes That Stall Your Weight Loss (and How to Fix Them)",
