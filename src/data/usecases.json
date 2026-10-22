@@ -1165,5 +1165,92 @@
     "sourceUrl": "https://www.linkedin.com",
     "date": "2026-10-21",
     "votes": 0
+  },
+  {
+    "agents": [
+      "Claude Code",
+      "Clay"
+    ],
+    "date": "2026-10-22",
+    "id": "nine-marketing-agents-claude-code",
+    "prompt": "Describe my ideal client's pain points in plain English, then write the small scripts that turn that description into a daily lead list and a first-draft outreach message.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A philosophy graduate with no engineering background built nine narrow agents with Claude Code that run his agency's go-to-market: one drafts LinkedIn posts, one turns posts into blog articles, one builds lead lists in Clay, others write DMs, score cold emails, turn voice notes into next steps, draft call recaps, brief the pipeline each morning, and write cold-call scripts. His public diary focuses on what broke first, not the wins.",
+    "title": "Run an agency's go-to-market on nine Claude Code agents",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Claude Code"
+    ],
+    "date": "2026-10-22",
+    "id": "coding-agent-1360-page-site",
+    "prompt": "Build me a static information site from my plain-language description: plan the structure, generate the pages, and add a small 'what can I cook with my fridge' tool using a free-tier vision model.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A non-developer described what they wanted in plain Korean and let a Claude Code agent do the planning, coding, deployment, debugging, images, and short videos. The result: a Korean information site with 1,360 static pages that rebuilds itself every hour — hosted on GitHub Pages, with free-tier Cloudflare Workers for login, bookmarks, and a fridge-ingredient 'what can I cook' tool.",
+    "title": "Build a 1,360-page information site on a $0 server bill",
+    "topic": "coding-dev",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "n8n"
+    ],
+    "date": "2026-10-22",
+    "id": "invoice-admin-n8n-inbox",
+    "prompt": "Watch my inbox for invoice emails; for each one, save a PDF into a Drive folder named by year and month, log the supplier, date, amount, and currency in a spreadsheet, then label the email as filed.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A small business owner built an n8n workflow that ends the monthly dig-through-the-inbox ritual: it watches for new invoice emails, saves each invoice as a PDF in a year/month Google Drive folder (creating missing folders automatically), logs supplier, VAT code, date, amount, and currency in a spreadsheet, and labels the email so nothing is filed twice.",
+    "title": "End the monthly invoice scavenger hunt with n8n",
+    "topic": "business-ops",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-22",
+    "id": "content-factory-agent-team",
+    "prompt": "Give each agent one narrow job with clear inputs — a researcher for topics, a writer for drafts, an analyst for flagging stalled pages — and require a human checkpoint before anything publishes.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "In a weekly 'building in public' diary, a small team reported running 19 agents to produce 77 pieces of content in a week: a researcher gathers topics and sources, a writer drafts articles, a page builder generates SEO pages from templates, an analyst watches analytics, and a sales assistant handles routine conversations. Agents pass structured handoffs — not vibes — and every public output gets a human review.",
+    "title": "Run content production on a team of narrow agents",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "n8n",
+      "Claude",
+      "ChatGPT"
+    ],
+    "date": "2026-10-22",
+    "id": "vc-n8n-workflows-meeting-summaries",
+    "prompt": "Build a workflow that takes my meeting recordings, produces summaries, and files them where the team expects — then let it run unattended on every trigger.",
+    "source": "AfriLatest",
+    "sourceUrl": "https://afrilatest.com",
+    "summary": "A venture capitalist in Singapore wrote that n8n saved him more time this year than any AI tool he pays for, including Claude and ChatGPT: the workflows he built now handle meeting summaries, knowledge ingestion, quarterly investor reports, and audit prep — running unattended every time a trigger fires, with no prompts to retype.",
+    "title": "Hand weekly grunt work to n8n workflows",
+    "topic": "business-ops",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-22",
+    "id": "video-workflow-coding-agents",
+    "prompt": "Turn this blog post into a multi-track video: synthesize the voiceover, generate word-synced graphics, cut retakes, and export an editable timeline for my final pass.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A creator described a hybrid pattern for tutorial and product-demo videos: coding agents do 95% of the heavy lifting — synthesizing the voiceover, building word-synced animated graphics, cutting retakes, and assembling a first pass of the multi-track timeline — then hand back a real project file so a human finishes the last 5% in a desktop video editor. He tested it by turning one of his own blog posts into a video walkthrough.",
+    "title": "Automate 95% of a video workflow with coding agents",
+    "topic": "creative",
+    "votes": 0
   }
 ]
