@@ -1252,5 +1252,99 @@
     "title": "Automate 95% of a video workflow with coding agents",
     "topic": "creative",
     "votes": 0
+  },
+  {
+    "agents": [
+      "OpenAI"
+    ],
+    "date": "2026-10-23",
+    "id": "personal-ai-agent-inbox-crm-week",
+    "prompt": "Watch my inbox and flag anything time-sensitive or money-related; if I promise someone a meeting in a message but never book it, remind me within an hour.",
+    "source": "The Open Letter",
+    "sourceUrl": "https://theopenletter.io",
+    "summary": "A South African newsletter team tested OpenAI's Dot personal agent for seven days. It learned which emails matter and pinged on arrival, prompted when a promised meeting was never booked, spotted leads in email and WhatsApp and nudged follow-ups, and drafted a Slack reply for approval while its owner was driving. Honest caveats from the test: it acts as you unless told to introduce itself as an assistant, and it keeps everything in one long chat thread.",
+    "title": "Put a personal AI agent on inbox, calendar and CRM duty for a week",
+    "topic": "productivity"
+  },
+  {
+    "agents": [
+      "Row-Bot",
+      "GPT 6.1 Sol"
+    ],
+    "date": "2026-10-23",
+    "id": "parallel-research-agents-slide-deck",
+    "prompt": "Split research on [topic] across three helper agents working in parallel, cite sources, save findings, then build a 6-slide deck.",
+    "source": "Vibing Talk",
+    "sourceUrl": "https://vibingtalk.com",
+    "summary": "A forum member sent one prompt to a personal agent: split research on the 4-day work week across three helper agents working in parallel, cite sources, save findings, then build a 6-slide deck. The lead agent spun off three researchers (UK 2022 pilot, Iceland's trials, company case studies), merged everything into one recommendation, saved the findings as linked memories, and exported the deck to PowerPoint. The same brief then became a scheduled workflow that re-runs every Monday morning.",
+    "title": "Split research across helper agents and get back a finished slide deck",
+    "topic": "productivity"
+  },
+  {
+    "agents": [
+      "Suki"
+    ],
+    "date": "2026-10-23",
+    "id": "healthcare-referral-prior-auth-agents",
+    "prompt": "Draft a referral letter for [specialty] including the patient history, current medication and the reason for referral, ready for a clinician to review.",
+    "source": "Every Morning AI Lab",
+    "sourceUrl": "https://note.com",
+    "summary": "Healthcare AI company Suki is building agents for referral letters, prior authorizations and follow-up appointments, and its tools are now used in over 250 medical institutions. Clinical visits handled with AI assistance are up sharply year over year. Medical administration is a bundle of documents, appointments and approvals - exactly the repetitive paperwork agents take on well.",
+    "title": "Draft referral letters and prior authorizations with healthcare AI agents",
+    "topic": "business-ops"
+  },
+  {
+    "agents": [
+      "UmiChat",
+      "Chronos-2"
+    ],
+    "date": "2026-10-23",
+    "id": "sales-planning-forecast-automation",
+    "prompt": "Take last year's sales plan and this year's seasonal variables, and generate a first-draft forecast for [product] with the assumptions listed.",
+    "source": "Every Morning AI Lab",
+    "sourceUrl": "https://note.com",
+    "summary": "Japanese food company Umios (formerly Maruha Nichiro) automated the manual entry of 4.7 million cells of sales-planning data, pairing a time-series forecasting model with its internal chat AI, UmiChat. Adding seasonal variables cut the forecast error rate sharply, and annual planning for key items reached 95% accuracy - work that used to run on roughly 4,200 hours of manual entry a year.",
+    "title": "Replace manual sales-plan spreadsheets with AI forecasting",
+    "topic": "business-ops"
+  },
+  {
+    "agents": [
+      "Grokbot"
+    ],
+    "date": "2026-10-23",
+    "id": "named-agent-team-weekly-chores",
+    "prompt": "Every Sunday at 6pm, fill my weekly budget sheet from my expense emails and flag anything over my set limits.",
+    "source": "Instagram",
+    "sourceUrl": "https://instagram.com",
+    "summary": "A working mom runs about 15 small AI agents on Grokbot, each with a name and one job: a budgeting agent fills her finance spreadsheet every Sunday, editing agents use her brand kit for first-pass video edits, and news agents check for big AI stories twice a day and drop launches onto her calendar. Her trick is narrow jobs that run on schedule, not better prompts.",
+    "title": "Run a team of named agents for budgeting, edits and news tracking",
+    "topic": "productivity"
+  },
+  {
+    "agents": [
+      "Claude Code",
+      "Copilot CLI"
+    ],
+    "date": "2026-10-23",
+    "id": "ai-coding-tools-peer-rollout",
+    "prompt": "Start our AI coding-tool pilot with managers and code reviewers first, measure pull-request merge rates weekly, then open it to the whole team.",
+    "source": "Every Morning AI Lab",
+    "sourceUrl": "https://note.com",
+    "summary": "Microsoft analyzed its rollout of CLI AI coding tools (Claude Code, Copilot CLI) to tens of thousands of internal engineers. Engineers who started in the first week kept merging more pull requests for months afterwards - and adoption spread through people, not training: usage jumped most when a colleague under the same manager, a direct manager, or a review partner used the tools first.",
+    "title": "Roll out AI coding tools through managers and reviewers first",
+    "topic": "coding-dev"
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-23",
+    "id": "weekly-ai-jobs-digest-python",
+    "prompt": "Pull this week's remote postings with AI level 3 or above, skip ones I've seen, and give me a one-line reason to apply or skip each.",
+    "source": "DEV Community",
+    "sourceUrl": "https://dev.to",
+    "summary": "A developer tutorial shows how to build a weekly jobs digest on a free jobs API where every posting carries an AI score: pull remote roles posted in the last 7 days, filter by AI level, track seen IDs to skip repeats, and hand titles plus company and pay fields to a language model for a one-line apply-or-skip verdict. It also works through a no-signup MCP server for Claude or Cursor users.",
+    "title": "Build a weekly AI-jobs digest agent in 20 lines of Python",
+    "topic": "productivity"
   }
 ]
