@@ -48,6 +48,53 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+  slug: "warhound-cloned-working-dogs-science-explained",
+  title:
+    "A $200M Startup Is Cloning America's Best Working Dogs — Here's the Science",
+  date: "2026-10-23",
+  description:
+    "Warhound, a new company from Colossal's Ben Lamm and Anduril's Palmer Luckey, raised $200M to clone elite working dogs for the military and police. Here's how the genetics and cloning work, what the fine print says, and why it matters for future vets.",
+  appId: "horse-anatomy",
+  body: [
+    {
+      p: "On Thursday, October 22, a new company called Warhound came out of stealth with $200 million in seed funding. Its founders are Ben Lamm, the co-founder of the genetics company Colossal Biosciences, and Palmer Luckey, the founder of the defense tech company Anduril. Their plan: clone America's top-performing working dogs — the military, police, and rescue dogs that detect explosives and find survivors — and use gene editing to remove the health problems that cut many working dogs' careers short.",
+    },
+    { h2: "The problem Warhound is trying to solve" },
+    {
+      p: "According to the company's launch announcement, more than 80% of the working dogs used by the US military come from Europe. And fewer than half of the dogs purchased ever make it through training, which takes about three years. That means buyers must find and train roughly 200 dogs to end up with 100 that are fit for service. Warhound's goal is to rebuild a domestic supply of elite working dogs and reduce dependence on a shrinking European supply chain.",
+    },
+    { h2: "Clone the best, edit out the worst" },
+    {
+      p: "The idea is simple to state and hard to do: start with dogs that have already proven themselves in the field, and copy what works. Warhound says it has collected blood samples from selected top-performing military, police, and first-responder dogs, with the goal of cloning them. The breeds will be mostly Belgian Malinois, with some Labrador retrievers and shepherds, and the company expects its first puppies to arrive in early 2027.",
+    },
+    {
+      p: "Cloning is only half the story. The other half is gene editing. Lamm told WIRED that the first round of editing will focus on removing common health problems in these breeds, such as hip dysplasia — the painful joint condition that ends many working dogs' careers early. Many dogs wash out of training because of genetic dispositions toward poor eyesight, cancer risk, or muscle atrophy. Later, Lamm said, the company could explore adding wolf olfactory receptor genes to sharpen the dogs' sense of smell.",
+    },
+    { h2: "High-tech gear — but not cyborg dogs" },
+    {
+      p: "Warhound's dogs will also carry equipment from Anduril, including eye and ear protection and the company's Eagle Eye system, plus software for battlefield awareness. When WIRED asked whether that made the dogs cyborgs, Lamm said the current plan is tools like advanced body armor — not a computer inside the dog. So no, no dogs with lasers.",
+    },
+    { h2: "The questions worth asking" },
+    {
+      ul: [
+        "<strong>Cloning does not copy training.</strong> A clone is a genetic twin, not the same dog. Temperament and behavior still depend on upbringing and training — which is why Warhound is building a training program certified by the American Humane Society.",
+        "<strong>A narrow gene pool is a real risk.</strong> Cloning a small group of \"top\" dogs concentrates the gene pool, which can lock in exactly the health problems the company wants to edit out.",
+        "<strong>Oversight matters.</strong> The American Humane Society will certify Warhound's training and enhancement programs, help reunite retired dogs with their former handlers, and support adoption efforts.",
+        "<strong>This is defense tech.</strong> Warhound's investors include In-Q-Tel, and its dogs are meant for the military and law enforcement. That is the business model, not a footnote.",
+      ],
+    },
+    { h2: "Why this story matters for future vets" },
+    {
+      p: "Strip away the $200 million and the defense framing, and Warhound is fundamentally a bet on animal biology: that deep knowledge of genetics and anatomy can produce healthier, longer-lived working animals. That is the same foundation every veterinarian builds in school. If stories like this pull you toward animal medicine, our guide explains how <a href=\"/apps/best-3d-horse-anatomy-app-vet-students\">interactive 3D anatomy tools help vet students learn</a> — because understanding structure is how breeders, trainers, and vets understand function.",
+    },
+    { h2: "Curious about the biology? Explore anatomy in 3D" },
+    {
+      p: "Stories like Warhound's start with knowing how animals are built. <strong>Horse Anatomy 3D</strong> is a paid Android app for vet students, equine vets, trainers, and horse owners: explore muscles, bones, and organs in detailed interactive 3D — rotate, zoom, and study every structure. The Play Store card below takes you straight to it.",
+    },
+  ],
+},
+
+  {
     slug: "perplexity-local-ai-agent-mac-pc-control",
     title:
       "Perplexity Just Taught Your Mac to Click Its Own Mouse — Here's What That Means for You",
