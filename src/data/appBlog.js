@@ -48,6 +48,47 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "ways-to-mirror-phone-to-tv-2026",
+    title: "5 Ways to Mirror Your Phone to a TV in 2026 — From Free to One-Tap",
+    date: "2026-10-24",
+    description:
+      "Want your phone screen on the big TV? Here are 5 ways to mirror Android and iPhone to any TV in 2026 — free built-in options, Chromecast, AirPlay, Miracast, and a one-tap paid app.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Getting your phone's screen onto the TV used to mean cables, dongles and patience. In 2026, most TVs and phones can do it wirelessly in under a minute — you just need to know which option fits your gear. Here are five ways, from the free built-in features to a one-tap paid app.",
+      },
+      { h2: "1. Your phone's built-in cast button" },
+      {
+        p: "Almost every modern Android phone has screen casting baked into its quick settings — Samsung calls it Smart View, other brands call it Cast or Screen Mirroring. Swipe down from the top of the screen, tap it, and pick your TV from the list. The catch: your TV has to support it. Most Android TV and Google TV models do, as does Fire TV. If your TV doesn't show up, move on to the options below. Cost: free.",
+      },
+      { h2: "2. Chromecast built into your TV" },
+      {
+        p: "Many smart TVs ship with Chromecast built in — no dongle needed. Open a supported app like YouTube or Netflix, tap the cast icon, and choose your TV. This streams the content rather than mirroring the whole screen, so your phone stays free for other things — but apps that don't support casting won't work this way. If your TV lacks it, a Chromecast dongle or Google TV streamer adds it for a small price. Cost: free if it's already in your TV.",
+      },
+      { h2: "3. AirPlay (for iPhone owners)" },
+      {
+        p: "iPhone users get AirPlay: many recent smart TVs from Samsung, LG, Sony and TCL support AirPlay 2, and Apple TV boxes do too. Open Control Center, tap Screen Mirroring, and pick your TV. Quality is excellent — but it's an Apple-only party, so Android users should look elsewhere. Cost: free.",
+      },
+      { h2: "4. Miracast — the open standard nobody markets" },
+      {
+        p: "Miracast is the Wi-Fi Alliance standard behind the generic \"Screen Mirroring\" option on many TVs. Some Android phones support it, and it connects peer-to-peer — no Wi-Fi network required. In practice it's the least consistent option: support varies by phone brand, and newer devices have quietly moved away from it. Worth trying if it's there; don't plan your evening around it. Cost: free.",
+      },
+      { h2: "5. A dedicated mirroring app (the one-tap option)" },
+      {
+        p: "If your TV never shows up in any built-in option — or you just don't want to fiddle with settings — a dedicated mirroring app handles device discovery for you. Our full walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android to a TV without a Chromecast</a>; an app like TV Cast scans your network for compatible smart TVs, Fire TV sticks and even web browsers, and starts mirroring in a couple of taps. The trade-off is honesty time: the one-tap route is a paid app. TV Cast is a one-time purchase with no subscription — and through October 31, 2026 it's on sale at 50% off. If the free built-in casting already works on your gear, you don't need it. If it doesn't, this is the fast path.",
+      },
+      { h2: "Which one should you use?" },
+      {
+        p: "Start with the free options — your phone's built-in cast button takes ten seconds to try. If your TV appears in the list, you're done. If not, check your TV's settings for Chromecast or AirPlay support. Only reach for a paid option when the free paths dead-end: an older non-smart TV, a TV with no casting support, or you just want mirroring that works on the first try.",
+      },
+      { h2: "Mirror your phone in one tap" },
+      {
+        p: "Want to skip the troubleshooting? <strong>TV Cast — Screen Mirroring</strong> is a paid Android app that mirrors your phone to smart TVs, Fire TV and PCs in seconds, with no Chromecast required. It's a one-time purchase — no subscription, no ads — and it's currently 50% off through October 31, 2026. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
   slug: "warhound-cloned-working-dogs-science-explained",
   title:
     "A $200M Startup Is Cloning America's Best Working Dogs — Here's the Science",
