@@ -1346,5 +1346,108 @@
     "summary": "A developer tutorial shows how to build a weekly jobs digest on a free jobs API where every posting carries an AI score: pull remote roles posted in the last 7 days, filter by AI level, track seen IDs to skip repeats, and hand titles plus company and pay fields to a language model for a one-line apply-or-skip verdict. It also works through a no-signup MCP server for Claude or Cursor users.",
     "title": "Build a weekly AI-jobs digest agent in 20 lines of Python",
     "topic": "productivity"
+  },
+  {
+    "id": "agentkit-local-n8n-agent-pack",
+    "title": "Run five AI agents locally with no cloud fees",
+    "summary": "A builder published AgentKit, a pack of five import-ready n8n workflows that run entirely on your own machine: a Telegram assistant with memory, a content repurposer, a webhook lead qualifier, an 8 AM RSS research digest, and an FAQ-only support bot. It pairs n8n with a local model via Ollama, so there are no API bills or monthly fees.",
+    "topic": "productivity",
+    "agents": [
+      "n8n",
+      "Ollama"
+    ],
+    "prompt": "Import this n8n workflow and point it at my local Ollama model — start with the daily RSS digest agent.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-24",
+    "votes": 0
+  },
+  {
+    "id": "sloth-errands-overnight-agent",
+    "title": "Hand overnight web chores to an agent that asks before paying",
+    "summary": "A builder's overnight agent works in cloud browsers while they sleep — for example renewing library books and grabbing a 7 AM gym slot the moment booking opens. The risky rule is enforced in code, not in the prompt: anything matching 'pay' or 'confirm' is parked, and approval arrives as a phone push notification in the morning.",
+    "topic": "everyday-life",
+    "agents": [
+      "Mastra",
+      "gpt-oss",
+      "Auth0"
+    ],
+    "prompt": "Every night at 11 PM, check my library books and renew anything due within 3 days. Never pay anything without asking me first.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-24",
+    "votes": 0
+  },
+  {
+    "id": "agentspend-track-agent-tokens",
+    "title": "Track your coding agent's token usage from local logs",
+    "summary": "AgentSpend is a small local CLI that scans Codex session files on your machine and totals up token usage into a local SQLite database — no more grepping log folders to see how much your agent burned. It is an early MVP: cost calculations, waste detection, and Claude/Gemini log support are not built yet.",
+    "topic": "coding-dev",
+    "agents": [
+      "Codex"
+    ],
+    "prompt": "Scan my Codex session files from this week and show me total tokens used per day.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-24",
+    "votes": 0
+  },
+  {
+    "id": "walmart-amazon-agentic-shopping",
+    "title": "Authorize a shopping agent with spending limits",
+    "summary": "Walmart and Amazon both expanded agent-powered shopping this week: Walmart unveiled agent profiles and an agent gateway so customers can let an AI agent shop with spending limits, approval by default, and separate purchase records — agents never see card details. Separately, Amazon said firms like PwC are deploying agents on its Amazon Quick platform to review thousands of documents and cut sales admin work.",
+    "topic": "everyday-life",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Shop for this week's groceries under $80. Ask me before checking out anything over $15.",
+    "source": "PYMNTS",
+    "sourceUrl": "https://www.pymnts.com",
+    "date": "2026-10-24",
+    "votes": 0
+  },
+  {
+    "id": "slothcontributor-issue-hunter",
+    "title": "Have an agent pre-research new open-source issues for you",
+    "summary": "SlothContributor is a local CLI agent that polls the author's favorite GitHub repos every 15 minutes. When a new issue appears, it reads the issue, fetches the likely source files via the GitHub API, and pops a desktop notification with a structured 'Contributor's Hunch' — what the issue is, where to look, and a suggested fix. The author has since had three PRs merged on one of the watched repos.",
+    "topic": "coding-dev",
+    "agents": [
+      "Ollama",
+      "Gemma 2"
+    ],
+    "prompt": "Watch this repo and notify me when a new issue is filed, with a summary and where in the code to look first.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-24",
+    "votes": 0
+  },
+  {
+    "id": "quietpatch-repo-caretaker",
+    "title": "Let an agent draft maintenance patches you approve",
+    "summary": "QuietPatch scans a codebase with deterministic scanners for TODOs, broken doc links, config issues, and unpinned dependencies, then a local model ranks the findings and drafts targeted patches. Every patch is validated against safety rules and shown in a dashboard — nothing is committed or pushed without explicit approval. In a test run it scanned 8 files, found 14 issues, and produced 2 reviewable patches.",
+    "topic": "coding-dev",
+    "agents": [
+      "Gemma",
+      "Ollama"
+    ],
+    "prompt": "Scan my repo for maintenance issues, rank them by severity, and draft patches I can review before anything is committed.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-24",
+    "votes": 0
+  },
+  {
+    "id": "local-sre-laptop-agent",
+    "title": "Ask a $0 local agent if your laptop is healthy",
+    "summary": "An SRE built a tiny agent that runs entirely on their Windows laptop with no API keys: ask 'Is my disk healthy and is the Spooler service running?' and the agent loop calls two read-only tools to answer. It is read-only by design, with input validation, a six-round loop cap, and printed tool-call logs — and the author documents three real bugs they hit while building it.",
+    "topic": "productivity",
+    "agents": [
+      "Ollama"
+    ],
+    "prompt": "Is my disk healthy, and is the Print Spooler service running? Only use read-only checks.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-24",
+    "votes": 0
   }
 ]
