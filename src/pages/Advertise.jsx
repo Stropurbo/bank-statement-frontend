@@ -144,14 +144,14 @@ export default function Advertise() {
           <p className="text-3xl font-bold text-black dark:text-white mb-3">
             $99
             <span className="text-base font-normal text-neutral-500 dark:text-neutral-400">
-              /week
+              /month
             </span>
           </p>
           <ul className="text-sm text-neutral-600 dark:text-neutral-300 space-y-1.5 mb-5">
-            <li>· One week in the sponsor bar on every page</li>
+            <li>· One month in the sponsor bar on every page</li>
             <li>· Your name, icon, pitch (~40 chars) + link</li>
-            <li>· "Sponsored by" line in every Daily 5 email that week</li>
-            <li>· Goes live on approval, 7 full days</li>
+            <li>· "Sponsored by" line in every Daily 5 email that month</li>
+            <li>· Goes live on approval, 30 full days</li>
           </ul>
           <a
             href={SPONSOR_BAR_URL}
@@ -159,7 +159,7 @@ export default function Advertise() {
             rel="noopener noreferrer"
             className="inline-block bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-full px-5 py-2.5 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
           >
-            Sponsor for $99/week
+            Sponsor for $99/month
           </a>
         </div>
         <div className={cardClass("banner")} onClick={() => setSelected("banner")}>
@@ -169,14 +169,14 @@ export default function Advertise() {
           <p className="text-3xl font-bold text-black dark:text-white mb-3">
             $249
             <span className="text-base font-normal text-neutral-500 dark:text-neutral-400">
-              /week
+              /month
             </span>
           </p>
           <ul className="text-sm text-neutral-600 dark:text-neutral-300 space-y-1.5 mb-5">
             <li>· Everything in Featured, plus:</li>
             <li>· Top banner placement on the homepage</li>
             <li>· Logo + tagline + link, above the fold</li>
-            <li>· Newsletter top placement that week</li>
+            <li>· Newsletter top placement that month</li>
           </ul>
           <a
             href={BANNER_URL}
@@ -184,7 +184,7 @@ export default function Advertise() {
             rel="noopener noreferrer"
             className="inline-block bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-full px-5 py-2.5 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
           >
-            Sponsor for $249/week
+            Sponsor for $249/month
           </a>
         </div>
       </div>
@@ -201,7 +201,7 @@ export default function Advertise() {
           >
             contact@sheetlypro.com
           </a>{" "}
-          with your product link and preferred week. We reply within 48 hours.
+          with your product link and preferred month. We reply within 48 hours.
         </p>
       </div>
 
