@@ -48,6 +48,47 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "mirror-phone-to-pc-windows-mac",
+    title: "How to Mirror Your Phone to Your PC — Windows & Mac, Free and Paid Ways",
+    date: "2026-10-25",
+    description:
+      "Want your phone screen on your computer? Here's how to mirror Android and iPhone to Windows and Mac: free built-in tools, a browser receiver, and a one-tap paid app.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Your phone holds your photos, chats, videos and games, and sometimes that small screen is the problem. A presentation, a video call, a game you want on a bigger display: mirroring your phone to your PC puts it all on a screen you can actually work with. Here are the ways that work in 2026, free and paid.",
+      },
+      { h2: "1. Phone Link (Android to Windows, free)" },
+      {
+        p: "Windows 10 and 11 ship with Phone Link. Link your Android phone once with the Link to Windows app, and your phone's screen appears in a window on your PC. You can click, type and drag with your mouse and keyboard. It works over Wi-Fi, needs no cable, and costs nothing. The catch: it is Android and Windows only, and some phone makers limit which features work.",
+      },
+      { h2: "2. AirPlay to Mac (iPhone to Mac, free)" },
+      {
+        p: "If you have an iPhone and a Mac, AirPlay is already built in. On your iPhone, open Control Center, tap Screen Mirroring, and pick your Mac. Your iPhone screen shows up on the Mac, with sound. No app, no cable, no cost. The catch: both devices need to be on the same Wi-Fi network, and it only works within Apple's own gear.",
+      },
+      { h2: "3. A browser receiver (any phone to any PC)" },
+      {
+        p: "The most flexible option is a receiver that runs in your PC's browser: open a page on your computer, connect from your phone, and your screen appears. No dongle, no cable, and it works on Windows and Mac alike since the PC side is just a browser tab. This is the approach a dedicated mirroring app takes (see TV Cast below).",
+      },
+      { h2: "4. USB cable with scrcpy (Android, free, for tinkerers)" },
+      {
+        p: "If you want low lag and don't mind a cable, scrcpy is a free, open-source tool that mirrors Android over USB (or Wi-Fi once set up). It is fast and sharp, and developers love it. The catch: it needs a computer-side install and your phone's developer options switched on, so it is not the one-tap choice for most people.",
+      },
+      { h2: "5. What about a cable to a monitor?" },
+      {
+        p: "Some Android phones support video out over USB-C: plug in a USB-C to HDMI adapter and your phone drives a monitor directly. It is the simplest setup of all, but only some phones support it, and you lose the PC itself: no mouse, no keyboard, no multitasking with your computer's apps. For most people, one of the wireless options above is the better pick.",
+      },
+      { h2: "Which way should you pick?" },
+      {
+        p: "If you live inside Windows and Android, start with Phone Link. It is free and already installed. If you live inside Apple gear, AirPlay is the obvious answer. If you want one method that works on any PC, Windows or Mac, a browser receiver is the flexible pick. And if you want the lowest lag for games or demos, a USB tool like scrcpy is hard to beat. For the TV side of the same problem, see our guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a>.",
+      },
+      { h2: "TV Cast — Screen Mirroring" },
+      {
+        p: "<strong>TV Cast</strong> is a paid Android app that mirrors your phone to any TV or PC in seconds, with no Chromecast needed, and it works with smart TVs, Fire TV and browsers. It is a one-time purchase with no subscription, so you pay once and keep it. If your goal is the big screen with the least fuss, it is the one-tap option in this list.",
+      },
+    ],
+  },
+  {
     slug: "ways-to-mirror-phone-to-tv-2026",
     title: "5 Ways to Mirror Your Phone to a TV in 2026 — From Free to One-Tap",
     date: "2026-10-24",
