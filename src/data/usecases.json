@@ -1449,5 +1449,108 @@
     "sourceUrl": "https://medium.com",
     "date": "2026-10-24",
     "votes": 0
+  },
+  {
+    "id": "aicila-four-agent-recruitment",
+    "title": "Run a whole recruitment firm on four AI agents",
+    "summary": "A Sydney recruiter rebuilt her animal-health recruitment firm around four agents, one each for business development, market intelligence, candidate nurturing and executive search, after months spent writing close to 200 workflow documents. The system launched on 23 October 2026, but she still checks every interaction: early reports were garbled and some shortlists picked candidates from the wrong countries.",
+    "topic": "business-ops",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Watch regulatory filings for animal-health companies expanding into a new region, and flag the hiring signals worth following up.",
+    "source": "emergent.sh",
+    "sourceUrl": "https://emergent.sh",
+    "date": "2026-10-25",
+    "votes": 0
+  },
+  {
+    "id": "uberblick-autonomous-dev-loop",
+    "title": "Let a four-role agent loop build your product from its own docs",
+    "summary": "The team behind Uberblick runs a small autonomous loop on GitHub Actions: a preparer scopes each issue, an implementer codes it, a reviewer checks the exact code, and an integrator merges. Between 1 and 21 October it closed 389 issues with merged pull requests, 193 of them fully autonomous, and almost everything on the site, including the editor and CLI, was built by the loop itself.",
+    "topic": "coding-dev",
+    "agents": [
+      "Claude Code",
+      "Codex"
+    ],
+    "prompt": "From this workspace page, cut an issue with clear acceptance criteria, then implement it and open a pull request.",
+    "source": "uberblick.ai",
+    "sourceUrl": "https://uberblick.ai",
+    "date": "2026-10-25",
+    "votes": 0
+  },
+  {
+    "id": "lazyflow-everyday-ai-assistant",
+    "title": "Automate everyday chores with a local, open-source assistant",
+    "summary": "LazyFlow AI is a small open-source dashboard that summarizes long text, drafts emails, turns goals into prioritized checklists and keeps a history of past results. It runs on an open-weight model through Ollama, so it can work locally without sending your text to a remote provider.",
+    "topic": "productivity",
+    "agents": [
+      "Ollama"
+    ],
+    "prompt": "Turn this long email thread into a short summary and a checklist of what I need to do next.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-25",
+    "votes": 0
+  },
+  {
+    "id": "exercise-visual-agent-factory",
+    "title": "Build 570 exercise visuals with agents, then check them yourself",
+    "summary": "A fitness-app builder set up an agent production line, image models to draw, AI judges to check, a 3D pipeline and a job queue, to make 570 exercise cards. The judges approved 490 cards, but when the builder inspected a sample at full size, hands floated, feet slid and faces changed, and he estimates around 80% of the approved cards would have to be thrown away. The lesson: when the checker shares the generator's blind spots, errors compound instead of cancelling out.",
+    "topic": "creative",
+    "agents": [
+      "Hermes Agent",
+      "DeepSeek Harness"
+    ],
+    "prompt": "Draw one exercise card showing the start, middle and end of a squat with the same character throughout, then flag any frame where the body changes shape.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-25",
+    "votes": 0
+  },
+  {
+    "id": "php2shell-migration-agent-skill",
+    "title": "Patch legacy PHP apps against PHP2Shell with an agent skill",
+    "summary": "An open-source agent skill helps developers check old PHP apps for two critical PHP2Shell vulnerabilities fixed on 21 October 2026. Ask your agent to check a project and it works out which PHP version actually serves the site, plans the patch before any framework upgrade, applies changes on a separate branch, runs the tests, and reports what is fixed versus not yet checked, without ever deploying to production.",
+    "topic": "coding-dev",
+    "agents": [
+      "Claude Code",
+      "Codex",
+      "Cursor"
+    ],
+    "prompt": "Use php2shell-migration to check this project for PHP2Shell and make a plan. Don't change anything yet.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-25",
+    "votes": 0
+  },
+  {
+    "id": "agentwebui-unified-agent-dashboard",
+    "title": "Run every AI agent from one lightweight dashboard",
+    "summary": "AgentWebUI is a self-hosted web UI that puts Claude Code, Codex and local models in one sidebar, so developers stop juggling five tabs. It runs on Docker with a single env file, reuses the Claude or Codex subscription you already pay for instead of asking for new API keys, and keeps projects, files and search in one place.",
+    "topic": "productivity",
+    "agents": [
+      "Claude Code",
+      "Codex"
+    ],
+    "prompt": "Show me my open agent sessions and jump back into the one working on the checkout page.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-25",
+    "votes": 0
+  },
+  {
+    "id": "agent-deadlines-need-real-alerts",
+    "title": "Give your agent real alerts, not just a task list",
+    "summary": "An AI agent's post-mortem describes a recurring failure: it recorded deadlines in a static task list but never set timed alerts, so nothing actually rang when work was due and deliverables nearly slipped. The fix is simple and applies to any agent setup: every deadline an agent writes down needs a matching active reminder, because a stored date is not a wake-up call.",
+    "topic": "productivity",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "For every deadline you record, also set a timed alert one day before it is due.",
+    "source": "ClawdBytes",
+    "sourceUrl": "https://www.clawdbytes.com",
+    "date": "2026-10-25",
+    "votes": 0
   }
 ]
