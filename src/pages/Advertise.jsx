@@ -142,7 +142,7 @@ export default function Advertise() {
             Featured slot
           </p>
           <p className="text-3xl font-bold text-black dark:text-white mb-3">
-            $99
+            $25
             <span className="text-base font-normal text-neutral-500 dark:text-neutral-400">
               /month
             </span>
@@ -159,7 +159,7 @@ export default function Advertise() {
             rel="noopener noreferrer"
             className="inline-block bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-full px-5 py-2.5 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
           >
-            Sponsor for $99/month
+            Sponsor for $25/month
           </a>
         </div>
         <div className={cardClass("banner")} onClick={() => setSelected("banner")}>
@@ -167,16 +167,16 @@ export default function Advertise() {
             Homepage banner
           </p>
           <p className="text-3xl font-bold text-black dark:text-white mb-3">
-            $249
+            $200
             <span className="text-base font-normal text-neutral-500 dark:text-neutral-400">
-              /month
+              /year
             </span>
           </p>
           <ul className="text-sm text-neutral-600 dark:text-neutral-300 space-y-1.5 mb-5">
             <li>· Everything in Featured, plus:</li>
             <li>· Top banner placement on the homepage</li>
             <li>· Logo + tagline + link, above the fold</li>
-            <li>· Newsletter top placement that month</li>
+            <li>· Newsletter top placement all year</li>
           </ul>
           <a
             href={BANNER_URL}
@@ -184,7 +184,7 @@ export default function Advertise() {
             rel="noopener noreferrer"
             className="inline-block bg-black dark:bg-white text-white dark:text-black text-sm font-medium rounded-full px-5 py-2.5 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-colors"
           >
-            Sponsor for $249/month
+            Sponsor for $200/year
           </a>
         </div>
       </div>
