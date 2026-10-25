@@ -48,6 +48,49 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "smart-tv-tracking-after-opt-out-study",
+    title: "Your Smart TV May Keep Tracking What You Watch, Even After You Opt Out",
+    date: "2026-10-25",
+    description:
+      "A new Northeastern University study tested 12 smart TVs and found some kept sending viewing-tracking traffic after users opted out. Here is what ACR is, which brands passed, and how to turn viewing data off.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Your smart TV probably knows what you watched last night. Most modern TVs watch what is on screen and report it back, a feature meant to power recommendations and ads. A new study from Northeastern University tested whether turning that feature off actually stops it. On some of the biggest TV brands, it did not.",
+      },
+      { h2: "What is ACR, and why does your TV use it?" },
+      {
+        p: "The technology is called automatic content recognition, or ACR. It takes tiny fingerprints of the video or audio on screen, a few times a second, and matches them against a database to identify the show, movie, game or ad playing. Think of it like Shazam, but for your television. TV makers say it helps with recommendations and keeps TV prices down. Advertisers use the viewing profiles it builds to target ads, not just on your TV but elsewhere too.",
+      },
+      { h2: "What the new study tested" },
+      {
+        p: "The study, titled \"Watching the Watchers,\" ran 5,943 controlled experiments on 12 televisions from 10 manufacturers, covering eight operating systems. The researchers watched what each TV sent over the internet with ACR tracking on, then opted out in the TV's settings and checked again. The goal was simple: does the off switch actually work?",
+      },
+      { h2: "The results: two brands kept phoning home" },
+      {
+        p: "On Samsung TVs running Tizen and Vizio TVs running SmartCast, network traffic to ACR servers continued after the researchers opted out, in the scenarios tested. One important caveat: most of this traffic was encrypted, so the researchers could not see exactly what was inside it or confirm how the companies used it. What they could see was that the TVs kept contacting the tracking servers after being told to stop.",
+      },
+      { h2: "The brands where opting out worked" },
+      {
+        p: "It was not all bad news. On LG's webOS, Sony's Google TV, Amazon Fire TV and VIDAA, opting out worked in the scenarios tested, and the ACR traffic stopped. Roku mostly passed too, with one exception: its opt-out did not cover its own streaming service, The Roku Channel. Vizio had a second, separate problem: its free WatchFree+ service sent program titles in unencrypted form, so anyone on the network path could read them.",
+      },
+      { h2: "How to turn off viewing data on your TV" },
+      {
+        ul: [
+          "Open Settings, then look for Privacy (on some TVs it sits under Terms and Privacy).",
+          "Find a switch called Viewing Information, Viewing Data, or something similar, and turn it off. Also switch off interest-based or personalized ads if you see that option.",
+          "Turn off voice features you do not use, since some TVs listen for voice commands through the remote.",
+          "Check back after big software updates. Settings can quietly reset when a TV updates, so a five-minute check every few months is worth it.",
+          "If you are comfortable with router settings, you can also put your TV on a separate guest network, which limits what it can see about your other devices.",
+        ],
+      },
+      { h2: "Watch from your phone instead" },
+      {
+        p: "If most of what you watch already lives on your phone, you can skip the TV's built-in apps and put your phone on the big screen instead. For the other ways to get your phone onto a TV, see our guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a>. <strong>TV Cast</strong> is a paid Android app that mirrors your phone to any TV or PC in seconds, with no Chromecast needed, and it works with smart TVs, Fire TV and browsers. It is a one-time purchase with no subscription. One honest note: mirroring from your phone does not switch off your TV's own tracking, so the privacy steps above still matter.",
+      },
+    ],
+  },
+  {
     slug: "mirror-phone-to-pc-windows-mac",
     title: "How to Mirror Your Phone to Your PC — Windows & Mac, Free and Paid Ways",
     date: "2026-10-25",
