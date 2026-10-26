@@ -48,6 +48,56 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "mirror-iphone-to-tv-without-apple-tv",
+    title: "How to Mirror Your iPhone to a TV Without an Apple TV",
+    date: "2026-10-26",
+    description:
+      "No Apple TV box? No problem. Here is how to mirror your iPhone to a TV using built-in AirPlay 2, a cheap streaming stick, or a simple HDMI adapter, plus what to try when your TV does not show up.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Your iPhone holds your photos, videos, games and video calls, and sometimes that small screen is the problem. An Apple TV box is the obvious fix, but it is far from the only one. Most TVs sold in the last few years can already receive your iPhone screen directly, and the rest need only a cheap adapter or stick. Here are the ways that actually work, cheapest first.",
+      },
+      { h2: "1. Check for built-in AirPlay 2 first (free)" },
+      {
+        p: "This is the step most people skip, and it costs nothing. Since 2018, TV makers have built AirPlay 2 into smart TVs from the big brands: Samsung (2018 models and later), LG (2019 and later, plus some 2018 models), Sony (2019 and later), Vizio (2018 and later), TCL Roku TVs (2019 and later) and Hisense (2020 and later). If your TV is from any of these brands and is only a few years old, there is a good chance it already works.",
+      },
+      {
+        p: "To try it, connect your iPhone and your TV to the same Wi-Fi network, then open Control Center on your iPhone by swiping down from the top-right corner (on older iPhones with a Home button, swipe up from the bottom instead). Tap Screen Mirroring, pick your TV from the list, and enter the code shown on the TV if it asks for one. Your whole iPhone screen appears on the TV, with sound through the TV speakers.",
+      },
+      {
+        p: "If your TV does not appear in the list, AirPlay may simply be switched off. Look in your TV settings for Apple AirPlay and HomeKit (on Samsung it sits under General, on LG under Connection) and make sure it is turned on. A restart of both devices also fixes the problem more often than you would expect.",
+      },
+      { h2: "2. Add AirPlay with a streaming stick (cheap)" },
+      {
+        p: "If your TV is older or has no AirPlay setting at all, a Roku streaming player adds it. Most current Roku players (Streaming Stick 4K, Express 4K, Premiere, Ultra, Streambar) support AirPlay 2, so plugging one into any TV with an HDMI port gives that TV an AirPlay receiver. Check your model supports it before buying. Once the Roku is set up on your Wi-Fi, it shows up in your iPhone's Screen Mirroring list just like a built-in AirPlay TV. It is a much cheaper buy than an Apple TV box, and you get a full streaming player into the bargain.",
+      },
+      { h2: "3. Cast from inside an app instead of mirroring everything" },
+      {
+        p: "Sometimes you do not need your whole screen on the TV, only the video. Many apps, including YouTube, have a cast button built in: tap it and the video plays on a Chromecast, a Google TV device or a TV with Chromecast built in, while your phone stays free for other things. This is streaming, not mirroring, so it will not show your photos, games or video calls. It is worth knowing the difference before you buy anything: if you only ever watch YouTube and similar apps on the TV, casting from the app may be all you need.",
+      },
+      {
+        p: "One honest caveat: some streaming apps restrict casting and mirroring for rights reasons, so a show that plays fine on your phone may refuse to appear on the TV. When that happens, use the TV's own app for that service instead.",
+      },
+      { h2: "4. Go wired with an HDMI adapter (works on any TV)" },
+      {
+        p: "The most reliable option of all is a cable. Apple's Lightning Digital AV Adapter mirrors any iPhone with a Lightning port to any TV with an HDMI port, and it lets you charge the phone while you mirror. If you have an iPhone 15 or later with USB-C, a standard USB-C to HDMI adapter does the same job, usually for less money. There is no Wi-Fi involved, so there is no wireless lag, no dropped connection and no compatibility list to check. It is the best choice for hotel TVs, older TVs and presentations where the connection simply has to work.",
+      },
+      { h2: "5. When your TV still does not show up" },
+      {
+        p: "Work through this short checklist before spending any money. First, confirm both devices are on the same Wi-Fi network, not one on Wi-Fi and one on a guest network. Second, check that AirPlay is switched on in the TV settings, as described above. Third, restart both the iPhone and the TV. Fourth, check for software updates on the TV, since manufacturers add and fix AirPlay support in updates. Fifth, if the picture stutters, move closer to your router or switch to the 5 GHz Wi-Fi band, which handles video better than the crowded 2.4 GHz band.",
+      },
+      { h2: "Which way should you pick?" },
+      {
+        p: "If your TV already has AirPlay 2, use it: it is free and already installed. If your TV is older, a Roku stick is the cheapest wireless fix. If you want zero fuss or you travel with your phone, an HDMI adapter is the one purchase that works everywhere. For the general picture, including the Android side of the same problem, see our guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a>.",
+      },
+      { h2: "Got an Android phone in the house too?" },
+      {
+        p: "Everything above is about iPhone, but most households have more than one kind of phone. If there is also an Android phone in the house, <strong>TV Cast — Screen Mirroring</strong> is a paid Android app that mirrors it to smart TVs, Fire TV and PCs in seconds, with no Chromecast needed. It is a one-time purchase with no subscription. Our walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android to a TV without a Chromecast</a>. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
     slug: "smart-tv-tracking-after-opt-out-study",
     title: "Your Smart TV May Keep Tracking What You Watch, Even After You Opt Out",
     date: "2026-10-25",
