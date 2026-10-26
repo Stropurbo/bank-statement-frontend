@@ -1552,5 +1552,120 @@
     "sourceUrl": "https://www.clawdbytes.com",
     "date": "2026-10-25",
     "votes": 0
+  },
+  {
+    "agents": [
+      "Gemma",
+      "Ollama",
+      "Claude Code"
+    ],
+    "date": "2026-10-26",
+    "id": "zenith-agent-manager",
+    "prompt": "What did we decide on this project, what is still unfinished, and which past results are still verified?",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A builder created Zenith, a local-first tool that keeps a project's decisions, tasks and test results in one evidence ledger, so returning to a project means asking one question instead of re-reading old chats and notes. Its assistant reasons with a small local model, and a separate verifier checks a coding agent's claimed result before it counts as done. The project is early: its demo used fictional projects and simulated coding agents, and the full live loop is still unproven.",
+    "title": "Let an agent manager remember your projects and check other agents' work",
+    "topic": "productivity",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-26",
+    "id": "agentanton-real-money-trading-agent",
+    "prompt": "Before you trade, write your reason, your exit rule and how you will judge the reason afterwards - then publish all three.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "An AI agent takes one real-money position each trading day on a public account, writing down its reason before the outcome is known and publishing the decision, the evening review and the raw data. It judges its reason separately from its profit, and compares itself against simple baselines like a coin flip, so a win for the wrong reason still counts as luck, not skill.",
+    "title": "Let a trading agent publish every decision, reason and evening review",
+    "topic": "money-bills",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-26",
+    "id": "mango-website-assistant-books-calls",
+    "prompt": "Answer only from our published pages; if a visitor asks to be contacted, record their details and offer the next open call slot.",
+    "source": "studiobananas.com",
+    "sourceUrl": "https://studiobananas.com",
+    "summary": "A small studio runs a website assistant that answers visitors from the studio's own published pages, records contact details when a visitor asks to be called back, and books the call through the calendar. People still handle the call itself and every price decision, and the assistant never takes a payment.",
+    "title": "Answer website visitors and book calls with a site assistant",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "browser-use",
+      "Grok"
+    ],
+    "date": "2026-10-26",
+    "id": "slothsurf-browser-agent-lazy-chores",
+    "prompt": "Summarise the top three tech discussions today, and show me only the key point of each.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "SlothSurf is an open-source browser agent that takes a plain instruction, such as summarising the day's top tech discussions or comparing prices, and carries it out inside a real browser by navigating, scrolling and clicking. It runs from a terminal or a simple dashboard, and its builder chose open tools so every click and page read stays visible in the code.",
+    "title": "Hand everyday web chores to a browser agent",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-26",
+    "id": "permit-spending-permit-ai-agents",
+    "prompt": "Set my agent's spending limit and approval list first, then test an over-limit payment to confirm it is blocked before any money moves.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "Permit sits between an AI agent and a payment: spending inside a pre-set limit goes through, spending over the limit is blocked before any payment call is made, and an order nobody approved is refused. An emergency stop is built in, and the builder's test runs back each claim, including a case where a feature existed in code but was never listed in the agent's instructions, so it could never run.",
+    "title": "Give an AI agent a spending permit before it can pay",
+    "topic": "money-bills",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-26",
+    "id": "pyra-always-on-event-driven-agent",
+    "prompt": "Turn off my agent's scheduled updates; only alert me when something real happens, and list what you retired and why.",
+    "source": "generussdesign.com",
+    "sourceUrl": "https://generussdesign.com",
+    "summary": "After six months running always-on agents, one builder switched off every scheduled update: repeated suggestions nobody accepted were training him to ignore all of them, including the important ones. What stayed on were alerts that fire because something actually happened, plus an agent with a browser, files and routines under strict house rules - no purchases, no unsent messages, and a daily job cap.",
+    "title": "Keep an always-on agent quiet until something real happens",
+    "topic": "productivity",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Claude"
+    ],
+    "date": "2026-10-26",
+    "id": "perforvisor-review-advisor-claude",
+    "prompt": "Read all my reviews and tell me the top three things to fix this week, with the reviews behind each one.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "Built in three days mostly by talking to a coding agent, Perforvisor reads a business's reviews with a small open model and answers the owner's real question: what should I fix first? It gives a short verdict, up to three concrete actions and the reviews behind each one, and it caught a five-star review whose words were a complaint - a case a star average would have counted as happy.",
+    "title": "Turn customer reviews into a fix-first list for a small business",
+    "topic": "business-ops",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Gemini"
+    ],
+    "date": "2026-10-26",
+    "id": "self-evolving-claims-agent",
+    "prompt": "When my agent gets an answer wrong, diagnose whether the prompt, the missing facts or the calculation caused it, and change only that one part.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A teaching demo shows a small agent deciding phone-insurance claims: it starts with no rules, then fixes one part at a time - its prompt, the facts it receives, or a counting tool - keeping a change only when the score improves. The claims are fictional teaching data, and the point is the method: test on fixed examples, keep what helps, and check which answers each fix broke as well as fixed.",
+    "title": "Build a small agent that improves itself one fix at a time",
+    "topic": "coding-dev",
+    "votes": 0
   }
 ]
