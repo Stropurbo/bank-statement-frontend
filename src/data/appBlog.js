@@ -48,6 +48,57 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "openai-gpt-6-1-terra-cheap-computer-use-ai",
+    title:
+      "OpenAI's GPT-6.1 Terra Makes AI That Clicks Your Mouse Much Cheaper. Here Is What Changes for Your Desk Setup",
+    date: "2026-10-27",
+    description:
+      "OpenAI released GPT-6.1 Terra on October 26, 2026: a mid-tier AI model built to use computers, clicking, typing and filling in forms, at half the API price of its predecessor. Here is what it does, what it costs, and the catches.",
+    appId: "wireless-mouse",
+    body: [
+      {
+        p: "On October 26, 2026, OpenAI released GPT-6.1 Terra, a new AI model built for a very practical job: using a computer the way you do. It reads the screen, clicks buttons, types into fields and moves between apps. It is not the company's smartest model, and that is the point. It is the mid-tier workhorse, priced to make computer-controlling AI cheap enough for everyday work.",
+      },
+      { h2: "What GPT-6.1 Terra actually does" },
+      {
+        p: "Terra sits in the middle of OpenAI's lineup. Above it are the heavyweights for hard research and complex coding. Below it is the cheapest tier for simple chats. Terra is aimed at the repetitive work that eats an afternoon. OpenAI's own examples are deliberately unglamorous: reading incoming invoices and typing the details into accounting software, filling out forms, drafting proposals, reading technical drawings and editing video.",
+      },
+      {
+        p: "It is available to Plus, Pro, Enterprise and Edu users inside ChatGPT Work and Codex, and to developers through the API under the model name gpt-6.1-terra. It accepts text and images, and it can work with a context window of about one million tokens, which is a rough measure of how much it can hold in mind at once.",
+      },
+      { h2: "The price drop is the real story" },
+      {
+        p: "The headline number is the price. Through the API, Terra costs $1 per million input tokens and $5 per million output tokens, with cached input at $0.05 per million. OpenAI says that is 50 percent lower than both the previous Terra model and the more expensive GPT-6.1 Sol. For companies that run thousands of small computer tasks a day, that difference changes the math completely: a task that was too expensive to automate last week is affordable this week.",
+      },
+      {
+        p: "OpenAI also reports strong benchmark results. On Agents' Last Exam, a test of how well AI agents complete professional computer tasks, the company says Terra scored 15 percentage points higher than the previous Terra model and matched its flagship Astra model at one-tenth the price per token, finishing tasks more than three times faster. One honest note: these are OpenAI's own numbers, and independent tests are not out yet. Treat them as the company's claims, not settled fact.",
+      },
+      { h2: "The fine print worth knowing" },
+      {
+        ul: [
+          "<strong>It is not in regular Chat.</strong> You get Terra through ChatGPT Work or Codex, or through the API, so casual free users will not meet it by accident.",
+          "<strong>It is a paid-tier model.</strong> The cheapest way in is a Plus subscription or paying per API token, which rules out anyone looking for a free tool.",
+          "<strong>The benchmarks are self-reported.</strong> Until outside testers publish their own results, the speed and accuracy claims should be read with that in mind.",
+          "<strong>Computer use still needs supervision.</strong> An agent that clicks and types on your behalf can also misclick, misread a form or send the wrong file, so the boring jobs it takes on are the ones where a mistake is easy to spot.",
+        ],
+      },
+      { h2: "What this means for regular computer users" },
+      {
+        p: "Here is the angle the launch coverage misses. Most of us are not looking for an AI to run our computer for us. We need the computer to be easier to reach.",
+      },
+      {
+        p: "When you are running a presentation, hosting a movie night or working from the sofa, the real problem is not brainpower. It is where you are standing. The computer is fixed to a desk, and you are not.",
+      },
+      {
+        p: "That is why the practical takeaway from Terra is not to let AI drive your PC. It is that computer control itself is becoming a solved, cheap problem, and the tools that give you comfortable control are already here. A few simple upgrades cover most of what people actually want: learn the shortcuts for the apps you use every day, keep your most-used files one click away, and give yourself a way to control the screen from wherever you sit.",
+      },
+      { h2: "Try this: control your PC from the couch with your phone" },
+      {
+        p: "The easiest version costs nothing. Install <strong>Wireless Mouse: Remote Mouse</strong>, a free Android app that turns your phone into a wireless mouse, keyboard and trackpad for your PC. Connect your phone and computer to the same Wi-Fi, pair once, and your phone screen becomes a trackpad. Present slides without standing next to the laptop, browse from the couch, or control music and video across the room. Our guide <a href=\"/apps/use-phone-as-wireless-mouse-pc\">walks through setup in a few minutes</a>. Wireless Mouse: Remote Mouse costs nothing on Android, and the Play Store card below links straight to it.",
+      },
+    ],
+  },
+  {
     slug: "mirror-iphone-to-tv-without-apple-tv",
     title: "How to Mirror Your iPhone to a TV Without an Apple TV",
     date: "2026-10-26",
