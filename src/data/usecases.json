@@ -1667,5 +1667,177 @@
     "title": "Build a small agent that improves itself one fix at a time",
     "topic": "coding-dev",
     "votes": 0
+  },
+  {
+    "agents": [
+      "n8n",
+      "Claude"
+    ],
+    "date": "2026-10-27",
+    "id": "sdr-outbound-agent-n8n-claude",
+    "prompt": "Research this prospect's business, then draft a short personalized outreach email I can approve before it goes out.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A two-person consulting studio built an outbound agent with n8n and Claude after its sales rep left: the agent sources prospects, researches them, and drafts personalized emails, but nothing goes out without a human approving it first. The author says that approval rule is what turned a risky idea into a reliable sales routine.",
+    "title": "Replace a sales rep with an outbound agent that drafts outreach",
+    "topic": "marketing-sales",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "n8n",
+      "Claude Haiku"
+    ],
+    "date": "2026-10-27",
+    "id": "email-triage-auto-reply-n8n-claude",
+    "prompt": "Sort today's emails into urgent, routine, and noise, draft replies for the routine ones, and show me only what needs my attention.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A freelance consultant built an email triage system with n8n and Claude Haiku for a daily inbox that is mostly noise: the workflow sorts incoming mail, drafts replies, and only surfaces the small share that truly needs attention, so urgent messages stop getting buried.",
+    "title": "Sort a busy inbox so only the important emails reach you",
+    "topic": "productivity",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "n8n",
+      "Claude"
+    ],
+    "date": "2026-10-27",
+    "id": "agency-operating-system-n8n-claude",
+    "prompt": "Score this incoming job, draft a proposal from my usual terms, update the CRM, and add it to tomorrow's health digest.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "After losing a prospect to a forgotten follow-up, a solo agency owner built about 40 connected n8n workflows with Claude: they score incoming jobs, draft proposals, keep the CRM updated, and send a daily health digest, so the business no longer runs from memory.",
+    "title": "Run a solo agency on a system of connected workflows",
+    "topic": "business-ops",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Gemma"
+    ],
+    "date": "2026-10-27",
+    "id": "ghost-tech-appliance-repair-browser",
+    "prompt": "My dryer runs and the drum turns but there is no heat. Walk me through the likely causes, simplest safe checks first, and tell me when to call a professional.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A retired appliance repairman turned his service-call field notes into a free browser tool: a small Gemma model running locally walks homeowners through likely causes and safe checks for washers, dryers, fridges and more, and says clearly when to stop and call a professional. Nothing typed leaves the computer.",
+    "title": "Ask a retired repairman's browser ghost how to fix an appliance",
+    "topic": "everyday-life",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Gemini"
+    ],
+    "date": "2026-10-27",
+    "id": "refund-agent-production-lessons",
+    "prompt": "Handle this refund request, check the order history for an earlier refund first, and record which model and version produced the answer.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A developer took a refund agent built with Gemini from a working demo toward production using simulated customer data, and found the real problems were elsewhere: duplicate refunds from repeated messages, silent model fallbacks, and invented details in otherwise correct answers. The fix was memory, version stamps, and checks enforced in code, not in the prompt.",
+    "title": "Harden a refund agent for production before trusting it",
+    "topic": "money-bills",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Claude"
+    ],
+    "date": "2026-10-27",
+    "id": "decision-agent-shows-its-math",
+    "prompt": "Compare keeping my current car with taking out a loan for a new one. Show the factors, weights, and every calculation, and label anything you assumed.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "summary": "A builder's personal decision agent picks a decision framework and proposes the factors, but a Python function does every calculation and the answer shows each step, with every assumption labeled. On a sample car-versus-loan decision, the visible trade-off mattered more than the verdict itself.",
+    "title": "Let an agent show its math before you trust a money decision",
+    "topic": "money-bills",
+    "votes": 0
+  },
+  {
+    "agents": [
+      "Custom agent"
+    ],
+    "date": "2026-10-27",
+    "id": "agent-tests-green-never-ran",
+    "prompt": "Before merging, compare the number of tests declared in each test file with the number reported as run, and fail the build if any are missing.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "summary": "A coding agent wrote 17 tests for a database library and the pipeline stayed green, but 16 of them had never run: a small syntax quirk meant the test methods returned a value instead of nothing, so the test runner quietly skipped them. The team added a gate comparing declared tests with tests actually reported.",
+    "title": "Catch agent-written tests that pass without ever running",
+    "topic": "coding-dev",
+    "votes": 0
+  },
+  {
+    "id": "home-agent-openclaw-nas",
+    "title": "Run a personal agent at home that emails a Monday task recap",
+    "summary": "A builder moved his personal agent off the cloud and onto a home storage box running the open-source OpenClaw harness. Every Monday it pulls his task lists, emails a recap, and skips the email entirely when nothing changed since last week; each night it also reviews its own notes and writes down what is worth remembering long-term.",
+    "topic": "productivity",
+    "agents": [
+      "OpenClaw"
+    ],
+    "prompt": "Every Monday at 6 AM, gather my open tasks, build a short recap, and email it to me. If nothing changed since last week's recap, send nothing.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-28",
+    "votes": 0
+  },
+  {
+    "id": "claude-code-docs-watcher-routine",
+    "title": "Watch official docs overnight and wake up to a change summary",
+    "summary": "A guide author set up a scheduled Claude Code routine that runs every morning: a small script diffs a dozen official documentation pages against yesterday, and the model only reads the diff, judges whether each change affects his published guides, and posts a short summary to Slack. When a change matters, it drafts an article but never publishes — a human verifies and publishes.",
+    "topic": "productivity",
+    "agents": [
+      "Claude Code"
+    ],
+    "prompt": "Run this script to diff the docs pages against yesterday. Summarize only the substantive changes, judge whether each affects my published guides, and draft — never publish — an update article for changes that matter.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-28",
+    "votes": 0
+  },
+  {
+    "id": "n8n-blog-workflow-human-checkpoints",
+    "title": "Publish five blog posts a week with two human checkpoints",
+    "summary": "A writer built a single n8n workflow that researches topics weekly with a duplicate check, stores them in a spreadsheet, and drafts one post a day with Claude Sonnet. He deliberately kept two human steps: he adds his own experience and numbers to each topic before the AI writes, and he proofreads every draft in WordPress before publishing anything himself.",
+    "topic": "marketing-sales",
+    "agents": [
+      "n8n",
+      "Claude Sonnet"
+    ],
+    "prompt": "Take the next topic and my notes from this spreadsheet row, write a full blog post built around my points, and save it as a draft for my review. Do not publish it.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-28",
+    "votes": 0
+  },
+  {
+    "id": "instagram-daily-content-muse-rules",
+    "title": "Post to Instagram daily with an agent that follows brand rules",
+    "summary": "A digital-product seller runs one Instagram post a day through his AI assistant Muse, rotating products so no product repeats two days running. He gave the agent fixed rules instead of free rein — hook first, one pain point, product name but never price, a few niche hashtags — and checks each post himself, saying automation moved his attention from production to judgment.",
+    "topic": "marketing-sales",
+    "agents": [
+      "Muse"
+    ],
+    "prompt": "Plan today's post for this product: start with a hook, name one real pain point it solves, name the product without mentioning price, and add a few niche hashtags.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-28",
+    "votes": 0
+  },
+  {
+    "id": "meeting-coach-agent-tempo",
+    "title": "Let a meeting coach agent guard your calendar and focus time",
+    "summary": "After leaving an executive role spent mostly in meetings, a builder created Tempo, a calendar agent published on Grok Bot. It screens each invite against his targets, defends a morning focus block, asks what he wants from important calls, quietly logs what each meeting moved forward, and sends a short morning digest plus a Friday review. He notes it is early days and he still acts on every suggestion himself.",
+    "topic": "business-ops",
+    "agents": [
+      "Grok Bot"
+    ],
+    "prompt": "Act as my meeting coach: screen new invites against my targets, protect my morning focus block, and send me a short morning digest of meetings worth questioning.",
+    "source": "aiwithmarlon.com",
+    "sourceUrl": "https://www.aiwithmarlon.com",
+    "date": "2026-10-28",
+    "votes": 0
   }
 ]
