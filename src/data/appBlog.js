@@ -48,6 +48,57 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "screen-mirroring-without-wifi",
+    title: "How to Mirror Your Phone to a TV Without Wi-Fi: 5 Methods That Actually Work",
+    date: "2026-10-28",
+    description:
+      "Screen mirroring without Wi-Fi is possible, but not every method is truly wireless-free. Here are the wired, Miracast and peer-to-peer ways that work with no router and no internet, plus what will not work.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Your router is down, the hotel Wi-Fi is unusable, or the cabin simply has no internet. You still want your phone screen on the big TV. The good news is that screen mirroring without Wi-Fi is possible. The catch is that the phrase means two different things, and sellers blur them together. Some methods need no Wi-Fi network at all. Others still use a Wi-Fi radio, but connect your phone straight to the TV with no router in between. Both are useful, but only one works when wireless is completely out of the question. Here are the methods that actually work, starting with the most reliable.",
+      },
+      { h2: "1. Go wired with an HDMI adapter (truly no Wi-Fi)" },
+      {
+        p: "A cable is the only method that uses no Wi-Fi in any form. On an Android phone with USB-C, a USB-C to HDMI adapter sends the picture straight to any TV with an HDMI port. On an iPhone with a Lightning port, Apple's Lightning Digital AV Adapter does the same job, mirroring at up to 1080p, and its second port lets you charge the phone while you watch. On an iPhone 15 or later with USB-C, a standard USB-C to HDMI adapter works too. There is no pairing, no lag from a weak signal, and no compatibility list to check on the TV side.",
+      },
+      {
+        p: "One honest caveat before you buy: not every Android phone sends video out over USB-C. Many flagship models do, including Samsung Galaxy S phones and newer Pixels, but many budget phones do not. Check your exact model's specifications for USB-C video output (often called DisplayPort Alt Mode) before ordering an adapter, or the cable will only charge the phone.",
+      },
+      { h2: "2. Miracast: wireless, but no router and no internet" },
+      {
+        p: "Miracast is the built-in wireless option on many Android phones and Windows PCs, and it is the method most people mean when they say mirroring without Wi-Fi. It uses Wi-Fi Direct, a peer-to-peer link straight from your phone to the TV. No router, no home network and no internet connection are involved. The picture can reach 1080p, and the link is encrypted. On a Samsung phone it is called Smart View; on other Android phones look in Settings under Cast, Screen Cast or Wireless Display. Windows PCs can do the same with the Win + K shortcut.",
+      },
+      {
+        p: "The trade-offs are real. Your TV has to support Miracast, and support has been shrinking: many newer TVs dropped it in favour of their own casting systems, so check your TV's manual or input menu first. While a Miracast session is running, some phones also drop their normal Wi-Fi connection, which means no internet on the phone until you stop mirroring. And Chromecast devices do not accept Miracast at all, so do not buy a Chromecast dongle for this job.",
+      },
+      { h2: "3. Peer-to-peer AirPlay for iPhone users" },
+      {
+        p: "If you have an Apple TV, your iPhone can mirror to it without joining any Wi-Fi network. Peer-to-peer AirPlay discovers the Apple TV over Bluetooth, then streams directly to it. Both devices just need Wi-Fi and Bluetooth switched on; they do not need to be on the same network, and no router is required. This only works with supported Apple TV models, so if your Apple TV does not appear in the Screen Mirroring list, this method is not available on your hardware and the wired adapter in method 1 is your fallback.",
+      },
+      { h2: "4. Add a Miracast dongle to a TV without built-in support" },
+      {
+        p: "If your TV has an HDMI port but no Miracast receiver, a wireless display adapter plugs into that port and adds one. You plug the dongle into the TV, power it from a USB port, then connect your phone or PC to it exactly as in method 2. It is the same direct link, just with the receiver supplied separately. It costs more than a cable and less than a new TV, and it is the best fix for an older TV in a room with no network.",
+      },
+      { h2: "5. Download first, then mirror" },
+      {
+        p: "Sometimes the real problem is not the mirror, it is the movie. If the video you want to watch lives on a streaming service, mirroring alone will not help without internet, because the phone still has to stream it. Download the film or episode to your phone while you still have a connection, then mirror the downloaded file with any method above. A downloaded video mirrored over a cable or Miracast plays perfectly with no internet anywhere in the chain.",
+      },
+      { h2: "What will not work without a Wi-Fi network" },
+      {
+        p: "Chromecast and Google TV streamers need a Wi-Fi network to set up and run, so they are out for this job. The same goes for casting from inside an app: tapping the cast button in YouTube or a similar app streams from the internet, not from your phone, so it stops dead without a connection. And the regular screen mirroring built into most smart TVs, the kind that asks both devices to join the same home network, obviously needs that network to exist. If a product page promises mirroring with no Wi-Fi but its setup steps start with joining a network, it is not the method you want.",
+      },
+      { h2: "Which method should you pick?" },
+      {
+        p: "If you want the connection to simply work, buy the cable. If you want wireless and you have an Android phone or Windows PC plus a TV that supports Miracast, use the built-in option and accept that the phone may lose internet while it runs. If you have an iPhone and an Apple TV, try peer-to-peer AirPlay before spending anything. If your TV supports none of these, a Miracast dongle is cheaper than replacing the TV. And whatever you choose, download the content first if it comes from a streaming app. For the wider picture, including the normal Wi-Fi methods, see our guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a>.",
+      },
+      { h2: "Back on Wi-Fi? Here is the one-tap option" },
+      {
+        p: "Everything above is for rooms with no network. Once you are back home on Wi-Fi, the easiest route is different: <strong>TV Cast — Screen Mirroring</strong> is a paid Android app that mirrors your phone to smart TVs, Fire TV and PCs in seconds, with no Chromecast needed. Be clear on the limit: unlike the cable and Miracast methods above, TV Cast needs a shared Wi-Fi network, so it is the at-home option, not the no-network one. It is a one-time purchase with no subscription. Our walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android to a TV without a Chromecast</a>. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
     slug: "openai-gpt-6-1-terra-cheap-computer-use-ai",
     title:
       "OpenAI's GPT-6.1 Terra Makes AI That Clicks Your Mouse Much Cheaper. Here Is What Changes for Your Desk Setup",
