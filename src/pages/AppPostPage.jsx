@@ -122,6 +122,48 @@ export default function AppPostPage() {
         </a>
       </div>
 
+      {["use-phone-as-wireless-mouse-pc", "mirror-android-to-tv-without-chromecast"].includes(post.slug) && (
+        <div className="mt-10 border border-neutral-200 rounded-2xl p-5 dark:border-neutral-800">
+          <h2 className="text-xl font-bold text-black mb-3 dark:text-white">
+            Guides
+          </h2>
+          <div className="space-y-3">
+            <Link
+              to="/guides/inbox-ai-agents-compared"
+              className="block border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
+            >
+              <p className="font-semibold text-black dark:text-white">
+                AI agents for inbox management, compared
+              </p>
+              <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
+                Six real workflows from the directory, compared by the job you actually have.
+              </p>
+            </Link>
+            <Link
+              to="/guides/sheetlypro-by-the-numbers"
+              className="block border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
+            >
+              <p className="font-semibold text-black dark:text-white">
+                SheetlyPro by the numbers
+              </p>
+              <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
+                132 real-world AI agent use cases counted, by topic, tool and source.
+              </p>
+            </Link>
+          </div>
+          <p className="text-sm text-neutral-500 mt-4 dark:text-neutral-400">
+            Browse the full directory:{" "}
+            <Link to="/" className="text-blue-600 hover:underline dark:text-blue-400">
+              Home
+            </Link>{" "}
+            ·{" "}
+            <Link to="/topics" className="text-blue-600 hover:underline dark:text-blue-400">
+              Topics
+            </Link>
+          </p>
+        </div>
+      )}
+
       <div className="mt-10">
         <h2 className="text-xl font-bold text-black mb-3 dark:text-white">
           More from the app blog

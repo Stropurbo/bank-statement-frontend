@@ -546,7 +546,7 @@ export const APP_POSTS = [
     title: "How to Use Your Phone as a Wireless Mouse for PC (Free)",
     date: "2026-10-19",
     description:
-      "Turn your Android phone into a free wireless mouse, keyboard and trackpad for your PC. No dongle, no batteries — set up in under a minute with Wireless Mouse.",
+      "Use your phone as a mouse for your PC — turn your Android phone into a free wireless mouse, keyboard and trackpad. No dongle, no batteries — set up in under a minute with Wireless Mouse.",
     appId: "wireless-mouse",
     body: [
       {
@@ -586,7 +586,7 @@ export const APP_POSTS = [
     title: "How to Mirror Android to TV Without Chromecast",
     date: "2026-10-19",
     description:
-      "Mirror your Android phone screen to any smart TV, Fire TV or PC without a Chromecast. TV Cast makes screen mirroring simple — a paid app that just works.",
+      "How to connect your Android phone to a smart TV without Chromecast — mirror your Android screen to any smart TV, Fire TV or PC. TV Cast makes screen mirroring simple — a paid app that just works.",
     appId: "tv-cast",
     body: [
       {

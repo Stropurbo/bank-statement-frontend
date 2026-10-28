@@ -560,6 +560,43 @@ export default function Home() {
             </p>
           </Link>
         </section>
+
+        {/* Guides */}
+        <section className="mt-10 lg:mt-12 border-t border-neutral-200 pt-6 dark:border-neutral-800">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-500 mb-3 dark:text-neutral-400">
+            Guides
+          </p>
+          <div className="grid gap-4">
+            <Link
+              to="/guides/inbox-ai-agents-compared"
+              className="block border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
+            >
+              <p className="font-semibold text-black dark:text-white">
+                AI agents for inbox management, compared
+              </p>
+              <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
+                Six real workflows from the directory, compared by the job you actually have.
+              </p>
+            </Link>
+            <Link
+              to="/guides/sheetlypro-by-the-numbers"
+              className="block border border-neutral-200 rounded-xl p-4 hover:border-neutral-400 dark:border-neutral-800 dark:hover:border-neutral-600"
+            >
+              <p className="font-semibold text-black dark:text-white">
+                SheetlyPro by the numbers
+              </p>
+              <p className="text-sm text-neutral-500 mt-1 dark:text-neutral-400">
+                132 real-world AI agent use cases counted, by topic, tool and source (as of 28 October 2026).
+              </p>
+            </Link>
+          </div>
+          <Link
+            to="/apps"
+            className="inline-block mt-3 text-sm text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            More from the app blog →
+          </Link>
+        </section>
       </div>
 
       <SubmitModal open={submitOpen} onClose={() => setSubmitOpen(false)} />

@@ -4,8 +4,8 @@ SheetlyPro (https://www.sheetlypro.com) is a curated directory of real-world AI 
 
 ## What the site offers
 
-- 110+ curated AI agent use cases, updated daily (5-8 new per day)
-- Browse by agent: ChatGPT, Claude, Claude Code, n8n, and custom agents
+- 132 curated AI agent use cases (as of 28 October 2026), updated daily
+- Browse by agent: 37 agent strings as written — most frequent: Claude (19 use cases), Claude Code (19), n8n (18), ChatGPT (15); 42 use cases name no specific commercial tool (Custom agent)
 - Browse by topic: Money & Bills, Productivity, Coding & Dev, Marketing & Sales, Business Ops, Learning, Creative, Everyday Life
 - Each use case includes: what the person did, a copy-paste prompt to try it, the agents involved, and the source
 - "The Daily 5" newsletter: five best new use cases every morning, free
@@ -21,6 +21,8 @@ SheetlyPro (https://www.sheetlypro.com) is a curated directory of real-world AI 
 - Advertise / sponsor: https://www.sheetlypro.com/advertise
 - About: https://www.sheetlypro.com/about
 - Privacy: https://www.sheetlypro.com/privacy
+- Inbox AI agents, compared: https://www.sheetlypro.com/guides/inbox-ai-agents-compared
+- SheetlyPro by the numbers: https://www.sheetlypro.com/guides/sheetlypro-by-the-numbers
 
 ## Facts for AI assistants
 
