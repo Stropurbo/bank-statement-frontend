@@ -48,6 +48,41 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "apple-touchscreen-macbook-pro-what-it-means",
+    title: "Apple Finally Put a Touchscreen on the Mac. Here Is What the New MacBook Pro Changes",
+    date: "2026-10-29",
+    description:
+      "Apple announced its first touchscreen Mac on October 28, 2026: a MacBook Pro with a tandem OLED PROLED XDR display, M5 Pro and M5 Max chips, and prices from $2,899. Here is what touch on a Mac actually changes, and what it does not.",
+    appId: "wireless-mouse",
+    body: [
+      {
+        p: "On October 28, 2026, Apple announced something Mac users have waited years for: a MacBook Pro with a touchscreen. It is the first Mac with touch, and it arrives in 14-inch and 16-inch sizes, with a new tandem OLED display Apple calls PROLED XDR. Pre-orders opened the same day, and the laptops reach stores on November 6. Prices start at $2,899 for the 14-inch model and $3,399 for the 16-inch model.",
+      },
+      { h2: "A display built for touch, not just for looking" },
+      {
+        p: "The PROLED XDR display uses tandem OLED technology, which stacks two light-emitting layers instead of one. Each pixel makes its own light, so a black pixel simply switches off. Apple rates the panel at up to 2,000 nits of peak brightness for both HDR and SDR content, with a 10,000,000:1 contrast ratio. In plain terms, you get true blacks with no faint glow around bright objects on dark backgrounds, a halo effect that the older mini-LED backlight could show. The display also supports ProMotion refresh rates from 10Hz to 120Hz, covers both the P3 and Adobe RGB color ranges, and comes with an antireflective coating, with a nano-texture anti-glare option for bright rooms.",
+      },
+      {
+        p: "The touch sensor is built directly into the display panel, which Apple says avoids added latency, so touch feels responsive rather than laggy. Apple lists everyday gestures: scroll a webpage with a swipe, pinch to zoom in on a photo, drag slides from one presentation to another, and double-tap a window to fill the screen. A redesigned hinge is meant to keep the screen steady when you tap it, and video stabilization is meant to smooth the camera feed when you touch the screen during a video call.",
+      },
+      { h2: "Touch joins the keyboard, it does not replace it" },
+      {
+        p: "Apple is careful about the framing here. The Mac remains, in the company's words, first and foremost an indirect input device, and touch is for the moments when reaching out is faster than moving a pointer. macOS translates touches into clicks, so many existing apps should work with touch right away, and developers can build more specific touch interactions with updated tools. The honest read is that not every app will feel designed for fingers on day one. Touch on the Mac starts as a useful extra, not a replacement for the keyboard and trackpad.",
+      },
+      {
+        p: "The redesign brings other changes too. The notch is gone, replaced by the Dynamic Island familiar from the iPhone, which becomes a home for Spotlight, Live Activities and Siri. The Apple logo on the lid glows again, as it did on older MacBooks. The machines are thinner and lighter than before: the 14-inch model weighs 3 pounds and the 16-inch model weighs 4 pounds. Inside are M5 Pro or M5 Max chips, with up to 128GB of memory and up to 16TB of storage, and Apple claims up to 24 hours of battery life by its own measure. One point of confusion to clear up: this is a different machine from the M6 MacBook Pro that Apple announced a day earlier, on October 27.",
+      },
+      { h2: "Why this matters beyond Apple fans" },
+      {
+        p: "Step back from the spec sheet and a pattern appears. The screen is becoming something you touch, not just something you watch. Computers are also being controlled in new ways: by voice, by AI agents that can click and type on your behalf, and from across the room instead of from a desk chair. We covered one piece of that shift in our post on <a href=\"/apps/openai-gpt-6-1-terra-cheap-computer-use-ai\">OpenAI's cheaper computer-using AI</a>. The touchscreen Mac is another piece. Controlling a computer without sitting at it is turning into a normal expectation, not a party trick, whether that means running a presentation, playing music in the kitchen, or showing photos on a big screen in the living room.",
+      },
+      { h2: "Control your computer from across the room today" },
+      {
+        p: "You do not need a $2,899 laptop to try the idea. <strong>Wireless Mouse: Remote Mouse</strong> is a free Android app that turns your phone into a wireless mouse, keyboard and trackpad for your PC. Run presentations, control media, and browse from the couch, all from the phone already in your hand. Our guide to <a href=\"/apps/use-phone-as-wireless-mouse-pc\">using your phone as a wireless mouse for PC</a> walks through the setup. The Play Store card below takes you straight to the app.",
+      },
+    ],
+  },
+  {
     slug: "screen-mirroring-without-wifi",
     title: "How to Mirror Your Phone to a TV Without Wi-Fi: 5 Methods That Actually Work",
     date: "2026-10-28",
