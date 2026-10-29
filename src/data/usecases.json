@@ -1839,5 +1839,92 @@
     "sourceUrl": "https://www.aiwithmarlon.com",
     "date": "2026-10-28",
     "votes": 0
+  },
+  {
+    "id": "lead-magnet-quiz-pdf-drip",
+    "title": "Turn a quiz into a personal report and a 21-day email sequence",
+    "summary": "After a generic guide went mostly unread, a builder flipped the funnel: a short quiz comes first, then n8n and Claude turn the answers into a personalised PDF report and a 21-day follow-up email sequence, delivered in about a minute. The point is that the result feels written for one person, not handed to everyone.",
+    "topic": "marketing-sales",
+    "agents": [
+      "n8n",
+      "Claude"
+    ],
+    "prompt": "Turn these quiz answers into a short personalised report: name the reader's biggest gap, give three concrete next steps, and outline a 21-day follow-up email sequence.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-29",
+    "votes": 0
+  },
+  {
+    "id": "scam-text-explainer",
+    "title": "Explain a suspicious text in the sender's own language",
+    "summary": "A builder working from interviews about scam texts built a small n8n workflow: forward a suspicious message to an email address and an AI node explains what looks off about it, replies in the message's own language, and sends the answer back. The honest lesson in the post is that the first version only worked while the editor was open, because the test webhook address stops listening; the production address is the one that keeps working.",
+    "topic": "everyday-life",
+    "agents": [
+      "n8n",
+      "Claude"
+    ],
+    "prompt": "Explain in plain language what looks suspicious about this message, and reply in the same language the message was written in.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-29",
+    "votes": 0
+  },
+  {
+    "id": "phishing-comment-scanner",
+    "title": "Scan community comments daily for phishing campaigns",
+    "summary": "After phishing comments kept appearing on his posts, a builder expanded another community member's scanner idea into a daily scan of a blogging platform's public API. Comments are scored on strong signals such as known phishing domains and impersonation phrases, and only comments hitting two strong signals are reported, which cut hundreds of noisy first-version flags down to a handful of confirmed accounts. The grouped report got the campaign's accounts removed.",
+    "topic": "business-ops",
+    "agents": [
+      "Google AI Studio"
+    ],
+    "prompt": "Score this comment for phishing signals: known bad domains, impersonation phrases, and shortlinks paired with empty or bot-style text. Report it only if two strong signals appear together.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-29",
+    "votes": 0
+  },
+  {
+    "id": "gsc-magic-search-feedback",
+    "title": "Let an agent read your search results before you write more",
+    "summary": "A small app maker found writing blog posts was easy but choosing what to improve was not, so he built a connector that lets an AI assistant read his site's Search Console data. The agent compares full periods, spots pages shown often but rarely clicked, and suggests which page to investigate next, while the human still makes the editorial decision and checks the result. The author is clear the tool does not prove an edit caused any traffic change.",
+    "topic": "marketing-sales",
+    "agents": [
+      "Claude",
+      "ChatGPT"
+    ],
+    "prompt": "Compare my site's search performance across two full periods and tell me which pages are shown often but rarely clicked, so I can decide what to investigate first.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-29",
+    "votes": 0
+  },
+  {
+    "id": "catalogpay-messy-order",
+    "title": "Turn a messy order message into paid checkouts for every seller",
+    "summary": "Built as a hackathon project, this agent reads a cafe's messy order, a quick message, a photo of a handwritten list, or a voice note, and matches each line to a real product in the catalog, with prices always taken from the catalog rather than guessed by the AI. Out-of-stock or unclear lines are flagged and never charged, and one PayPal payment is then split automatically so each seller is paid their share.",
+    "topic": "money-bills",
+    "agents": [
+      "Gemini"
+    ],
+    "prompt": "Read this messy order message, match each line to a product in my catalog using catalog prices only, and flag any line that is out of stock or unclear instead of charging for it.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-29",
+    "votes": 0
+  },
+  {
+    "id": "phoenix-apify-watch",
+    "title": "Let a daily agent watch your side business while you sleep",
+    "summary": "A seller with public web-scraping tools on a marketplace built Phoenix, a scheduled agent that each morning scans the platform's blog, checks store trends, audits pricing settings, and prepares or runs small fixes, then leaves a short report. One morning it caught a billing-limit problem behind a failed publish attempt instead of failing silently, and flagged it for review.",
+    "topic": "business-ops",
+    "agents": [
+      "Hermes Agent"
+    ],
+    "prompt": "Run my daily platform watch: scan the blog for new posts, check store trends, audit my listings' pricing settings, and leave a short report of what changed and what needs my review.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-29",
+    "votes": 0
   }
 ]
