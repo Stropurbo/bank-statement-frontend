@@ -1926,5 +1926,91 @@
     "sourceUrl": "https://dev.to",
     "date": "2026-10-29",
     "votes": 0
+  },
+  {
+    "id": "website-ai-readability-scan",
+    "title": "Check whether AI assistants can actually read your website",
+    "summary": "A developer built a checker that scans a website the way AI assistants read it, running 93 checks and handing back a fix pack instead of just a grade. The point hit home when a famous, polished site scored a D: looking good to people and being readable to machines are different jobs.",
+    "topic": "marketing-sales",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Scan my website the way an AI assistant would read it, and list the specific fixes that would make it easier for AI tools to understand and recommend.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-30",
+    "votes": 0
+  },
+  {
+    "id": "messenger-chatbot-engraving-shop",
+    "title": "Answer a small shop's Facebook messages when the team is off the clock",
+    "summary": "A builder put an n8n chatbot on a real engraving shop's Facebook page to answer first inquiries when the team is busy or off the clock. The bot answers only from the owner's own info file, takes order details for the team's form, and hands the chat to a person on request — the team still replied in most chats.",
+    "topic": "business-ops",
+    "agents": [
+      "n8n"
+    ],
+    "prompt": "Answer this customer message using only the facts in my business info file. If the answer is not in the file, hand the chat to my team instead of guessing.",
+    "source": "Substack",
+    "sourceUrl": "https://substack.com",
+    "date": "2026-10-30",
+    "votes": 0
+  },
+  {
+    "id": "own-n8n-runner-gemini",
+    "title": "Build your own mini-n8n, one follow-up question at a time",
+    "summary": "A builder asked Gemini whether he could build his own version of n8n, starting from a simple Python webhook listener. One follow-up at a time it grew background execution, a run history in a database, logins, retries, scheduling and replay — and the builder then had to work out where the finished runner actually belonged in his own app's stack.",
+    "topic": "coding-dev",
+    "agents": [
+      "Gemini"
+    ],
+    "prompt": "Build me a small automation runner: accept a webhook request, run the job in the background, record each run's status in a database, and let me replay a failed run.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-30",
+    "votes": 0
+  },
+  {
+    "id": "langchain-three-internal-agents",
+    "title": "Run one internal agent per team on a shared harness",
+    "summary": "LangChain runs three internal agents on one shared setup: one for sales work, one for engineering tasks, and one for marketing. They live in Slack, act only with the permissions set for each tool, and run on schedules — a daily sales briefing and automatic code reviews on new pull requests — with the lesson that the surrounding harness matters more than the model underneath.",
+    "topic": "business-ops",
+    "agents": [
+      "Custom agent"
+    ],
+    "prompt": "Set up one internal agent per team in our chat app, each with its own permissions for the tools it may use, and a daily briefing it sends on schedule.",
+    "source": "Medium",
+    "sourceUrl": "https://medium.com",
+    "date": "2026-10-30",
+    "votes": 0
+  },
+  {
+    "id": "codenecromancer-repo-revival",
+    "title": "Revive an abandoned repository with a local agent",
+    "summary": "A developer built a local agent that examines abandoned code repositories, scores how decayed they are, and writes up what went wrong. It can also role-play the original maintainer to answer questions about old design choices, then draft a modernization — new CI workflows and updated syntax — on a fresh branch, all without sending code to the cloud.",
+    "topic": "coding-dev",
+    "agents": [
+      "Gemma",
+      "Ollama"
+    ],
+    "prompt": "Audit this abandoned repository: score how decayed it is, explain what broke, and draft the modernization on a fresh branch without touching the original.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-30",
+    "votes": 0
+  },
+  {
+    "id": "rootkit-exorcist-script-scanner",
+    "title": "Explain suspicious scripts without ever running them",
+    "summary": "A Python tool reads scripts as text, without ever running them, and flags suspicious command patterns with a severity level and a standard attack-technique label. A small local model then explains each finding and suggests next investigation steps — but the detection stays in code, since the author warns that AI explanations are not evidence by themselves.",
+    "topic": "coding-dev",
+    "agents": [
+      "Llama 3.2",
+      "Ollama"
+    ],
+    "prompt": "Read this script as text without running it, flag any suspicious command patterns with their severity, and explain what each one could mean.",
+    "source": "dev.to",
+    "sourceUrl": "https://dev.to",
+    "date": "2026-10-30",
+    "votes": 0
   }
 ]
