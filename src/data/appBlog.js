@@ -48,6 +48,42 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "mirror-android-to-fire-tv-stick",
+    title: "How to Mirror Android to a Fire TV Stick: The Built-In Way, Plus Fixes That Work",
+    date: "2026-10-30",
+    description:
+      "Learn how to mirror Android to a Fire TV Stick using the stick's built-in Display Mirroring, in-app casting, and a one-tap app, plus fixes for when your phone does not show up.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "A Fire TV Stick turns almost any TV into a smart TV, but it can also show your Android phone on that same big screen. Photos, videos, games, and video calls all look better on a TV than on a phone, and you do not need a Chromecast to get them there. The stick has its own mirroring mode built in, and it works with many Android phones that offer a wireless display option. Here is how to use it, what to try when you only want video, and what to check when your phone does not show up.",
+      },
+      { h2: "1. Use the Fire TV Stick's built-in Display Mirroring" },
+      {
+        p: "Start on the TV. On your Fire TV Stick, open Settings, then Display and Sounds, and choose Enable Display Mirroring. On some models you can also press and hold the Home button on the remote and pick Mirroring from the quick menu. The TV will show a waiting screen with the stick's name. Now pick up your Android phone. Swipe down for quick settings and look for Smart View, Cast, Screen Cast, or Wireless Display. The exact name depends on your phone maker. Tap it, pick your Fire TV Stick from the list, and your phone screen should appear on the TV. Once it connects, everything on your phone shows on the TV, including apps that do not have a cast button of their own.",
+      },
+      {
+        p: "Two honest limits are worth knowing before you start. First, not every Android phone supports this kind of direct mirroring. If your phone has no Cast, Smart View, or Wireless Display option at all, it probably does not support it, and the later sections below are your better route. Second, mirroring shows your whole screen, notifications included, so turn on Do Not Disturb if you do not want messages popping up in front of everyone in the room. For the wider picture, including the built-in options on other TVs, see our guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a>.",
+      },
+      { h2: "2. If you only want video, cast from inside the app" },
+      {
+        p: "Sometimes you do not need your whole screen on the TV, only the video. Open YouTube or a similar app on your phone, tap the cast icon, and pick your Fire TV Stick. The video plays on the TV while your phone stays free for other things, and you can even lock the phone without stopping playback. This is streaming, not mirroring, so it will not show your photos, games, or video calls. It is also the lighter option: it uses less phone battery than full screen mirroring, and it keeps working even if you switch to another app on the phone.",
+      },
+      { h2: "3. When your phone or stick does not show up" },
+      {
+        p: "Work through this checklist before buying anything. First, restart both the phone and the Fire TV Stick. Second, check for software updates on the stick, since mirroring support improves in updates. Third, put both devices on the same Wi-Fi network, which helps the phone find the stick. Fourth, move closer to your router or switch to the 5 GHz Wi-Fi band if the picture stutters, since video needs a steady connection. Fifth, try a second phone if you have one: if the second phone connects, the problem is with the first phone, not the stick. If no phone connects, the stick's mirroring mode or its network connection is the more likely cause.",
+      },
+      { h2: "4. What will not work here" },
+      {
+        p: "A Chromecast dongle will not help, because the Fire TV Stick already does this job itself and the two do not stack. AirPlay is also not built into the Fire TV Stick, so iPhone owners should use the iPhone route instead, covered in our guide to <a href=\"/apps/mirror-iphone-to-tv-without-apple-tv\">mirroring an iPhone without an Apple TV</a>. And a cable will not mirror to the stick at all: an HDMI adapter connects your phone straight to the TV and bypasses the stick entirely. That is still a useful fallback if you only want the phone on the TV screen and you do not mind a wire, but it is not mirroring to the Fire TV Stick.",
+      },
+      { h2: "Mirror in one tap with TV Cast" },
+      {
+        p: "If the built-in steps above feel fiddly, or your phone's own cast option keeps missing the stick, <strong>TV Cast</strong> is a paid Android app that mirrors your phone to Fire TV in seconds, with no Chromecast needed. It is a one-time purchase with no subscription. Our walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android to a TV without a Chromecast</a>. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
     slug: "apple-touchscreen-macbook-pro-what-it-means",
     title: "Apple Finally Put a Touchscreen on the Mac. Here Is What the New MacBook Pro Changes",
     date: "2026-10-29",
