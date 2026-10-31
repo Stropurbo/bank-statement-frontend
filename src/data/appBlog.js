@@ -48,6 +48,51 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "sam-altman-pc-ram-dram-shortage-explained",
+    title: "Sam Altman Says Your PC RAM Is Wasted. Here Is What the Memory Shortage Means for You",
+    date: "2026-10-31",
+    description:
+      "OpenAI CEO Sam Altman said on October 29, 2026 that keeping large amounts of DRAM in personal computers is a poor use of a scarce supply. Here is what he actually said, why memory is scarce, and what it means for regular PC owners.",
+    appId: "wireless-mouse",
+    body: [
+      {
+        p: "On October 29, 2026, OpenAI CEO Sam Altman said something that annoyed a lot of PC owners. Speaking on the Cheeky Pint podcast, hosted by Stripe co-founder John Collison, he argued that keeping large amounts of computer memory in personal computers is a poor use of a limited global supply. His phrase, quoted across tech coverage the next day, was blunt: from a global allocation view, it is quite terrible to have everybody have a bunch of the world's limited supply of DRAM sitting in their own computer and being used 5 percent of the time.",
+      },
+      { h2: "What Altman actually said" },
+      {
+        p: "The context matters, because the quote is easy to misread. Altman was talking about local AI inference, the idea of running AI models directly on your own computer instead of sending requests to a data center. His point was that many people assume open-weight AI models on home PCs will reduce the need for huge data centers. He disagrees. In a supply-constrained world, he argued, memory serves more people when it sits in a data center that runs around the clock than when it sits in one person's machine for occasional use. He put it this way: you want maximum utilization in the cloud if you are trying to deal with this very supply-constrained environment.",
+      },
+      {
+        p: "Two things he did not say are worth stating plainly. He did not propose banning RAM in home PCs, and his 5 percent figure was part of an argument about utilization, not a published measurement of how much PC memory typically sits idle. Reporting on the interview notes that distinction, and it matters: a rhetorical example is not a statistic.",
+      },
+      { h2: "Why memory is scarce right now" },
+      {
+        p: "The argument lands because memory really is tight. AI companies and cloud providers are buying huge amounts of DRAM and high-bandwidth memory for data centers, and memory makers are prioritizing those orders. Reporting on Altman's comments notes that SK hynix has warned memory supply shortages could persist through 2030 as AI infrastructure demand strains production, and that DRAM and high-bandwidth memory supplies are heavily committed through 2029. The result for shoppers is familiar: PC parts get more expensive, upgrades get harder to justify, and a machine that felt mid-range last year suddenly costs more to match.",
+      },
+      {
+        p: "This is not a new pattern, but AI demand has sharpened it. Where memory makers once sold mainly to PC and phone makers, they now sell first to the buyers building data centers. Consumers end up competing for what is left, and prices reflect that competition.",
+      },
+      { h2: "What it means for regular PC owners" },
+      {
+        p: "For most people, the practical effect is not that their PC stops working. It is that the next upgrade costs more, and the case for squeezing more life out of the machine you already own gets stronger. Your PC still needs RAM for everyday work, gaming, and multitasking. Those uses did not disappear because AI data centers want more memory. Altman's argument is about where scarce memory does the most work for AI workloads, not about whether your own computer needs memory at all.",
+      },
+      {
+        p: "So the sensible response is boring in the best way. Before you pay a premium for more memory, check what is actually slowing you down. Close the browser tabs you are not using. Remove programs that launch at startup. Make sure your storage is not full. If your machine is still fine for the work you do, a shortage elsewhere is not a reason to rush an upgrade you do not need.",
+      },
+      { h2: "The pushback is fair" },
+      {
+        p: "Critics of Altman's view make a reasonable point too. A PC is not a data center terminal. People buy memory for games, video editing, programming, and dozens of everyday tasks that have nothing to do with AI. Utilization also looks different depending on what you measure: a gaming PC used for a few hours a day is not wasted in the same way an idle server would be, because its job is to be ready when its owner sits down. And concentrating a scarce resource in a few giant buyers is exactly what makes it scarce for everyone else, which is a circular argument worth noticing.",
+      },
+      {
+        p: "There is also a business-model angle that reporting on the interview flags honestly. OpenAI's main products run in data centers and are sold through subscriptions and cloud services, so a world where more computing happens in the cloud is a world that suits OpenAI. That does not make the utilization argument wrong, but it does mean it is not neutral. We covered a related shift in our post on <a href=\"/apps/openai-gpt-6-1-terra-cheap-computer-use-ai\">OpenAI's cheaper computer-using AI</a>, which looked at how AI agents are learning to click and type on our behalf.",
+      },
+      { h2: "Get more from the PC you already have" },
+      {
+        p: "The shortage is a good reason to make the computer you own easier to use, not harder. When you are presenting slides, running a movie night, or working from the sofa, the real friction is rarely processing power. It is where you are sitting. The computer is fixed to a desk, and you are not. That is a control problem, and it has a free fix: turn the phone already in your hand into a wireless mouse, keyboard, and trackpad for your PC. You can run presentations, control media, and browse from the couch without buying new hardware. Our guide to <a href=\"/apps/use-phone-as-wireless-mouse-pc\">using your phone as a wireless mouse for PC</a> walks through the setup. The Play Store card below takes you straight to the free app.",
+      },
+    ],
+  },
+  {
     slug: "mirror-android-to-fire-tv-stick",
     title: "How to Mirror Android to a Fire TV Stick: The Built-In Way, Plus Fixes That Work",
     date: "2026-10-30",
