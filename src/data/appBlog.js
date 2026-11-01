@@ -48,6 +48,67 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "gemini-edits-files-inside-chat",
+    title: "Google Gemini Now Edits Your Documents Without Leaving the Chat. Here Is What Changes for Your Workday",
+    date: "2026-11-01",
+    description:
+      "Google announced on October 29, 2026 that Gemini can now generate, preview and edit documents, spreadsheets, slide decks and PDFs right inside the chat. Here is what is new, what still only works on the web, and the catches worth knowing.",
+    appId: "wireless-mouse",
+    body: [
+      {
+        p: "On October 29, 2026, Google gave its Gemini chatbot a file editor. Until now, the workflow was one way only: you asked Gemini to make a document, a spreadsheet or a slide deck, and it handed you a finished file to download. If anything in it was wrong, you opened another app, fixed it there, and started over.",
+      },
+      {
+        p: "The new update closes that loop. You can now generate a file, preview it, and edit it right inside the Gemini chat, without leaving the conversation.",
+      },
+      { h2: "What is actually new" },
+      {
+        p: "The change covers a practical set of formats: PDFs, Google Docs, spreadsheets, slide decks, Markdown files, plain-text files and code. Once Gemini generates a file, the result previews directly in the chat. From there you can expand the preview to full screen and type edits yourself, highlight a passage and ask Gemini a question about it, or ask Gemini in plain language to rewrite a section, change its tone or restructure it.",
+      },
+      {
+        p: "Google's demo shows a table in a document being turned into a graph on request, which is the kind of small job that used to mean exporting, editing and re-uploading.",
+      },
+      {
+        p: "This builds on file generation that Google added in April 2026, when Gemini first learned to turn a prompt into a finished Doc or spreadsheet. The April version only went in one direction, prompt in and file out. The October update adds the way back: generate, look, fix, and refine, all in the same chat window.",
+      },
+      {
+        p: "When you are done, you can open the file in Google Docs, Sheets or Slides; slide decks can also be downloaded as a PowerPoint or PDF file.",
+      },
+      { h2: "What works where: the mobile catch" },
+      {
+        p: "There is one split worth knowing before you plan around this. PDF preview and editing work on both the web and the mobile app. The other formats, including Docs, Sheets, slide decks, Markdown, plain text and code, are currently limited to the web version of Gemini.",
+      },
+      {
+        p: "Google has not shared a date for bringing full in-chat editing to the mobile apps, so if you mainly edit spreadsheets or presentations on your phone, check the interface before you build a deadline around it.",
+      },
+      {
+        p: "The feature itself costs nothing extra, according to reporting on the announcement. Paid Gemini plans buy higher usage caps and access to stronger models in general, not the editing feature itself. The rollout covers users in all languages where the Gemini app is available.",
+      },
+      { h2: "The catches worth knowing" },
+      {
+        ul: [
+          "No comments or version history in the chat preview. The margin notes, @mentions and version history that make Docs and Sheets worth using for team work still live only in the full apps, not in the chat window. Every edit inside the preview overwrites the last state.",
+          "The help pages have not caught up. Google's own help article for generating files from Gemini chats still describes only the older generate-and-download flow. When the help center and the dated announcement disagree, trust the announcement.",
+          "It is still a draft, not a finished document. Gemini can misread a request, garble a table or rewrite a section in a way you did not ask for, so the file still needs a human read-through before it goes anywhere important.",
+        ],
+      },
+      { h2: "Why this matters for how you work" },
+      {
+        p: "Step back from the feature list and a pattern appears. The hard part of office work is quietly moving from making files to reviewing them. When an AI can draft a report, a tracker or a slide outline in seconds, the bottleneck becomes checking it, fixing it and presenting it.",
+      },
+      {
+        p: "That is a shift we have been tracking here: our post on <a href=\"/apps/openai-gpt-6-1-terra-cheap-computer-use-ai\">OpenAI's cheaper computer-using AI</a> looked at AI agents that click and type on your behalf, and Gemini's editor is the gentler version of the same idea, an assistant that drafts while you stay in charge of the final version.",
+      },
+      {
+        p: "It also changes where work happens. If the document is born in a chat window, the desk setup around it matters less than the screen you present it on. A report drafted on your phone can be reviewed on a laptop, shown on a big screen in a meeting, or read from the sofa, and the friction is no longer the file itself. It is where you are sitting when you need to control it.",
+      },
+      { h2: "Control your computer from across the room" },
+      {
+        p: "You do not need new hardware to try that idea. <strong>Wireless Mouse: Remote Mouse</strong> is a free Android app that turns your phone into a wireless mouse, keyboard and trackpad for your PC. Run presentations, control media, and browse from the couch, all from the phone already in your hand. Our guide to <a href=\"/apps/use-phone-as-wireless-mouse-pc\">using your phone as a wireless mouse for PC</a> walks through the setup. The Play Store card below takes you straight to the free app.",
+      },
+    ],
+  },
+  {
     slug: "sam-altman-pc-ram-dram-shortage-explained",
     title: "Sam Altman Says Your PC RAM Is Wasted. Here Is What the Memory Shortage Means for You",
     date: "2026-10-31",
