@@ -2172,5 +2172,103 @@
   "title": "Let a local AI agent haunt your terminal",
   "topic": "creative",
   "votes": 0
+ },
+ {
+  "agents": [
+   "Claude Sonnet"
+  ],
+  "date": "2026-11-02",
+  "id": "arc-doctor-runner-diagnosis",
+  "prompt": "This runner has been stuck for over five minutes. Check the listener, the runner pod and the node pool, then report the root cause with the exact log line that proves it and the fix.",
+  "source": "Medium",
+  "sourceUrl": "https://medium.com",
+  "summary": "A builder put a read-only agent on his self-hosted GitHub Actions runners: a simple script spots stuck runners, then the agent checks logs and events and posts a verdict, the exact evidence line and a fix to Slack. It cannot change anything in the cluster, so a person still applies the fix.",
+  "title": "Diagnose stuck CI runners with a read-only agent",
+  "topic": "coding-dev",
+  "votes": 0
+ },
+ {
+  "agents": [
+   "Claude Code"
+  ],
+  "date": "2026-11-02",
+  "id": "trello-cards-to-production",
+  "prompt": "Here is one task card and the code it touches. Write a plan listing the files, the steps and testable acceptance criteria, and ask questions instead of guessing if anything is vague.",
+  "source": "Medium",
+  "sourceUrl": "https://medium.com",
+  "summary": "A solo builder lets agents move Trello cards through planning, building and checking, but plain code, not the agent, decides each next step, and only he drags a card to Approved for deploy. Each agent runs with its own tool limits, and a card gets at most two fix rounds before it is blocked for a person.",
+  "title": "Move task cards to production with agents that cannot call themselves done",
+  "topic": "coding-dev",
+  "votes": 0
+ },
+ {
+  "agents": [
+   "DeepSeek Harness"
+  ],
+  "date": "2026-11-02",
+  "id": "deepseek-superagent-pr-agent",
+  "prompt": "Watch this repository for requests from approved team members, do each one in its own session, and reply in the same thread with a pull request for review.",
+  "source": "dev.to",
+  "sourceUrl": "https://dev.to",
+  "summary": "DeepSeek open-sourced a prototype coding agent that lives inside one GitHub repository, picks up requests from approved team members, works in its own session and folder, and replies where the request was made, often with a pull request ready for review. The team calls it a research prototype, not a finished product, and warns it may still contain bugs.",
+  "title": "Let a repo agent answer requests with pull requests",
+  "topic": "coding-dev",
+  "votes": 0
+ },
+ {
+  "agents": [
+   "Claude Opus"
+  ],
+  "date": "2026-11-02",
+  "id": "bloomright-agent-first-forge",
+  "prompt": "Here is a well-specified task with acceptance criteria. Claim it, build it on its own branch, and submit it for a fresh review that checks the exact commit before it can merge.",
+  "source": "Medium",
+  "sourceUrl": "https://medium.com",
+  "summary": "A builder created a self-hosted code forge where agents claim small, well-specified tasks, build them in parallel, and have their work reviewed by a fresh agent before it can merge, while every production deploy still waits for his own go-ahead. He reports the forge has hosted its own development since early October, with routine gates being switched on one at a time.",
+  "title": "Run a code forge built for agents, with humans approving deploys",
+  "topic": "coding-dev",
+  "votes": 0
+ },
+ {
+  "agents": [
+   "Gemma"
+  ],
+  "date": "2026-11-02",
+  "id": "proofpocket-paperwork-agent",
+  "prompt": "Here are the instructions for this application and my uploaded documents. Match each document to a requirement, explain each match, and list anything missing or unclear.",
+  "source": "dev.to",
+  "sourceUrl": "https://dev.to",
+  "summary": "A builder made an open-weight paperwork agent that turns application instructions into a checklist, matches uploaded documents to each requirement, flags what is missing or unclear, and packs the result into a downloadable set of files. Anything uncertain goes to a person for review instead of being marked complete.",
+  "title": "Turn application paperwork into a reviewable checklist",
+  "topic": "productivity",
+  "votes": 0
+ },
+ {
+  "agents": [
+   "llama.cpp"
+  ],
+  "date": "2026-11-02",
+  "id": "ismini-local-linux-agent",
+  "prompt": "Download a small local model in this app and start a chat, with no config files to edit and nothing sent to the cloud.",
+  "source": "dev.to",
+  "sourceUrl": "https://dev.to",
+  "summary": "A builder made a small Linux app that bundles everything a local AI agent needs, so a newcomer can download it, pick a model and start chatting without editing config files or installing extra tools. It runs fully on the user's own machine, with web search, file tools, voice and memory across sessions.",
+  "title": "Chat with a local AI agent with no setup screens",
+  "topic": "productivity",
+  "votes": 0
+ },
+ {
+  "agents": [
+   "Custom agent"
+  ],
+  "date": "2026-11-02",
+  "id": "escrow-agent-earns-upkeep",
+  "prompt": "Poll this job board for funded escrow jobs, price a bid below the budget using these hard rules, and write a deliverable that hits every item on the acceptance list.",
+  "source": "dev.to",
+  "sourceUrl": "https://dev.to",
+  "summary": "A builder gave an autonomous agent one job: bid for small jobs on escrow marketplaces, write each deliverable to match the job's acceptance list, and get paid in USDC when an independent check accepts the work. After five days it had won two small jobs with no human help, and the builder is open that it is not yet profitable once engineering time is counted.",
+  "title": "Let an agent bid for small escrow jobs and earn its keep",
+  "topic": "money-bills",
+  "votes": 0
  }
 ]
