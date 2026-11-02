@@ -48,6 +48,65 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "cast-phone-to-laptop-for-presentations",
+    title: "How to Cast Your Phone to a Laptop for Presentations",
+    date: "2026-11-02",
+    description:
+      "Learn how to cast your phone to a laptop for presentations: the wireless browser method, the built-in Phone Link and AirPlay options, the cable mistake to avoid, and a five-minute checklist that prevents surprises on stage.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Your slides are on your phone, and the laptop is the one plugged into the projector. Getting the phone screen onto that laptop sounds simple, but it is where most presentations stumble. The cable you would use for a TV does not work here, and the built-in tools depend on your exact devices. Here is the route that works in most rooms, plus the fallbacks and the checks to run before you speak.",
+      },
+      { h2: "1. Start with a browser receiver on the laptop" },
+      {
+        p: "The most flexible method needs no install on the laptop at all. A browser receiver shows your phone screen inside an ordinary browser tab on the laptop. Open the receiver page on the laptop, connect from your phone, and your slides appear in the tab. Put the browser in full screen and the audience sees only your slides.",
+      },
+      {
+        p: "It works on Windows and Mac alike, because the laptop side is just a web page, and there is no dongle to forget in another room.",
+      },
+      {
+        p: "This is also the method that survives room changes best. If the meeting moves to a different laptop, you open the same page on the new machine and reconnect. The one requirement is real: both devices must be on the same Wi-Fi network. Hotel and conference guest networks sometimes block devices from seeing each other, so test on the room's network, not just at your desk.",
+      },
+      { h2: "2. Use the built-in tools if your devices match" },
+      {
+        p: "If you own matching gear, the free built-in option is the fastest. Android phones mirror to Windows laptops through Phone Link, and iPhones mirror to Macs through AirPlay. Both are already installed, cost nothing, and need no extra hardware.",
+      },
+      {
+        p: "Our guide to <a href=\"/apps/mirror-phone-to-pc-windows-mac\">mirroring your phone to a PC</a> walks through both setups step by step. The catch is the same in both cases: mixed devices, an Android phone with a Mac or an iPhone with a Windows laptop, need the browser method in section 1 instead.",
+      },
+      { h2: "3. The cable mistake: laptop HDMI ports only send video out" },
+      {
+        p: "The most common failed attempt is a cable. A phone-to-HDMI adapter works well into a TV, but a laptop's HDMI port is output-only. It sends video to an external display. It cannot take video in from your phone. Plugging an adapter into it does nothing, however good the cable is.",
+      },
+      {
+        p: "The exception proves the rule: a video capture card can accept an HDMI signal, but that is extra hardware, extra software, and extra cost for a problem the wireless methods solve for free. If the room has a TV or projector with a free HDMI port, skip the laptop entirely and mirror straight to that display, as covered in our guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a>.",
+      },
+      { h2: "4. Run this five-minute checklist before you speak" },
+      {
+        ul: [
+          "Same network, tested in the room. Connect both devices to the exact network the presentation will use, and mirror one slide before the audience arrives. A connection that worked at your desk can fail on a guest network that isolates devices.",
+          "Silence the phone. Turn on Do Not Disturb so calls and messages do not appear on the big screen mid-talk. Close apps with private content before you mirror, since the audience sees everything on your screen.",
+          "Lock the orientation. Set the phone to landscape and switch off auto-rotate, so a small tilt does not flip your slides sideways in front of the room.",
+          "Mind your notes. Mirroring shows the audience exactly what you see, so there is no private presenter view. Keep your speaker notes on paper or on a second device, not on the mirrored phone.",
+          "Keep a backup on the laptop. Put a copy of the deck itself on the laptop before you start. If the wireless link drops mid-talk, you can switch to the local file without hunting for a download.",
+          "Charge the phone. Mirroring drains the battery faster than normal use, so plug the phone in or start above half charge for a long session.",
+        ],
+      },
+      { h2: "5. When the laptop does not show up or the picture stutters" },
+      {
+        p: "Work through this list before buying anything. First, restart both devices. Second, confirm both are on the same network, not one on the main network and one on a guest network. Third, move closer to the router or switch to the 5 GHz Wi-Fi band if the picture stutters, since slides with video need a steady connection.",
+      },
+      {
+        p: "Fourth, check for software updates on both devices. Fifth, try a second phone if you have one: if it connects, the problem is with the first phone, not the laptop.",
+      },
+      { h2: "Present in one tap with TV Cast" },
+      {
+        p: "If the setup above feels fiddly, or you present from your phone often, <strong>TV Cast — Screen Mirroring</strong> is a paid Android app that casts your phone to a laptop through its browser in seconds, with no Chromecast needed. It is a one-time purchase with no subscription. Our walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android without a Chromecast</a>. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
     slug: "gemini-edits-files-inside-chat",
     title: "Google Gemini Now Edits Your Documents Without Leaving the Chat. Here Is What Changes for Your Workday",
     date: "2026-11-01",
