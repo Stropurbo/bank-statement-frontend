@@ -17,6 +17,7 @@ import AgentPage from "./pages/AgentPage";
 import UseCasePage from "./pages/UseCasePage";
 import AppsPage from "./pages/AppsPage";
 import AppPostPage from "./pages/AppPostPage";
+import TvCastLandingPage from "./pages/TvCastLandingPage";
 import GuideInboxAgents from "./pages/GuideInboxAgents";
 import GuideByNumbers from "./pages/GuideByNumbers";
 import NotFound from "./pages/NotFound";
@@ -43,6 +44,7 @@ function AppRoutes() {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/privacy-policy" element={<PrivacyPage />} />
         <Route path="/apps" element={<AppsPage />} />
+        <Route path="/apps/tv-cast-screen-mirroring" element={<TvCastLandingPage />} />
         <Route path="/apps/:slug" element={<AppPostPage />} />
         <Route path="/guides/inbox-ai-agents-compared" element={<GuideInboxAgents />} />
         <Route path="/guides/sheetlypro-by-the-numbers" element={<GuideByNumbers />} />
