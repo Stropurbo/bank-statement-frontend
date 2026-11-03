@@ -48,6 +48,76 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "google-quick-share-sdk-inside-apps",
+    title: "Google's Quick Share Is Coming Inside Your Apps, So Sharing Stops Feeling Like a Chore",
+    date: "2026-11-03",
+    description:
+      "Google announced a Quick Share SDK at Android Dev Summit 2026 that lets Android and iOS apps build peer-to-peer file sharing right inside the app. It arrives in the first half of 2027, with end-to-end encryption and offline transfers. Here is what changes and what still depends on developers.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Sharing a file between phones should be the easy part. In practice it rarely is. You tap share, wait for a full-screen menu, pick the right device, and hope the other phone accepts. If your friend has the other kind of phone, an Android to an iPhone or the other way around, it can get worse.",
+      },
+      {
+        p: "Google announced a change at Android Dev Summit 2026 that aims to remove most of that friction. A new Quick Share software kit, due in the first half of 2027, will let developers build Quick Share directly into their own Android and iPhone apps.",
+      },
+      { h2: "What actually changes" },
+      {
+        p: "Today, sharing inside an app usually means leaving the app. You tap share, the system share sheet opens, and then the full Quick Share experience takes over the screen. With the new kit, apps will be able to offer sharing without that detour.",
+      },
+      {
+        p: "According to 9to5Google's report on the announcement, activating Quick Share inside an app will open a bottom sheet, a small panel that slides up from the bottom of the screen, where you can see a preview of the files being sent. You stay in the app you were already using. That sounds small, but it removes the exact step where most people give up and switch to emailing themselves a file instead.",
+      },
+      {
+        p: "The kit also includes Tap to Share, which lets two phones start a transfer by bringing them close together, rather than hunting through a device list.",
+      },
+      { h2: "How it works under the hood" },
+      {
+        p: "Quick Share is a peer-to-peer system, which means files travel directly from one device to the other instead of going up to a cloud server and back down. Google says the kit handles the connection itself, using Wi-Fi Direct or a device hotspot on supported hardware.",
+      },
+      {
+        p: "Transfers are end-to-end encrypted between the two devices, so only the sender and receiver can read them. And because the link is local, transfers can work offline, in places with weak or no mobile signal, like a crowded concert or a rural road.",
+      },
+      {
+        p: "One honest note: these are Google's descriptions of a kit that developers cannot test yet. Nobody outside Google can verify the encryption or the offline performance until the kit ships. Treat the promises as the plan, not as proven results.",
+      },
+      { h2: "Why the iPhone part matters most" },
+      {
+        p: "The bigger news is not the bottom sheet. It is that Google is building an iOS version of the kit alongside the Android one. Quick Share started as a Samsung feature. In 2024, Google merged its own Nearby Share tool into Quick Share, which brought it to Android phones beyond Samsung, plus ChromeOS and Windows computers. The iPhone was still the odd one out.",
+      },
+      {
+        p: "Google has already been chipping away at that wall: its Pixel 10 phones gained the ability to send files directly to iPhones, iPads and Macs. An iOS kit takes the next step, because it lets iPhone apps offer the same in-app sharing instead of leaving each developer to build a separate solution.",
+      },
+      {
+        p: "If enough apps adopt it, the Android versus iPhone sharing gap becomes something you stop noticing, at least for files sent inside supported apps. That \"if\" carries real weight, which brings us to the catch.",
+      },
+      {
+        p: "For the iPhone side of the same cross-device problem, see our guide to <a href=\"/apps/mirror-iphone-to-tv-without-apple-tv\">mirroring an iPhone without an Apple TV</a>.",
+      },
+      { h2: "The catch: 2027, and only where developers opt in" },
+      {
+        p: "No exact release date inside the first half of 2027 has been announced, and there is no public kit yet. Even after it arrives, you will only see in-app Quick Share in apps whose developers choose to add it. Your favorite photo editor might add it on day one. Your bank app probably never will, and that is fine.",
+      },
+      {
+        p: "Sharing features spread app by app, not all at once. So the realistic expectation is a slow rollout through 2027, with the biggest wins in photo, file, and messaging apps where sharing is already a daily habit.",
+      },
+      { h2: "The pattern behind it: sharing without the cloud" },
+      {
+        p: "Step back and a pattern appears. More of the sharing we do is skipping the cloud entirely. Files go straight from one device to another over a local wireless link, with no upload, no download link, and no account needed on a third-party server. That works offline, and it keeps your files off servers you never chose.",
+      },
+      {
+        p: "Our guide to <a href=\"/apps/screen-mirroring-without-wifi\">mirroring your phone without Wi-Fi</a> explains the same idea on the TV side: Wi-Fi Direct can link a phone straight to a display with no router in between. Quick Share brings that same direct-link thinking to files, and to the apps you already use.",
+      },
+      { h2: "Your screen can go wireless too" },
+      {
+        p: "Files are only half the story. If you like the idea of sending things from your phone without cables or cloud uploads, your TV screen can work the same way. <strong>TV Cast — Screen Mirroring</strong> is a paid Android app that mirrors your phone to smart TVs and Fire TV, with no Chromecast needed.",
+      },
+      {
+        p: "It is a one-time purchase with no subscription. Our walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android to a TV without a Chromecast</a>. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
     slug: "cast-phone-to-laptop-for-presentations",
     title: "How to Cast Your Phone to a Laptop for Presentations",
     date: "2026-11-02",
