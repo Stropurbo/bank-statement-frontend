@@ -48,6 +48,74 @@ export const APPS = [
 // Keep <strong> tags inside strings for emphasis. Keep Play URLs exact.
 export const APP_POSTS = [
   {
+    slug: "mirror-phone-to-tv-for-gaming",
+    title: "How to Mirror Your Phone to a TV for Gaming: Cut the Lag and Play Big",
+    date: "2026-11-04",
+    description:
+      "Mirror your phone to a TV for gaming with less lag: wired HDMI, Miracast, and Chromecast compared, plus TV game mode and network tips that keep fast games playable on the big screen.",
+    appId: "tv-cast",
+    body: [
+      {
+        p: "Your phone runs games that look great on a small screen, but a small screen is a poor fit for a racing game, a party game, or a match with friends watching. Putting the game on the TV fixes the size problem and creates a new one: lag.",
+      },
+      {
+        p: "The delay between your tap and the action on the TV decides whether a game feels sharp or sloppy. The method you pick matters more than the phone you own, so here is how each option plays, ranked for gaming.",
+      },
+      { h2: "1. Wired HDMI adapter: usually the lowest-lag route" },
+      {
+        p: "A cable is usually the fastest route from phone to TV. On an Android phone with USB-C video output, a USB-C to HDMI adapter sends the picture straight to any TV with an HDMI port.",
+      },
+      {
+        p: "On an iPhone with a Lightning port, Apple's Lightning Digital AV Adapter does the same job at up to 1080p, and its second port lets you charge the phone while you play. On an iPhone 15 or later with USB-C, a standard USB-C to HDMI adapter works too.",
+      },
+      {
+        p: "There is no wireless signal to fight for airtime and no network in the middle, so the delay is typically lower than with any wireless method. It is a good choice for timing-heavy games: rhythm games, racers, platformers, and anything where a late jump costs a life.",
+      },
+      {
+        p: "One check before you buy: not every Android phone sends video out over USB-C. Check your exact model's specifications for USB-C video output, often called DisplayPort Alt Mode, or the cable will only charge the phone.",
+      },
+      { h2: "2. Miracast: wireless without the router in the middle" },
+      {
+        p: "Miracast is the built-in wireless option on many Android phones, and it has a real advantage for gaming: it uses Wi-Fi Direct, a peer-to-peer link straight from your phone to the TV. No router and no home network sit in between. On a Samsung phone it is called Smart View. On other Android phones look in Settings under Cast, Screen Cast, or Wireless Display.",
+      },
+      {
+        p: "A direct link does not make wireless as fast as a cable, but it removes one hop that can add delay and stutter. If your TV supports Miracast, try this before anything that routes through your router.",
+      },
+      {
+        p: "For the wider picture on router-free methods, see our guide to <a href=\"/apps/screen-mirroring-without-wifi\">mirroring your phone without Wi-Fi</a>. The honest limits still apply: your TV has to support Miracast, and support has been shrinking on newer TVs, so check your TV's manual or input menu first.",
+      },
+      { h2: "3. Chromecast and built-in casting: best for casual and party games" },
+      {
+        p: "Casting through a Chromecast or a TV's built-in cast receiver is the easiest wireless route, and it is perfectly fine for a large class of games. Turn-based games, puzzles, card games, trivia, and party games do not punish a small delay, and the big screen is where they shine with a group in the room.",
+      },
+      {
+        p: "For fast games it is the weakest of the three options, because the signal travels through your home network instead of going straight to the TV. That is not a flaw in the device. It is simply the wrong tool for a game where every fraction of a second counts. Use it for the games where the fun is the room, not the reflexes.",
+      },
+      { h2: "4. Six settings that cut lag on any method" },
+      {
+        ul: [
+          "Switch the TV to game mode. Most TVs apply extra picture processing by default, and that processing adds delay. Game mode turns most of it off. Look for it in your TV's picture settings before you blame the phone.",
+          "Use the 5 GHz Wi-Fi band for wireless play. It is usually less crowded than the 2.4 GHz band, which helps the picture stay steady. Move closer to the router if the picture still stutters.",
+          "Close background apps on the phone. Downloads, video uploads, and heavy apps running behind your game compete for the same wireless link and processor. A clean phone plays cleaner.",
+          "Turn on Do Not Disturb. Mirroring shows your whole screen, so calls and messages appear on the TV mid-match unless you silence them first.",
+          "Plug the phone in. Mirroring plus gaming drains the battery fast, and some phones slow down as the battery drops. A charger removes both problems at once.",
+          "Pair your controller before you start. A Bluetooth controller that supports Android pairs directly with an Android phone, and a controller beats touchscreen controls on a TV from the sofa. Pair it first so you are not digging through settings with the game already running.",
+        ],
+      },
+      { h2: "5. When the picture stutters or the controls feel late" },
+      {
+        p: "Work through this list before buying anything. First, restart both the phone and the TV. Second, switch the TV to game mode if you skipped that step. Third, move closer to the router or switch to the 5 GHz band. Fourth, close background apps and stop any downloads on the home network.",
+      },
+      {
+        p: "Fifth, try the cable: if the wired picture plays cleanly, the problem is the wireless link, not the game. Our general guide to <a href=\"/apps/ways-to-mirror-phone-to-tv-2026\">5 ways to mirror your phone to a TV</a> covers the same methods for video and photos, and our Fire TV guide covers <a href=\"/apps/mirror-android-to-fire-tv-stick\">mirroring Android to a Fire TV Stick</a> if that is the device on your TV.",
+      },
+      { h2: "Play big in one tap with TV Cast" },
+      {
+        p: "If the built-in steps above feel fiddly, <strong>TV Cast</strong> is a paid Android app that mirrors your phone to a TV with Miracast and Chromecast casting. It is a one-time purchase with no subscription. Our walkthrough covers <a href=\"/apps/mirror-android-to-tv-without-chromecast\">mirroring Android to a TV without a Chromecast</a>. The Play Store card below takes you straight to it.",
+      },
+    ],
+  },
+  {
     slug: "google-quick-share-sdk-inside-apps",
     title: "Google's Quick Share Is Coming Inside Your Apps, So Sharing Stops Feeling Like a Chore",
     date: "2026-11-03",
